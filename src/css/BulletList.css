@@ -1,0 +1,35 @@
+.roadmap-bullet-list-title {
+    font-family: "72";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 23px;
+    color: #F0AB00;
+    text-align: left;
+    width: 262px;
+    margin-left: 8px;
+    margin-bottom: 16px;
+}
+
+.header-bullet-description-container .roadmap-bullet-image {
+    margin-top: 4px;
+    margin-right: 8px;
+}
+
+.roadmap-bullet-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 300px;
+    padding-right:24px
+}
+
+.page-container-small .roadmap-bullet-container {
+    width: 200px;
+}
+
+.roadmap-bullet-description {
+    text-align: left;
+    margin-right: 12px;
+    margin-left: 8px;
+}

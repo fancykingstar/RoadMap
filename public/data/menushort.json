@@ -1,0 +1,90 @@
+{
+  "processes" : [
+    {
+      "id" : 0,
+      "title" : "Record to Report",
+      "selected": false,
+      "key": "recordtoreport"
+    },
+    {
+      "id": 1,
+      "title": "Total Workforce Management",
+      "selected": false,
+      "key": "twm"
+    },
+    {
+      "id": 2,
+      "title": "Source to Pay",
+      "selected": false,
+      "key": "sourcetopay"
+    },
+    {
+      "id": 3,
+      "title": "Plan to Produce",
+      "selected": false,
+      "key": "plantoproduce"
+    },
+    {
+      "id": 4,
+      "title": "Acquire to Retire",
+      "selected": false,
+      "key": "acquiretoretire"
+    },
+    {
+      "id": 5,
+      "title": "Information to Insight",
+      "selected": false,
+      "key": "informationtoinsight"
+    },
+    {
+      "id": 6,
+      "title": "Lead to Cash",
+      "selected": false,
+      "key": "leadtocash"
+    },
+    {
+      "id": 7,
+      "title": "Design to Operate",
+      "selected": false,
+      "key": "d2o"
+    },
+    {
+      "id": 8,
+      "title": "Message to Market",
+      "selected": false,
+      "key": "messagetomarket"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "title": "SAP Ariba",
+      "selected": false,
+      "key": "ariba"
+    },
+    {
+      "id": 2,
+      "title": "SAP Concur",
+      "selected": false,
+      "key": "concur"
+    },
+    {
+      "id": 7,
+      "title": "SAP C/4HANA",
+      "selected": false,
+      "key": "c4hana"
+    },
+    {
+      "id": 3,
+      "title": "SAP Fieldglass",
+      "selected": false,
+      "key": "fieldglass"
+    },
+    {
+      "id": 8,
+      "title": "SAP SuccessFactors",
+      "selected": false,
+      "key": "successfactors"
+    }
+  ]
+}

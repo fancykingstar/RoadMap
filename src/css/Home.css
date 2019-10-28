@@ -1,0 +1,47 @@
+.new-section>.header .title {
+  font-size: 3rem;
+}
+
+.new-section>.content {
+  margin-top: 50px;
+}
+
+.new-section .content::after {
+  content: '';
+  clear: both;
+  display: table;
+}
+
+.mainsection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.mainsection > .header {
+  width: 100%;
+  display: inline-block;
+}
+
+.mainsection > .header > .title {
+  font-size: 3rem;
+  line-height: 41px;
+  color: #000;
+}
+
+.mainsection > .body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 0;
+}
+
+.anchor{
+  display: block;
+  height: 87px;
+  margin-top: -87px; 
+  visibility: hidden;
+}

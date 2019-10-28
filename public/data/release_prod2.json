@@ -1,0 +1,487 @@
+{
+    "releases": [{
+        "title": "SAP Fiori 3 Look and Feel for SAP C/4HANA",
+        "date": "AUG 2019",
+        "description": "End users see that our products form a coherent picture",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"twm", "label": "total workforce management", "category" : "process"},
+        {"key":"c4hana", "label": "c/4hana", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "c4hana", "twm"],
+        "businessvalues": [
+            "Builds consistency for the end user and improves usability of SAP C/4HANA.",
+            "Improves user adoption and satisfaction of SAP C/4HANA.",
+            "Consistent terminology and placement of actions ensures that end users know where to go next, thereby reducing their cognitive load.",
+            "Provides a consistent, coherent and modern user experience for the intelligent suite across SAP C/4HANA  and SAP S/4HANA."
+        ],
+        "featuredetails": [
+
+        ],
+        "futureplans": [
+
+        ]
+    },
+    {
+        "title": "Product Recommendations",
+        "date": "AUG 2019",
+        "description": "Use Commerce Journey data and Machine Learning to drive highly effective recommendations.",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"commercecloud", "label": "commerce cloud", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "commercecloud"],
+        "businessvalues": [
+            "Drive Engagement & Conversion: Ensure customers find products that match their interest. Increase conversion rates and avoid abandoned sessions.",
+            "Enable Product Discovery: Boost product visibility and improve inventory navigation with ML-powered product recommendations. ",
+            "The Control to Curate Relevancy: Retain business control to meet KPI and customer experience goals. Show relevant product categories and blend recommendations with real-time merchandising metrics."
+        ],
+        "featuredetails": [
+
+        ],
+        "futureplans": [
+
+        ]
+    },
+    {
+        "title": "SAP Analytics Cloud Integration",
+        "date": "AUG 2019",
+        "description": "Analyse and report on your customer identity and consent strategy",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"sourcetopay", "label": "source to pay", "category" : "process"},
+        {"key":"customerdatacloud", "label": "customer data cloud", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "sourcetopay", "customerdatacloud"],
+        "businessvalues": [
+            "Gain a deeper understanding of your identity and consent activity across your business.",
+            "Native integration of the SAP Analytics Cloud with the SAP Customer Data Cloud.",
+            "From board room to operations, tailor the needs of the report to meet the business requirement.",
+            "Optimize your business based on the analysis of current and previous Identity and Consent strategies."
+        ],
+        "featuredetails": [
+
+        ],
+        "futureplans": [
+
+        ]
+    },
+    {
+        "title": "Large Scale Data Exposure ",
+        "date": "AUG 2019",
+        "description": "Accessibility to the data assets of SAP Marketing Cloud enabling the intelligent enterprise",
+        "likes": 0,
+        "chips": [
+        {"key":"d2o", "label": "design to deliver", "category": "process"},
+        {"key":"marketingcloud", "label": "marketing cloud", "category" : "product"}
+        ],
+        "tags": ["d2o", "marketingcloud"],
+        "businessvalues": [
+            "Interface standards are exposed, which enable large scale data consumption.",
+            "By opening up data interfaces, machine learning and business intelligence scenarios become possible."
+        ],
+        "featuredetails": [
+
+        ],
+        "futureplans": [
+
+        ]
+    },
+    {
+        "title": "Lead-to-Cash",
+        "date": "AUG 2019",
+        "description": "Combine experience data and operational data to gain new business insights and reach a new level of customer satisfaction",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"marketingcloud", "label": "marketing cloud", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "marketingcloud"],
+        "businessvalues": [
+            "Retrieve permissions based on contact business roles.",
+            "GDPR compliant customer engagement.",
+            "Use SAP Customer Data Cloud as a central hub for consent and permission management."
+        ],
+        "featuredetails": [
+
+        ],
+        "futureplans": [
+
+        ]
+    },
+    {
+        "title": "SAP C/4HANA Implementation Portal",
+        "date": "AUG 2019",
+        "description": "One-stop configuration and integration portal for implementing business scenarios from a business point of view",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"sourcetopay", "label": "source to pay", "category" : "process"},
+        {"key":"marketingcloud", "label": "marketing cloud", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "sourcetopay", "marketingcloud"],
+        "businessvalues": [
+            "Enable a unified user experience for creating, updating and testing automated integration configurations across all products within the SAP C/4HANA portfolio.",
+            "Business Key User would be able to configure, update, as well as test the functional correctness of a business-related integration configuration. ",
+            "Enable a business process-driven integration experience rather than the rudimentary mechanism of integrating system to system. This will enable customers to visual landscape integrations from a business point of view."
+        ],
+        "featuredetails": [
+
+        ],
+        "futureplans": [
+
+        ]
+    },
+    {
+        "title": "SAP S/4HANA Returns Integration",
+        "date": "AUG 2019",
+        "description": "Use returns from SAP S/4HANA to determine the best customers for campaigns",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"d2o", "label": "design to deliver", "category" : "process"},
+        {"key":"marketingcloud", "label": "marketing cloud", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "d2o", "marketingcloud"],
+        "businessvalues": [
+            "In addition to sales orders, returns are also replicated to SAP Marketing Cloud.",
+            "Returns from SAP S/4HANA Order Management can be transformed to interactions in SAP Marketing Cloud with information about the product, the quantity, and the return reason.",
+            "SAP Marketing Cloud can, for example, use return data for campaigns to identify customers with a high return rate, or customers who do not return at all."
+        ],
+        "featuredetails": [
+
+        ],
+        "futureplans": [
+
+        ]
+    },
+    {
+        "title": "Order Management",
+        "date": "AUG 2019",
+        "description": "One central order available for all clouds",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"twm", "label": "Hire to Retire", "category" : "process"},
+        {"key":"c4hana", "label": "C/4HANA", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "twm", "c4hana"],
+        "businessvalues": [
+            "A true central record of the order will act as a single source of truth connecting the front office to the back office.",
+            "Simplified integration within the suite – all integration can happen with reference to a shared SAP C/4HANA Order ID.",
+            "Simplified integration between the suite and the ecosystem – ability to use the same ID across the enterprise as a whole, lowering TCO.",
+            "Offer an end to end order process, visible to all clouds."
+        ],
+        "featuredetails": [
+
+        ],
+        "futureplans": [
+
+        ]
+    },
+    {
+        "title": "OPP Enhanced Use Cases",
+        "date": "AUG 2019",
+        "description": "Support consistent pricing out of the box for all clouds",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"c4hana", "label": "c/4hana", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "c4hana"],
+        "businessvalues": [
+            "Support for bundle pricing with SAP Product Configuration allows you to consistently sell configurable products from different touch points.",
+            "OPP pre-integrated into SAP Commerce Cloud means your web customers get the same experience as your in-store or field-sales ones.",
+            "Additional promotional rules and extensibility will let you improve customer retention and maximize sales with more intelligent pricing.",
+            "Integration into other clouds such as SAP Service Cloud, SAP Sales Cloud and Order Management mean all the benefits with additional project time."
+        ],
+        "featuredetails": [
+
+        ],
+        "futureplans": [
+
+        ]
+    },
+    {
+        "title": "Customer Order Sourcing Advanced Rules",
+        "date": "AUG 2019",
+        "description": "Leverage more advanced sourcing rules to optimize according to more business needs",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"sourcetopay", "label": "source to pay", "category" : "process"},
+        {"key":"c4hana", "label": "c/4hana", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "sourcetopay", "c4hana"],
+        "businessvalues": [
+            "Optimize your supply based on more attributes. For example fulfill according to cost or margin and maximize profitability.",
+            "More rules choices lets business users respond to changing market conditions immediately rather than waiting for a customization project.",
+            "Set fulfillment plans for more complex combinations of requirements, accounting for longer-term thinking.",
+            "Integrate customer-related attributions into your optimization to delight customers according to their value."
+        ],
+        "featuredetails": [
+
+        ],
+        "futureplans": [
+
+        ]
+    },
+    {
+        "title": "Product Master",
+        "date": "AUG 2019",
+        "description": "Creating true Product Golden Record combining information from both front office and back office",
+        "likes": 0,
+        "chips": [
+        {"key":"d2o", "label": "design to deliver", "category": "process"},
+        {"key":"c4hana", "label": "c/4hana", "category" : "product"}
+        ],
+        "tags": ["d2o", "c4hana"],
+        "businessvalues": [
+            "Delivering a true product golden record which will act as a single source of truth connecting the front office and the back office.",
+            "Providing real-time integration, reducing point-to-point connections, not just within SAP C/4HANA Suite but with the backend too.",
+            "Open to external world, simplifying extensibility and access to add-on solutions, resulting in overall low TCO.",
+            "Built for the future with native cloud architecture."
+        ],
+        "featuredetails": [
+
+        ],
+        "futureplans": [
+
+        ]
+    },
+                 {
+        "title": "Customer Master",
+        "date": "AUG 2019",
+        "description": "Customer master data always up to date and connected across your landscape",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "total workforce management", "category": "process"},
+        {"key":"c4hana", "label": "c/4hana", "category" : "product"}
+        ],
+        "tags": ["twm", "c4hana"],
+        "businessvalues": [
+            "Run simple with connected customer records across your front and back office. ",
+            "Deliver on your promises with pre-configured integration, enabling seamless processes for your customers.",
+            "Deeper cross suite flexibility and extensibility, managed simply.",
+            "Open to external world, simplifying extensibility and access to add-on solutions, resulting in overall low TCO."
+        ],
+        "featuredetails": [
+
+        ],
+        "futureplans": [
+
+        ]
+    },
+                 {
+        "title": "SAP C/4HANA Public APIs for Customers and Partners",
+        "date": "AUG 2019",
+        "description": "Unified, scalable, extensible and open API framework, enabling SAP customers and partners to streamline publication of business services",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"c4hana", "label": "c/4hana", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "c4hana"],
+        "businessvalues": [
+            "A consistent suite experience via all consumption channels.",
+            "Focus on the most important APIs, one API technology and pattern",
+            "Group APIs logically by domains, not exposing underlaying applications",
+            "Unified SAP C/4HANA API with access to core data and functionality for Intelligent Enterprise processes."
+        ],
+        "featuredetails": [
+
+        ],
+        "futureplans": [
+
+        ]
+    },
+    {
+        "title": "SAP Open Connector for Firmographic Data Enrichment",
+        "date": "AUG 2019",
+        "description": "Leverage firmographic data from third-party data providers to enrich account and contact profiles",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"sourcetopay", "label": "source to pay", "category" : "process"},
+        {"key":"marketingcloud", "label": "marketing cloud", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "sourcetopay", "marketingcloud"],
+        "businessvalues": [
+            "Improved account and contact data quality.",
+            "More precise identification of ABM target accounts.",
+            "Improved targeted account engagement."
+        ],
+        "featuredetails": [
+            "Integrate third-party service providers with SAP Open Connectors.",
+            "Fetch firmographic data from third party data providers (e.g. address, revenue, # employees).",
+            "Customers and partner extensibility to retrieve additional data."
+        ],
+        "futureplans": [
+
+        ]
+    },
+    {
+        "title": "Prebuilt application connectivity ",
+        "date": "AUG 2019",
+        "description": "Harmonize the integration and customization across all SAP products",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"twm", "label": "total workforce management", "category" : "process"},
+        {"key":"d2o", "label": "design to deliver", "category" : "process"},
+        {"key":"c4hana", "label": "c/4hana", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "twm", "d2o", "c4hana"],
+        "businessvalues": [
+            "Supports the extensibility and integration between applications in a cloud-native way using the best available solutions",
+            "Provides integration patterns and necessary tooling for establishing a trusted connection between Extension Factory and third-party applications",
+            "Provides prebuilt application connectivity with all SAP Products"
+        ],
+        "featuredetails": [
+
+        ],
+        "futureplans": [
+
+        ]
+    },
+    {
+        "title": "Extension Runtime",
+        "date": "AUG 2019",
+        "description": "Both SAP managed and BYOL extension runtimes with all major hyperscale cloud providers",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "total workforce management", "category": "process"},
+        {"key":"c4hana", "label": "c/4hana", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "c4hana"],
+        "businessvalues": [
+            "Choose your provider based on the region you want to server your customers",
+            "Leverage SAP standard enterprise support for different flavors of runtimes (Kubernetes/CloudFoundary/ABAP /serverless)"
+        ],
+        "featuredetails": [
+
+        ],
+        "futureplans": [
+
+        ]
+    },
+    {
+        "title": "Omnichannel Quotation Management with Subscription Products",
+        "date": "AUG 2019",
+        "description": "Improved quotation management by including subscription products in SAP CPQ",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"twm", "label": "total workforce management", "category" : "process"},
+        {"key":"commercecloud", "label": "commerce cloud", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "twm", "commercecloud"],
+        "businessvalues": [
+            "Seamless integration between SAP Commerce supporting external user facing and SAP Sales Cloud internal sales force.",
+            "Accelerate deal cycles, maintain an accurate pipeline, and sell more by managing quotes across any channels and devices.",
+            "Support SAP customers with a 360° view of their quotations – consistent with their pipeline management and consistent with their sales force management."
+        ],
+        "featuredetails": [
+            "Quote with physical and subscription products.",
+            "Generate orders and subscriptions respectively from physical and subscription products."
+        ],
+        "futureplans": [
+
+        ]
+    },
+    {
+        "title": "Context-Driven Services Integration with SAP Marketing Cloud",
+        "date": "AUG 2019",
+        "description": "Get insights into customer behaviors for better segmentation and campaigning management",
+        "likes": 0,
+        "chips": [
+        {"key":"sourcetopay", "label": "source to pay", "category" : "process"},
+        {"key":"commercecloud", "label": "commerce cloud", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "sourcetopay", "customerdatacloud"],
+        "businessvalues": [
+            "Aggregate customer interactions across sessions for better insights.",
+            "Analyze the recent views and scores for better offers and recommendations."
+        ],
+        "featuredetails": [
+            "Replicate aggregated product views and searches at session level from Context-Driven Services.",
+            "Replicate recent views, counts and scores to marketing cloud."
+        ],
+        "futureplans": [
+
+        ]
+    },
+    {
+        "title": "SAP Commerce Cloud Spartacus Storefront ",
+        "date": "AUG 2019",
+        "description": "Native integration to the SAP Commerce Cloud lean, angular-based storefront",
+        "likes": 0,
+        "chips": [
+        {"key":"d2o", "label": "design to deliver", "category": "process"},
+        {"key":"customerdatacloud", "label": "customer data cloud", "category" : "product"}
+        ],
+        "tags": ["d2o", "customerdatacloud"],
+        "businessvalues": [
+            "Extendable: Spartacus is designed to be upgradable while maintaining full extendibility.",
+            "Progressive: Spartacus is on a journey to be fully compliant with the Progressive Web Application (PWA) checklist.",
+            "Upgradable: Spartacus code is published and used as libraries and follows semantic versioning conventions. ",
+            "Native B2C based integration with the leading CIAM for B2C capabilities of the SAP Customer Data Cloud."
+        ],
+        "featuredetails": [
+
+        ],
+        "futureplans": [
+
+        ]
+    },
+    {
+        "title": "SAP C/4HANA cockpit",
+        "date": "AUG 2019",
+        "description": "Enabling SAP C/4HANA business users and business owners to work with SAP C/4HANA as well next to the administrators and developers",
+        "likes": 0,
+        "chips": [
+        {"key":"d2o", "label": "design to deliver", "category": "process"},
+        {"key":"twm", "label": "total workforce management", "category" : "process"},
+        {"key":"c4hana", "label": "c/4hana", "category" : "product"}
+        ],
+        "tags": ["d2o", "twm", "c4hana"],
+        "businessvalues": [
+            "The entry point for Business owners to visualize the high-level KPI of SAP C/4HANA products coming through the Observability feature",
+            "The entry point for Business owners to visualize the high-level KPI of SAP C/4HANA products coming through the Observability feature"
+        ],
+        "featuredetails": [
+
+        ],
+        "futureplans": [
+
+        ]
+    },
+    {
+        "title": "Authentication and Authorization",
+        "date": "AUG 2019",
+        "description": "A modern way of Unified Access across the SAP C/4HANA Suite to enable a state-of-the art SAP C/4HANA experience",
+        "likes": 0,
+        "chips": [
+        {"key":"d2o", "label": "design to deliver", "category": "process"},
+        {"key":"sourcetopay", "label": "source to pay", "category" : "process"},
+        {"key":"c4hana", "label": "c/4hana", "category" : "product"}
+        ],
+        "tags": ["d2o", "sourcetopay", "c4hana"],
+        "businessvalues": [
+            "Customers benefit from a unified user base for all users of the SAP C/4HANA Suite.",
+            "Tight integration with SAP C/4HANA internal organizations help providing an extra service and support experience.",
+            "Support all modern protocols allowing futureproof architectures, along with the existing SaaS portfolio."
+        ],
+        "featuredetails": [
+
+        ],
+        "futureplans": [
+
+        ]
+    }
+
+    ]
+}

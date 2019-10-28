@@ -1,0 +1,417 @@
+{
+    "releases": [{
+        "title": "Master Data Service for Workforce",
+        "date": "NOV 2019",
+        "description": "Delivers consistent people data to enable digital end-to-end business processes across solutions in the Intelligent Enterprise.",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "total workforce management", "category": "process"},
+        {"key":"sucessfactors", "label": "SucessFactors", "category" : "product"},
+        {"key":"s4hana", "label": "S/4HANA", "category" : "product"},
+        {"key":"concur", "label": "Concur", "category" : "product"},
+        {"key":"fieldglass", "label": "Fieldglass", "category" : "product"},
+        {"key":"cloudplatform", "label": "Cloud Platform", "category" : "product"}
+        ],
+        "tags": ["twm", "sucessfactors","s4hana", "concur", "fieldglass", "cloudplatform"],
+        "businessvalues": [
+            "One aligned data model across all solutions.",
+            "Avoid information silios and reduce integration effort.",
+            "Access the latest and accurate information without worrying about data replication and synchrionization."
+        ],
+        "featuredetails": [
+          "One aligned data model  for distributing people data from EC to S4 based on SAP Cloud Platform.",
+          "Common repository for all workforce master data.",
+          "Latest service based technology (OData V4).",
+          "Open standards, extensible.",
+          "Point-to-point or middleware based integration."
+        ],
+        "futureplans": [
+        {
+            "date": "MAY 2020",
+            "detail": [
+                "Further unification of workforce master data distribution and move towards oneMDS framework to comply with latest Technology Guidelines."
+            ]
+        },
+        {
+            "date": "NOV 2020",
+            "detail": [
+                "Extending oneMDS for people data to include contingent worker integration.",
+                "Fieldglass - EC integration.",
+                "Enable fields Purch.Org and Purch. Plant in oneMDS for MDW.",
+                "oneMDS including Freelancer"
+            ]
+        }
+        ]
+    },
+    {
+        "title": "Master Data Service for Cost Center",
+        "date": "FEB 2020",
+        "description": "Delivers consistent cost center data to enable digital end-to-end business processes across solutions in the Intelligent Enterprise.",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "total workforce management", "category": "process"},
+        {"key":"sucessfactors", "label": "SucessFactors", "category" : "product"},
+        {"key":"s4hana", "label": "S/4HANA", "category" : "product"},
+        {"key":"concur", "label": "Concur", "category" : "product"},
+        {"key":"fieldglass", "label": "Fieldglass", "category" : "product"},
+        {"key":"cloudplatform", "label": "Cloud Platform", "category" : "product"}
+        ],
+        "tags": ["twm", "sucessfactors", "s4hana", "concur","fieldglass","cloudplatform"],
+        "businessvalues": [
+            "One aligned data model across all solutions.",
+            "Avoid information silios and reduce integration effort.",
+            "Access the latest and accurate information without worrying about data replication and synchrionization."
+        ],
+        "featuredetails": [
+            "One aligned data model for distributing controlling objects (cost center) from S4 to SF and Concur.",
+            "Common repository for all cost center master data.",
+            "Latest service based technology (OData V4).",
+            "Open standards, extensible.",
+            "Point-to-point or middleware based integration"
+        ],
+        "futureplans": [
+        {
+            "date": "MAY 2020",
+            "detail": [
+                "Master Data Service for Cost Center consumed by other applications like SF LMS, EC Payroll and Fieldglass."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "Time as a Service",
+        "date": "FEB 2020",
+        "description": "Time as a service (TaaS) will eliminate the need of redundant investments in time management while providing a simplified and single SAP product. TaaS will deliver a highly configurable and layered solution to address the differing needs of SAP LoBs and its customers.",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "total workforce management", "category": "process"},
+        {"key":"sucessfactors", "label": "SucessFactors", "category" : "product"},
+        {"key":"s4hana", "label": "S/4HANA", "category" : "product"},
+        {"key":"fieldglass", "label": "Fieldglass", "category" : "product"},
+        {"key":"cloudplatform", "label": "Cloudplatform", "category" : "product"}
+
+        ],
+        "tags": ["twm", "sucessfactors", "s4hana", "fieldglass","cloudplatform"],
+        "businessvalues": [
+            "The service will be comprised of four layers including Activity Tracking, Time Records, Daily Time, and Time Sheet.",
+            "Customers will be able to use all four layers or a part thereof depending on their specfic needs.",
+            "Standardized APIs, allow easy integration into other systems as needed for consuming and sending data.",
+            "A reference mobile app and desktop will be provided for time entry however other time entry interfaces can be used."
+        ],
+        "featuredetails": [
+            "Deliver clock in/clock out including activity and time record for SF EC Time to begin consuming the service.",
+            "Consuming and storing activities",
+            "Activity to time record paring logic",
+            "Activity and time record messages",
+            "Time keeper capabilities",
+            "Time record edits, approvals (workflow engine)",
+            "APIs (details to be provided)",
+            "Supporting Admin users, CICO time entry desktop and mobile app (tbd), and Time keeper desktop",
+            "TaaS rule engine framework",
+            "Data available via APIs to SAC and other reporting tools as required"
+        ],
+        "futureplans": [
+        {
+            "date": "NOV 2020",
+            "detail": [
+                "Deliver remaining time sheet capabilities",
+                "Daily time and time sheet",
+                "Time accrualsInput validation including but not limited to consuming work schedule and absence data",
+                "Maintain the TaaS rule engine options as required",
+                "Daily time and time sheet time entry user interfaces, ongoing improvements to all UI",
+                "Maintain person record needs as required",
+                "Utilize Business Services, Worker Business Service"
+            ]
+        },
+        {
+            "date": "",
+            "detail": [
+                "Drive TaaS adoption across all LoBs",
+                "Utilization of Business Service Work Schedules and Resource Assignments"
+            ]
+        }
+        ]
+    },
+    {
+        "title": "Time as a Service",
+        "date": "MAY 2020",
+        "description": "Time as a service (TaaS) will eliminate the need of redundant investments in time management while providing a simplified and single SAP product. TaaS will deliver a highly configurable and layered solution to address the differing needs of SAP LoBs and its customers.",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "total workforce management", "category": "process"},
+        {"key":"sucessfactors", "label": "SucessFactors", "category" : "product"}
+        ],
+        "tags": ["twm", "sucessfactors"],
+        "businessvalues": [
+            "Today, workforce availability information is being kept and maintained redundantly across SF, S4 and FG. The service will elimnate these redundancies and will facilitate a central maintenance and distribution of such data across solutions in the Intelligent Enterprise."
+        ],
+        "featuredetails": [
+
+        ],
+        "futureplans": [
+
+        ]
+    },
+    {
+        "title": "Common Fiori Inbox",
+        "date": "NOV 2019",
+        "description": "Common Fiori Inbox provides one single place for all approvals and actions across all products",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "total workforce management", "category": "process"},
+        {"key":"successfactors", "label": "successfactors", "category" : "product"},
+        {"key":"s4hana", "label": "S/4HANA", "category" : "product"},
+        {"key":"fieldglass", "label": "Fieldglass", "category" : "product"},
+        {"key":"concur", "label": "Concur", "category" : "product"},
+        {"key":"cloud Platform", "label": "Cloud Platform", "category" : "product"}
+        ],
+        "tags": ["twm", "successfactors", "s4hana", "fieldglass","concur","cloud Platform"],
+        "businessvalues": [
+            "A single entry point for all approvals and requests results in a better user experience and execution. It will be accessible from a mobile device increasing productivity and engagement. Common Inbox can be integrated in other platforms providing adiditional flexibility for the customer."
+        ],
+        "featuredetails": [
+            "The following categories are integrated in Common Fiori Inbox: Onboarding, Recruiting, Employe Central, Compensation, Job Profile Builder."
+        ],
+        "futureplans": [
+        {
+            "date": "MAY 2020",
+            "detail": [
+                "All SuccessFactors and S/4 HANA categories required to run Total Workforce Management are integrated in Common Fiori Inbox."
+            ]
+        },
+        {
+            "date": "NOV 2020",
+            "detail": [
+                "Common Fiori Inbox is avaiable for all processes and products within Total Workforce Management."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "Cross Product navigation",
+        "date": "FEB 2020",
+        "description": "Seamless navigation between different application while keeping the context",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "total workforce management", "category": "process"},
+        {"key":"successfactors", "label": "successfactors", "category" : "product"},
+        {"key":"s4hana", "label": "S/4HANA", "category" : "product"},
+        {"key":"fieldglass", "label": "Fieldglass", "category" : "product"},
+        {"key":"concur", "label": "Concur", "category" : "product"},
+        {"key":"cloud Platform", "label": "Cloud Platform", "category" : "product"}
+        ],
+        "tags": ["twm", "successfactors", "s4hana", "fieldglass","concur","cloud Platform"],
+        "businessvalues": [
+            "Users are able to navigate across products without losing the context. Thus, they can seamlessly execute their end-to-end business process steps."
+        ],
+        "featuredetails": [
+            "Deep linking support for SuccessFactors' relevant objects and actions. Context navigation beetween Employee Central and S/4 for Cost Center object."
+        ],
+        "futureplans": [
+        {
+            "date": "MAY 2020",
+            "detail": [
+                "Deep linking support for SuccessFactors and S/4 HANA relevant objects and actions. Context navigation beetween Employee Central and S/4 for Cost Center and Employee objects."
+            ]
+        },
+        {
+            "date": "NOV 2020",
+            "detail": [
+                "Full context enabled navigation for the complete Total Workforce Management process."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "UX harmonization, theming and branding ",
+        "date": "NOV 2019",
+        "description": "Delivery of a best in class, consistent and modern user experience across all business processes and products.",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "total workforce management", "category": "process"},
+        {"key":"successfactors", "label": "successfactors", "category" : "product"},
+        {"key":"s4hana", "label": "S/4HANA", "category" : "product"},
+        {"key":"fieldglass", "label": "Fieldglass", "category" : "product"},
+        {"key":"concur", "label": "Concur", "category" : "product"},
+        {"key":"cloud Platform", "label": "Cloud Platform", "category" : "product"}
+        ],
+          "tags": ["twm", "successfactors", "s4hana", "fieldglass","concur","cloud Platform"],
+        "businessvalues": [
+            "A common shell will allow users to navigate easily and search across products, and access common functions like settings and CoPilot at any time, improving dramatically their experience.",
+            "Consistent terminology and placement of actions ensures that users always know where to click to trigger an action or complete a task, reducing the margin for error.",
+            "With SAP Fiori design SAP products will be accessible for everyone."
+        ],
+        "featuredetails": [
+            "Adoption of SAP Fiori design and terminology unification between applications."
+        ],
+        "futureplans": [
+        {
+            "date": "MAY 2020",
+            "detail": [
+                "Common launchpad and shellbar adoption for SuccessFactors and S/4 HANA applications."
+            ]
+        },
+        {
+            "date": "NOV 2020",
+            "detail": [
+                "SuccessFactors UX rebuild and consistent user experience across the complete Total Workforce Management process."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "Onboarding 2.0",
+        "date": "NOV 2019",
+        "description": "Redefined onboarding to simplify experiences, processes and administration.",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "total workforce management", "category": "process"},
+        {"key":"successfactors", "label": "successfactors", "category" : "product"}
+        ],
+        "tags": ["twm", "successfactors"],
+        "businessvalues": [
+            "Streamlined configuration and administration decreasing complexity for the customer.",
+            "Overall consistent and engaging user experience through the adoption of Fiori design.",
+            "Improved flexibility and extensibility reducing cost and effort for integrations.",
+            "Reduction of duplicate functionalities such as notifications, permissions and document storage."
+        ],
+        "featuredetails": [
+            "Renewed onboarding experience including:Forms Management,Task and Process Management,New Hire Portal, Document Center, Reporting, Hire to Retire process integration, Third Party Integration."
+        ],
+        "futureplans": [
+        {
+            "date": "MAY 2020",
+            "detail": [
+                "New offboarding capabilities for an engaging employee experience and improved task management.",
+                "Integrated reporting in People Analytics (enbedded and advanced editions).",
+                "Standard form support for United States and Canada."
+            ]
+        },
+        {
+            "date": "NOV 2020",
+            "detail": [
+                "Integration with digital asistant for new hires.",
+                "Standard form support for India, Canada, the UK, and Australia"
+            ]
+        }
+        ]
+    },
+    {
+        "title": "Central SAP Cloud Identity Access Governance and SAP Cloud Platform Identity Authentication",
+        "date": "MAY 2019",
+        "description": "Seamless Single Sign-On between applications and  centrally managed User Lifecycle with automatic service provision",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "total workforce management", "category": "process"},
+        {"key":"successfactors", "label": "successfactors", "category" : "product"},
+        {"key":"s4hana", "label": "S/4HANA", "category" : "product"},
+        {"key":"fieldglass", "label": "Fieldglass", "category" : "product"},
+        {"key":"concur", "label": "Concur", "category" : "product"},
+        {"key":"cloud Platform", "label": "Cloud Platform", "category" : "product"}
+        ],
+        "tags": ["twm", "successfactors", "s4hana", "fieldglass","concur","cloud Platform"],
+        "businessvalues": [
+            "Users  only will log in once to execute all steps of the end-to-end  business process and they be provided with all required authorizations based on their profile. This increases eficiency and provides a better experience.",
+            "Administrators will have a central Identiy Access Governance and Identity Authentication tool for all products. They will be able to assign business roles to users automatically by means of rules. This will decrease complexity and reduce errors."
+        ],
+        "featuredetails": [
+            "Application support SSO with SAP Cloud Platform Identity Authentication service"
+        ],
+        "futureplans": [
+        {
+            "date": "NOV 2019",
+            "detail": [
+                "Real-time provisioning of access requests using SAP Cloud Platform Identity Provisioning service and SAP Cloud Identity Access Governance"
+            ]
+        },
+        {
+            "date": "MAY 2020",
+            "detail": [
+                "Predefined content for business user role management."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "People Analytics, advanced edition",
+        "date": "AUG 2019",
+        "description": "Next generation of Workforce Analytics to lead your workforce, accelerate change, and drive results",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "total workforce management", "category": "process"},
+        {"key":"successfactors", "label": "successfactors", "category" : "product"}
+        ],
+        "tags": ["twm", "successfactors"],
+        "businessvalues": [
+            "Access to data from across the enterprise, including HR, finance, and operations to become the single source of truth.",
+            "Out-of-the-box metric packs to facilitate data analysis and decission making.",
+            "Predictive capabilities based on machine learning technology to detect future trends."
+        ],
+        "featuredetails": [
+            "Beta release for early collaboration and feedback initiated with SAP Analytics Cloud: Data factory integrated with SAP Analytics Cloud; Customer production data;Core metric pack available as SAP Analytics Cloud template content."
+        ],
+        "futureplans": [
+        {
+            "date": "NOV 2019",
+            "detail": [
+                "Continued beta for collaboration and feedback with SAP Analytics Cloud:",
+                "- Content for additional metrics packs in SAP Analytics Cloud: Performance management, Recruiting management, Compensation; ",
+                "- Support for external data."
+            ]
+        },
+        {
+            "date": "FEB 2020",
+            "detail": [
+                "GA of people analytics:",
+                "- Single Reporting Solution  for  SAP SuccessFactors  solutions;",
+                "- Unified  Data Model."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "People Analytics, planning edition",
+        "date": "NOV 2019",
+        "description": "Next generation of Workforce Planning with collaborative workforce planning and visualizations enabled by SAP Analytics Cloud",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "total workforce management", "category": "process"},
+        {"key":"successfactors", "label": "successfactors", "category" : "product"}
+        ],
+        "tags": ["twm", "successfactors"],
+        "businessvalues": [
+            "Powerful planning capabilities to allow quick application of changes and facilitate decission making.",
+            "Built-in collaboration tools to streamline business processes.",
+            "Version management to create different scenarios and share with users from different levels."
+        ],
+        "featuredetails": [
+            "Planning model for extended  analytics [beta].",
+            "Data factory integration​",
+            "Customer production data​",
+            "Core metric pack available as template content​ prerequisite​",
+            "SAP SuccessFactors Employee Central​",
+            "Existing WFA on HANA implementation"
+        ],
+        "futureplans": [
+        {
+            "date": "FEB 2020",
+            "detail": [
+                "Strategic and operational  workforce planning for extended  analytics",
+                "- Integration in Report Center​",
+                "- Data Permissions"
+            ]
+        },
+        {
+            "date": "MAY 2020",
+            "detail": [
+                "Advanced edition​",
+                "- General availability release​",
+                "- Core Workforce Metrics Pack​",
+                "- Driver based demand modeling"
+            ]
+        }
+        ]
+    }
+
+    ]
+}

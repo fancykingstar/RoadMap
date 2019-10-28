@@ -1,0 +1,30 @@
+
+.roadmap-process-tab-titles .MuiTab-wrapper {
+    font-family: "72";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: #979797;
+    white-space: nowrap;
+    text-transform: none;
+}
+
+.roadmap-process-tab-titles .Mui-selected .MuiTab-wrapper {
+    color: #F0AB00;
+}
+
+.roadmap-process-tabs .MuiTabs-indicator {
+    background-color: #F0AB00;
+    height: 4px;
+}
+
+.roadmap-process-tabs .MuiTabs-flexContainer {
+    margin-top:48px;
+    justify-content: center;
+}
+
+.roadmap-process-tabs button {
+    margin-left: 30px;
+    margin-right: 30px;
+}

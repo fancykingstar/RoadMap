@@ -1,0 +1,10 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 100vh;
+}
+
+.page-container-home {
+  max-height: 100vh;
+}

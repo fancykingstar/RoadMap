@@ -1,0 +1,140 @@
+.detail-container {
+  margin-top: 48px;
+  max-width: 415px;
+}
+
+.detail-container.single-column {
+   max-width: 100%;
+}
+
+.detail-container .detail-title-container .detail-title-bar {
+  background-color: #F0AB00;
+  width: 27px;
+  height: 2px;
+}
+
+.detail-container .detail-title-container .detail-title {
+  margin-top: 4px;
+  text-transform: uppercase;
+  color: #F0AB00;
+  font-size: 1.3333333333333333rem;
+}
+
+.page-container-small .detail-container .detail-title-container .detail-title,
+.page-container-small .detail-container .detail-body,
+.page-container-small .step-container .step-title-container .step-title,
+.page-container-small .futureStepper .MuiCollapse-wrapperInner {
+  font-size: 16px;
+}
+
+.detail-container .detail-body {
+    margin-top: 12px;
+    font-size: 1.5rem;
+    font-weight: 200;
+    cursor: text;
+}
+
+.detail-container .detail-body .bullet , .step-container .contentpoint.bullet{
+  margin-left: 12px;
+  text-indent: -12px;
+}
+
+.detail-container .detail-body .secondBullet, .step-container .secondBullet{
+  margin-left: 24px;
+  text-indent: -12px;
+}
+.detail-container .detail-body .addBullet:before, .step-container .addBullet:before {
+  content: '- ';
+}
+.detail-container .detail-body .level2 {
+  margin-left: 24px;
+  text-indent: -24px;
+}
+
+.detail-container .contentpoint, .step-container .contentpoint {
+  margin-block-start: .8em;
+  margin-block-end: .8em;
+  cursor: text;
+}
+
+.step-container {
+  margin-top: 48px;
+  max-width: 415px;
+  text-align: left;
+}
+
+.step-container.full-screen {
+  max-width: 100%;
+}
+
+.step-container .step-title-container .step-title-bar {
+  background-color: #5CDB8E;
+  width: 37px;
+  height: 2px;
+}
+
+.step-container .step-title-container .step-title {
+  margin-top: 4px;
+  text-transform: uppercase;
+  color: #5CDB8E;
+  font-size: 1.3333333333333333rem;
+}
+
+.detail-container .detail-body {
+  margin-top: 12px;
+  font-size: 1.6666666666666667rem;
+  font-weight: 200;
+}
+
+.futureStepper.MuiStepper-root {
+  padding: 0;
+  margin-top: 20px;
+}
+
+.futureStepper .MuiStepLabel-iconContainer {
+  padding-right: 10px;
+}
+
+.futureStepper .MuiStepIcon-text {
+  display: none;
+}
+
+.futureStepper .MuiStepLabel-label.MuiStepLabel-active {
+  color: #CCCCCC;
+  font-size: 1.1666666666666667rem;
+}
+
+.page-container-small .futureStepper .MuiStepLabel-label.MuiStepLabel-active,
+.page-container-small .futureStepper .MuiStepLabel-label {
+  font-size: 14px;
+}
+
+.futureStepper .MuiStepLabel-label {
+  color: #CCCCCC;
+  font-size: 1.1666666666666667rem;
+}
+
+.futureStepper .MuiCollapse-wrapperInner {
+  margin-top: 8px;
+  font-size: 1.6666666666666667rem;
+  font-weight: 200;
+}
+
+.futureStepper .MuiStepContent-root {
+  border-left: 3px dotted #5CDB8E;
+  margin-top: 0px;
+}
+
+.futureStepper .MuiStepConnector-vertical {
+  padding: 4px 0 0px;
+  margin-left: 12px;
+}
+
+.futureStepper .MuiStepConnector-lineVertical {
+  border-left-style: dotted;
+  border-left-width: 3px;
+}
+
+.futureStepper .MuiStepConnector-line {
+  border-color: #5CDB8E;
+}

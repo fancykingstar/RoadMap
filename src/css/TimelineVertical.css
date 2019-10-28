@@ -1,0 +1,67 @@
+.roadmap-timeline-vertical-line {
+    border-color: #0A6ED1;
+    border-left-style: dashed;
+    border-width: 4px;
+    padding-left: 20px;
+    margin-left: 14px;
+}
+
+.roadmap-timeline-vertical-small .roadmap-timeline-vertical-line {
+    margin-left: 7px;
+    border-width: 3px;
+}
+
+.roadmap-timeline-vertical {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.roadmap-timeline-vertical .MuiStepConnector-vertical {
+    padding: 2px;
+}
+
+.roadmap-timeline-vertical-small .MuiStepConnector-vertical {
+    padding: 0px;
+}
+
+.roadmap-timeline-vertical-small .MuiStepper-vertical {
+    background: transparent;
+}
+
+.roadmap-timeline-vertical-small .MuiStep-vertical:last-child:after {
+    display: none;
+}
+
+.roadmap-timeline-vertical .MuiStepConnector-line {
+    min-height: 0px;
+}
+
+.roadmap-timeline-vertical-label .MuiStepLabel-label, .roadmap-timeline-vertical-label .MuiStepLabel-label.MuiStepLabel-active {
+    font-family: "72";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 23px;
+    color: #0A6ED1;
+    
+}
+
+.roadmap-timeline-vertical-small .roadmap-timeline-vertical-label .MuiStepLabel-label,
+.roadmap-timeline-vertical-small .roadmap-timeline-vertical-label .MuiStepLabel-label.MuiStepLabel-active,
+.roadmap-timeline-vertical-small .roadmap-timeline-vertical-bullet-label .MuiStepLabel-label {
+    font-size: 14px;
+}
+
+.roadmap-timeline-vertical-bullet-label .MuiStepLabel-label {
+    font-family: "72";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 32px;
+    color: #000000;
+}
+
+.roadmap-timeline-vertical-line .roadmap-timeline-vertical-bullet-label {
+    align-items: flex-start;
+}

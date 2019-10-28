@@ -1,0 +1,107 @@
+{
+    "title": "product roadmaps",
+    "whatsnew" : [
+      {
+      "id": 1,
+      "type": "start",
+      "title": "c/4hana",
+      "header": "Harmonized User Experience for SAP C/4HANA Cloud",
+      "body" : "Harmonized look and feel across all five C/4HANA cloud solutions with Fiori 3.",
+      "buttonText" : "Learn More",
+      "buttonLink" : "c4hana"
+      },{
+      "id": 2,
+      "type": "mid",
+      "title": "integration",
+      "header": "Integration between SAP C/4HANA and SAP S/4HANA",
+      "body": "Consistent and aligned Lead-to-Cash process for physical products (sell from stock) across demand-chain and ...",
+      "buttonText": "Learn More",
+      "buttonLink": "c4hana"
+      },{
+        "id": 3,
+        "type": "mid",
+        "title": "webinar",
+        "header": "Onboarding 2.0",
+        "body": "Redefined onboarding to simplify experiences, processes and administration.",
+        "buttonText": "Register Now >",
+        "buttonLink": "blue"
+      }
+    ],
+    "chips" : [
+      {
+        "label" : "All",
+        "tags" : []
+      },
+      {
+        "label": "People Engagement",
+        "tags" : ["people", "hr"]
+      },
+      {
+        "label": "Network & Spend Management",
+        "tags": ["network", "spending", "finance"]
+      },
+      {
+        "label": "Customer Experience",
+        "tags": ["customer","experience"]
+      },
+      {
+        "label": "Manufacturing & Supply Chain",
+        "tags": ["manufacturing", "supplychain", "business"]
+      },
+      {
+        "label": "Digital Core",
+        "tags": ["digital", "core", "finance"]
+      }
+    ],
+    "solutions": [{
+        "title": "Record to Report",
+        "icon": "recordtoreport",
+        "body": "Finance and accounting mgt process which involves collecting, processing and delivery in relevant timely information used for providing strategic, financial and operational feedback.",
+        "tags": ["finance"]
+      },
+      {
+        "title": "Plan to Produce",
+        "icon": "plantoproduce",
+        "body": "The business process involved in taking a product from pre-market introduction to on the shelf.  Forecasting, sales operations planning, production planning, procurement, manufacturing.",
+        "tags": ["manufacturing"]
+      },
+      {
+        "title": "Lead to Cash",
+        "icon": "leadtocash",
+        "body": "Lead-to-Cash process connects a customer’s interest to buy to a company’s realization of revenue, bringing the front office together with back office.",
+        "tags": ["customer", "finance"]
+      },
+      {
+        "title": "Total Workforce Management",
+        "icon": "twm",
+        "body": "The process includes all the activities needed to maintain a productive workforce, such as the Core HR management, performance and training management, but also recruiting, forecasting, etc.",
+        "tags": ["hr", "finance", "people"]
+      }, {
+        "title": "Acquire to Retire",
+        "icon": "acquiretoretire",
+        "body": "Managing the lifecycle of an asset.  Usually a physical asset and generally a piece of equipment, large machine, engine, powerplant.  Procure, build, asset library, maintenance, depreciation, service, replacement parts.",
+        "tags": ["manufacturing"]
+      }, {
+        "title": "Design to Operate",
+        "icon": "d2o",
+        "body": "The classical manufacturing process, starting from Design, over the manufacturing and delivery of an asset, and in the Intelligent Enterprise process cut also the step of finally Operating the asset at customer site is included.",
+        "tags": ["manufacturing", "core"]
+      },
+       {
+         "title": "Source to Pay",
+         "icon": "sourcetopay",
+         "body": "Source-to-pay is the entire end-to-end process involved in procurement. It spans every process, right from spend management, strategic sourcing and vendor management to purchasing, and performance management.",
+         "tags": ["spending", "core"]
+       }, {
+         "title": "Information to Inisght",
+         "icon": "informationtoinsight",
+         "body": "The process includes all the activities needed to maintain a productive workforce, such as the Core HR management, performance and training management, but also recruiting, forecasting, etc.",
+         "tags": ["core", "h4"]
+       }, {
+         "title": "Message to Market",
+         "icon": "messagetomarket",
+         "body": "The classical manufacturing process, starting from Design, over the manufacturing and delivery of an asset, and in the Intelligent Enterprise process cut also the step of finally Operating the asset at customer site is included.",
+         "tags": ["customer", "core","spend"]
+       }
+    ]
+}

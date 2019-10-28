@@ -1,0 +1,61 @@
+.search-content-container {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    padding-left: 16px;
+    width: 100%;
+}
+
+.search-content-container-topics {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    padding-left: 130px;
+    width: 100%;
+}
+
+.page-container-small .search-content-container {
+    padding-left: 0px;
+}
+
+.results {
+    display:flex;
+    flex-direction: column;
+    margin-top: 10px;
+    /* padding-left: 140px; */
+}
+
+.page-container-small .results {
+    align-items: center;
+}
+
+.util-container {
+    margin-top: 40px;
+}
+.filterlink {
+    font-size: 2rem;
+    color: #000;
+    padding-bottom: 8px;
+    margin-right: 40px;
+    cursor: pointer;
+    border-bottom: 4px solid transparent;
+}
+
+.filterselection, .filterlink:hover {
+    color: #F0AB00;
+    border-bottom: 4px solid #F0AB00;
+}
+
+.testcard {
+    margin-top: 50px;
+    font-size: 40px;
+}
+
+.search-results-filter-container {
+    display: flex;
+    justify-content: left;
+}
+
+.search-results-filtering {
+    width: 250px;
+}

@@ -1,0 +1,260 @@
+{
+  "title": "Lead to Cash",
+  "description": [{"title": "Products", "items":
+                  [{"label": "SAP C/4HANA", "key": "c4hana", "link": ""},
+                  {"label": "SAP S/4HANA", "key": "s4hana", "link": ""}]},
+                  {"title": "Innovations", "items":
+                  [{"label": "Native user experience for increased productivity", "key": "innovation1", "link": ""},
+                  {"label": "Embedded intelligence for performance and outcome optimization", "key": "innovation2", "link": ""},
+                  {"label": "Operational and experience data integration", "key": "innovation3", "link": ""}]}],
+  "whatsnew" : [
+    {
+    "id": 1,
+    "type": "start",
+    "title": "SAP C/4HANA",
+    "header": "Retail Omnichannel integration with SAP Commerce Cloud",
+    "body" : "Integrates SAP Retail article master data and omnichannel innovations with SAP Commerce Cloud.",
+    "buttonText" : "Learn More",
+    "buttonLink" : "c4hana"
+    },
+    {
+    "id": 2,
+    "type": "mid",
+    "title": "EVENT",
+    "header": "SAP Customer Experience Live LONDON, UK on Oct 3, 2019",
+    "body": "Please join us for this event.",
+    "buttonText": "Learn More",
+    "buttonLink": "https://events.sap.com/gb/cx-live-2019-london/en/home"
+    },{
+      "id": 3,
+      "type": "mid",
+      "title": "EVENT",
+      "header": "SAP Customer Experience Live DUBAI, UAE on Oct 6, 2019",
+      "body": "Please join us for this event.",
+      "buttonText": "Learn More",
+      "buttonLink": "https://events.sap.com/ae/cx-live-2019-dubai/en/home"
+    },
+    {
+    "id": 4,
+    "type": "mid",
+    "title": "EVENT",
+    "header": "SAP Customer Experience Live MUNICH, Germany on Nov 5, 2019",
+    "body" : "Please join us for this event.",
+    "buttonText" : "Learn More",
+    "buttonLink" : "https://events.sap.com/de/cx-live-2019-munich/en/home"
+    },
+    {
+      "id": 5,
+      "type": "mid",
+      "title": "Sales cloud",
+      "header": "Administrator Workspaces & Capabilities",
+      "body": "New and enhanced workspaces and features supporting compensation admins.",
+      "buttonText": "Learn More",
+      "buttonLink": "c4hana"
+    },
+    {
+      "id": 6,
+      "type": "mid",
+      "title": "Sales cloud",
+      "header": "Globalization Requirements",
+      "body": "Delivery of key capabilities required by global organizations and international companies.",
+      "buttonText": "Learn More",
+      "buttonLink": "c4hana"
+    },
+    {
+      "id": 7,
+      "type": "mid",
+      "title": "Sales cloud",
+      "header": "Retail Execution - Perfect Store Execution Enhancements",
+      "body": "Perfect Store Execution allows to guide the sales representative during visit execution and to measure the ... ",
+      "buttonText": "Learn More",
+      "buttonLink": "c4hana"
+    },
+    {
+      "id": 8,
+      "type": "mid",
+      "title": "Sales cloud",
+      "header": "User Experience, UI Harmonization & Accessibility",
+      "body": "Improved experience for sales and administrative users",
+      "buttonText": "Learn More",
+      "buttonLink": "c4hana"
+    },
+    {
+      "id": 9,
+      "type": "mid",
+      "title": "Sales cloud",
+      "header": "Suite intelligence & Analytics",
+      "body": "Leverage deep analytics and intelligence to make data-driven decisions",
+      "buttonText": "Learn More",
+      "buttonLink": "c4hana"
+    }
+  ],
+  "roadmapTitle": "Lead to Cash",
+  "roadmap": [
+    {
+      "label": "Contact to Lead",
+      "icon": "contact",
+      "isFirst": true,
+      "moreDetails": {
+        "title": "Key Capabilities",
+        "content": [
+          {
+            "item": "Audience Targeting and Segmentation"
+          },
+          {
+            "item": "Campaign Management and Optimization"
+          },
+          {
+            "item": "Customer Profile Management"
+          },
+          {
+            "item": "Enterprise Preference and Consent Management"
+          }
+        ]
+      }
+    },
+
+    {
+      "label": "Lead to Opportunity",
+      "icon": "lead",
+      "moreDetails": {
+        "title": "Key Capabilities",
+        "content": [
+          {
+            "item": "Insights and Performance Management"
+          },
+          {
+            "item": "Audience Targeting and Segmentation"
+          },
+          {
+            "item": "Campaign Management and Optimization"
+          },
+          {
+            "item": "Sales Lead Management"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Opportunity to Quote/Cart",
+      "icon": "opportunity",
+      "moreDetails": {
+        "title": "Key Capabilities",
+        "content": [
+          {
+            "item": "Opportunity and Pipeline Management"
+          },
+          {
+            "item": "Sales Forecasting"
+          },
+          {
+            "item": "Cart and Checkout"
+          },
+          {
+            "item": "Sales Collaboration"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Quote to Order",
+      "icon": "quote",
+      "moreDetails": {
+        "title": "Key Capabilities",
+        "content": [
+          {
+            "item": "Sales Quotation Management"
+          },
+          {
+            "item": "Price Management"
+          },
+          {
+            "item": "Order Capture"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Order to Cash",
+      "icon": "order",
+      "moreDetails": {
+        "title": "Key Capabilities",
+        "content": [
+          {
+            "item": "Sales Order Management and Processing"
+          },
+          {
+            "item": "Service Order Management"
+          },
+          {
+            "item": "Sales Billing"
+          },
+          {
+            "item": "Incentive and Commission Management"
+          }
+        ]
+      }
+    }
+  ],
+  "timelineTitle": "Product Delivery Timeline",
+  "timeline": [
+    {
+      "label": "Aug 2019",
+      "id": "aug2019",
+      "bullets": [
+        {
+          "text": "Quote request in SAP Commerce Cloud with handover to SAP Sales Cloud ",
+          "id": "aug2019-0"
+        },
+        {
+          "text": "Begin harmonizing look and feel across SAP C/4HANA Suite",
+          "id": "aug2019-1"
+        },
+        {
+          "text": "Lead to Cash process integration",
+          "id": "aug2019-2"
+        },
+        {
+          "text": "AI/ML driven intelligent scenarios along the Lead to Cash process",
+          "id": "aug2019-3"
+        }
+      ]
+    },
+    {
+      "label": "Nov 2019",
+      "id": "nov2019",
+      "bullets": [
+        {
+          "text": "Quote-to-Order process for physical and simple service products via SAP Commerce Cloud",
+          "id": "nov2019-0"
+        },
+        {
+          "text": "Data exchange between SAP Commerce Cloud and SAP Marketing Cloud",
+          "id": "nov2019-1"
+        },
+        {
+          "text": "Improved user experience (consistent UX)",
+          "id": "nov2019-2"
+        }
+      ]
+    },
+    {
+      "label": "Feb 2020",
+      "id": "feb2020",
+      "bullets": [
+        {
+          "text": "Enhance Quote-to-Order process to support subscription products via SAP Commerce Cloud",
+          "id": "feb2020-0"
+        },
+        {
+          "text": "Target group and lead collaboration across marketing and sales",
+          "id": "feb2020-1"
+        },
+        {
+          "text": "Harmonized Fiori 3 look and feel for SAP C/4HANA",
+          "id": "feb2020-2"
+        }
+      ]
+    }
+  ]
+}
