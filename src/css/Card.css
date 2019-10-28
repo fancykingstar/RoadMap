@@ -223,6 +223,11 @@
   color: #fff;
 }
 
+.product-active-top.MuiPaper-root:hover,
+.product-active-top.MuiPaper-root:focus {
+  background: linear-gradient(61.2deg, #E98324 22.49%, #F8D625 136.68%);
+  color: #fff;
+}
 .product-inactive.MuiPaper-root {
   background: #fff;
 }
@@ -260,10 +265,16 @@
   padding-top: 0px;
 }
 
+
 .product-active .icon {
   background: url(../assets/images/prod-icons/icon-offstate.png);
   width: 54px;
   height: 54px;
+}
+
+.product-active .icon-products {
+  background: url(../assets/images/prod-icons/icon-offstate-pr.png) !important;
+  background-repeat: no-repeat !important;
 }
 
 .product-active.MuiPaper-root:hover .icon {
@@ -272,6 +283,11 @@
   height: 54px;
 }
 
+.product-active.MuiPaper-root:hover .icon-products {
+  /* background: url(../assets/images/prod-icons/icon-offstate.png);  */
+  background: rgba(255, 255, 255, 1) !important;
+  border-radius: 28px;  
+}
 .product-card .icon > img {
   margin-left: 12px;
   margin-top: 13px;
@@ -279,6 +295,7 @@
 
 .product-card .title-container {
   margin-top: 16px;
+  margin-bottom: 19px;
   font-size: 2rem;
   color: #000;
 }
@@ -288,9 +305,11 @@
 }
 
 .product-card .body {
-  margin-top: 12px;
+  font-size: 1.07rem;
+  line-height: 16px;
   color: #666666;
-  line-height: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Cpham CSS work */
@@ -298,6 +317,7 @@
 .product-card .icon-container {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
 }
 

@@ -75,8 +75,6 @@ class ReleaseForm extends Component {
   }
 
   handleCheck = field => {
-    console.log('field*:', field)
-    console.log('this.state.data', this.state.data)
     const data = this.state.data.map(item => {
       if (item.key === field.key) {
         item.checked = !item.checked

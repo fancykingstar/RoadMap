@@ -67,7 +67,8 @@ class Home extends Component {
             description: result.description,
             whatsnew: result.whatsnew,
             chips: result.chips,
-            solutions: result.solutions
+            solutions: result.solutions,
+            products: result.products
           })
         },
         (error) => {
@@ -106,12 +107,17 @@ class Home extends Component {
     window.location.href = '/process/' + item.icon
   }
 
+  navigateToProduct = item => {
+    window.location.href = '/product/' + item.icon
+  }
+
   renderIcon = icon => {
     return ProductIcons[0][icon];
   }
 
   render() {
-    const { title, description, whatsnew, chips, tags, solutions, compact } = this.state;
+    const { title, description, whatsnew, chips, tags, products, solutions, compact } = this.state;
+
     return (
       <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
         <Header title={title} description={description} compact={compact} smallWindow={this.state.smallWindow} />
@@ -119,12 +125,34 @@ class Home extends Component {
         <div className="left-side-bg"></div>
         <div className={"content-container" + (this.state.smallWindow ? " content-container-small" : "")}>
 
-
           {/* Solution Section */}
           <div className="mainsection">
-            <SectionHeaderTitle title="Explore By Business Processes" smallWindow={this.state.smallWindow} firstSection={true} />
+
+            {/* Explore by Products Section*/}
+            <SectionHeaderTitle title="Explore by Products" smallWindow={this.state.smallWindow} firstSection={true} />
             <div className="body">
-              {/* {chips.map(chip => (
+
+              {products ? products.map(item => (
+                <Card key={item.title} className={"default-card product-card product-active product-active-top "}>
+                  <CardActionArea disabled={false} onClick={() => this.navigateToProduct(item)} >
+                    <CardContent className="content">
+                      <div className="icon-container">
+                        <div className="icon icon-products">
+                          <img src={this.renderIcon(item.icon)} alt={item.title} />
+                        </div>
+                      </div>
+                      <div className="title-container">
+                        <div className="title">{item.title}</div>
+                      </div>
+                      <div className="body">{item.body}</div>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              )) : null}
+            </div>
+
+            {/* <div className="body">
+              {chips.map(chip => (
                 <Chip
                   key={chip.label}
                   label={chip.label}
@@ -133,8 +161,10 @@ class Home extends Component {
                   onClick={() => this.handleClick(chip)}
                   variant="outlined"
                 />
-              ))} */}
-            </div>
+              ))}
+            </div> */}
+            {/* Explore By Business Processes Section*/}
+            < SectionHeaderTitle title="Explore by Business Processes" smallWindow={this.state.smallWindow} firstSection={false} />
             <div className="body">
               {solutions
                 .filter(item => { return tags.length > 0 ? item.tags.some(r => tags.includes(r)) : item.tags })

@@ -32,11 +32,27 @@
 }
 
 .mainsection > .body {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  /* display: grid;
+  grid-template-columns: repeat(2, 1fr); */
   justify-content: center;
   margin-top: 20px;
-  padding: 0;
+  padding: 0 0 100px 0;
+}
+
+@media screen and (min-width: 1020px) {
+  .mainsection > .body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1430px) {
+  .mainsection > .body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .anchor{
