@@ -9,35 +9,35 @@
         {
           "label": "Q3 2019",
           "checked": false,
-          "key": "q3-2019",
+          "key": "Q3 2019",
           "status": false,
           "children": []
         },
         {
           "label": "Q4 2019",
           "checked": false,
-          "key": "q4-2019",
+          "key": "Q4 2019",
           "status": false,
           "children": []
         },
         {
           "label": "Q1 2020",
           "checked": false,
-          "key": "q1-2020",
+          "key": "Q1 2020",
           "status": false,
           "children": []
         },
         {
           "label": "Q2 2020",
           "checked": false,
-          "key": "q2-2020",
+          "key": "Q2 2020",
           "status": false,
           "children": []
         },
         {
-          "label": "Q3 2020",
+          "label": "Q4 2020",
           "checked": false,
-          "key": "q3-2020",
+          "key": "Q4 2020",
           "status": false,
           "children": []
         }
@@ -50,16 +50,9 @@
       "title": "Products",
       "fields": [
         {
-          "label": "Ariba",
+          "label": "Cloud Platform",
           "checked": false,
-          "key": "ariba",
-          "status": false,
-          "children": []
-        },
-        {
-          "label": "SuccessFactors",
-          "checked": false,
-          "key": "successfactors",
+          "key": "cloudplatform",
           "status": false,
           "children": []
         },
@@ -71,51 +64,6 @@
           "children": []
         },
         {
-          "label": "S/4HANA",
-          "checked": false,
-          "key": "s4hana",
-          "status": false,
-          "children": []
-        },
-        {
-          "label": "C/4HANA",
-          "checked": false,
-          "key": "c4hana",
-          "status": false,
-          "children": [
-            {
-              "label": "Commerce Cloud",
-              "checked": false,
-              "key": "commercecloud",
-              "status": false
-            },
-            {
-              "label": "Customer Data Cloud",
-              "checked": false,
-              "key": "customerdatacloud",
-              "status": false
-            },
-            {
-              "label": "Marketing Cloud",
-              "checked": false,
-              "key": "marketingcloud",
-              "status": false
-            },
-            {
-              "label": "Sales Cloud",
-              "checked": false,
-              "key": "salescloud",
-              "status": false
-            },
-            {
-              "label": "Service Cloud",
-              "checked": false,
-              "key": "servicecloud",
-              "status": false
-            }
-          ]
-        },
-        {
           "label": "Fieldglass",
           "checked": false,
           "key": "fieldglass",
@@ -123,16 +71,16 @@
           "children": []
         },
         {
-          "label": "Cloud Platform",
+          "label": "SuccessFactors",
           "checked": false,
-          "key": "cloudplatform",
+          "key": "successfactors",
           "status": false,
           "children": []
         },
         {
-          "label": "Analytics Cloud",
+          "label": "S/4HANA",
           "checked": false,
-          "key": "analyticscloud",
+          "key": "s4hana",
           "status": false,
           "children": []
         }

@@ -20,6 +20,7 @@ import Pagination from '../components/Pagination';
 
 import { datamonths } from '../utils/searchutils';
 
+import DeleteTag from '../assets/images/close-x.svg'
 import sort from '../assets/images/sort-icon.svg';
 import ExportIcon from '../assets/images/export.svg';
 const staging = false;
@@ -44,8 +45,10 @@ class PlannedReleases extends Component {
       pages: 0,
       pagination: false,
       selectedDate: "All",
+      selectedDates: [],
       selectedDateElement: undefined,
       dateTags: [],
+      quarterDateTags: {},
       showToast: false
     };
     this.paginate = this.paginate.bind(this);
@@ -53,6 +56,7 @@ class PlannedReleases extends Component {
     this.filterFormResults = this.filterFormResults.bind(this);
     this.handleDateChipClick = this.handleDateChipClick.bind(this);
     this.handleExportClick = this.handleExportClick.bind(this);
+    this.handleDeleteTagClick = this.handleDeleteTagClick.bind(this);
   }
 
 
@@ -95,11 +99,14 @@ class PlannedReleases extends Component {
             let tempDates = {};
             result.releases.forEach(release => {
               const quarterDate = this.getQuarter(new Date(release.date));
-              if (tempDates[quarterDate] !== quarterDate) {
+              if (!tempDates.hasOwnProperty(quarterDate)) {
                 sortDates.push({ numericDate: release.date, displayDate: quarterDate });
                 tempDates[quarterDate] = quarterDate;
               }
             });
+            this.setState({
+              quarterDateTags: tempDates
+            })
           }
 
           this.setState({
@@ -109,19 +116,21 @@ class PlannedReleases extends Component {
             pagination: pagination,
             dateTags: sortDates
           }, function () {
+            console.log(this.props)
             fetch("/data/rform.json")
               .then(res => res.json())
               .then(
                 (result) => {
-                    this.setState({
-                        forms: result.forms.filter(form => (this.props.type !== 'process' ?
-                          form.title !== 'Subprocesses'
-                        :
-                          (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent == this.props.cardfilter
-                      )
+                  this.setState({
+                    forms: result.forms.filter(form => (this.props.type !== 'process' ?
+                      form.title !== 'Subprocesses'
+                      :
+                      (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent == this.props.cardfilter
+                    )
 
                     ),
                   }, function () {
+                    console.log(this.state.forms);
                     this.filterFormResults();
                   })
                 },
@@ -137,7 +146,6 @@ class PlannedReleases extends Component {
         }
       )
   }
-
 
   manageDates = (array) => {
     array.forEach(item => {
@@ -210,7 +218,32 @@ class PlannedReleases extends Component {
   manageTagArray = (state, key) => {
     let tags, pagination = false, pages = 0;
     tags = this.state.tags;
+    /* Release Dates are tags with special functionality
+      They must be able to render all possible results
+      When all release dates are not selected
+      If there are one or multiple release dates clicked,
+      an AND relationship must exist for the case of multiple
 
+      This must also rerender to the different processes a new occurence count
+    */
+    // if quarterDateTag-key is passed in
+    if (this.state.quarterDateTags[key]) {
+      let selectedDates = this.state.selectedDates, index = selectedDates.indexOf(key);
+      if (index === -1) {
+        selectedDates.push(key);
+      } else {
+        selectedDates.splice(index, 1);
+      }
+      this.setState({
+        selectedDate: this.state.selectedDate !== key ? key : "All",
+        selectedDates: selectedDates !== this.state.selectedDates ? selectedDates : this.state.selectedDates
+      }, () => {
+        console.log("selectedDates:", this.state.selectedDates)
+        this.manageTagArray();
+      })
+      return;
+    }
+    // if state and key are passed in
     if (state) {
       tags.push(key);
     } else if (key) {
@@ -255,6 +288,7 @@ class PlannedReleases extends Component {
       initialitem: 0,
       lastitem: 10
     }, () => {
+      // console.log("filterreleases:", this.state.filterreleases)
       this.setState({
         filterreleases: filterReleases,
         pages: pages,
@@ -271,6 +305,7 @@ class PlannedReleases extends Component {
 
   quarterDateChipFilter = (releases) => {
     return releases.filter(release => {
+      // console.log('release.date:', release.date, this.getQuarter(new Date(release.date)))
       return this.getQuarter(new Date(release.date)) === this.state.selectedDate;
     })
   }
@@ -287,7 +322,6 @@ class PlannedReleases extends Component {
     let currentags = tags;
     currentags = currentags.concat(this.state.statustags);
     currentags.push("");
-
     const filters = {
       tags: currentags
     };
@@ -324,9 +358,9 @@ class PlannedReleases extends Component {
       return form;
     });
 
-    if (this.state.selectedDateElement) {
-      this.state.selectedDateElement.classList.remove('pr-selected-filter-chip');
-    }
+    // if (this.state.selectedDateElement) {
+    //   this.state.selectedDateElement.classList.remove('pr-selected-filter-chip');
+    // }
 
     this.setState({
       filterreleases: this.state.releases,
@@ -372,7 +406,7 @@ class PlannedReleases extends Component {
   //release.tags.every(rt => !tags.includes(rt))
 
   handleDateChipClick = (event) => {
-    console.log(event.currentTarget);
+    // console.log(event.currentTarget.textContent);
     if (this.state.selectedDateElement) {
       this.state.selectedDateElement.classList.remove('pr-selected-filter-chip');
     } else if (document.getElementsByClassName("pr-selected-filter-chip").length > 0) {
@@ -392,8 +426,27 @@ class PlannedReleases extends Component {
     this.setState({ showToast: showToast });
   }
 
+  handleDeleteTagClick = (event) => {
+    // console.log("delete", event.currentTarget.alt, this.state.tags)
+
+    let tag = event.currentTarget.alt;
+    let forms = this.state.forms.map(form => {
+      form.fields.map(field => {
+        if (field.key === tag) {
+          field.checked = false;
+        }
+        return field;
+      })
+      return form;
+    })
+    this.setState({
+      forms: forms
+    }, () => this.manageTagArray(false, tag))
+  }
+
+
   render() {
-    const { forms, placeholder, sorting, chips, dateTags } = this.state;
+    const { forms, placeholder, sorting, tags } = this.state;
     let tabIndex = 1;
 
     return (
@@ -421,21 +474,23 @@ class PlannedReleases extends Component {
                   <option value="date">DATE</option>
                   <option value="title">TITLE</option>
                 </Select> */}
-                <div>
+                {/* <div>
                   <Chip onClick={this.handleDateChipClick} className="pr-selected-filter-chip" variant="outlined" clickable="true" label="All"></Chip>
                   {dateTags.sort((a, b) => {
                     return a.numericDate - b.numericDate;
                   }).map(dateTag => (
                     <Chip onClick={this.handleDateChipClick} variant="outlined" clickable="true" label={dateTag.displayDate} tabindex={tabIndex++}></Chip>
                   ))}
-                </div>
-                {/* Conditional for if a filtered option exists, then render Clear All Filters button*/}
-                {/* <div className="pr-clear-all-filters-root">
-                    <button onClick={() => console.log(this.state.filterreleases)}>
-                      Clear All Filters
-                    </button>
                 </div> */}
-                
+                {/* Conditional for if a filtered option exists, then render Clear All Filters button*/}
+                <div className="pr-filter-tag-container">
+                  {tags.length > 0 ?
+                    tags.map(filterTag => (
+                      <Chip variant="outlined" clickable="false" label={filterTag} deleteIcon={<img src={DeleteTag} alt={filterTag} />} onDelete={this.handleDeleteTagClick} tabindex={tabIndex++} />
+                    ))
+                    : null}
+                </div>
+                {tags.length > 0 ? <Chip className="clear-all-filters" variant="outlined" clickable="false" onClick={this.clearForms} label="Clear All Filters" /> : null}
                 <CustomButton handleClick={this.handleExportClick} label="Export" />
                 <Snackbar
                   anchorOrigin={{
@@ -448,7 +503,7 @@ class PlannedReleases extends Component {
                   autoHideDuration={6000}
                   message={<span className="toast-messages" id="message-id">Export Feature Coming Soon</span>}
                 />
-                
+
               </div>
             </div>
             {
