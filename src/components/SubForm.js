@@ -106,7 +106,7 @@ class SubForm extends Component {
           const { label, data, btnclass} = this.state;
           const BtnIcon = this.state.icon;
           return(
-             <div className="pr-subform-container">
+             <div className={"pr-subform-container" + (data.count === 0 ? " pr-container-hidden" : "")}>
                  <div className="pr-form-header">
                  <FormControlLabel 
                     className="checkInput" 
@@ -118,7 +118,7 @@ class SubForm extends Component {
                     <FormGroup>
                         {data.children.map(item => (
                             <FormControlLabel 
-                            className="checkInput" 
+                            className={"checkInput" + (item.count === 0 ? " checkInput-hidden" : "")}
                             key={item.key} 
                             control={<Checkbox onChange={() => this.handleCheck(item)} checked={item.checked} disableFocusRipple={true} disableRipple={true} value={item.key} />} 
                             label={item.label + " (" + item.count + ")"} />

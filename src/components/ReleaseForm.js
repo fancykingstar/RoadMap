@@ -102,7 +102,7 @@ class ReleaseForm extends Component {
                 return <SubForm key={item.key} label={item.label} data={item} manageTagArray={this.props.manageTagArray} icon={item.icon} iconclass={item.iconclass} />
               } else {
                 return <FormControlLabel
-                  className="checkInput"
+                  className={"checkInput" + (item.count === 0  && title !== "Release Dates" ? " checkInput-hidden" : "")}
                   key={item.key}
                   control={<Checkbox onChange={() => this.handleCheck(item)} checked={item.checked} disableFocusRipple={true} disableRipple={true} value={item.key} />}
                   label={item.label + " (" + item.count + ")"} />

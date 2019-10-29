@@ -27,10 +27,11 @@
   padding-left: 20px;
   padding-right: 20px;
 }
-.pr-filter-tag-container > .MuiChip-clickable.MuiChip-outlined:hover .MuiChip-deleteIcon{
-  background: none !important;
-  /* TODO: implement white X on hover state*/
-
+.pr-filter-tag-container > 
+.MuiChip-clickable.MuiChip-outlined:hover,
+.chip.MuiChip-clickable.MuiChip-outlined:focus {
+  background-color: rgb(255, 255, 255) !important;
+  color: #0A6ED1 !important;
 }
 .MuiChip-deleteIcon {
   width: 12px !important;

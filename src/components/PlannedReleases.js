@@ -115,7 +115,6 @@ class PlannedReleases extends Component {
             pagination: pagination,
             dateTags: sortDates
           }, function () {
-            console.log(this.props)
             fetch("/data/rform.json")
               .then(res => res.json())
               .then(
@@ -129,7 +128,6 @@ class PlannedReleases extends Component {
 
                     ),
                   }, function () {
-                    console.log(this.state.forms);
                     this.filterFormResults();
                   })
                 },

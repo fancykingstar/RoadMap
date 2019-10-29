@@ -47,6 +47,10 @@
   margin-left: -8px;
 }
 
+.pr-form-container .checkInput.checkInput-hidden.MuiFormControlLabel-root {
+  display: none;
+}
+
 .pr-form-container .checkInput .PrivateSwitchBase-root-49 {
   padding: 6px;
 }

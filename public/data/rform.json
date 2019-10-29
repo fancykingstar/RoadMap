@@ -50,23 +50,9 @@
       "title": "Products",
       "fields": [
         {
-          "label": "Cloud Platform",
+          "label": "Ariba",
           "checked": false,
-          "key": "cloudplatform",
-          "status": false,
-          "children": []
-        },
-        {
-          "label": "Concur",
-          "checked": false,
-          "key": "concur",
-          "status": false,
-          "children": []
-        },
-        {
-          "label": "Fieldglass",
-          "checked": false,
-          "key": "fieldglass",
+          "key": "ariba",
           "status": false,
           "children": []
         },
@@ -78,9 +64,75 @@
           "children": []
         },
         {
+          "label": "Concur",
+          "checked": false,
+          "key": "concur",
+          "status": false,
+          "children": []
+        },
+        {
           "label": "S/4HANA",
           "checked": false,
           "key": "s4hana",
+          "status": false,
+          "children": []
+        },
+        {
+          "label": "C/4HANA",
+          "checked": false,
+          "key": "c4hana",
+          "status": false,
+          "children": [
+            {
+              "label": "Commerce Cloud",
+              "checked": false,
+              "key": "commercecloud",
+              "status": false
+            },
+            {
+              "label": "Customer Data Cloud",
+              "checked": false,
+              "key": "customerdatacloud",
+              "status": false
+            },
+            {
+              "label": "Marketing Cloud",
+              "checked": false,
+              "key": "marketingcloud",
+              "status": false
+            },
+            {
+              "label": "Sales Cloud",
+              "checked": false,
+              "key": "salescloud",
+              "status": false
+            },
+            {
+              "label": "Service Cloud",
+              "checked": false,
+              "key": "servicecloud",
+              "status": false
+            }
+          ]
+        },
+        {
+          "label": "Fieldglass",
+          "checked": false,
+          "key": "fieldglass",
+          "status": false,
+          "children": []
+        },
+        {
+          "label": "Cloud Platform",
+          "checked": false,
+          "key": "cloudplatform",
+          "status": false,
+          "children": []
+        },
+        {
+          "label": "Analytics Cloud",
+          "checked": false,
+          "key": "analyticscloud",
           "status": false,
           "children": []
         }
@@ -303,43 +355,6 @@
           "children": []
         }
       ]
-    },
-    {
-      "id": 7,
-      "expandable": true,
-      "state": false,
-      "title": "Integrations",
-      "fields": [
-        {
-          "label": "TBD",
-          "checked": false,
-          "key": "TBD",
-          "status": false,
-          "children": []
-        },
-        {
-          "label": "TBD",
-          "checked": false,
-          "key": "TBD",
-          "status": false,
-          "children": []
-        },
-        {
-          "label": "TBD",
-          "checked": false,
-          "key": "TBD",
-          "status": false,
-          "children": []
-        },
-        {
-          "label": "TBD",
-          "checked": false,
-          "key": "TBD",
-          "status": false,
-          "children": []
-        }
-      ],
-      "children": []
-      }
+    }
   ]
 }
