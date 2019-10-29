@@ -129,7 +129,7 @@ class Home extends Component {
           <div className="mainsection">
 
             {/* Explore by Products Section*/}
-            <SectionHeaderTitle title="Explore by Products" smallWindow={this.state.smallWindow} firstSection={true} />
+            <SectionHeaderTitle title="Explore by Products" smallWindow={this.state.smallWindow} firstSection={true} leftAligned={true}/>
             <div className="body">
 
               {products ? products.map(item => (

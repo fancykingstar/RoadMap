@@ -8,10 +8,10 @@ class SectionHeaderTitle extends Component {
 		return (
 			<div className="section-title-container">
 				<div className={"title section-header-content"
-					// + (this.props.firstSection ? " section-header-whats-new" : " section-header centered-section-header")
+					+ (this.props.leftAligned ? " left-aligned-section-header" : "") 
 					+ (this.props.smallWindow ? " section-header-small" : "")}>{this.props.title}</div>
-				<div className="product-card title-right">
-				</div>
+				{/* <div className="product-card title-right">
+				</div> */}
 			</div>
 		);
 	}

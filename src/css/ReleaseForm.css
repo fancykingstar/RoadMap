@@ -28,9 +28,9 @@
 
 .pr-form-header .addButton.MuiIconButton-root,
 .pr-form-header .subButton.MuiIconButton-root {
-  color: #353B44;
+  color: #353b44;
 }
-.pr-form-header .subButton path:first-child{
+.pr-form-header .subButton path:first-child {
   transform: translate(0, -10px);
 }
 .pr-form-header .subButton.MuiIconButton-root {
@@ -55,13 +55,13 @@
   padding: 6px;
 }
 
-.pr-form-container .checkInput .MuiSvgIcon-root{
+.pr-form-container .checkInput .MuiSvgIcon-root {
   width: 1.4em;
   height: 1.4em;
 }
 
 .pr-form-container .checkInput .MuiCheckbox-colorSecondary.Mui-checked {
-  color: #0A6ED1;
+  color: #0a6ed1;
 }
 
 .pr-form-container .checkInput .MuiCheckbox-colorSecondary.Mui-checked:hover,
@@ -72,7 +72,7 @@
 .pr-form-container .checkInput .MuiTypography-body1,
 .pr-subform-container .checkInput .MuiTypography-body1 {
   font-size: 1.5rem;
-  font-family: '72';
+  font-family: "72";
   font-weight: 200;
   line-height: 23px;
   letter-spacing: 0.00938em;

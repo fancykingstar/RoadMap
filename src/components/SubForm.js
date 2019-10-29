@@ -10,124 +10,124 @@ import Collapse from '@material-ui/core/Collapse';
 
 class SubForm extends Component {
 
-    constructor(props) {
-        super(props);
-        
-        this.state= {
-          label: this.props.label,
-          data: this.props.data,
-          icon: this.props.icon || AddIcon,
-          btnclass: this.props.iconclass || "addButton" 
-        }
-    };
+	constructor(props) {
+		super(props);
 
-    componentDidMount() {
-        this.checkChildNodes(this.props.data);
-    }
+		this.state = {
+			label: this.props.label,
+			data: this.props.data,
+			icon: this.props.icon || AddIcon,
+			btnclass: this.props.iconclass || "addButton"
+		}
+	};
 
-    checkChildNodes = data => {
-        let children = data.children;
-        children.forEach(child => {
-            if (child.checked) {
-                this.props.manageTagArray(child.checked, child.key);
-            }
-        })
-    }
+	componentDidMount() {
+		this.checkChildNodes(this.props.data);
+	}
 
-    handleExpandClick = field => {
-        let data = this.state.data;
-            if (data.indeterminate) {
-                data.status = true;
-                data.indeterminate = false;
-            } else {
-                data.status = !data.status;
+	checkChildNodes = data => {
+		let children = data.children;
+		children.forEach(child => {
+			if (child.checked) {
+				this.props.manageTagArray(child.checked, child.key);
+			}
+		})
+	}
 
-            }
-                this.setState({
-                    icon: data.status === false ? AddIcon : MinIcon,
-                    btnclass: data.status === false ? "addButton" : "subButton"
-                });
-           this.handleCheck(field);
-    }
+	handleExpandClick = field => {
+		let data = this.state.data;
+		if (data.indeterminate) {
+			data.status = true;
+			data.indeterminate = false;
+		} else {
+			data.status = !data.status;
 
-    checkChildren = (array) => {
-        var count = 0;
-        array.forEach((v) => (v.checked === true && count++));
-        return count;
-    }
+		}
+		this.setState({
+			icon: data.status === false ? AddIcon : MinIcon,
+			btnclass: data.status === false ? "addButton" : "subButton"
+		});
+		this.handleCheck(field);
+	}
 
-    handleCheck = field => {
-        let data = this.state.data;
+	checkChildren = (array) => {
+		var count = 0;
+		array.forEach((v) => (v.checked === true && count++));
+		return count;
+	}
 
-            if (data.key === field.key) {
-                data.checked = !data.checked;
-                data.indeterminate = false;
-                data.children.forEach(child =>  {
-                    if (!child.checked && data.checked) {
-                        child.checked =  true;
-                        this.props.manageTagArray(child.checked, child.key);
-                    } else if (child.checked && data.checked) {
-                        
-                    } else {
-                        child.checked = !child.checked;
-                        this.props.manageTagArray(child.checked, child.key);
-                    }
-                })
-                this.props.manageTagArray(data.checked, data.key);
-            }
-            else {
-                data.children.map(child => {
-                    if (child.key === field.key) {
-                        child.checked = !child.checked;
-                        if (!child.checked && data.checked) {
-                            data.checked = !data.checked; 
-                            data.indeterminate = true;
-                            this.props.manageTagArray(child.checked, child.key);    
-                        }
-                        if (!data.checked) {
-                            let check = this.checkChildren(data.children);
-                            if (check === data.children.length) {
-                                data.indeterminate = false;
-                                data.checked = true;
-                                this.props.manageTagArray(data.checked, data.key);
-                            }  
-                        }
-                        this.props.manageTagArray(child.checked, child.key);
-                    }
-                })
-            }
-    
-        this.setState({ 
-            data: data
-        });
-    }
+	handleCheck = field => {
+		let data = this.state.data;
 
-      render() {
-          const { label, data, btnclass} = this.state;
-          const BtnIcon = this.state.icon;
-          return(
-             <div className={"pr-subform-container" + (data.count === 0 ? " pr-container-hidden" : "")}>
-                 <div className="pr-form-header">
-                 <FormControlLabel 
-                    className="checkInput" 
-                    control={<Checkbox onChange={() => this.handleExpandClick(data)} checked={data.checked} indeterminate={data.indeterminate} disableFocusRipple={true} disableRipple={true} value={data.key} />} 
-                    label={label + " (" + data.count + ")"} />
-                    <IconButton className={btnclass} disableFocusRipple={true} disableRipple={true} onClick={this.handleExpandClick}><BtnIcon fontSize="large" /></IconButton>
-                </div>
-                <Collapse className="checkMarkGroup" in={data.status} timeout="auto" unmountOnExit>
-                    <FormGroup>
-                        {data.children.map(item => (
-                            <FormControlLabel 
-                            className={"checkInput" + (item.count === 0 ? " checkInput-hidden" : "")}
-                            key={item.key} 
-                            control={<Checkbox onChange={() => this.handleCheck(item)} checked={item.checked} disableFocusRipple={true} disableRipple={true} value={item.key} />} 
-                            label={item.label + " (" + item.count + ")"} />
-                        ))}
-                    </FormGroup>
-                </Collapse>
-             </div>   
-          )
-      }
+		if (data.key === field.key) {
+			data.checked = !data.checked;
+			data.indeterminate = false;
+			data.children.forEach(child => {
+				if (!child.checked && data.checked) {
+					child.checked = true;
+					this.props.manageTagArray(child.checked, child.key);
+				} else if (child.checked && data.checked) {
+
+				} else {
+					child.checked = !child.checked;
+					this.props.manageTagArray(child.checked, child.key);
+				}
+			})
+			this.props.manageTagArray(data.checked, data.key);
+		}
+		else {
+			data.children.map(child => {
+				if (child.key === field.key) {
+					child.checked = !child.checked;
+					if (!child.checked && data.checked) {
+						data.checked = !data.checked;
+						data.indeterminate = true;
+						this.props.manageTagArray(child.checked, child.key);
+					}
+					if (!data.checked) {
+						let check = this.checkChildren(data.children);
+						if (check === data.children.length) {
+							data.indeterminate = false;
+							data.checked = true;
+							this.props.manageTagArray(data.checked, data.key);
+						}
+					}
+					this.props.manageTagArray(child.checked, child.key);
+				}
+			})
+		}
+
+		this.setState({
+			data: data
+		});
+	}
+
+	render() {
+		const { label, data, btnclass } = this.state;
+		const BtnIcon = this.state.icon;
+		return (
+			<div className={"pr-subform-container" + (data.count === 0 ? " pr-container-hidden" : "")}>
+				<div className="pr-form-header">
+					<FormControlLabel
+						className="checkInput"
+						control={<Checkbox onChange={() => this.handleExpandClick(data)} checked={data.checked} indeterminate={data.indeterminate} disableFocusRipple={true} disableRipple={true} value={data.key} />}
+						label={label + " (" + data.count + ")"} />
+					<IconButton className={btnclass} disableFocusRipple={true} disableRipple={true} onClick={this.handleExpandClick}><BtnIcon fontSize="large" /></IconButton>
+				</div>
+				<Collapse className="checkMarkGroup" in={data.status} timeout="auto" unmountOnExit>
+					<FormGroup>
+						{data.children.map(item => (
+							<FormControlLabel
+								className={"checkInput" + (item.count === 0 ? " checkInput-hidden" : "")}
+								key={item.key}
+								control={<Checkbox onChange={() => this.handleCheck(item)} checked={item.checked} disableFocusRipple={true} disableRipple={true} value={item.key} />}
+								label={item.label + " (" + item.count + ")"} />
+						))}
+					</FormGroup>
+				</Collapse>
+			</div>
+		)
+	}
 
 }
 
