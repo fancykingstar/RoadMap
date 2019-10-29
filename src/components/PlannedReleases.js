@@ -44,7 +44,6 @@ class PlannedReleases extends Component {
       maxperpage: 10,
       pages: 0,
       pagination: false,
-      selectedDate: "All",
       selectedDates: [],
       selectedDateElement: undefined,
       dateTags: [],
@@ -54,7 +53,7 @@ class PlannedReleases extends Component {
     this.paginate = this.paginate.bind(this);
     this.manageTagArray = this.manageTagArray.bind(this);
     this.filterFormResults = this.filterFormResults.bind(this);
-    this.handleDateChipClick = this.handleDateChipClick.bind(this);
+    // this.handleDateChipClick = this.handleDateChipClick.bind(this);
     this.handleExportClick = this.handleExportClick.bind(this);
     this.handleDeleteTagClick = this.handleDeleteTagClick.bind(this);
   }
@@ -235,7 +234,6 @@ class PlannedReleases extends Component {
         selectedDates.splice(index, 1);
       }
       this.setState({
-        selectedDate: this.state.selectedDate !== key ? key : "All",
         selectedDates: selectedDates !== this.state.selectedDates ? selectedDates : this.state.selectedDates
       }, () => {
         console.log("selectedDates:", this.state.selectedDates)
@@ -272,7 +270,7 @@ class PlannedReleases extends Component {
       filterReleases = this.multiPropsFilter(filterReleases, tagCollection);
     });
 
-    if (this.state.selectedDate !== "All") {
+    if (this.state.selectedDates.length !== 0) {
       filterReleases = this.quarterDateChipFilter(filterReleases);
     }
 
@@ -305,8 +303,9 @@ class PlannedReleases extends Component {
 
   quarterDateChipFilter = (releases) => {
     return releases.filter(release => {
-      // console.log('release.date:', release.date, this.getQuarter(new Date(release.date)))
-      return this.getQuarter(new Date(release.date)) === this.state.selectedDate;
+      const date = this.getQuarter(new Date(release.date));
+      return this.state.selectedDates.includes(date)
+      // return date === this.state.selectedDate;
     })
   }
 
@@ -379,7 +378,6 @@ class PlannedReleases extends Component {
         initialitem: 0,
         lastitem: 10,
         selectedDateElement: undefined,
-        selectedDate: "All"
       });
     });
   }
@@ -405,21 +403,21 @@ class PlannedReleases extends Component {
   }
   //release.tags.every(rt => !tags.includes(rt))
 
-  handleDateChipClick = (event) => {
-    // console.log(event.currentTarget.textContent);
-    if (this.state.selectedDateElement) {
-      this.state.selectedDateElement.classList.remove('pr-selected-filter-chip');
-    } else if (document.getElementsByClassName("pr-selected-filter-chip").length > 0) {
-      document.getElementsByClassName("pr-selected-filter-chip")[0].classList.remove('pr-selected-filter-chip');
-    }
+  // handleDateChipClick = (event) => {
+  //   // console.log(event.currentTarget.textContent);
+  //   if (this.state.selectedDateElement) {
+  //     this.state.selectedDateElement.classList.remove('pr-selected-filter-chip');
+  //   } else if (document.getElementsByClassName("pr-selected-filter-chip").length > 0) {
+  //     document.getElementsByClassName("pr-selected-filter-chip")[0].classList.remove('pr-selected-filter-chip');
+  //   }
 
-    event.currentTarget.classList.add('pr-selected-filter-chip');
+  //   event.currentTarget.classList.add('pr-selected-filter-chip');
 
-    this.setState({
-      selectedDateElement: event.currentTarget,
-      selectedDate: event.currentTarget.textContent
-    }, () => this.manageTagArray());
-  }
+  //   this.setState({
+  //     selectedDateElement: event.currentTarget,
+  //     selectedDate: event.currentTarget.textContent
+  //   }, () => this.manageTagArray());
+  // }
 
   handleExportClick = () => {
     const showToast = !this.state.showToast;
