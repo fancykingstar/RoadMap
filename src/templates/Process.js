@@ -96,28 +96,27 @@ class Process extends Component {
     const { title, description, whatsnew, roadmapTitle, timelineTitle, roadmap, timeline, releases, template, process, subprocess } = this.state;
     return (
       <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
-        <Header title={title} description={description} image={this.renderImage(process)} compact={true} smallWindow={this.state.smallWindow} type="sub-page" />
+        {roadmap.length > 0 ? <Header title={title} description={description} image={this.renderImage(process)} compact={true} smallWindow={this.state.smallWindow} roadmap={roadmap} windowWidth={this.state.windowWidth} process={this.state.process} type="sub-page" /> : null }
         <Feedback />
         <div className="right-side-bg"></div>
         <div className={"content-container" + (this.state.smallWindow ? " content-container-small" : "")}>
           {/* roadmap, timeline and What's new tab group */}
           <Tabs className="roadmap-process-tabs roadmap-process-tab-titles" value={this.state.tabValue} onChange={this.handleTabChange} aria-label="Process flow and release highlights">
-            <Tab label="Process Flow" />
             <Tab label="Release Highlights" />
             <Tab label="What's New" />
           </Tabs>
           {/* roadmap */}
           {/* <SectionHeaderTitle title={roadmapTitle} smallWindow={this.state.smallWindow} leftAligned={false} /> */}
-          {this.state.tabValue === 0 ? (this.state.windowWidth < 1200 ? <RoadmapVertical roadmap={roadmap} /> :
-            <MultiRoadmap roadmap={roadmap} hideArrows={this.state.process === "twm"} />) : undefined}
+          {/* {this.state.tabValue === 0 ? (this.state.windowWidth < 1200 ? <RoadmapVertical roadmap={roadmap} /> :
+            <MultiRoadmap roadmap={roadmap} hideArrows={this.state.process === "twm"} />) : undefined} */}
 
           {/* timeline */}
           {/* <SectionHeaderTitle title={timelineTitle} smallWindow={this.state.smallWindow} leftAligned={false} /> */}
-          {this.state.tabValue === 1 ? (timeline.length > 4 || this.state.windowWidth < 1200 ?
+          {this.state.tabValue === 0 ? (timeline.length > 4 || this.state.windowWidth < 1200 ?
             <TimelineVertical timeline={timeline} smallWindow={this.state.smallWindow} /> :
             <TimelineCurve timeline={timeline} />) : undefined}
 
-          {this.state.tabValue === 2 ? <div className="content-horizontal content">
+          {this.state.tabValue === 1 ? <div className="content-horizontal content">
             <CarouselCards slides={whatsnew} windowWidth={this.state.windowWidth} smallWindow={this.state.smallWindow} />
           </div> : undefined}
 

@@ -1,48 +1,75 @@
 .roadmap-multi {
-    width: 100%;
-    position: relative;
-    margin-top: 58px;
-    height: 440px;
-    display: flex;
-    justify-content: center;
+  width: 100%;
+  position: relative;
+  margin-top: 58px;
+  height: 440px;
+  display: flex;
+  justify-content: center;
 }
 
 .roadmap-multi .roadmap-stepper:nth-child(2) {
-    margin-top: 240px;
+  margin-top: 240px;
 }
 
 .roadmap-multi .roadmap-stepper {
-    position: absolute;
-    width: 100%;
+  position: absolute;
+  width: 100%;
 }
 .roadmap-stepper .MuiStepLabel-iconContainer {
   cursor: pointer;
 }
 .roadmap-stepper-label-right .MuiStepLabel-iconContainer {
-    margin-right: 32px;
+  /* margin-right: 32px; */
 }
 
 .roadmap-stepper-label-left .MuiStepLabel-iconContainer {
-    margin-left: 32px;
+  margin-left: 32px;
 }
 
 .roadmap-stepper .MuiStep-root:nth-child(1) .MuiStepLabel-iconContainer {
-    margin-right: 0px;
+  margin-right: 0px;
 }
 
-.roadmap-multi .roadmap-stepper .MuiStepper-root{
-    background-color: transparent;
-    cursor: pointer;
+.roadmap-multi .roadmap-stepper .MuiStepper-root {
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .roadmap-multi-lines {
-    border-bottom-style: dashed;
-    border-top-style: dashed;
-    border-right-style: dashed;
-    border-color: #b1b1b1;
-    border-width: 2px;
-    height: 237px;
-    width: 83%;
-    margin-top: 64px;
-    margin-left: 70px;
+  border-bottom-style: dashed;
+  border-top-style: dashed;
+  border-right-style: dashed;
+  border-color: #b1b1b1;
+  border-width: 2px;
+  height: 237px;
+  width: 83%;
+  margin-top: 64px;
+  margin-left: 70px;
 }
+
+.roadmap-stepper .MuiStepper-alternativeLabel {
+  /* width: 730px; */
+  max-width: 90%;
+}
+
+.roadmap-stepper .MuiStepper-root {
+  padding: 0px;
+}
+.roadmap-stepper .MuiStepConnector-root {
+  top: 12px;
+  left: calc(-60% + 55px);
+  right: calc(50% + 45px);
+}
+
+.roadmap-stepper .MuiStepLabel-iconContainer .roadmap-svg-icon {
+  /* top: 30px; */
+  position: relative;
+}
+.roadmap-stepper .MuiStepLabel-iconContainer .roadmap-svg-icon svg {
+  position: absolute;
+  bottom: 0px;
+  margin-bottom: 20px;
+  right: 0.8rem;
+}
+
+

@@ -11,12 +11,16 @@ import BulletList from '../components/BulletList';
 import { ProductSearch } from '../components/Search';
 import { suggestions, trends } from '../utils/searchutils';
 import { activeprocesses } from '../utils/processutils';
+import { MultiRoadmap } from '../components/MultiRoadmap';
+import { RoadmapVertical } from '../components/RoadmapVertical';
 
 //import css
 import '../css/HeaderHome.css';
 import '../css/Menu.css';
 
 //import assets
+import info from '../assets/images/info.svg';
+import notificationBell from '../assets/images/notification-bell.svg';
 import logo from '../assets/images/sap-logo.svg';
 import accountIcon from '../assets/images/home-account.svg';
 import compactAccountIcon from '../assets/images/compact-account.svg';
@@ -31,12 +35,17 @@ class Header extends Component {
       compact: this.props.compact,
       type: this.props.type || "regular",
       smallWindow: this.props.smallWindow,
+      roadmap: undefined,
       processes: [],
       products: [],
+      headerimage: '',
       resultspage: this.props.resultspage || false,
       resulthandler: this.props.resulthandler || false
     };
     this.handleAccountClick = this.handleAccountClick.bind(this);
+    this.renderProcessHeaderContainers = this.renderProcessHeaderContainers.bind(this);
+    this.renderProductHeaderContainers = this.renderProductHeaderContainers.bind(this);
+
   }
 
   componentDidMount() {
@@ -62,8 +71,11 @@ class Header extends Component {
     this.setState({
       description: this.props.description,
       title: this.props.title || "",
-      compact: this.props.compact
-    });
+      compact: this.props.compact,
+      headerimage: this.props.image,
+      roadmap: this.props.roadmap,
+      process: this.props.process
+    }, ()=> console.log("roadmap is: ",this.state.roadmap, "\nprocess is:", this.state.process));
   }
 
   componentDidUpdate(prevProps) {
@@ -89,10 +101,76 @@ class Header extends Component {
     this.setState({ showToast: showToast });
   }
 
-  render() {
-    const { title, description, processes, products, compact, type, resultspage, resulthandler } = this.state;
-    const headerimage = this.props.image;
+  renderProcessHeaderContainers = () => {
+    const { title, description, processes, products, compact, type, resultspage, resulthandler, headerimage, roadmap } = this.state;
     let border = "0px solid red";
+    return (
+      <div className="header-divided-container">
+        <div className={"header-left-container" + (this.props.smallWindow ? " hidden" : "")}>
+          {compact ? <img src={headerimage} style={{ border: border, transform: "scaleX(-1)"}} alt={title} /> : null}
+        </div>
+        <div className="header-right-container">
+          <div className={"title title-" + (compact ? "compact" : "default")
+            + (this.props.smallWindow ? " title-small" : "")
+            + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")}>{title}
+              <img src={info} alt="info" style={ {paddingLeft: 13 + "px", paddingBottom: 7 + "px"} }/>
+          </div>
+          <div className="header-roadmap-container">
+          {/* {(this.state.smallWindow ? <RoadmapVertical roadmap={this.props.roadmap} /> :
+            <MultiRoadmap roadmap={this.state.roadmap} hideArrows={this.props.process === "twm"} />) } */}
+            { roadmap && roadmap.length > 0 ? this.props.windowWidth < 1400 ? <RoadmapVertical roadmap={roadmap} /> : <MultiRoadmap roadmap={roadmap} hideArrows={this.state.process === "twm"} /> : null}
+          {/* {this.state.windowWidth < 1400 ? <RoadmapVertical roadmap={roadmap} /> : roadmap && roadmap.length > 0 ?
+            <MultiRoadmap roadmap={roadmap} hideArrows={this.state.process === "twm"} /> : null } */}
+              {/* <MultiRoadmap roadmap={roadmap} hideArrows={this.state.process === "twm"} /> */}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  renderProductHeaderContainers = () => {
+    const { title, description, processes, products, compact, type, resultspage, resulthandler, headerimage } = this.state;
+    let border = "0px solid red";
+    return (
+      <div className="header-divided-container">
+        <div className="header-left-container">
+          <div className={"title title-" + (compact ? "compact" : "default")
+            + (this.props.smallWindow ? " title-small" : "")
+            + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")}>{title}</div>
+          <div className={"description-" + (compact ? "compact" : "default")
+            + (this.props.smallWindow ? " description-small" : " description")}>
+            <div className="header-bullet-description-container">
+              {type == 'sub-page' ? (description ? description.map(desc => (<BulletList description={desc} />)) : null) :
+                <ProductSearch placeholder="Customer Experience Management" suggestions={suggestions} trends={trends} />
+              }
+            </div>
+
+          </div>
+          {compact ? null : <div className="button-container">
+
+          </div>}
+        </div>
+        {this.props.smallWindow ? null : <div className="header-right-container">
+          {compact ? <img src={headerimage} style={{ border: border }} alt={title} /> : null}
+        </div>}
+        {this.props.smallWindow || compact ? null : <svg width="100%" height="230"
+          viewBox="0 0 1440 676" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+          <defs>
+            <clipPath id="clipping" clipPathUnits="objectBoundingBox"
+              transform="scale(0.000694 0.001479)">
+              <path fillRule="evenodd" clipRule="evenodd"
+                d="M1440 380.254C1348.15 432.998 1055.79 586.784 831.346 547.605C580.501 503.817 323.196 477.945 0 675.098V0H1440V380.254Z" />
+            </clipPath>
+          </defs>
+        </svg>}
+      </div>
+
+    )
+  }
+  render() {
+    const { title, description, processes, products, compact, type, resultspage, resulthandler, headerimage } = this.state;
+    let border = "0px solid red";
+    let transform = "scaleX(-1)";
     return (
       <div className={"page-header-default"
         + (type === "regular" ? " page-header-minheight" : "")
@@ -129,10 +207,11 @@ class Header extends Component {
                   </ul>
                 </nav>
                 <SearchBar resultspage={resultspage} resulthandler={resulthandler} suggestions={suggestions} trends={trends} compact={compact} style={"width: 100%"} />
-                <img className="header-user-account" alt="account" src={compact ? compactAccountIcon : accountIcon} 
+                {/* <img className="header-notification-bell" alt="bell" src={compact ? notificationBell : null } /> */}
+                <img className="header-user-account" alt="account" src={compact ? compactAccountIcon : accountIcon}
                   onMouseOver={e => (e.currentTarget.src = compact ? accountIcon : compactAccountIcon)}
                   onMouseOut={e => (e.currentTarget.src = compact ? compactAccountIcon : accountIcon)}
-                  onClick={this.handleAccountClick}/>
+                  onClick={this.handleAccountClick} />
                 <Snackbar
                   anchorOrigin={{
                     vertical: 'bottom',
@@ -151,40 +230,10 @@ class Header extends Component {
         <div className={"header-content" + (compact ? " header-content-compact" : "")
           + (this.props.smallWindow ? " header-content-small" : "")
           + (type === "search" ? " header-content-none" : "")} >
-          <div className="header-divided-container">
-            <div className="header-left-container">
-              <div className={"title title-" + (compact ? "compact" : "default")
-                + (this.props.smallWindow ? " title-small" : "")
-                + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")}>{title}</div>
-              <div className={"description-" + (compact ? "compact" : "default")
-                + (this.props.smallWindow ? " description-small" : " description")}>
-                <div className="header-bullet-description-container">
-                 { type== 'sub-page' ?   (description ? description.map(desc => (<BulletList description={desc} />)) : null):
-
-                    <ProductSearch placeholder="Customer Experience Management" suggestions={suggestions} trends={trends} />
-                  }
-                </div>
-
-              </div>
-              {compact ? null : <div className="button-container">
-
-              </div>}
-            </div>
-
-            {this.props.smallWindow ? null : <div className="header-right-container">
-              {compact ? <img src={headerimage} style={{ border: border }} alt={title} /> : null}
-            </div>}
-            {this.props.smallWindow || compact ? null : <svg width="100%" height="230"
-              viewBox="0 0 1440 676" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
-              <defs>
-                <clipPath id="clipping" clipPathUnits="objectBoundingBox"
-                  transform="scale(0.000694 0.001479)">
-                  <path fillRule="evenodd" clipRule="evenodd"
-                    d="M1440 380.254C1348.15 432.998 1055.79 586.784 831.346 547.605C580.501 503.817 323.196 477.945 0 675.098V0H1440V380.254Z" />
-                </clipPath>
-              </defs>
-            </svg>}
-          </div>
+          {(title === "Total Workforce Management" ||
+            title === "Source to Pay" ||
+            title === "Lead to Cash") ? this.renderProcessHeaderContainers() : this.renderProductHeaderContainers()
+          }
         </div>
       </div>
     );

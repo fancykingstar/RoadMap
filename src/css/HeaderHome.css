@@ -71,7 +71,7 @@
 
 .header-content {
   margin-top: 54px;
-  padding-left: 100px;
+  /* padding-left: 100px; */
 
 }
 
@@ -118,9 +118,20 @@
   align-content: flex-start;
 }
 
+.header-left-container.hidden {
+  display: none;
+}
+
 .header-right-container {
   flex-direction: row;
   /* margin-left: auto; */
+}
+
+.header-roadmap-container {
+  width:100%;
+}
+.hidden.header-right-container {
+  display: none;
 }
 
 .logo-wrapper {
@@ -168,6 +179,7 @@
 
 .header-content .title-compact {
   color: #0A6ED1;
+  padding-left: 50px;
 }
 .header-content .title.title-long {
   font-size: 5rem;

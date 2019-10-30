@@ -4,7 +4,7 @@
 }
 
 .roadmap-stepper-single-line {
-    margin-top: 78px;
+    margin-top: 38px;
 }
 
 .roadmap-svg-group {
@@ -17,6 +17,8 @@
     margin-bottom: 100%;
 }
 
+
+
 .roadmap-stepper-label .MuiStepLabel-label {
     font-family: "72";
     font-style: normal;
@@ -24,14 +26,15 @@
     font-size: 18px;
     line-height: 21px;
     text-align: center;
-    color: #000000;
+    color: #0A6ED1;
     cursor: pointer;
 }
 
 .roadmap-stepper-label .MuiStepLabel-label.MuiStepLabel-active {
     font-weight: normal;
-    color: #000000;
+    color: #0A6ED1;
 }
+
 
 .roadmap-stepper-popover .MuiPopover-paper {
     border-radius: 18px;
@@ -42,7 +45,11 @@
 }
 
 .roadmap-stepper-icon-color circle{
-    fill: #F0AB00;
+    fill: #0A6ED1;
+}
+
+.roadmap-stepper-icon-color path {
+    fill: #FFFFFF;
 }
 
 .roadmap-stepper-popover .title-container {

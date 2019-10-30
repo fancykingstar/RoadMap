@@ -14,6 +14,7 @@ import '../css/Roadmap.css';
 
 //import svg assets
 import { ProductIcons } from '../assets/prod-icons';
+import { callbackify } from 'util';
 
 const defaultContent = {
     title: "", content: [{ header: "", body: "" }]
@@ -23,7 +24,8 @@ const ConnectorStyle = withStyles({
     line: {
         borderColor: '#b1b1b1',
         borderTopStyle: "dashed",
-        borderWidth: "2px"
+        borderWidth: "2px",
+        marginTop: "0.791rem",
     },
 })(StepConnector);
 
