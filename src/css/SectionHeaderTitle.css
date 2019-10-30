@@ -30,7 +30,7 @@
 
 @media screen and (max-width: 1019px) {
   .section-title-container {
-    width: 368px;
+    width: 378px;
   }
   .section-header-content {
     width: 358px;
@@ -42,7 +42,7 @@
     height: 28px;
   }
   .section-header-content {
-    width: 350px;
+    width: 320px;
     margin: auto;
   }
 }

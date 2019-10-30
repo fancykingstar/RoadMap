@@ -243,8 +243,8 @@ class PlannedReleases extends Component {
       return;
     }
     // if state and key are passed in
-    if (state) {
-      tags.push(key);
+    if (state && !tags.includes(key)) {
+        tags.push(key);
     } else if (key) {
       let index = tags.indexOf(key);
       tags.splice(index, 1);

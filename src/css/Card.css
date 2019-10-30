@@ -41,11 +41,16 @@
   cursor: pointer;
 }
 
+.content.MuiCardContent-root .body {
+  height: 64px;
+}
+
 .release-card .content.MuiCardContent-root {
   margin: 24px 30px 2px 40px;
   padding: 0 0 25px 0;
   position: relative;
 }
+
 
 .release-card .pr-toolbar .date-container .date {
   margin-top: 2px;
@@ -244,6 +249,7 @@
   background: url(../assets/images/prod-icons/icon-offstate.png) no-repeat;
   width: 54px;
   height: 54px;
+  background-position: -6px 0px;
 }
 
 .product-active.MuiPaper-root:hover .title-container,
@@ -261,7 +267,6 @@
   position: relative;
   justify-content: left;
   text-align: left;
-  align-items: left;
   padding-top: 0px;
 }
 
@@ -270,11 +275,13 @@
   background: url(../assets/images/prod-icons/icon-offstate.png);
   width: 54px;
   height: 54px;
+  background-position: -6px 0px;
 }
 
-.product-active .icon-products {
+.product-active .icon.icon-products {
   background: url(../assets/images/prod-icons/icon-offstate-pr.png) !important;
   background-repeat: no-repeat !important;
+  background-position: 0% 33% !important;
 }
 
 .product-active.MuiPaper-root:hover .icon {
@@ -288,9 +295,10 @@
   background: rgba(255, 255, 255, 1) !important;
   border-radius: 28px;  
 }
+
 .product-card .icon > img {
-  margin-left: 12px;
-  margin-top: 13px;
+  margin-left: 13px;
+  margin-top: 12px;
 }
 
 .product-card .title-container {
