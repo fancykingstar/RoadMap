@@ -174,10 +174,11 @@ class PlannedReleases extends Component {
       }
     })
 
-
+    
     forms.forEach(form => {
       form.icon = null;
       form.iconclass = null;
+      form.count = 0;
       for (let i = form.fields.length; i--;) {
         form.fields[i].indeterminate = false;
         form.fields[i].icon = null;
@@ -187,7 +188,9 @@ class PlannedReleases extends Component {
           form.fields[i].status = true;
         }
         form.fields[i].count = 0;
-        form.fields[i].count = this.getOccurrence(releasetags, form.fields[i].key);
+        let occurences = this.getOccurrence(releasetags, form.fields[i].key);
+        form.fields[i].count = occurences;
+        form.count += occurences;
         form.fields[i].count = form.fields[i].count === null ? 0 : form.fields[i].count;
 
         for (let v = form.fields[i].children.length; v--;) {
@@ -450,9 +453,12 @@ class PlannedReleases extends Component {
         <SectionHeaderTitle title={"Planned Releases"} smallWindow={this.props.smallWindow} leftAligned={false} />
         <div className={"pr-body" + (this.props.smallWindow ? " pr-body-small" : "")}>
           <div className="pr-navigation">
-            {forms.map(form => (
-              <ReleaseForm key={form.id} title={form.title} expandable={form.expandable} status={form.state} data={form.fields} count={form.count} manageTagArray={this.manageTagArray} icon={form.icon} iconclass={form.iconclass} />
-            ))}
+            {forms.map(form => 
+            {
+              if (typeof form.count == "number") {
+                return <ReleaseForm key={form.id} title={form.title} expandable={form.expandable} status={form.state} data={form.fields} count={form.count} manageTagArray={this.manageTagArray} icon={form.icon} iconclass={form.iconclass} />
+              }
+            })}
             <Button className="clearButton" onClick={this.clearForms} disableFocusRipple={true} disableRipple={true}>CLEAR ALL FILTERS</Button>
           </div>
           <div className={"pr-results" + (this.props.smallWindow ? " pr-results-small" : "")}>

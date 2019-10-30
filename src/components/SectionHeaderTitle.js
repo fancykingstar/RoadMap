@@ -10,8 +10,6 @@ class SectionHeaderTitle extends Component {
 				<div className={"title section-header-content"
 					+ (this.props.leftAligned ? " left-aligned-section-header" : "") 
 					+ (this.props.smallWindow ? " section-header-small" : "")}>{this.props.title}</div>
-				{/* <div className="product-card title-right">
-				</div> */}
 			</div>
 		);
 	}
