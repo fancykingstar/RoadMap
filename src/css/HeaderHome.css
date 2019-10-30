@@ -82,7 +82,7 @@
 }
 
 .header-content.header-content-compact.header-content-small {
-  margin-top: 116px;
+  margin-top: 85px;
 }
 
 .header-content-none {
@@ -90,7 +90,8 @@
 }
 
 .header-content-compact {
-  margin-top: 156px;
+  margin-top: 85px;
+  padding-top: 54px;
 }
 
 .header-standard {

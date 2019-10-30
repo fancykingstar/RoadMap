@@ -107,7 +107,7 @@ class Header extends Component {
     return (
       <div className="header-divided-container">
         <div className={"header-left-container" + (this.props.smallWindow ? " hidden" : "")}>
-          {compact ? <img src={headerimage} style={{ border: border, transform: "scaleX(-1)"}} alt={title} /> : null}
+          {compact ? <img src={headerimage} style={{ border: border, transform: "scaleX(-1)", height: 400 + "px"}} alt={title} /> : null}
         </div>
         <div className="header-right-container">
           <div className={"title title-" + (compact ? "compact" : "default")

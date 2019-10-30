@@ -25,7 +25,7 @@ const ConnectorStyle = withStyles({
         borderColor: '#b1b1b1',
         borderTopStyle: "dashed",
         borderWidth: "2px",
-        marginTop: "0.791rem",
+        marginTop: "9.5px",
     },
 })(StepConnector);
 
