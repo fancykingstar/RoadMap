@@ -164,7 +164,7 @@ class Home extends Component {
               ))}
             </div> */}
             {/* Explore By Business Processes Section*/}
-            < SectionHeaderTitle title="Explore by Business Processes" smallWindow={this.state.smallWindow} firstSection={false} />
+            < SectionHeaderTitle title="Explore by Business Processes" smallWindow={this.state.smallWindow} firstSection={false} leftAligned={true}/>
             <div className="body">
               {solutions
                 .filter(item => { return tags.length > 0 ? item.tags.some(r => tags.includes(r)) : item.tags })

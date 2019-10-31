@@ -29,6 +29,12 @@
   padding-left: 100px;
 }
 
+@media screen and (max-width: 668px) {
+  .header-divided-container.home-header {
+    padding-left: 0;
+  }
+}
+
 .page-header-default-small {
   min-height: 100%;
 }
