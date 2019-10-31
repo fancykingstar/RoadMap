@@ -102,18 +102,18 @@ class Header extends Component {
   }
 
   renderProcessHeaderContainers = () => {
-    const { title, description, processes, products, compact, type, resultspage, resulthandler, headerimage, roadmap } = this.state;
+    const { title, compact, headerimage, roadmap } = this.state;
     let border = "0px solid red";
     return (
       <div className="header-divided-container">
-        <div className={"header-left-container" + (this.props.smallWindow ? " hidden" : "")}>
-          {compact ? <img src={headerimage} style={{ border: border, transform: "scaleX(-1)", height: 400 + "px"}} alt={title} /> : null}
+        <div className={"header-left-container header-process" + (this.props.smallWindow ? " hidden" : "")}>
+          {compact ? <img src={headerimage} style={{ border: border, height: 393 + "px", width: 537.13 + "px"}} alt={title} /> : null}
         </div>
         <div className="header-right-container">
           <div className={"title title-" + (compact ? "compact" : "default")
             + (this.props.smallWindow ? " title-small" : "")
             + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")}>{title}
-              <img src={info} alt="info" style={ {paddingLeft: 13 + "px", paddingBottom: 7 + "px"} }/>
+              <img src={info} alt="info" style={ { position: this.props.windowWidth < 816 ? "relative":"absolute", paddingLeft: 13 + "px", paddingTop: 21 + "px"} }/>
           </div>
           <div className="header-roadmap-container">
           {/* {(this.state.smallWindow ? <RoadmapVertical roadmap={this.props.roadmap} /> :
@@ -129,7 +129,7 @@ class Header extends Component {
   }
 
   renderProductHeaderContainers = () => {
-    const { title, description, processes, products, compact, type, resultspage, resulthandler, headerimage } = this.state;
+    const { title, description, compact, type, headerimage } = this.state;
     let border = "0px solid red";
     return (
       <div className="header-divided-container">
@@ -168,9 +168,7 @@ class Header extends Component {
     )
   }
   render() {
-    const { title, description, processes, products, compact, type, resultspage, resulthandler, headerimage } = this.state;
-    let border = "0px solid red";
-    let transform = "scaleX(-1)";
+    const { title, processes, products, compact, type, resultspage, resulthandler } = this.state;
     return (
       <div className={"page-header-default"
         + (type === "regular" ? " page-header-minheight" : "")
@@ -232,7 +230,10 @@ class Header extends Component {
           + (type === "search" ? " header-content-none" : "")} >
           {(title === "Total Workforce Management" ||
             title === "Source to Pay" ||
-            title === "Lead to Cash") ? this.renderProcessHeaderContainers() : this.renderProductHeaderContainers()
+            title === "Lead to Cash") ? 
+            this.renderProcessHeaderContainers() // Processes Header
+            : 
+            this.renderProductHeaderContainers() // Products Header
           }
         </div>
       </div>

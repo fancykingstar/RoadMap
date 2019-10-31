@@ -5,6 +5,10 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 50px;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: #CCC;
 }
 
 .pr-section > .pr-header {

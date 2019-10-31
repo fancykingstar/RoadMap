@@ -43,7 +43,7 @@ class Process extends Component {
       windowWidth: 0,
       windowHeight: 0,
       smallWindow: false,
-      tabValue: 0,
+      tabValue: 1,
       process: this.props.match.params.process,
       subprocess: this.props.match.params.subprocess || null
     };
@@ -96,15 +96,29 @@ class Process extends Component {
     const { title, description, whatsnew, roadmapTitle, timelineTitle, roadmap, timeline, releases, template, process, subprocess } = this.state;
     return (
       <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
-        {roadmap.length > 0 ? <Header title={title} description={description} image={this.renderImage(process)} compact={true} smallWindow={this.state.smallWindow} roadmap={roadmap} windowWidth={this.state.windowWidth} process={this.state.process} type="sub-page" /> : null }
+        {roadmap.length > 0 ? <Header title={title} description={description} image={this.renderImage(process)} compact={true} smallWindow={this.state.smallWindow} roadmap={roadmap} windowWidth={this.state.windowWidth} process={this.state.process} type="sub-page" /> : null}
         <Feedback />
         <div className="right-side-bg"></div>
         <div className={"content-container" + (this.state.smallWindow ? " content-container-small" : "")}>
           {/* roadmap, timeline and What's new tab group */}
-          <Tabs className="roadmap-process-tabs roadmap-process-tab-titles" value={this.state.tabValue} onChange={this.handleTabChange} aria-label="Process flow and release highlights">
-            <Tab label="Release Highlights" />
-            <Tab label="What's New" />
-          </Tabs>
+          <div className="process-content">
+            <Tabs className="roadmap-process-tabs roadmap-process-tab-titles" label="X" value={this.state.tabValue} onChange={this.handleTabChange} aria-label="Process flow and release highlights" orientation="vertical">
+              <Tab label="Release Highlights" />
+              <Tab label="What's New" />
+            </Tabs>
+            <div className="tab-content">
+              {
+                // CURRENTTODO 
+              }
+              {this.state.tabValue === 0 ? (timeline.length > 4 || this.state.windowWidth < 1200 ?
+                <TimelineVertical timeline={timeline} smallWindow={this.state.smallWindow} /> :
+                <TimelineCurve timeline={timeline} />) : undefined}
+
+              {this.state.tabValue === 1 ? <div className="content-horizontal content">
+                <CarouselCards slides={whatsnew} windowWidth={this.state.windowWidth} smallWindow={this.state.smallWindow} />
+              </div> : undefined}
+            </div>
+          </div>
           {/* roadmap */}
           {/* <SectionHeaderTitle title={roadmapTitle} smallWindow={this.state.smallWindow} leftAligned={false} /> */}
           {/* {this.state.tabValue === 0 ? (this.state.windowWidth < 1200 ? <RoadmapVertical roadmap={roadmap} /> :
@@ -112,13 +126,10 @@ class Process extends Component {
 
           {/* timeline */}
           {/* <SectionHeaderTitle title={timelineTitle} smallWindow={this.state.smallWindow} leftAligned={false} /> */}
-          {this.state.tabValue === 0 ? (timeline.length > 4 || this.state.windowWidth < 1200 ?
+          {/* {this.state.tabValue === 0 ? (timeline.length > 4 || this.state.windowWidth < 1200 ?
             <TimelineVertical timeline={timeline} smallWindow={this.state.smallWindow} /> :
-            <TimelineCurve timeline={timeline} />) : undefined}
+            <TimelineCurve timeline={timeline} />) : undefined} */}
 
-          {this.state.tabValue === 1 ? <div className="content-horizontal content">
-            <CarouselCards slides={whatsnew} windowWidth={this.state.windowWidth} smallWindow={this.state.smallWindow} />
-          </div> : undefined}
 
           {/* planned releases */}
           <PlannedReleases releases={releases} type={template} cardfilter={process} subfilter={subprocess} placeholder="Onboarding" smallWindow={this.state.smallWindow} />

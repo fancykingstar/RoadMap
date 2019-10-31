@@ -35,12 +35,12 @@
 
 .roadmap-slide-dimensions {
     height: 300px;
-    width: 1315px;
+    width: 990px;
   }
   
   .roadmap-slide-dimensions-small {
     height: 300px;
-    width: 1315px;
+    width: 990px;
   }
 
   .roadmap-carousel-next-button:enabled ~ .roadmap-carousel-fade-next {

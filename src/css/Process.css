@@ -3,28 +3,49 @@
     font-family: "72";
     font-style: normal;
     font-weight: normal;
-    font-size: 24px;
-    line-height: 28px;
-    color: #979797;
-    white-space: nowrap;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000;
+    /* white-space: nowrap; */
     text-transform: none;
+    text-align: left;
+    width: 90px
 }
 
 .roadmap-process-tab-titles .Mui-selected .MuiTab-wrapper {
-    color: #F0AB00;
+    color: #0A6ED1;
 }
 
 .roadmap-process-tabs .MuiTabs-indicator {
-    background-color: #F0AB00;
-    height: 4px;
+    background-color: #0A6ED1;
+    width: 4px;
+    border-radius: 31px;
+    height: 44px;
 }
 
 .roadmap-process-tabs .MuiTabs-flexContainer {
-    margin-top:48px;
+    margin-top: 37px;
     justify-content: center;
 }
 
+.page-container .content-container .process-content {
+    display: flex;
+    margin-bottom: 170px;
+}
+
+.page-container .content-container .process-content .tab-content {
+    width: 100%;
+}
+
+.page-container .content-container .PrivateTabIndicator-vertical-28 {
+    left: 0;
+}
+
 .roadmap-process-tabs button {
-    margin-left: 30px;
-    margin-right: 30px;
+    /* margin-left: 30px;
+    margin-right: 30px; */
+    /* Distance between tab indicator to tax process text*/
+    width: 225px;
+    margin-top: 11.5px;
+    margin-bottom: 11.5px;
 }

@@ -29,14 +29,14 @@ class CarouselCards extends Component {
                 visibleSlides={this.props.windowWidth > 1000 ? (this.props.windowWidth / carouselWidthThreshold) :
                     (this.props.windowWidth / (carouselWidthThreshold + 70))}
                 naturalSlideWidth={this.props.smallWindow ? 200 : 134}
-                naturalSlideHeight={100}
+                naturalSlideHeight={135}
                 totalSlides={this.props.slides.length}
             >
                 <div className="roadmap-carousel-content-container">
                     <Slider>
                         {this.props.slides.map(item => (
                             <Slide key={"slide-" + item.id} index={count++}>
-                                <Card key={"card-" + item.id} className={"default-card static-card" + (this.props.smallWindow ? " default-card-small" : "")}>
+                                <Card key={"card-" + item.id} className={"default-card static-card process-card" + (this.props.smallWindow ? " default-card-small" : "")}>
                                     <CardContent className="content">
                                         <div className="title-container">
                                             <div className="title-bar"></div>
