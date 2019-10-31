@@ -22,6 +22,7 @@ import { TimelineCurve } from '../components/TimelineCurve';
 import { productlabels } from '../utils/processutils';
 
 //import product svg
+import { ProductIcons } from '../assets/prod-icons';
 import { ProductImages } from '../assets/product-images';
 
 class Products extends Component {
@@ -58,7 +59,8 @@ class Products extends Component {
             whatsnew: result.whatsnew,
             releases: result.releases,
             timelineTitle: result.timelineTitle,
-            timeline: result.timeline
+            timeline: result.timeline,
+            tabValue: !result.timeline ? 1 : 0,
           }, function () {
             this.checkTitle();
 
@@ -105,7 +107,7 @@ class Products extends Component {
   }
 
   render() {
-    const { title, description, whatsnew, releases, template, product, subproduct, timelineTitle, timeline } = this.state;
+    const { title, description, whatsnew, releases, template, product, subproduct, timelineTitle, timeline, tabValue, smallWindow, windowWidth } = this.state;
     return (
       <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
         <Header title={title} description={description} image={this.renderImage(product)} compact={true} smallWindow={this.state.smallWindow} type="sub-page" />
@@ -113,22 +115,22 @@ class Products extends Component {
         <div className="right-side-bg"></div>
         <div className={"content-container" + (this.state.smallWindow ? " content-container-small" : "")}>
           <div className="process-content">
-          <Tabs className="roadmap-process-tabs roadmap-process-tab-titles" value={this.state.tabValue} onChange={this.handleTabChange} aria-label="Process flow and release highlights" orientation="vertical">
-              <Tab label="Release Highlights" />
-              <Tab label="What's Happening" />
+            <Tabs className="roadmap-process-tabs roadmap-process-tab-titles" value={tabValue} onChange={this.handleTabChange} aria-label="Process flow and release highlights" orientation="vertical">
+              <Tab label="Release Highlights" disabled={timeline ? false : true} icon={<div className={"tab-icon" + (tabValue === 0 ? " tab-icon-highlights-active" : " tab-icon-highlights-inactive")}>{<img src={(tabValue === 0 ? ProductIcons[0]["highlightsOnstate"] : ProductIcons[0]["highlightsOffstate"])} />}</div>} />
+              <Tab label="What's Happening" disabled={whatsnew ? false : true} icon={<div className={"tab-icon" + (tabValue === 1 ? " tab-icon-happening-active" : " tab-icon-happening-inactive")}>{<img src={(tabValue === 1 ? ProductIcons[0]["happeningOnstate"] : ProductIcons[0]["happeningOffstate"])} />}</div>} />
             </Tabs>
             <div className="tab-content">
-              {timeline && timeline.length > 0 && this.state.tabValue === 0 ?
-                timeline.length > 4 || this.state.windowWidth < 1200 ? <TimelineVertical timeline={timeline} smallWindow={this.state.smallWindow} /> :
+              {timeline && timeline.length > 0 && tabValue === 0 ?
+                timeline.length > 4 || windowWidth < 1200 ? <TimelineVertical timeline={timeline} smallWindow={this.state.smallWindow} /> :
                   <TimelineCurve timeline={timeline} /> : null}
 
               {this.state.tabValue === 1 ? <div className="content-horizontal content">
-                <CarouselCards slides={whatsnew} windowWidth={this.state.windowWidth} smallWindow={this.state.smallWindow} />
+                <CarouselCards slides={whatsnew} windowWidth={windowWidth} smallWindow={this.state.smallWindow} />
               </div> : null}
             </div>
           </div>
 
-        <PlannedReleases releases={releases} type={template} cardfilter={product} subfilter={subproduct} placeholder="Travel Expenses" smallWindow={this.state.smallWindow} />
+          <PlannedReleases releases={releases} type={template} cardfilter={product} subfilter={subproduct} placeholder="Travel Expenses" smallWindow={this.state.smallWindow} />
         </div>
 
         {/* {timeline && timeline.length > 0 ? <SectionHeaderTitle title={timelineTitle} smallWindow={this.state.smallWindow} leftAligned={false} /> : null} */}

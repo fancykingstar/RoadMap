@@ -107,21 +107,21 @@ class Header extends Component {
     return (
       <div className="header-divided-container">
         <div className={"header-left-container header-process" + (this.props.smallWindow ? " hidden" : "")}>
-          {compact ? <img src={headerimage} style={{ border: border, height: 393 + "px", width: 537.13 + "px"}} alt={title} /> : null}
+          {compact ? <img src={headerimage} style={{ border: border, height: 393 + "px", width: 537.13 + "px" }} alt={title} /> : null}
         </div>
         <div className="header-right-container">
           <div className={"title title-" + (compact ? "compact" : "default")
             + (this.props.smallWindow ? " title-small" : "")
             + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")}>{title}
-              <img src={info} alt="info" style={ { position: this.props.windowWidth < 816 ? "relative":"absolute", paddingLeft: 13 + "px", paddingTop: 21 + "px"} }/>
+            <img src={info} alt="info" style={{ position: this.props.windowWidth < 816 ? "relative" : "absolute", paddingLeft: 13 + "px", paddingTop: 21 + "px" }} />
           </div>
           <div className="header-roadmap-container">
-          {/* {(this.state.smallWindow ? <RoadmapVertical roadmap={this.props.roadmap} /> :
+            {/* {(this.state.smallWindow ? <RoadmapVertical roadmap={this.props.roadmap} /> :
             <MultiRoadmap roadmap={this.state.roadmap} hideArrows={this.props.process === "twm"} />) } */}
-            { roadmap && roadmap.length > 0 ? this.props.windowWidth < 1400 ? <RoadmapVertical roadmap={roadmap} /> : <MultiRoadmap roadmap={roadmap} hideArrows={this.state.process === "twm"} /> : null}
-          {/* {this.state.windowWidth < 1400 ? <RoadmapVertical roadmap={roadmap} /> : roadmap && roadmap.length > 0 ?
+            {roadmap && roadmap.length > 0 ? this.props.windowWidth < 1400 ? <RoadmapVertical roadmap={roadmap} /> : <MultiRoadmap roadmap={roadmap} hideArrows={this.state.process === "twm"} /> : null}
+            {/* {this.state.windowWidth < 1400 ? <RoadmapVertical roadmap={roadmap} /> : roadmap && roadmap.length > 0 ?
             <MultiRoadmap roadmap={roadmap} hideArrows={this.state.process === "twm"} /> : null } */}
-              {/* <MultiRoadmap roadmap={roadmap} hideArrows={this.state.process === "twm"} /> */}
+            {/* <MultiRoadmap roadmap={roadmap} hideArrows={this.state.process === "twm"} /> */}
           </div>
         </div>
       </div>
@@ -151,7 +151,7 @@ class Header extends Component {
           </div>}
         </div>
         {this.props.smallWindow ? null : <div className="header-right-container">
-          {compact ? <img src={headerimage} style={{ border: border, height: 393 + "px", width: 537.13 + "px"}} alt={title} /> : null}
+          {compact ? <img src={headerimage} style={{ border: border, height: 393 + "px", width: 537.13 + "px" }} alt={title} /> : null}
         </div>}
         {this.props.smallWindow || compact ? null : <svg width="100%" height="230"
           viewBox="0 0 1440 676" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
@@ -230,9 +230,9 @@ class Header extends Component {
           + (type === "search" ? " header-content-none" : "")} >
           {(title === "Total Workforce Management" ||
             title === "Source to Pay" ||
-            title === "Lead to Cash") ? 
+            title === "Lead to Cash") ?
             this.renderProcessHeaderContainers() // Processes Header
-            : 
+            :
             this.renderProductHeaderContainers() // Products Header
           }
         </div>

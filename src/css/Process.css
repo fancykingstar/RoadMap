@@ -8,7 +8,12 @@
   /* white-space: nowrap; */
   text-transform: none;
   text-align: left;
-  width: 90px;
+  width: 300px;
+  display: inline-flex;
+  flex-direction: row;
+}
+.MuiTabs-scroller {
+  width: 430px;
 }
 
 .roadmap-process-tab-titles .Mui-selected .MuiTab-wrapper {
@@ -36,15 +41,37 @@
   width: 100%;
 }
 
-.MuiTabs-indicator  {
+.MuiTabs-indicator {
   left: 0;
+}
+.MuiTab-wrapper .tab-icon {
+  width: 60px;
+  height: 42px;
+}
+.MuiTab-wrapper .tab-icon img {
+  margin-left: 5px;
+  margin-top: 6px;
+}
+
+.MuiTab-wrapper .tab-icon.tab-icon-highlights-active {
+  background: url(../assets/images/icon-onstate.svg) no-repeat;
+  background-position: 0px 0px;
+}
+.MuiTab-wrapper .tab-icon.tab-icon-highlights-inactive {
+}
+.MuiTab-wrapper .tab-icon.tab-icon-happening-active {
+  background: url(../assets/images/icon-onstate.svg) no-repeat;
+  background-position: 0px 0px;
+}
+.MuiTab-wrapper .tab-icon.tab-icon-happening-inactive {
+  background: none;
 }
 
 .roadmap-process-tabs button {
-  /* margin-left: 30px;
-    margin-right: 30px; */
+  margin-left: 20px;
+  /* margin-right: 30px; */
   /* Distance between tab indicator to tax process text*/
-  width: 225px;
+  width: 230px;
   margin-top: 11.5px;
   margin-bottom: 11.5px;
 }

@@ -73,7 +73,11 @@ import downArrow from './images/DownArrowRoadmapVertical.svg'
 import StepIcon from '../assets/images/step-icon.svg';
 import leftChevron from './images/LeftChevron.svg';
 import rightChevron from './images/RightChevron.svg';
-
+import happeningOffstate from './images/happening-offstate.svg';
+import happeningOnstate from './images/happening-onstate.svg';
+import highlightsOffstate from './images/highlights-offstate.svg';
+import highlightsOnstate from './images/highlights-onstate.svg';
+import iconOnstate from './images/icon-onstate.svg'
 import timelineCurve from './images/TimelineCurve.svg';
 
 export const ProductIcons = [{
@@ -142,5 +146,10 @@ export const ProductIcons = [{
     "buy": s2pBuyDeliver,
     "invoice": s2pInvoice,
     "tradingPartner": s2pTradingPartner,
-    "tradingPartnerCollab": s2pTradingPartnerCollab
+    "tradingPartnerCollab": s2pTradingPartnerCollab,
+    "happeningOffstate": happeningOffstate,
+    "happeningOnstate": happeningOnstate,
+    "highlightsOffstate": highlightsOffstate,
+    "highlightsOnstate": highlightsOnstate,
+    "iconOnstate": iconOnstate
 }];
