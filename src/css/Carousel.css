@@ -33,6 +33,10 @@
     margin: auto;
 }
 
+.roadmap-carousel-content-container .slideInner___2mfX9 {
+    height: 300px;
+}
+
 .roadmap-slide-dimensions {
     padding-left: 40px;
     height: 300px;
@@ -41,7 +45,7 @@
   
   .roadmap-slide-dimensions-small {
     height: 300px;
-    width: 500px;
+    width: 768px;
   }
 
   .roadmap-carousel-next-button:enabled ~ .roadmap-carousel-fade-next {

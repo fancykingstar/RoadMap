@@ -138,15 +138,6 @@
   font-size: 1.6666666666666667rem;
 }
 
-.product-search-container {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: left;
-  width: 100%;
-}
 
 .product-body {
   display: flex;
@@ -158,16 +149,39 @@
   flex-wrap: nowrap;
   flex-direction: row;
   justify-content: space-evenly;
+  /* position:relative; */
 }
+.product-search-container {
+  background-color: #FFF;
+  border-radius: 45px;
+  border: 1px;
+  border-style: solid;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  width: 100%;
+  /* box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1); */
+}
+
+.product-search-container.home-page {
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
+}
+
 
 .product-search-input {
   height: 64px;
-  width: 100%;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
+  width: 99%;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
   border-width: 1px;
   border-style: solid;
-  border-color: rgba (0, 0, 0, 0.36);
+  border: 1px;
+  border-right-color: #FFF;
+  border-color: transparent;
+  background-color: transparent;
   text-indent: 16px;
   color: rgba(0, 0, 0, 0.34);
   font: 400 1.6666666666666667rem '72';
@@ -176,10 +190,13 @@
 .product-search-input-show {
   height: 64px;
   width: 99%;
-  border-top-left-radius: 20px;
-  border-width: 1px;
+  border: 1px;
   border-style: solid;
-  border-color: rgba (0, 0, 0, 0.36);
+  border-right-color: #fff;
+  border-bottom-color: #fff;
+  border-color: transparent;
+  background-color:transparent;
+  /* border-color: rgba (0, 0, 0, 0.36); */
   text-indent: 16px;
   color: rgba(0, 0, 0, 0.34);
   font: 400 1.6666666666666667rem '72';
@@ -197,17 +214,17 @@
 }
 
 .product-suggestions-container {
-    top: 109px;
+    top: 108px;
     z-index: 200;
-    background: #fff;
+    background: transparent;
     display: flex;
     flex-direction: column;
     align-content: center;
-    border-left: 1px solid rgba(0, 0, 0, 0.36);
-    border-right: 1px solid rgba(0, 0, 0, 0.36);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.36);
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    /* border-left: 1px solid rgba(0, 0, 0, 0.36); */
+    /* border-right: 1px solid rgba(0, 0, 0, 0.36); */
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.36); */
+    /* border-bottom-left-radius: 30.5px;
+    border-bottom-right-radius: 30.5px; */
     width: calc(100% - .1rem);
 }
 

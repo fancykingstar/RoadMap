@@ -21,7 +21,7 @@ class Button extends Component {
 
 class CustomButton extends Component {
   render() {
-//    const ExportIcon = this.props.icon;
+    //    const ExportIcon = this.props.icon;
     return (
       <button
         className={"btn roadmap-custom-button custombtn btn-default " + this.props.className}
@@ -57,8 +57,14 @@ class IconButton extends Component {
     const show = this.state.show;
     return (
       <button
-        className={"btn custom-button " +  (show ? "iconbtn-show" : "iconbtn") + " btn-default"}
-        onClick={this.props.handleClick}><SearchIcon fontSize="large" />
+        className={"btn custom-button iconbtn btn-default"
+          //  + (show ? "iconbtn-show" : "iconbtn") + " btn-default"
+        }
+        onClick={this.props.handleClick}>
+        <span>
+          Search
+          </span>
+        {/* <SearchIcon fontSize="large" /> */}
       </button>
     );
   }

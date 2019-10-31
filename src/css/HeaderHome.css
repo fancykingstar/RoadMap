@@ -1,11 +1,9 @@
-
 .page-home-header {
-    position: relative;
-
+  position: relative;
 }
 
 .page-home-header::after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   top: 0;
@@ -40,20 +38,19 @@
   align-items: flex-start;
   padding-top: 25px;
   padding-bottom: 25px;
-
 }
 
 .header-container-compact {
   position: fixed;
   z-index: 300;
   width: 100%;
-  background: linear-gradient(0deg, #FFFFFF, #FFFFFF);
+  background: linear-gradient(0deg, #ffffff, #ffffff);
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
 }
 
 .header-container-compact-mobile {
   width: 100%;
-  background: linear-gradient(0deg, #FFFFFF, #FFFFFF);
+  background: linear-gradient(0deg, #ffffff, #ffffff);
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -75,7 +72,7 @@
 .header-content {
   margin-top: 54px;
   /* padding-left: 100px; */
-  background: linear-gradient(180deg, #F4F9FF 0%, rgba(244, 249, 255, 0) 116.62%)
+  background: linear-gradient(180deg, #f4f9ff 0%, rgba(244, 249, 255, 0) 116.62%);
 }
 
 .header-content.header-content-small {
@@ -89,7 +86,7 @@
 }
 
 .header-content-none {
-  display : none;
+  display: none;
 }
 
 .header-content-compact {
@@ -108,23 +105,34 @@
   align-items: center;
   width: 100%;
   justify-items: center;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
 .header-divided-container {
   display: flex;
   /* flex-wrap: wrap-reverse; */
   overflow: hidden;
+  padding-left: 5px;
+}
+
+.header-divided-container.process-header {
+  justify-content: space-around;
+}
+
+@media screen and (min-width: 768px) {
+  .header-divided-container.product-header {
+    /* padding-left: 100px; */
+    justify-content: space-evenly;
+  }
 }
 
 .header-left-container {
   flex-direction: column;
   align-content: flex-start;
-  padding-left: 100px;
 }
 
 .header-left-container.header-process {
-  padding-left: 0px;
+  left: 0px;
 }
 
 .header-left-container.hidden {
@@ -136,8 +144,12 @@
   /* margin-left: auto; */
 }
 
-.header-roadmap-container {
+.header-right-container.process-header{
   width:100%;
+}
+
+.header-roadmap-container {
+  width: 100%;
 }
 .hidden.header-right-container {
   display: none;
@@ -157,15 +169,14 @@
   height: 34px;
 }
 
-
 .logo-wrapper::after {
-  content: '';
+  content: "";
   display: table;
 }
 
 .header-content .title {
   text-transform: uppercase;
-  font-size: 6rem;
+  font-size: 4rem;
   line-height: 67px;
   color: #fff;
   font-weight: bold;
@@ -186,12 +197,18 @@
   color: #fff;
 }
 
+.header-content .title-default.home-title {
+  white-space: nowrap;
+  font-size: 50px;
+  line-height: 67px;
+}
+
 .header-content .title-compact {
-  color: #0A6ED1;
+  color: #0a6ed1;
   padding-left: 32px;
 }
 .header-content .title.title-long {
-  font-size: 5rem;
+  max-width: 768px;
 }
 .header-content .description {
   margin-top: 50px;
@@ -205,7 +222,7 @@
 
 .header-content .description-small {
   margin-top: 27px;
-  font-family: '72';
+  font-family: "72";
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -223,7 +240,7 @@
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .header-content .button-container {
@@ -237,10 +254,10 @@ button {
 
 .compact-header-text {
   position: absolute;
-  font-family: '72';
+  font-family: "72";
   font-size: 22px;
   line-height: 25px;
-  color: #0A6ED1;
+  color: #0a6ed1;
 }
 
 .header-mobile .hamburger-menu-button {
@@ -268,7 +285,7 @@ button {
 }
 
 .head-mobile-menu .menu-title {
-  font-family: '72';
+  font-family: "72";
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
@@ -276,7 +293,7 @@ button {
 }
 
 .head-mobile-menu .sub-menu-title {
-  font-family: '72';
+  font-family: "72";
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -288,12 +305,12 @@ button {
 }
 
 .header-bullet-description-container {
-  display:flex;
+  display: flex;
   align-items: flex-start;
 }
 
 .toast-messages {
-  font-family: '72';
+  font-family: "72";
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
@@ -303,7 +320,7 @@ button {
 }
 
 .toast-window .MuiSnackbarContent-root {
-  background-color: #0A6ED1;
+  background-color: #0a6ed1;
 }
 
 .toast-window .MuiSnackbarContent-message {

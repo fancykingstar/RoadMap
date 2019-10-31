@@ -8,13 +8,11 @@
   /* white-space: nowrap; */
   text-transform: none;
   text-align: left;
-  width: 300px;
-  display: inline-flex;
+  min-width: 210px;
+  width: 210px;
   flex-direction: row;
 }
-.MuiTabs-scroller {
-  width: 430px;
-}
+
 
 .roadmap-process-tab-titles .Mui-selected .MuiTab-wrapper {
   color: #0a6ed1;
@@ -27,13 +25,23 @@
   height: 44px;
 }
 
+.MuiTabs-root.roadmap-process-tabs.roadmap-process-tab-titles.MuiTabs-vertical {
+  flex-basis: 1
+}
+
 .roadmap-process-tabs .MuiTabs-flexContainer {
-  margin-top: 37px;
+  margin-top: 50px;
+  width: 300px;
+  /* Established breakpoint window.length - width of container*/
   justify-content: center;
 }
 
+.page-container .content-container {
+  margin-top: 40px;
+}
 .page-container .content-container .process-content {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   margin-bottom: 130px;
 }
 
@@ -57,8 +65,7 @@
   background: url(../assets/images/icon-onstate.svg) no-repeat;
   background-position: 0px 0px;
 }
-.MuiTab-wrapper .tab-icon.tab-icon-highlights-inactive {
-}
+
 .MuiTab-wrapper .tab-icon.tab-icon-happening-active {
   background: url(../assets/images/icon-onstate.svg) no-repeat;
   background-position: 0px 0px;

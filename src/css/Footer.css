@@ -10,6 +10,7 @@
   background-size: cover;
   overflow: auto;
   display: inline-table;
+  grid-column: span 2;
 }
 
 .footer-container {

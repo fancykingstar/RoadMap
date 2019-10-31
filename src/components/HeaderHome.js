@@ -74,7 +74,8 @@ class Header extends Component {
       compact: this.props.compact,
       headerimage: this.props.image,
       roadmap: this.props.roadmap,
-      process: this.props.process
+      process: this.props.process,
+      pageType: this.props.pageType
     });
   }
 
@@ -109,10 +110,10 @@ class Header extends Component {
         <div className={"header-left-container header-process" + (this.props.smallWindow ? " hidden" : "")}>
           {compact ? <img src={headerimage} style={{ border: border, height: 393 + "px", width: 537.13 + "px" }} alt={title} /> : null}
         </div>
-        <div className="header-right-container">
+        <div className="header-right-container process-header">
           <div className={"title title-" + (compact ? "compact" : "default")
             + (this.props.smallWindow ? " title-small" : "")
-            + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")}>{title}
+            + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")}>{title} 
             <img src={info} alt="info" style={{ position: this.props.windowWidth < 816 ? "relative" : "absolute", paddingLeft: 13 + "px", paddingTop: 21 + "px" }} />
           </div>
           <div className="header-roadmap-container">
@@ -129,19 +130,21 @@ class Header extends Component {
   }
 
   renderProductHeaderContainers = () => {
-    const { title, description, compact, type, headerimage } = this.state;
+    const { title, description, compact, type, headerimage, pageType } = this.state;
     let border = "0px solid red";
     return (
-      <div className="header-divided-container">
+      <div className={"header-divided-container" + (pageType && pageType === "process" ?
+      " process-header" : " product-header"
+      )}>
         <div className="header-left-container">
-          <div className={"title title-" + (compact ? "compact" : "default")
+          <div className={"title title-" + (compact ? "compact" : "default") + (title === "product roadmaps" ? " home-title" : "")
             + (this.props.smallWindow ? " title-small" : "")
             + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")}>{title}</div>
           <div className={"description-" + (compact ? "compact" : "default")
             + (this.props.smallWindow ? " description-small" : " description")}>
             <div className="header-bullet-description-container">
               {type == 'sub-page' ? (description ? description.map(desc => (<BulletList description={desc} />)) : null) :
-                <ProductSearch placeholder="Customer Experience Management" suggestions={suggestions} trends={trends} />
+                <ProductSearch placeholder="Search for topics, products, or industries" suggestions={suggestions} trends={trends} pageType={pageType && (pageType != "process" && "product") ? "home-page" : pageType === "process" ? "process" : pageType === "product" ? "product" : null}/>
               }
             </div>
 
