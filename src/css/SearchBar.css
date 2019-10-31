@@ -153,7 +153,7 @@
 }
 .product-search-container {
   background-color: #FFF;
-  border-radius: 45px;
+  border-radius: 35px;
   border: 1px;
   border-style: solid;
   display: flex;
@@ -201,8 +201,12 @@
   text-indent: 16px;
   color: rgba(0, 0, 0, 0.34);
   font: 400 1.6666666666666667rem '72';
+  margin-top: -1px;
+  margin-left: -1px;
 }
-
+input:focus, textarea:focus {
+    outline: 0 !important;
+}
 .product-search-input::placeholder,
 .product-search-input-show::placeholder {
   color: rgba(0, 0, 0, 0.34);
