@@ -140,10 +140,9 @@ class Header extends Component {
           <div className={"description-" + (compact ? "compact" : "default")
             + (this.props.smallWindow ? " description-small" : " description")}>
             <div className="header-bullet-description-container">
-              {/* {type == 'sub-page' ? (description ? description.map(desc => (<BulletList description={desc} />)) : null) :
+              {type == 'sub-page' ? (description ? description.map(desc => (<BulletList description={desc} />)) : null) :
                 <ProductSearch placeholder="Customer Experience Management" suggestions={suggestions} trends={trends} />
-              } */}
-              {description ? "Fill me with a description": null}
+              }
             </div>
 
           </div>
