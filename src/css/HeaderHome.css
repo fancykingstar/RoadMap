@@ -69,6 +69,9 @@
   padding-right: 12px;
 }
 
+.page-home-header .header-content {
+  background: none;
+}
 .header-content {
   margin-top: 54px;
   /* padding-left: 100px; */
