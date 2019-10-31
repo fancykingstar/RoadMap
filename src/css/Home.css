@@ -45,6 +45,7 @@
   .mainsection > .body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1em;
   }
 }
 
@@ -52,7 +53,7 @@
   .mainsection > .body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 1em;
+    grid-gap: 3.3em;
   }
 }
 
