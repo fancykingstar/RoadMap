@@ -33,6 +33,9 @@ export default function Pagination(props) {
             selected: selection
         }))
         state.pagination(selection);
+        // props.scrollToTop();
+        console.log(props)
+        props.scrollToTop();
     }
 
     let PageNumbers = () => {

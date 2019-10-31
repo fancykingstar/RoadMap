@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 
 //import material UI components
 import SearchIcon from '@material-ui/icons/SearchOutlined';
@@ -50,7 +50,9 @@ class PlannedReleases extends Component {
       quarterDateTags: {},
       showToast: false
     };
+    this.paginationRef = React.createRef();
     this.paginate = this.paginate.bind(this);
+    this.scrollToTop = this.scrollToTop.bind(this);
     this.manageTagArray = this.manageTagArray.bind(this);
     this.filterFormResults = this.filterFormResults.bind(this);
     // this.handleDateChipClick = this.handleDateChipClick.bind(this);
@@ -445,13 +447,16 @@ class PlannedReleases extends Component {
     }, () => this.manageTagArray(false, tag))
   }
 
+  scrollToTop = () => {
+    window.scrollTo(0, this.paginationRef.current.offsetTop - 100);
+  }
 
   render() {
     const { forms, placeholder, sorting, tags } = this.state;
     let tabIndex = 1;
 
     return (
-      <div className="pr-section">
+      <div className="pr-section" ref={this.paginationRef}>
         <SectionHeaderTitle title={"Planned Releases"} smallWindow={this.props.smallWindow} leftAligned={false} />
         <div className={"pr-body" + (this.props.smallWindow ? " pr-body-small" : "")}>
           <div className="pr-navigation">
@@ -460,6 +465,7 @@ class PlannedReleases extends Component {
                 return <ReleaseForm key={form.id} title={form.title} expandable={form.expandable} status={form.state} data={form.fields} count={form.count} manageTagArray={this.manageTagArray} icon={form.icon} iconclass={form.iconclass} />
               }
             })}
+            <Button onClick={this.scrollToTop}> test </Button>
             <Button className="clearButton" onClick={this.clearForms} disableFocusRipple={true} disableRipple={true}>CLEAR ALL FILTERS</Button>
           </div>
           <div className={"pr-results" + (this.props.smallWindow ? " pr-results-small" : "")}>
@@ -536,7 +542,7 @@ class PlannedReleases extends Component {
                 ))}
             {
               this.state.pagination
-                ? <Pagination pages={this.state.pages} paginate={this.paginate} />
+                ? <Pagination pages={this.state.pages} paginate={this.paginate} scrollToTop={this.scrollToTop}/>
                 : null
             }
             <div className="disclaimer">

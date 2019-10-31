@@ -134,7 +134,7 @@ export function Roadmap(props) {
                     </div>
                     {selectedContent.content.map(content => (
                         <div key={content.item + "-" + selectedContent.title} className="roadmap-item">
-                            <img className="item-bullet" src={renderIcon("triangleBulletOrange")} alt=""></img>
+                            <img className="item-bullet" src={renderIcon("blueBullet")} alt=""></img>
                             <label className="item-label">{content.item}</label>
                         </div>
                     ))}

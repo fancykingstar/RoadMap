@@ -17,7 +17,7 @@ class BulletList extends Component {
             <label className="roadmap-bullet-list-title">{this.props.description.title}</label>
             {this.props.description.items ? (this.props.description.items.map(item => (
                 <div key={item.key} className="roadmap-bullet-content">
-                    <img className="roadmap-bullet-image" src={renderIcon("triangleBullet")} alt=""></img>
+                    <img className="roadmap-bullet-image" src={renderIcon("blueBullet")} alt=""></img>
                     <label className="roadmap-timeline-bullet-label">
                         {item.label}
                     </label>

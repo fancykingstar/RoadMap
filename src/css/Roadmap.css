@@ -105,7 +105,12 @@
   align-items: end;
 }
 .roadmap-stepper-popover .item-bullet{
-    margin-top: 4px;
+    /* triangleBulletCSS */
+    /* margin-top: 4px; */
+    /*blueBulletCSS */
+    margin-top: 12px;
+    margin-left: 4px;
+    margin-right: 14px;
 }
 .roadmap-stepper-popover .item-label {
   font-family: '72';

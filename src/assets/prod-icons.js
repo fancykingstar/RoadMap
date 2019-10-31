@@ -63,6 +63,7 @@ import s2pInvoice from './images/roadmap-icons/Invoice.svg';
 import s2pTradingPartner from './images/roadmap-icons/tradingPartner.svg';
 import s2pTradingPartnerCollab from './images/roadmap-icons/tradingPartnerCollab.svg';
 
+import blueBullet from './images/blue-bullet.svg';
 import timelineDot from './images/dot.svg';
 import timelineDotSmall from './images/dotSmall.svg';
 import triangleBullet from './images/triangleBullet.svg';
@@ -125,6 +126,7 @@ export const ProductIcons = [{
     "leftArrow": leftArrow,
     "rightArrow": rightArrow,
     "downArrow": downArrow,
+    "blueBullet": blueBullet,
     "triangleBullet": triangleBullet,
     "triangleBulletOrange": triangleBulletOrange,
     "StepIcon": StepIcon,
