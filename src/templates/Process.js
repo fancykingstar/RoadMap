@@ -23,6 +23,7 @@ import { RoadmapVertical } from '../components/RoadmapVertical';
 import { CarouselCards } from '../components/CarouselCards';
 
 //import product svg
+import { ProductIcons } from '../assets/prod-icons';
 import { ProcessImages } from '../assets/process-images';
 
 
@@ -93,7 +94,7 @@ class Process extends Component {
   }
 
   render() {
-    const { title, description, whatsnew, roadmapTitle, timelineTitle, roadmap, timeline, releases, template, process, subprocess } = this.state;
+    const { title, description, whatsnew, roadmapTitle, timelineTitle, tabValue, roadmap, timeline, releases, template, process, subprocess } = this.state;
     return (
       <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
         {roadmap.length > 0 ? <Header title={title} description={description} image={this.renderImage(process)} compact={true} smallWindow={this.state.smallWindow} roadmap={roadmap} windowWidth={this.state.windowWidth} process={this.state.process} type="sub-page" /> : null}
@@ -102,9 +103,9 @@ class Process extends Component {
         <div className={"content-container" + (this.state.smallWindow ? " content-container-small" : "")}>
           {/* roadmap, timeline and What's new tab group */}
           <div className="process-content">
-            <Tabs className="roadmap-process-tabs roadmap-process-tab-titles" value={this.state.tabValue} onChange={this.handleTabChange} aria-label="Process flow and release highlights" orientation="vertical">
-              <Tab label="Release Highlights" />
-              <Tab label="What's Happening" />
+          <Tabs className="roadmap-process-tabs roadmap-process-tab-titles" value={tabValue} onChange={this.handleTabChange} aria-label="Process flow and release highlights" orientation="vertical">
+              <Tab label="Release Highlights" disabled={timeline ? false : true} icon={<div className={"tab-icon" + (tabValue === 0 ? " tab-icon-highlights-active" : " tab-icon-highlights-inactive")}>{<img src={(tabValue === 0 ? ProductIcons[0]["highlightsOnstate"] : ProductIcons[0]["highlightsOffstate"])} />}</div>} />
+              <Tab label="What's Happening" disabled={whatsnew ? false : true} icon={<div className={"tab-icon" + (tabValue === 1 ? " tab-icon-happening-active" : " tab-icon-happening-inactive")}>{<img src={(tabValue === 1 ? ProductIcons[0]["happeningOnstate"] : ProductIcons[0]["happeningOffstate"])} />}</div>} />
             </Tabs>
             <div className="tab-content">
               {this.state.tabValue === 0 ? (timeline.length > 4 || this.state.windowWidth < 1200 ?
