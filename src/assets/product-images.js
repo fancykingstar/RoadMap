@@ -4,6 +4,11 @@ import sfsf from './images/products/sfsf-header.svg';
 import ariba from './images/products/ariba-header.svg';
 import fieldglass from './images/products/fieldglass-header.svg';
 import defaultHeader from "./images/products/default-header.svg";
+import servicecloud from './images/products/servicecloud-header.svg';
+import customerdatacloud from './images/products/customerdatacloud-header.svg';
+import commercecloud from './images/products/commercecloud-header.svg';
+import salescloud from './images/products/salescloud-header.svg';
+import marketingcloud from './images/products/marketingcloud-header.svg';
 
 export const ProductImages = [{
     "concur": concur,
@@ -11,5 +16,10 @@ export const ProductImages = [{
     "ariba": ariba,
     "successfactors": sfsf,
     "fieldglass": fieldglass,
-    "default" : defaultHeader
+    "default" : defaultHeader,
+    'servicecloud': servicecloud,
+    'customerdatacloud': customerdatacloud,
+    'commercecloud': commercecloud,
+    'salescloud': salescloud,
+    'marketingcloud': marketingcloud
 }];
