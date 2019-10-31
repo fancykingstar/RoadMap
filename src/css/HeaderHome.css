@@ -72,7 +72,7 @@
 .header-content {
   margin-top: 54px;
   /* padding-left: 100px; */
-
+  background: linear-gradient(180deg, #F4F9FF 0%, rgba(244, 249, 255, 0) 116.62%)
 }
 
 .header-content.header-content-small {
