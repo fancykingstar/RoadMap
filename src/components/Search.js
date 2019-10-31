@@ -163,7 +163,7 @@ class SiteSearch extends Component {
         placeholder: this.props.placeholder,
         resultspage: this.props.resultspage || false,
         resulthandler: this.props.resulthandler || false,
-        pageType: this.props.pageType
+        isHomePage: this.props.isHomePage
       }
       this.openSearch = this.openSearch.bind(this);
       this.handleOutsideClick = this.handleOutsideClick.bind(this);
@@ -217,7 +217,7 @@ class SiteSearch extends Component {
 
 
   render() {
-        const { activeSuggestion, filteredSuggestions, showSuggestions, userInput, trends, placeholder, inputvalue, pageType } = this.state;
+        const { activeSuggestion, filteredSuggestions, showSuggestions, userInput, trends, placeholder, inputvalue, } = this.state;
 
          let prodsuggestionsListComponent;
          let input = userInput === "start" ? inputvalue : userInput;
@@ -388,7 +388,8 @@ class ProductSearch extends Component {
    }
 
    return (
-     <div className="product-search-container" ref={node => { this.node = node; }}>
+     
+     <div className={"product-search-container" + (this.props.isHomePage ? " home-page" : "")} ref={node => { this.node = node; }}>
        <div className="product-body product-search">
            <input className={ showSuggestions ? "product-search-input-show" : "product-search-input" } type="text" placeholder={placeholder}  onFocus={() => this.openSearch()} onChange={(e) => onChange(e, this.props, this)} onKeyDown={(e) => onKeyDown(e, this.state, this)} value={input} />
          <IconButton icon={ProdSearchIcon} show={showSuggestions} />

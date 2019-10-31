@@ -24,6 +24,11 @@
   position: relative;
 }
 
+.header-divided-container.home-header {
+  padding-top: 68px;
+  padding-left: 100px;
+}
+
 .page-header-default-small {
   min-height: 100%;
 }

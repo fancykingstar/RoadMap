@@ -38,6 +38,11 @@
   height: calc(80% + 10px);
 }
 
+.iconbtn:focus{
+  outline-offset: 0px;
+  outline: transparent auto 0px;
+}
+
 .iconbtn .MuiSvgIcon-fontSizeLarge {
   font-size: 3.2rem;
   font-weight: 100;

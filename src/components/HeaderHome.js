@@ -20,7 +20,7 @@ import '../css/Menu.css';
 
 //import assets
 import info from '../assets/images/info.svg';
-import notificationBell from '../assets/images/notification-bell.svg';
+// import notificationBell from '../assets/images/notification-bell.svg';
 import logo from '../assets/images/sap-logo.svg';
 import accountIcon from '../assets/images/home-account.svg';
 import compactAccountIcon from '../assets/images/compact-account.svg';
@@ -134,7 +134,7 @@ class Header extends Component {
     let border = "0px solid red";
     return (
       <div className={"header-divided-container" + (pageType && pageType === "process" ?
-      " process-header" : " product-header"
+      " process-header" : title === "product roadmaps" ? " home-header": " product-header"
       )}>
         <div className="header-left-container">
           <div className={"title title-" + (compact ? "compact" : "default") + (title === "product roadmaps" ? " home-title" : "")
@@ -143,8 +143,8 @@ class Header extends Component {
           <div className={"description-" + (compact ? "compact" : "default")
             + (this.props.smallWindow ? " description-small" : " description")}>
             <div className="header-bullet-description-container">
-              {type == 'sub-page' ? (description ? description.map(desc => (<BulletList description={desc} />)) : null) :
-                <ProductSearch placeholder="Search for topics, products, or industries" suggestions={suggestions} trends={trends} pageType={pageType && (pageType != "process" && "product") ? "home-page" : pageType === "process" ? "process" : pageType === "product" ? "product" : null}/>
+              {type === 'sub-page' ? (description ? description.map(desc => (<BulletList description={desc} />)) : null) :
+                <ProductSearch placeholder="Search for topics, products, or industries" suggestions={suggestions} trends={trends} isHomePage={title && title === "product roadmaps"}/>
               }
             </div>
 
@@ -207,7 +207,7 @@ class Header extends Component {
                     </li>
                   </ul>
                 </nav>
-                <SearchBar resultspage={resultspage} resulthandler={resulthandler} suggestions={suggestions} trends={trends} compact={compact} style={"width: 100%"} />
+                <SearchBar resultspage={resultspage} resulthandler={resulthandler} suggestions={suggestions} trends={trends} compact={compact} />
                 {/* <img className="header-notification-bell" alt="bell" src={compact ? notificationBell : null } /> */}
                 <img className="header-user-account" alt="account" src={compact ? compactAccountIcon : accountIcon}
                   onMouseOver={e => (e.currentTarget.src = compact ? accountIcon : compactAccountIcon)}

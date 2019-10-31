@@ -15,7 +15,6 @@ import Feedback from '../components/Feedback';
 import PlannedReleases from '../components/PlannedReleases';
 import Footer from '../components/Footer';
 import FooterMobile from '../components/FooterMobile';
-import SectionHeaderTitle from '../components/SectionHeaderTitle';
 import { TimelineVertical } from '../components/TimelineVertical';
 import { TimelineCurve } from '../components/TimelineCurve';
 
@@ -107,7 +106,7 @@ class Products extends Component {
   }
 
   render() {
-    const { title, description, whatsnew, releases, template, product, subproduct, timelineTitle, timeline, tabValue, smallWindow, windowWidth } = this.state;
+    const { title, description, whatsnew, releases, template, product, subproduct, timeline, tabValue, windowWidth } = this.state;
     return (
       <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
         <Header title={title} description={description} image={this.renderImage(product)} compact={true} smallWindow={this.state.smallWindow} type="sub-page" pageType={product} />
@@ -116,8 +115,8 @@ class Products extends Component {
         <div className={"content-container" + (this.state.smallWindow ? " content-container-small" : "")}>
           <div className="process-content">
             <Tabs className="roadmap-process-tabs roadmap-process-tab-titles" value={tabValue} onChange={this.handleTabChange} aria-label="Process flow and release highlights" orientation="vertical">
-              <Tab label="Release Highlights" disabled={timeline ? false : true} icon={<div className={"tab-icon" + (tabValue === 0 ? " tab-icon-highlights-active" : " tab-icon-highlights-inactive")}>{<img src={(tabValue === 0 ? ProductIcons[0]["highlightsOnstate"] : ProductIcons[0]["highlightsOffstate"])} />}</div>} />
-              <Tab label="What's Happening" disabled={whatsnew ? false : true} icon={<div className={"tab-icon" + (tabValue === 1 ? " tab-icon-happening-active" : " tab-icon-happening-inactive")}>{<img src={(tabValue === 1 ? ProductIcons[0]["happeningOnstate"] : ProductIcons[0]["happeningOffstate"])} />}</div>} />
+              <Tab label="Release Highlights" disabled={timeline ? false : true} icon={<div className={"tab-icon" + (tabValue === 0 ? " tab-icon-highlights-active" : " tab-icon-highlights-inactive")}>{<img src={(tabValue === 0 ? ProductIcons[0]["highlightsOnstate"] : ProductIcons[0]["highlightsOffstate"])} alt="Release Highlights"/>}</div>} />
+              <Tab label="What's Happening" disabled={whatsnew ? false : true} icon={<div className={"tab-icon" + (tabValue === 1 ? " tab-icon-happening-active" : " tab-icon-happening-inactive")}>{<img src={(tabValue === 1 ? ProductIcons[0]["happeningOnstate"] : ProductIcons[0]["happeningOffstate"])} alt="What's Happening"/>}</div>} />
             </Tabs>
             <div className="tab-content">
               {timeline && timeline.length > 0 && tabValue === 0 ?
