@@ -43,7 +43,7 @@ class Process extends Component {
       windowWidth: 0,
       windowHeight: 0,
       smallWindow: false,
-      tabValue: 1,
+      tabValue: 0,
       process: this.props.match.params.process,
       subprocess: this.props.match.params.subprocess || null
     };
@@ -107,9 +107,6 @@ class Process extends Component {
               <Tab label="What's New" />
             </Tabs>
             <div className="tab-content">
-              {
-                // CURRENTTODO 
-              }
               {this.state.tabValue === 0 ? (timeline.length > 4 || this.state.windowWidth < 1200 ?
                 <TimelineVertical timeline={timeline} smallWindow={this.state.smallWindow} /> :
                 <TimelineCurve timeline={timeline} />) : undefined}

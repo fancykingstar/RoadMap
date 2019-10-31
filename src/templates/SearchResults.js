@@ -61,7 +61,8 @@ class SearchResults extends Component {
 
     componentDidMount() {
         document.title = "SAP Product Roadmap - Search Results";
-        fetch("https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases")
+        // fetch("https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases")
+        fetch("https://uckilp3hxopsuuml-roadmap-api-srv.cfapps.eu10.hana.ondemand.com/odata/v4/roadmap/")
             .then(res => res.json())
             .then(
                 (result) => {

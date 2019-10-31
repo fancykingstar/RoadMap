@@ -62,6 +62,7 @@ class PlannedReleases extends Component {
   componentDidMount() {
     let pagination = false, pages = 0, sortDates = [];
     fetch(staging ? "https://roadmap-staging.cfapps.us10.hana.ondemand.com/releases/" + this.state.cardfilter : "https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases/" + this.state.cardfilter)
+      // fetch(staging ? "https://roadmap-staging.cfapps.us10.hana.ondemand.com/releases/" + this.state.cardfilter : "https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases/" + this.state.cardfilter)
       .then(res => res.json())
       .then(
         (result) => {
@@ -174,7 +175,7 @@ class PlannedReleases extends Component {
       }
     })
 
-    
+
     forms.forEach(form => {
       form.icon = null;
       form.iconclass = null;
@@ -244,7 +245,7 @@ class PlannedReleases extends Component {
     }
     // if state and key are passed in
     if (state && !tags.includes(key)) {
-        tags.push(key);
+      tags.push(key);
     } else if (key) {
       let index = tags.indexOf(key);
       tags.splice(index, 1);
@@ -453,8 +454,7 @@ class PlannedReleases extends Component {
         <SectionHeaderTitle title={"Planned Releases"} smallWindow={this.props.smallWindow} leftAligned={false} />
         <div className={"pr-body" + (this.props.smallWindow ? " pr-body-small" : "")}>
           <div className="pr-navigation">
-            {forms.map(form => 
-            {
+            {forms.map(form => {
               if (typeof form.count == "number") {
                 return <ReleaseForm key={form.id} title={form.title} expandable={form.expandable} status={form.state} data={form.fields} count={form.count} manageTagArray={this.manageTagArray} icon={form.icon} iconclass={form.iconclass} />
               }

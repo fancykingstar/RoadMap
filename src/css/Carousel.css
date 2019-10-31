@@ -48,7 +48,7 @@
     right: -50px;
     top: 56px;
     width: 280px;
-    height: 188px;
+    height: 250px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.0001) 2.08%, #FFFFFF 50.88%);
     transform: rotate(-90deg);
   }
@@ -58,7 +58,7 @@
     left: -50px;
     top: 56px;
     width: 280px;
-    height: 188px;
+    height: 250px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.0001) 2.08%, #FFFFFF 50.88%);
     transform: rotate(90deg);
   }

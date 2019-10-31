@@ -49,7 +49,7 @@
 
 .roadmap-stepper .MuiStepper-alternativeLabel {
   /* width: 730px; */
-  max-width: calc(88% - 10px);
+  max-width: 83%;
 }
 
 .roadmap-stepper .MuiStepper-root {
@@ -71,5 +71,3 @@
   margin-bottom: 20px;
   right: 1rem;
 }
-
-

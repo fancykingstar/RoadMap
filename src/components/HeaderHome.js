@@ -75,7 +75,7 @@ class Header extends Component {
       headerimage: this.props.image,
       roadmap: this.props.roadmap,
       process: this.props.process
-    }, ()=> console.log("roadmap is: ",this.state.roadmap, "\nprocess is:", this.state.process));
+    });
   }
 
   componentDidUpdate(prevProps) {
