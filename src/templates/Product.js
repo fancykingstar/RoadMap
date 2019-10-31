@@ -111,41 +111,29 @@ class Products extends Component {
         <Header title={title} description={description} image={this.renderImage(product)} compact={true} smallWindow={this.state.smallWindow} type="sub-page" />
         <Feedback />
         <div className="right-side-bg"></div>
+        <div className={"content-container" + (this.state.smallWindow ? " content-container-small" : "")}>
+          <div className="process-content">
+          <Tabs className="roadmap-process-tabs roadmap-process-tab-titles" value={this.state.tabValue} onChange={this.handleTabChange} aria-label="Process flow and release highlights" orientation="vertical">
+              <Tab label="Release Highlights" />
+              <Tab label="What's Happening" />
+            </Tabs>
+            <div className="tab-content">
+              {timeline && timeline.length > 0 && this.state.tabValue === 0 ?
+                timeline.length > 4 || this.state.windowWidth < 1200 ? <TimelineVertical timeline={timeline} smallWindow={this.state.smallWindow} /> :
+                  <TimelineCurve timeline={timeline} /> : null}
 
-        {timeline && timeline.length > 0 ?
-          <Tabs className="roadmap-process-tabs roadmap-process-tab-titles" value={this.state.tabValue} onChange={this.handleTabChange} aria-label="Process flow and release highlights">
-            <Tab label="Release Highlights" />
-            <Tab label="What's New" />
-          </Tabs> :
-          <div className={"content-container" + (this.state.smallWindow ? " content-container-small" : "")}>
-            {whatsnew && whatsnew.length > 0 ? <SectionHeaderTitle title="Additional Resources" smallWindow={this.state.smallWindow} firstSection={false} /> : null}
-            {whatsnew && whatsnew.length > 0 ?
-              <div className="content-horizontal content">
+              {this.state.tabValue === 1 ? <div className="content-horizontal content">
                 <CarouselCards slides={whatsnew} windowWidth={this.state.windowWidth} smallWindow={this.state.smallWindow} />
-              </div>
-              : null
-            }
-          </div>
-        }
-
-        {/* {timeline && timeline.length > 0 ? <SectionHeaderTitle title={timelineTitle} smallWindow={this.state.smallWindow} leftAligned={false} /> : null} */}
-        {timeline && timeline.length > 0 && this.state.tabValue === 0 ?
-          timeline.length > 4 || this.state.windowWidth < 1200 ? <TimelineVertical timeline={timeline} smallWindow={this.state.smallWindow} /> :
-            <TimelineCurve timeline={timeline} /> : null}
-
-        {this.state.tabValue === 1 ? <div className={"content-container" + (this.state.smallWindow ? " content-container-small" : "")}>
-          {whatsnew && whatsnew.length > 0 ?
-            <div className="content-horizontal content">
-              <CarouselCards slides={whatsnew} windowWidth={this.state.windowWidth} smallWindow={this.state.smallWindow} />
+              </div> : null}
             </div>
-            : null
-          }
-        </div> : undefined}
-
+          </div>
 
         <PlannedReleases releases={releases} type={template} cardfilter={product} subfilter={subproduct} placeholder="Travel Expenses" smallWindow={this.state.smallWindow} />
+        </div>
 
-        {/*  */}
+        {/* {timeline && timeline.length > 0 ? <SectionHeaderTitle title={timelineTitle} smallWindow={this.state.smallWindow} leftAligned={false} /> : null} */}
+
+
 
         {this.state.smallWindow ? <FooterMobile /> : <Footer />}
       </div>

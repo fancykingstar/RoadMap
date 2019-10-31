@@ -34,13 +34,14 @@
 }
 
 .roadmap-slide-dimensions {
+    padding-left: 40px;
     height: 300px;
     width: 990px;
   }
   
   .roadmap-slide-dimensions-small {
     height: 300px;
-    width: 990px;
+    width: 500px;
   }
 
   .roadmap-carousel-next-button:enabled ~ .roadmap-carousel-fade-next {

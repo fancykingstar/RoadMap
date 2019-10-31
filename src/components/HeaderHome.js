@@ -140,9 +140,10 @@ class Header extends Component {
           <div className={"description-" + (compact ? "compact" : "default")
             + (this.props.smallWindow ? " description-small" : " description")}>
             <div className="header-bullet-description-container">
-              {type == 'sub-page' ? (description ? description.map(desc => (<BulletList description={desc} />)) : null) :
+              {/* {type == 'sub-page' ? (description ? description.map(desc => (<BulletList description={desc} />)) : null) :
                 <ProductSearch placeholder="Customer Experience Management" suggestions={suggestions} trends={trends} />
-              }
+              } */}
+              {description ? "Fill me with a description": null}
             </div>
 
           </div>
@@ -151,7 +152,7 @@ class Header extends Component {
           </div>}
         </div>
         {this.props.smallWindow ? null : <div className="header-right-container">
-          {compact ? <img src={headerimage} style={{ border: border }} alt={title} /> : null}
+          {compact ? <img src={headerimage} style={{ border: border, height: 393 + "px", width: 537.13 + "px"}} alt={title} /> : null}
         </div>}
         {this.props.smallWindow || compact ? null : <svg width="100%" height="230"
           viewBox="0 0 1440 676" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">

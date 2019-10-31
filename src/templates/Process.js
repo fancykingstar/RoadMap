@@ -102,9 +102,9 @@ class Process extends Component {
         <div className={"content-container" + (this.state.smallWindow ? " content-container-small" : "")}>
           {/* roadmap, timeline and What's new tab group */}
           <div className="process-content">
-            <Tabs className="roadmap-process-tabs roadmap-process-tab-titles" label="X" value={this.state.tabValue} onChange={this.handleTabChange} aria-label="Process flow and release highlights" orientation="vertical">
+            <Tabs className="roadmap-process-tabs roadmap-process-tab-titles" value={this.state.tabValue} onChange={this.handleTabChange} aria-label="Process flow and release highlights" orientation="vertical">
               <Tab label="Release Highlights" />
-              <Tab label="What's New" />
+              <Tab label="What's Happening" />
             </Tabs>
             <div className="tab-content">
               {this.state.tabValue === 0 ? (timeline.length > 4 || this.state.windowWidth < 1200 ?
@@ -113,7 +113,7 @@ class Process extends Component {
 
               {this.state.tabValue === 1 ? <div className="content-horizontal content">
                 <CarouselCards slides={whatsnew} windowWidth={this.state.windowWidth} smallWindow={this.state.smallWindow} />
-              </div> : undefined}
+              </div> : null}
             </div>
           </div>
           {/* roadmap */}
