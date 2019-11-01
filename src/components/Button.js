@@ -53,8 +53,8 @@ class IconButton extends Component {
 
 
   render() {
-    const SearchIcon = this.props.icon;
-    const show = this.state.show;
+    // const SearchIcon = this.props.icon;
+    // const show = this.state.show;
     return (
       <button
         className={"btn custom-button iconbtn btn-default"

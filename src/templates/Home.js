@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
-import Chip from '@material-ui/core/Chip';
-import { CarouselCards } from '../components/CarouselCards';
+// import Chip from '@material-ui/core/Chip';
+// import { CarouselCards } from '../components/CarouselCards';
 
 //import css
 import '../css/Page.css';
@@ -17,13 +17,13 @@ import '../css/Process.css';
 
 //import custom components
 import Header from '../components/HeaderHome';
+import SectionHeaderTitle from '../components/SectionHeaderTitle';
 import Feedback from '../components/Feedback';
 import Footer from '../components/Footer';
 import FooterMobile from '../components/FooterMobile';
-import { ProductSearch } from '../components/Search';
-import SectionHeaderTitle from '../components/SectionHeaderTitle';
+// import { ProductSearch } from '../components/Search';
 
-import { suggestions, trends } from '../utils/searchutils';
+// import { suggestions, trends } from '../utils/searchutils';
 import { activeprocesses } from '../utils/processutils';
 
 
@@ -116,7 +116,7 @@ class Home extends Component {
   }
 
   render() {
-    const { title, description, whatsnew, chips, tags, products, solutions, compact } = this.state;
+    const { title, description, tags, products, solutions, compact } = this.state;
 
     return (
       <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>

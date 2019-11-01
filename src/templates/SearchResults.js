@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Fuse from 'fuse.js';
 
 //import material UI components
-import Select from '@material-ui/core/Select';
+// import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import MinIcon from '@material-ui/icons/Minimize';
 import { datamonths } from '../utils/searchutils';
@@ -22,10 +22,10 @@ import Footer from '../components/Footer';
 import FooterMobile from '../components/FooterMobile';
 import ReleaseForm from '../components/ReleaseForm';
 
-import { months, suggestions, trends } from '../utils/searchutils';
+import { suggestions, trends } from '../utils/searchutils';
 
 
-import sort from '../assets/images/sort-icon.svg';
+// import sort from '../assets/images/sort-icon.svg';
 
 class SearchResults extends Component {
 
@@ -76,7 +76,7 @@ class SearchResults extends Component {
                                   forms: result.forms.filter(form => (this.props.type !== 'process' ?
                                     form.title !== 'Subprocesses'
                                   :
-                                    (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent == this.props.cardfilter
+                                    (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent === this.props.cardfilter
                                 )
 
                               ),
@@ -439,7 +439,7 @@ class SearchResults extends Component {
     }
 
     render() {
-        const { result, sorting, filteredresults, filterall, filterprocesses, filterproducts, filterfeatures, initialitem, lastitem, pagination, pages, focus } = this.state;
+        const { result, sorting, filteredresults, filterall, filterprocesses, filterproducts, filterfeatures, initialitem, lastitem, pagination, focus } = this.state;
         return (
             <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
                 
@@ -510,6 +510,7 @@ class SearchResults extends Component {
                                                     type={result.type}
                                                     description={result.description} />
                                             }
+                                            return null;
                                         })
                                 }
                             </div>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 //import material ui components
 import Card from '@material-ui/core/Card';
@@ -45,7 +44,8 @@ class CarouselCards extends Component {
                                         </div>
                                         <div className="header">{item.header}</div>
                                         <div className="body">{item.body}</div>
-                                        {item.buttonLink.substr(0,4) === 'http' ? <a className="static__link" href={item.buttonLink} target='_blank'>{item.buttonText}</a>: <a href="#" className="static__link">{item.buttonText}</a>}
+                                        {item.buttonLink.substr(0,4) === 'http' ? 
+                                        <a className="static__link" href={item.buttonLink} target='_blank' rel="noopener noreferrer">{item.buttonText}</a> : <a href="#" className="static__link">{item.buttonText}</a>}
                                     </CardContent>
                                 </Card>
                             </Slide>

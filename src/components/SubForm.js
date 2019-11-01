@@ -94,6 +94,7 @@ class SubForm extends Component {
 					}
 					this.props.manageTagArray(child.checked, child.key);
 				}
+				return null;
 			})
 		}
 

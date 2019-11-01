@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 //import material ui components
 import Stepper from '@material-ui/core/Stepper';
@@ -93,10 +93,7 @@ export function Roadmap(props) {
         return ProductIcons[0][icon];
     }
     function padHeaderOffset() {
-        document.querySelector(".header-content-container").classList.add("offset");
-    }
-    function unpadHeaderOffset() {
-        document.querySelector(".header-content-container").classList.remove("offset");
+        document.querySelector(".header-content-container").classList.toggle("offset");
     }
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
@@ -124,7 +121,7 @@ export function Roadmap(props) {
                 anchorEl={anchorEl}
                 onClose={handleClose}
                 onEnter={padHeaderOffset}
-                onExit={unpadHeaderOffset}
+                onExit={padHeaderOffset}
                 anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'right',

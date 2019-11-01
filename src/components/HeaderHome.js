@@ -6,7 +6,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Menu from '../components/Menu';
 import { SearchBar } from '../components/Search';
 import HeaderBarMobile from '../components/HeaderBarMobile';
-import BulletList from '../components/BulletList'; // open to deprecation from app
+// import BulletList from '../components/BulletList'; // open to deprecation from app
 import { ProductIcons } from '../assets/prod-icons';
 
 import { ProductSearch } from '../components/Search';
@@ -55,7 +55,6 @@ class Header extends Component {
     this.renderProductHeaderContainers = this.renderProductHeaderContainers.bind(this);
     this.renderInfoModal = this.renderInfoModal.bind(this);
     this.padHeaderOffset = this.padHeaderOffset.bind(this);
-    this.unpadHeaderOffset = this.unpadHeaderOffset.bind(this);
     this.handleInfoClick = this.handleInfoClick.bind(this);
   }
 
@@ -146,11 +145,7 @@ class Header extends Component {
 
 
   padHeaderOffset() {
-    document.querySelector(".header-content-container").classList.add("offset");
-  }
-
-  unpadHeaderOffset() {
-    document.querySelector(".header-content-container").classList.remove("offset");
+    document.querySelector(".header-content-container").classList.toggle("offset");
   }
 
   renderInfoModal = () => {
@@ -233,9 +228,9 @@ class Header extends Component {
   renderProductHeaderContainers = () => {
     const { title, description, compact, type, headerimage } = this.state;
     return (
-      <div className={"header-divided-container" + (title == "product roadmaps" ? " home-header" : " product-header"
+      <div className={"header-divided-container" + (title === "product roadmaps" ? " home-header" : " product-header"
       )}>
-        <div className={"header-left-container" + (title == "product roadmaps" ? " home-header" : " product-header"
+        <div className={"header-left-container" + (title === "product roadmaps" ? " home-header" : " product-header"
         )}>
           <div className={"title title-" + (compact ? "compact" : "default") + (title === "product roadmaps" ? " home-title" : " product-header")
             + (this.props.smallWindow ? " title-small" : "")
@@ -286,7 +281,7 @@ class Header extends Component {
     )
   }
   render() {
-    const { title, processes, products, compact, type, resultspage, resulthandler, pageType } = this.state;
+    const { processes, products, compact, type, resultspage, resulthandler, pageType } = this.state;
     return (
       <div className={"page-header-default"
         + (type === "regular" ? " page-header-minheight" : "")
@@ -356,13 +351,13 @@ class Header extends Component {
         </div>
         {/* Temporary className -- staged for fix process=multi product=single*/}
         <Popover
-          className={"roadmap-stepper-popover" + " info-" + (this.state.productTitles && this.state.innovationTopics ? "multi" : "single")}
+          className={"roadmap-stepper-popover info-" + (this.state.productTitles && this.state.innovationTopics ? "multi" : "single")}
           id={this.state.isInfoOpen ? "simple-popover" : undefined}
           open={this.state.isInfoOpen}
           anchorEl={this.anchorEl.current}
           onClose={this.handleInfoClick}
           onEnter={this.padHeaderOffset}
-          onExit={this.unpadHeaderOffset}
+          onExit={this.padHeaderOffset}
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'center',

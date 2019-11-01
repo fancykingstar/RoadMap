@@ -9,8 +9,8 @@ import Collapse from '@material-ui/core/Collapse';
 
 //import svg icons
 import edit from '../assets/images/edit.svg';
-import download from '../assets/images/download.svg';
-import like from '../assets/images/like.svg';
+// import download from '../assets/images/download.svg';
+// import like from '../assets/images/like.svg';
 import uparrow from '../assets/images/up-arrow.svg';
 import downarrow from '../assets/images/down-arrow.svg';
 import star from '../assets/images/star.svg';
@@ -81,10 +81,11 @@ export default function ReleaseCard(props) {
         e.stopPropagation();
     }
 
-    const downloadInformation = e => {
-      console.log('download pdf');
-      e.stopPropagation();
-    }
+    // const downloadInformation = e => {
+    //   console.log('download pdf');
+    //   e.stopPropagation();
+    // }
+    
     const editReleaseCard = e => {
       window.location = 'https://roadmap-staging.cfapps.us10.hana.ondemand.com/update?id='+ state._id;
       e.stopPropagation();

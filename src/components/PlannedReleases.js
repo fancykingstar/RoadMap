@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 
 //import material UI components
 import SearchIcon from '@material-ui/icons/SearchOutlined';
@@ -21,8 +21,6 @@ import Pagination from '../components/Pagination';
 import { datamonths } from '../utils/searchutils';
 
 import DeleteTag from '../assets/images/close-x.svg'
-import sort from '../assets/images/sort-icon.svg';
-import ExportIcon from '../assets/images/export.svg';
 const staging = false;
 class PlannedReleases extends Component {
 
@@ -127,7 +125,7 @@ class PlannedReleases extends Component {
                     forms: result.forms.filter(form => (this.props.type !== 'process' ?
                       form.title !== 'Subprocesses'
                       :
-                      (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent == this.props.cardfilter
+                      (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent === this.props.cardfilter
                     )
 
                     ),
@@ -464,6 +462,7 @@ class PlannedReleases extends Component {
               if (typeof form.count == "number") {
                 return <ReleaseForm key={form.id} title={form.title} expandable={form.expandable} status={form.state} data={form.fields} count={form.count} manageTagArray={this.manageTagArray} icon={form.icon} iconclass={form.iconclass} />
               }
+              return null;
             })}
             <Button className="clearButton" onClick={this.clearForms} disableFocusRipple={true} disableRipple={true}>CLEAR ALL FILTERS</Button>
           </div>
