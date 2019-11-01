@@ -275,7 +275,6 @@
   position: relative;
   justify-content: left;
   text-align: left;
-  padding-top: 0px;
 }
 
 
@@ -305,13 +304,13 @@
 }
 
 .product-card .icon > img {
-  margin-left: 13px;
-  margin-top: 12px;
+  margin-left: 15px;
+  margin-top: 15px;
 }
 
 .product-card .title-container {
-  margin-top: 16px;
-  margin-bottom: 19px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   font-size: 2rem;
   color: #000;
 }
