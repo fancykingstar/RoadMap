@@ -1,159 +1,38 @@
 {
-    "title": "SAP C/4HANA",
-    "description": [{"title": "Products", "items":
-                  [{"label": "SAP Commerce Cloud", "key": "commercecloud", "link": ""},
-                  {"label": "SAP Customer Data Cloud", "key": "customerdatacloud", "link": ""},
-                  {"label": "SAP Marketing Cloud", "key": "marketingcloud", "link": ""},
-                  {"label": "SAP Sales Cloud", "key": "salescloud", "link": ""},
-                  {"label": "SAP Service Cloud", "key": "servicecloud", "link": ""}]},
+    "title": "SAP C/4HANA SUITE",
+    "description": [{"title": "About", "descriptions":"SAP C/4HANA is the customer experience suite of five cloud solutions: Commerce Cloud, Marketing Cloud, Customer Data Cloud, Service Cloud, and Sales Cloud."},
                   {"title": "Innovations", "items":
-                  [{"label": "Integrated end-to-end processes for Lead to Cash", "key": "innovation1", "link": ""},
-                  {"label": "Intelligence (AI/ML) capabilities and analytics", "key": "innovation2", "link": ""},
-                  {"label": "UX harmonization across the SAP C/4HANA suite", "key": "innovation3", "link": ""}, 
-                  {"label": "Extension capabilities, authentication, cloud administration and user management via SAP CX Cockpit", "key": "innovation4", "link": ""},
-                  {"label": "Provisioning orchestration", "key": "innovation5", "link": ""}]}],
+                  [{"label": "Integrated comprehensive processes for lead to cash across SAP business applications", "key": "innovation1", "link": ""},
+                  {"label": "Intelligence capabilities (for example, artificial intelligence and machine learning) and analytics", "key": "innovation2", "link": ""},
+                  {"label": "Harmonization of user experiences across the SAP C/4HANA suite", "key": "innovation3", "link": ""}, 
+                  {"label": "Extension capabilities, authentication, cloud administration, and user management using the SAP C/4HANA cockpit", "key": "innovation4", "link": ""},
+                  {"label": "Automated provisioning and orchestration", "key": "innovation5", "link": ""}]}],
     "whatsnew" : [
       {
       "id": 1,
       "type": "start",
-      "title": "SAP C/4HANA",
-      "header": "Retail Omnichannel integration with SAP Commerce Cloud",
-      "body" : "Integrates SAP Retail article master data and omnichannel innovations with SAP Commerce Cloud.",
-      "buttonText" : "Learn More",
-      "buttonLink" : "c4hana"
+      "title": "SAP C/4HANA SUITE",
+      "header": "SAP Customer Experience LIVE event in Munich, Germany, on November 5, 2019",
+      "body" : "",
+      "buttonText" : "Register Now",
+      "buttonLink" : "https://events.sap.com/de/cx-live-2019-munich/en/home"
       },{
       "id": 2,
       "type": "mid",
-      "title": "SAP C/4HANA",
-      "header": "SAP C/4HANA cockpit adminX",
-      "body": "Efficiently run and extend  SAP C/4HANA to design and deliver amazing customer experiences.",
-      "buttonText": "Learn More",
-      "buttonLink": "c4hana"
+      "title": "SAP C/4HANA SUITE",
+      "header": "SAP Customer Experience LIVE event in London, UK, on October 3, 2019",
+      "body": "",
+      "buttonText": "Register Now",
+      "buttonLink": "https://events.sap.com/gb/cx-live-2019-london/en/home"
       },
       {
       "id": 3,
       "type": "mid",
-      "title": "EVENT",
-      "header": "SAP Customer Experience Live LONDON, UK on Oct 3, 2019",
-      "body": "Please join us for this event.",
-      "buttonText": "Learn More",
-      "buttonLink": "https://events.sap.com/gb/cx-live-2019-london/en/home"
-      },{
-        "id": 4,
-        "type": "mid",
-        "title": "EVENT",
-        "header": "SAP Customer Experience Live DUBAI, UAE on Oct 6, 2019",
-        "body": "Please join us for this event.",
-        "buttonText": "Learn More",
-        "buttonLink": "https://events.sap.com/ae/cx-live-2019-dubai/en/home"
-      },
-      {
-      "id": 5,
-      "type": "mid",
-      "title": "EVENT",
-      "header": "SAP Customer Experience Live MUNICH, Germany on Nov 5, 2019",
-      "body" : "Please join us for this event.",
-      "buttonText" : "Learn More",
-      "buttonLink" : "https://events.sap.com/de/cx-live-2019-munich/en/home"
-      },
-      {
-        "id": 6,
-        "type": "mid",
-        "title": "Customer data cloud",
-        "header": "Global Identity Management Experiences",
-        "body": "Globally Access powers the identity management capabilities into any digital property.",
-        "buttonText": "Learn More",
-        "buttonLink": "c4hana"
-      },
-      {
-        "id": 7,
-        "type": "mid",
-        "title": "Customer data cloud",
-        "header": "Native support for 'Sign in with apple' ",
-        "body": "Integration of 'Sign-in with Apple' for secure login and data privacy.",
-        "buttonText": "Learn More",
-        "buttonLink": "c4hana"
-      },
-      {
-        "id": 8,
-        "type": "mid",
-        "title": "Sales cloud",
-        "header": "Administrator Workspaces & Capabilities",
-        "body": "New and enhanced workspaces and features supporting compensation admins.",
-        "buttonText": "Learn More",
-        "buttonLink": "c4hana"
-      },
-      {
-        "id": 9,
-        "type": "mid",
-        "title": "Sales cloud",
-        "header": "Globalization Requirements",
-        "body": "Delivery of key capabilities required by global organizations and international companies.",
-        "buttonText": "Learn More",
-        "buttonLink": "c4hana"
-      },
-      {
-        "id": 10,
-        "type": "mid",
-        "title": "Sales cloud",
-        "header": "Retail Execution - Perfect Store Execution Enhancements",
-        "body": "Perfect Store Execution allows to guide the sales representative during visit execution and to measure the ... ",
-        "buttonText": "Learn More",
-        "buttonLink": "c4hana"
-      },
-      {
-        "id": 11,
-        "type": "mid",
-        "title": "Sales cloud",
-        "header": "User Experience, UI Harmonization & Accessibility",
-        "body": "Improved experience for sales and administrative users",
-        "buttonText": "Learn More",
-        "buttonLink": "c4hana"
-      },
-      {
-        "id": 12,
-        "type": "mid",
-        "title": "Sales cloud",
-        "header": "Suite intelligence & Analytics",
-        "body": "Leverage deep analytics and intelligence to make data-driven decisions",
-        "buttonText": "Learn More",
-        "buttonLink": "c4hana"
-      },
-      {
-        "id": 13,
-        "type": "mid",
-        "title": "Customer data cloud",
-        "header": "Remove the need for passwords!",
-        "body": "Out of the box Passwordless authentication options.",
-        "buttonText": "Learn More",
-        "buttonLink": "c4hana"
-      },
-      {
-        "id": 14,
-        "type": "mid",
-        "title": "Customer data cloud",
-        "header": "X Data powered by First Party Data",
-        "body": "Improve experience management campaign performance with first party customer data, preferences and consent.",
-        "buttonText": "Learn More",
-        "buttonLink": "c4hana"
-      },
-      {
-        "id": 15,
-        "type": "mid",
-        "title": "Customer data cloud",
-        "header": "Simplify Consent Collection, Reduce Business Risk",
-        "body": "Simplify complex deployments across languages and regions along with the storage of the legal documents ...",
-        "buttonText": "Learn More",
-        "buttonLink": "c4hana"
-      },
-      {
-        "id": 16,
-        "type": "mid",
-        "title": "Customer data cloud",
-        "header": "Partner User Onboarding with CIAM for B2B",
-        "body": "Allow partners to use their own Identity Providers with the CIAM for B2B solution.",
-        "buttonText": "Learn More",
-        "buttonLink": "c4hana"
+      "title": "SAP C/4HANA SUITE",
+      "header": "SAP Customer Experience LIVE in Dubai, UAE, on October 6, 2019",
+      "body": "",
+      "buttonText": "Register Now",
+      "buttonLink": "https://events.sap.com/ae/cx-live-2019-dubai/en/home"
       }
     ],
     "timelineTitle": "Release Highlights",
@@ -167,16 +46,12 @@
           "id": "aug2019-0"
         },
         {
-          "text": "Lead to Cash process integration",
+          "text": "Lead to Cash process end-to-end integration across SAP C/4HANA, SAP S/4HANA and SAP Analytics Cloud. Please check the separated roadmap for the Lead-to-Cash process",
           "id": "aug2019-1"
         },
         {
-          "text": "AI/ML driven intelligent scenarios",
+          "text": "SAP Customer Order Sourcing: Cloud service for product availability, sourcing, and reservations; Integration into SAP S/4HANA for ATP stock availability incl. delta snapshot; preconfigured rules for distribution centers, stores, and third-party locations; UI to maintain sourcing strategies",
           "id": "aug2019-2"
-        },
-        {
-          "text": "Cloud administration and user management via SAP CX Cockpit",
-          "id": "aug2019-3"
         }
       ]
     },
@@ -185,7 +60,7 @@
       "id": "nov2019",
       "bullets": [
         {
-          "text": "Continue look and feel harmonization with Fiori 3",
+          "text": "Continue look and feel harmonization with SAP Fiori 3 ",
           "id": "nov2019-0"
         },
         {
@@ -193,31 +68,44 @@
           "id": "nov2019-1"
         },
         {
-          "text": "SAP Cloud Platform Extension Factory prebuilt application connectivity, management console, and service catalogues",
+          "text": "Central Order Service for SAP C/4HANA:  integrated with SAP S/4HANA, SAP Customer Order Sourcing and SAP Omnichannel Promotion Pricing service",
           "id": "nov2019-2"
         }
       ]
     },
-
     {
       "label": "Feb 2020",
       "id": "feb2020",
       "bullets": [
         {
           "text": "One global identity for all users",
+          "id": "feb2020-0"
+        },
+        {
+          "text": "Central Order service for SAP C/4HANA - enhancements and integration with SAP Commerce Cloud",
+          "id": "feb2020-1"
+        },
+        {
+          "text": "SAP Customer Order Sourcing: enhanced sourcing strategies; further extensibility options for sourcing; shipping/transportation data in sourcing strategies, e.g. lead times, schedules, etc.",
+          "id": "feb2020-2"
+        }
+      ]
+    },
+    {
+      "label": "May 2020",
+      "id": "may2020",
+      "bullets": [
+        {
+          "text": "Central Order service for SAP C/4HANA: Further enhancements and integrations ",
           "id": "may2020-0"
         },
         {
-          "text": "Consumable APIs for (de)provisioning",
+          "text": "SAP Customer Order Sourcing: Further enhancements and integrations",
           "id": "may2020-1"
         },
         {
-          "text": "Real-time measurement of end-user experience",
+          "text": "SAP Omnichannel Promotion Pricing service: B2B pricing, configuration and extensibility, pricing for configurable products",
           "id": "may2020-2"
-        },
-        {
-          "text": "Facilitate open ecosystem with SAP Graph",
-          "id": "may2020-3"
         }
       ]
     }

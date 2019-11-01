@@ -2,15 +2,15 @@
   "title": "Total Workforce Management",
   "description": [{"title": "Products", "items":
                   [{"label": "SAP SuccessFactors", "key": "successfactors", "link": ""},
-                  {"label": "SAP S/4HANA", "key": "s4hana", "link": ""}, 
                   {"label": "SAP Fieldglass", "key": "fieldglass", "link": ""},
                   {"label": "SAP Concur", "key": "concur", "link": ""},
+                  {"label": "SAP S/4HANA", "key": "s4hana", "link": ""}, 
                   {"label": "Qualtrics", "key": "qualtrics", "link": ""}]},
                   {"title": "Innovations", "items":
                   [{"label": "Master data services", "key": "innovation1", "link": ""},
                   {"label": "Time management", "key": "innovation2", "link": ""},
-                  {"label": "UX harmonization", "key": "innovation3", "link": ""},
-                  {"label": "People analytics", "key": "innovation4", "link": ""}]}],
+                  {"label": "User experience harmonization", "key": "innovation3", "link": ""},
+                  {"label": "People analytics across applications", "key": "innovation4", "link": ""}]}],
   "whatsnew": [
     {
     "id": 1,
@@ -183,7 +183,7 @@
         "id": "nov2019-2"
       },
       {
-        "text": "People Analytics Embedded edition (General Availability)",
+        "text": "People Analytics Embedded edition",
         "id": "nov2019-3"
       }
     ]
@@ -194,15 +194,15 @@
     "id": "feb2020",
     "bullets": [
       {
-        "text": "One aligned cost center data model across SAP S/4HANA, SAP SuccessFactors and SAP Concur",
+        "text": "One aligned workforce data model across all solutions",
         "id": "may2020-0"
       },
       {
-        "text": "Time as a Service (TaaS) for activity tracking, time records, daily time, and time sheets (controlled availability)",
+        "text": "One aligned cost center data model across SAP S/4HANA, SAP SuccessFactors and SAP Concur",
         "id": "may2020-1"
       },
       {
-        "text": "Onboarding 2.0 (General Availability)",
+        "text": "People Analytics Planning edition (beta)",
         "id": "may2020-2"
       }
     ]
