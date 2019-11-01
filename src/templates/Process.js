@@ -111,7 +111,7 @@ class Process extends Component {
             <div className="tab-content">
               {this.state.tabValue === 0 ? (timeline.length > 4 || this.state.windowWidth < 1200 ?
                 <TimelineVertical timeline={timeline} smallWindow={this.state.smallWindow} /> :
-                <TimelineCurve timeline={timeline} />) : undefined}
+                <TimelineCurve timeline={timeline} pageType={"process"} title={title} />) : undefined}
 
               {this.state.tabValue === 1 ? <div className="content-horizontal content">
                 <CarouselCards slides={whatsnew} windowWidth={this.state.windowWidth} smallWindow={this.state.smallWindow} />

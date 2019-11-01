@@ -48,13 +48,13 @@ class Header extends Component {
       resultspage: this.props.resultspage || false,
       resulthandler: this.props.resulthandler || false
     };
+    this.anchorEl = React.createRef();
     this.handleAccountClick = this.handleAccountClick.bind(this);
     this.renderProcessHeaderContainers = this.renderProcessHeaderContainers.bind(this);
     this.renderProductHeaderContainers = this.renderProductHeaderContainers.bind(this);
     this.padHeaderOffset = this.padHeaderOffset.bind(this);
     this.unpadHeaderOffset = this.unpadHeaderOffset.bind(this);
     this.handleInfoClick = this.handleInfoClick.bind(this);
-    this.handleInfoClickClose = this.handleInfoClickClose.bind(this);
   }
 
   componentDidMount() {
@@ -85,14 +85,14 @@ class Header extends Component {
       roadmap: this.props.roadmap,
       process: this.props.process,
       pageType: this.props.pageType
-    });
+    })
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.description !== this.props.description) {
       this.setState({
         description: this.props.description
-      });
+      }, console.log("desc", this.state.description));
     }
     if (prevProps.title !== this.props.title) {
       this.setState({
@@ -110,29 +110,17 @@ class Header extends Component {
     const showToast = !this.state.showToast;
     this.setState({ showToast: showToast });
   }
+  
+  handleInfoClick = (e) => { this.setState({ isInfoOpen: !this.state.isInfoOpen }) }
+
 
   // Offsets padding from MUI PopoverDefault
 
-  handleInfoClick = (e) => {
-    if (!this.state.isInfoOpen) {
-      this.setState({
-        anchorEl: e.target,
-        isInfoOpen: true
-      })
-    }
-  }
-  handleInfoClickClose = () => {
-    if (this.state.isInfoOpen) {
-      this.setState({
-        anchorEl: null,
-        isInfoOpen: false
-      })
-    }
-  }
+  
   padHeaderOffset() {
     document.querySelector(".header-content-container").classList.add("offset");
   }
-
+  
   unpadHeaderOffset() {
     document.querySelector(".header-content-container").classList.remove("offset");
   }
@@ -148,7 +136,7 @@ class Header extends Component {
           <div className={"title title-" + (compact ? "compact" : "default")
             + (this.props.smallWindow ? " title-small" : "")
             + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")}>{title}
-            <img src={info} alt="info" style={{ position: this.props.windowWidth < 816 ? "relative" : "absolute", paddingLeft: 13 + "px", paddingTop: 21 + "px" }} onClick={this.handleInfoClick} ref={this.state.anchorEl} />
+            <img src={info} alt="info" style={{ position: this.props.windowWidth < 816 ? "relative" : "absolute", paddingLeft: 13 + "px", paddingTop: 21 + "px" }} onClick={this.handleInfoClick} ref={this.anchorEl} />
           </div>
           <div className="header-roadmap-container">
 
@@ -170,13 +158,16 @@ class Header extends Component {
           <div className={"title title-" + (compact ? "compact" : "default") + (title === "product roadmaps" ? " home-title" : " product-header")
             + (this.props.smallWindow ? " title-small" : "")
             + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")}>{title}
-            <img src={info} alt="info" style={{
-              position: this.props.windowWidth < 816 ? "relative" : "absolute",
-              paddingLeft: 13 + "px",
-              paddingTop: this.props.windowWidth < 816 ? 5 + "px" : 21 + "px"
-            }}
-              onClick={this.handleInfoClick}
-              ref={this.state.anchorEl} />
+            {
+              title && title !== "product roadmaps" ? <img src={info} alt="info" style={{
+                position: this.props.windowWidth < 816 ? "relative" : "absolute",
+                paddingLeft: 13 + "px",
+                paddingTop: this.props.windowWidth < 816 ? 5 + "px" : 21 + "px"
+              }}
+                onClick={this.handleInfoClick}
+                ref={this.anchorEl} /> : null
+            }
+            
           </div>
           <div className={"description-" + (compact ? "compact" : "default")
             + (this.props.smallWindow ? " description-small" : " description")}>
@@ -246,7 +237,9 @@ class Header extends Component {
                   </ul>
                 </nav>
                 <SearchBar resultspage={resultspage} resulthandler={resulthandler} suggestions={suggestions} trends={trends} compact={compact} />
-                {/* <img className="header-notification-bell" alt="bell" src={compact ? notificationBell : null } /> */}
+                {/* 
+                  // TODO: Notification Bell
+                <img className="header-notification-bell" alt="bell" src={compact ? notificationBell : null } /> */}
                 <img className="header-user-account" alt="account" src={compact ? compactAccountIcon : accountIcon}
                   onMouseOver={e => (e.currentTarget.src = compact ? accountIcon : compactAccountIcon)}
                   onMouseOut={e => (e.currentTarget.src = compact ? compactAccountIcon : accountIcon)}
@@ -269,9 +262,7 @@ class Header extends Component {
         <div className={"header-content" + (compact ? " header-content-compact" : "")
           + (this.props.smallWindow ? " header-content-small" : "")
           + (type === "search" ? " header-content-none" : "")} >
-          {(title === "Total Workforce Management" ||
-            title === "Source to Pay" ||
-            title === "Lead to Cash") ?
+          {pageType === "process" ?
             this.renderProcessHeaderContainers() // Processes Header
             :
             this.renderProductHeaderContainers() // Products Header
@@ -281,8 +272,8 @@ class Header extends Component {
           className={"roadmap-stepper-popover" + " info-" + pageType}
           id={this.state.isInfoOpen ? "simple-popover" : undefined}
           open={this.state.isInfoOpen}
-          anchorEl={this.state.anchorEl}
-          onClose={this.handleInfoClickClose}
+          anchorEl={this.anchorEl.current}
+          onClose={this.handleInfoClick}
           onEnter={this.padHeaderOffset}
           onExit={this.unpadHeaderOffset}
           anchorOrigin={{
@@ -298,12 +289,12 @@ class Header extends Component {
             <div className="title-container">
               <div className="title-bar"></div>
               <div className="title">
-              
-              {
-                // TODO:
-                pageType === undefined ? null : 
-                  pageType === "process" ? "Innovations" : "Products/Innovations"
-              }</div>
+
+                {
+                  // TODO:
+                  pageType === undefined ? null :
+                    pageType === "process" ? "Innovations" : "Products/Innovations"
+                }</div>
             </div>
             {/* {selectedContent.content.map(content => (
               <div key={content.item + "-" + selectedContent.title} className="roadmap-item">

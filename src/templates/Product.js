@@ -121,7 +121,7 @@ class Products extends Component {
             <div className="tab-content">
               {timeline && timeline.length > 0 && tabValue === 0 ?
                 timeline.length > 4 || windowWidth < 1200 ? <TimelineVertical timeline={timeline} smallWindow={this.state.smallWindow} /> :
-                  <TimelineCurve timeline={timeline} /> : null}
+                  <TimelineCurve timeline={timeline} pageType={"product"} title={title} /> : null}
 
               {this.state.tabValue === 1 ? <div className="content-horizontal content">
                 <CarouselCards slides={whatsnew} windowWidth={windowWidth} smallWindow={this.state.smallWindow} />
