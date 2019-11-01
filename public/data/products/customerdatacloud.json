@@ -1,5 +1,5 @@
 {
-    "title": "SAP Customer Data Cloud",
+    "title": "SAP Customer Data Cloud Portfolio",
     "description": [{"title": "Products", "items":
                   [{"label": "SAP Commerce Cloud", "key": "commercecloud", "link": ""},
                   {"label": "SAP Customer Data Cloud", "key": "customerdatacloud", "link": ""},
