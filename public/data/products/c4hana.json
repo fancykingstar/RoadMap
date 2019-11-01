@@ -4,7 +4,7 @@
                   {"title": "Innovations", "items":
                   [{"label": "Integrated comprehensive processes for lead to cash across SAP business applications", "key": "innovation1", "link": ""},
                   {"label": "Intelligence capabilities (for example, artificial intelligence and machine learning) and analytics", "key": "innovation2", "link": ""},
-                  {"label": "Harmonization of user experiences across the SAP C/4HANA suite", "key": "innovation3", "link": ""}, 
+                  {"label": "Harmonization of user experiences across the SAP C/4HANA suite", "key": "innovation3", "link": ""},
                   {"label": "Extension capabilities, authentication, cloud administration, and user management using the SAP C/4HANA cockpit", "key": "innovation4", "link": ""},
                   {"label": "Automated provisioning and orchestration", "key": "innovation5", "link": ""}]}],
     "whatsnew" : [
@@ -38,25 +38,8 @@
     "timelineTitle": "Release Highlights",
     "timeline": [
     {
-      "label": "Q3 2019 (Release 1908)",
-      "id": "aug2019",
-      "bullets": [
-        {
-          "text": "Harmonized SAP Fiori 3 look and feel across SAP C/4HANA Suite",
-          "id": "aug2019-0"
-        },
-        {
-          "text": "Lead to Cash process end-to-end integration across SAP C/4HANA, SAP S/4HANA and SAP Analytics Cloud",
-          "id": "aug2019-1"
-        },
-        {
-          "text": "SAP Customer Order Sourcing: Cloud service for product availability, sourcing, and reservations",
-          "id": "aug2019-2"
-        }
-      ]
-    },
-    {
       "label": "Q4 2019 (Release 1911)",
+      "label": "Nov 2019",
       "id": "nov2019",
       "bullets": [
         {

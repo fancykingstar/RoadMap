@@ -68,7 +68,7 @@
 }
 
 .step-container .step-title-container .step-title-bar {
-  background-color: #5CDB8E;
+  background-color: #4FB81C;
   width: 37px;
   height: 2px;
 }
@@ -76,7 +76,7 @@
 .step-container .step-title-container .step-title {
   margin-top: 4px;
   text-transform: uppercase;
-  color: #5CDB8E;
+  color: #4FB81C;
   font-size: 1.3333333333333333rem;
 }
 
@@ -121,7 +121,7 @@
 }
 
 .futureStepper .MuiStepContent-root {
-  border-left: 3px dotted #5CDB8E;
+  border-left: 3px dotted #4FB81C;
   margin-top: 0px;
 }
 
@@ -136,5 +136,5 @@
 }
 
 .futureStepper .MuiStepConnector-line {
-  border-color: #5CDB8E;
+  border-color: #4FB81C;
 }
