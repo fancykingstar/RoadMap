@@ -68,6 +68,7 @@ import timelineDot from './images/dot.svg';
 import timelineDotSmall from './images/dotSmall.svg';
 import triangleBullet from './images/triangleBullet.svg';
 import triangleBulletOrange from './images/triangleBullet-orange.svg';
+import roundBullet from './images/roundBullet.svg';
 import leftArrow from './images/leftArrow.svg';
 import rightArrow from './images/rightArrow.svg';
 import downArrow from './images/DownArrowRoadmapVertical.svg'
@@ -129,6 +130,7 @@ export const ProductIcons = [{
     "blueBullet": blueBullet,
     "triangleBullet": triangleBullet,
     "triangleBulletOrange": triangleBulletOrange,
+    "roundBullet": roundBullet,
     "StepIcon": StepIcon,
     "leftChevron": leftChevron,
     "rightChevron": rightChevron,
