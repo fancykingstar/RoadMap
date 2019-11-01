@@ -219,7 +219,9 @@ class Header extends Component {
 
           </div>
           <div className={"description-" + (compact ? "compact" : "default")
-            + (this.props.smallWindow ? " description-small" : " description")}>
+            + (this.props.smallWindow ? " description-small" : " description")
+            + (title === "product roadmaps" ? " home-header-description" : "")
+            }>
             <div className="header-bullet-description-container">
               </div>
 

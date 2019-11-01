@@ -237,14 +237,20 @@
 .header-content .title.title-long {
   max-width: 768px;
 }
+
 .header-content .description {
-  margin-left: 50px;
+  margin-left: 47px;
   font-size: 1.6666666666666667rem;
   font-weight: 200;
   color: #fff;
   width: 565px;
   white-space: pre-wrap;
   overflow: visible;
+}
+
+.header-content .description.home-header-description {
+  margin-top: 18px;
+  margin-left: 0px;
 }
 
 .header-content .description-small {

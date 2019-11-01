@@ -34,6 +34,8 @@
 
 .roadmap-stepper-popover .MuiPopover-paper {
   border-radius: 18px;
+  margin-top: 22px;
+  max-width: 350px;
 }
 
 .MuiCard-root.roadmap-stepper-popover-card {
@@ -59,7 +61,7 @@
   text-transform: uppercase;
   font-family: "72";
   font-style: normal;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 18px;
   line-height: 21px;
   color: #f0ab00;
@@ -92,7 +94,7 @@
 }
 
 .roadmap-stepper-popover .content {
-  width: 400px;
+  width: 313px;
   margin: 31px 33px 31px 24px;
   position: relative;
 }
