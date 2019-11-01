@@ -88,7 +88,7 @@ class Header extends Component {
               this.setState({
                 productTitles: items
               }, () => console.log("productTitles:", this.state.productTitles))
-            } else if (typeof title === "string" && title === "Innovations") {
+            } else if (typeof title === "string" && title === "Innovation topics") {
               this.setState({
                 innovationTopics: items
               }, () => console.log("innovationTitles:", this.state.innovationTopics))
