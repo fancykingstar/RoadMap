@@ -47,8 +47,8 @@
 .header-container {
   display: flex;
   align-items: flex-start;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .header-container-compact {
@@ -105,7 +105,7 @@
 }
 
 .header-content-compact {
-  margin-top: 85px;
+  margin-top: 67px;
   padding-top: 3px;
 }
 

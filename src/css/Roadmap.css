@@ -35,7 +35,7 @@
 .roadmap-stepper-popover .MuiPopover-paper {
   border-radius: 18px;
   margin-top: 22px;
-  max-width: 350px;
+/*  max-width: 350px;*/
 }
 
 .MuiCard-root.roadmap-stepper-popover-card {
@@ -95,7 +95,7 @@
 
 .roadmap-stepper-popover .content {
   width: 313px;
-  margin: 31px 33px 31px 24px;
+  margin: 30px;
   position: relative;
 }
 .roadmap-stepper-popover .roadmap-item {
@@ -122,18 +122,18 @@
 .roadmap-stepper-popover.info-multi .content {
   width: calc(100% - 50px);
   height: 100%;
-  margin: 10px 10px 30px 33px;
 }
+
 .roadmap-stepper-popover.info-multi .MuiPopover-paper {
-    margin-top: 22px;
-    width: 507px;
-    max-width: 507px;
+    margin-top: 25px;
+/*    width: 507px;*/
+    max-width: 600px;
 }
 
 .roadmap-stepper-popover.info-single .MuiPopover-paper {
-    margin-top: 22px;
+    margin-top: 25px;
     width: 414px;
-    max-width: 414px;
+/*    max-width: 414px;*/
 }
 .roadmap-stepper-popover.info-single .MuiPopover-paper .content,
 .roadmap-stepper-popover.info-single .MuiPopover-paper .content {
@@ -167,7 +167,11 @@ line-height: 21px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   overflow-y: hidden;
-  padding-right: 4px;
+  margin: 30px;
+}
+
+.title-process-container .content {
+    margin: 0;
 }
 
 .popover-arrow-container {
