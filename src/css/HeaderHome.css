@@ -250,6 +250,7 @@
   width: 565px;
   white-space: pre-wrap;
   overflow: visible;
+  line-height: 24px;
 }
 
 .header-content .description.home-header-description {
@@ -261,7 +262,7 @@
   margin-top: 27px;
   font-family: "72";
   font-style: normal;
-  font-weight: normal;
+  font-weight: 200;
   font-size: 16px;
   line-height: 18px;
   max-width: 520px;
