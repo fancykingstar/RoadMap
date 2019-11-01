@@ -208,6 +208,10 @@
   min-width: 320px;
 }
 
+.header-content .title > img:hover {
+  cursor: pointer;
+}
+
 .header-content .title-small {
   font-size: 36px;
   font-style: normal;
@@ -363,4 +367,5 @@ button {
 
 .header-user-account {
   margin-left: 24px;
+  cursor: pointer;
 }

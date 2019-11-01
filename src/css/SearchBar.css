@@ -1,5 +1,6 @@
 .search-container {
   margin-left: auto;
+  cursor: text;
 }
 
 .header-mobile .search-container,
