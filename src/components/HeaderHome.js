@@ -116,7 +116,7 @@ class Header extends Component {
 
   handleInfoClick = (e) => {
     this.setState({ isInfoOpen: !this.state.isInfoOpen }
-      , () => console.log("descriptions:", this.state.description, "\nproducts:", this.state.products)
+      , () => console.log("descriptions:", this.state.description[0]["descriptions"], "\nproducts:", this.state.products)
     )
   }
 
@@ -199,7 +199,6 @@ class Header extends Component {
 
   renderProductHeaderContainers = () => {
     const { title, description, compact, type, headerimage } = this.state;
-    let border = "0px solid red";
     return (
       <div className={"header-divided-container" + (title == "product roadmaps" ? " home-header" : " product-header"
       )}>
@@ -222,10 +221,13 @@ class Header extends Component {
           <div className={"description-" + (compact ? "compact" : "default")
             + (this.props.smallWindow ? " description-small" : " description")}>
             <div className="header-bullet-description-container">
-              {type === 'sub-page' ? (description ? description.map(desc => (<BulletList description={desc} />)) : null) :
+              </div>
+
+              {
+                // TODO:
+                type === 'sub-page' ? (description ? description[0]["descriptions"]: null) :
                 <ProductSearch placeholder="Search for topics, products, or industries" suggestions={suggestions} trends={trends} isHomePage={title && title === "product roadmaps"} />
               }
-            </div>
 
           </div>
           {compact ? null : <div className="button-container">
@@ -313,9 +315,9 @@ class Header extends Component {
           + (this.props.smallWindow ? " header-content-small" : "")
           + (type === "search" ? " header-content-none" : "")} >
           {pageType === "process" ?
-            this.renderProcessHeaderContainers() // Processes Header
+            this.renderProcessHeaderContainers() // Process Header
             :
-            this.renderProductHeaderContainers() // Products Header
+            this.renderProductHeaderContainers() // Product Header
           }
         </div>
         <Popover
@@ -346,13 +348,6 @@ class Header extends Component {
                 :
                 "Products/Innovations"
           }
-
-          {/* {selectedContent.content.map(content => (
-              <div key={content.item + "-" + selectedContent.title} className="roadmap-item">
-                <img className="item-bullet" src={renderIcon("blueBullet")} alt=""></img>
-                <label className="item-label">{content.item}</label>
-              </div>
-            ))} */}
         </Popover>
       </div>
     );

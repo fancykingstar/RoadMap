@@ -46,6 +46,7 @@
   justify-content: space-between;
   /* grid-template-columns: repeat(2, 1fr); */
   margin-bottom: 50px;
+  min-height: 351px;
 }
 
 .page-container .content-container .process-content .tab-content {

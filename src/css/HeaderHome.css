@@ -238,11 +238,11 @@
   max-width: 768px;
 }
 .header-content .description {
-  margin-top: 50px;
+  margin-left: 50px;
   font-size: 1.6666666666666667rem;
   font-weight: 200;
   color: #fff;
-  width: 700px;
+  width: 565px;
   white-space: pre-wrap;
   overflow: visible;
 }

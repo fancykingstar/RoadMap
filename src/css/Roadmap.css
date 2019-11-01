@@ -122,14 +122,12 @@
     margin-top: 22px;
     width: 507px;
     max-width: 507px;
-    min-height: 252px;
 }
 
 .roadmap-stepper-popover.info-product .MuiPopover-paper {
     margin-top: 22px;
     width: 254px;
     max-width: 254px;
-    min-height: 331px;
 }
 .roadmap-stepper-popover.info-product .MuiPopover-paper .content {
     width: 203px;
@@ -144,4 +142,10 @@ line-height: 21px;
 .roadmap-stepper-popover.info-product .MuiPopover-paper .content .roadmap-item .item-label {
   line-height: 23px;
   padding-bottom: 15px;
+}
+
+.roadmap-stepper-popover.info-product .MuiPopover-paper .content .roadmap-item .item-bullet {
+  margin-top: 7px;
+  margin-left: 4px;
+  margin-right: 8px;
 }
