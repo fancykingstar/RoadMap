@@ -53,8 +53,7 @@ class Header extends Component {
     this.handleAccountClick = this.handleAccountClick.bind(this);
     this.renderProcessHeaderContainers = this.renderProcessHeaderContainers.bind(this);
     this.renderProductHeaderContainers = this.renderProductHeaderContainers.bind(this);
-    this.renderModalProducts = this.renderModalProducts.bind(this);
-    this.renderModalProcesses = this.renderModalProcesses.bind(this);
+    this.renderInfoModal = this.renderInfoModal.bind(this);
     this.padHeaderOffset = this.padHeaderOffset.bind(this);
     this.unpadHeaderOffset = this.unpadHeaderOffset.bind(this);
     this.handleInfoClick = this.handleInfoClick.bind(this);
@@ -80,25 +79,27 @@ class Header extends Component {
           console.log(error);
         }
       )
-      /* DEVELOPMENT ONLY */
-      fetch(`/data/processes/${this.props.process}.json`)
+    /* DEVELOPMENT ONLY */
+    if (this.props.pageType) {
+      const pathString = this.props.pageType === "process" ? `processes/${this.props.process}` : `products/${this.props.product}`;
+      fetch(`/data/${pathString}.json`)
         .then(res => res.json())
         .then((result) => {
-          result.description.forEach( ({title, items}) => {
+          result.description.forEach(({ title, items }) => {
             if (typeof title === "string" && title === "Products") {
               this.setState({
                 productTitles: items
-              })
-            } else if (typeof title === "string" && title ==="Innovations") {
+              }, () => console.log("productTitles:", this.state.productTitles))
+            } else if (typeof title === "string" && title === "Innovations") {
               this.setState({
                 innovationTopics: items
-              })
+              }, () => console.log("innovationTitles:", this.state.innovationTopics))
             }
           })
-        }
+        }, (error) => console.log("Failure fetching data", error, pathString))
 
-        )
-      /* DEVELOPMENT ONLY */
+    }
+    /* DEVELOPMENT ONLY */
     this.setState({
       description: this.props.description,
       title: this.props.title || "",
@@ -106,8 +107,9 @@ class Header extends Component {
       headerimage: this.props.image,
       roadmap: this.props.roadmap,
       process: this.props.process,
+      product: this.props.product,
       pageType: this.props.pageType
-    })
+    }, () => console.log("pageType: ", this.state.pageType))
   }
 
   componentDidUpdate(prevProps) {
@@ -135,7 +137,7 @@ class Header extends Component {
 
   handleInfoClick = (e) => {
     this.setState({ isInfoOpen: !this.state.isInfoOpen }
-      // , () => console.log("descriptions:", this.state.description[0]["descriptions"], "\nproducts:", this.state.products, "\nprocesses:", this.state.process)
+      , () => console.log("descriptions:", this.state.description[0]["descriptions"], "\nproducts:", this.state.products, "\nprocesses:", this.state.process)
     )
   }
 
@@ -151,7 +153,7 @@ class Header extends Component {
     document.querySelector(".header-content-container").classList.remove("offset");
   }
 
-  renderModalProcesses = () => {
+  renderInfoModal = () => {
     if (this.state.productTitles && this.state.innovationTopics) {
       const { productTitles, innovationTopics, title } = this.state
       return (
@@ -161,7 +163,7 @@ class Header extends Component {
               <div className="title-bar"></div>
               <div className="title">Products</div>
             </div>
-            {productTitles.map(({label}, i) => (
+            {productTitles.map(({ label }, i) => (
               <div key={title + " " + i} className="roadmap-item">
                 <img className="item-bullet" src={ProductIcons[0]["blueBullet"]} alt="" />
                 <label className="item-label">{label}</label>
@@ -173,7 +175,7 @@ class Header extends Component {
               <div className="title-bar"></div>
               <div className="title">Innovation Topics</div>
             </div>
-            {innovationTopics.map(({label}, i) => (
+            {innovationTopics.map(({ label }, i) => (
               <div key={title + " " + i} className="roadmap-item">
                 <img className="item-bullet" src={ProductIcons[0]["blueBullet"]} alt="" />
                 <label className="item-label">{label}</label>
@@ -182,12 +184,7 @@ class Header extends Component {
           </div>
         </div>
       )
-    }
-  }
-
-  renderModalProducts = () => {
-
-    if (this.state.description) {
+    } else if (this.state.description) {
       const topics = this.state.description[1]["items"],
         { title } = this.state;
       return (
@@ -208,8 +205,8 @@ class Header extends Component {
         </div>
       )
     }
-
   }
+
 
   renderProcessHeaderContainers = () => {
     const { title, compact, headerimage, roadmap } = this.state;
@@ -357,8 +354,9 @@ class Header extends Component {
             this.renderProductHeaderContainers() // Product Header
           }
         </div>
+        {/* Temporary className -- staged for fix process=multi product=single*/}
         <Popover
-          className={"roadmap-stepper-popover" + " info-" + pageType}
+          className={"roadmap-stepper-popover" + " info-" + (this.state.productTitles && this.state.innovationTopics ? "multi" : "single")}
           id={this.state.isInfoOpen ? "simple-popover" : undefined}
           open={this.state.isInfoOpen}
           anchorEl={this.anchorEl.current}
@@ -378,12 +376,7 @@ class Header extends Component {
 
           {
             // TODO:
-            pageType === undefined ? null :
-              pageType !== "process" ?
-                // this.renderModalProducts() 
-                this.renderModalProducts()
-                :
-                this.renderModalProcesses()
+            pageType === undefined ? null : this.renderInfoModal()
           }
         </Popover>
       </div>
