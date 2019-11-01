@@ -6,7 +6,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Menu from '../components/Menu';
 import { SearchBar } from '../components/Search';
 import HeaderBarMobile from '../components/HeaderBarMobile';
-import BulletList from '../components/BulletList';
+import BulletList from '../components/BulletList'; // open to deprecation from app
+import { ProductIcons } from '../assets/prod-icons';
 
 import { ProductSearch } from '../components/Search';
 import { suggestions, trends } from '../utils/searchutils';
@@ -52,6 +53,8 @@ class Header extends Component {
     this.handleAccountClick = this.handleAccountClick.bind(this);
     this.renderProcessHeaderContainers = this.renderProcessHeaderContainers.bind(this);
     this.renderProductHeaderContainers = this.renderProductHeaderContainers.bind(this);
+    this.renderModalProducts = this.renderModalProducts.bind(this);
+    this.renderModalProcesses = this.renderModalProcesses.bind(this);
     this.padHeaderOffset = this.padHeaderOffset.bind(this);
     this.unpadHeaderOffset = this.unpadHeaderOffset.bind(this);
     this.handleInfoClick = this.handleInfoClick.bind(this);
@@ -92,7 +95,7 @@ class Header extends Component {
     if (prevProps.description !== this.props.description) {
       this.setState({
         description: this.props.description
-      }, console.log("desc", this.state.description));
+      });
     }
     if (prevProps.title !== this.props.title) {
       this.setState({
@@ -110,19 +113,66 @@ class Header extends Component {
     const showToast = !this.state.showToast;
     this.setState({ showToast: showToast });
   }
-  
-  handleInfoClick = (e) => { this.setState({ isInfoOpen: !this.state.isInfoOpen }) }
+
+  handleInfoClick = (e) => {
+    this.setState({ isInfoOpen: !this.state.isInfoOpen }
+      , () => console.log("descriptions:", this.state.description, "\nproducts:", this.state.products)
+    )
+  }
 
 
   // Offsets padding from MUI PopoverDefault
 
-  
+
   padHeaderOffset() {
     document.querySelector(".header-content-container").classList.add("offset");
   }
-  
+
   unpadHeaderOffset() {
     document.querySelector(".header-content-container").classList.remove("offset");
+  }
+
+  renderModalProcesses = () => {
+    if (this.state.description) {
+      const about = this.state.descriptions[0]["descriptions"]
+      return (
+        <div className="content">
+          <div className="title-container">
+            <div className="title">Products/Innovations</div>
+          </div>
+          {/* {
+            // Map over contents
+            about.map((item,i) => {i})
+          } */}
+        </div>
+      )
+    }
+  }
+
+  renderModalProducts = () => {
+
+    if (this.state.description) {
+      const topics = this.state.description[1]["items"],
+        { title } = this.state;
+      return (
+        <div className="content">
+          <div className="title-container">
+            <div className="title-bar"></div>
+            <div className="title">Innovation Topics</div>
+          </div>
+          {
+            // Map over contents
+            topics.map(({ label }, i) => (
+              <div key={title + " " + i} className="roadmap-item">
+                <img className="item-bullet" src={ProductIcons[0]["blueBullet"]} alt="" />
+                <label className="item-label">{label}</label>
+              </div>
+            ))
+          }
+        </div>
+      )
+    }
+
   }
 
   renderProcessHeaderContainers = () => {
@@ -167,7 +217,7 @@ class Header extends Component {
                 onClick={this.handleInfoClick}
                 ref={this.anchorEl} /> : null
             }
-            
+
           </div>
           <div className={"description-" + (compact ? "compact" : "default")
             + (this.props.smallWindow ? " description-small" : " description")}>
@@ -285,24 +335,24 @@ class Header extends Component {
             horizontal: 'center',
           }}
         >
-          <div className="content">
-            <div className="title-container">
-              <div className="title-bar"></div>
-              <div className="title">
 
-                {
-                  // TODO:
-                  pageType === undefined ? null :
-                    pageType === "process" ? "Innovations" : "Products/Innovations"
-                }</div>
-            </div>
-            {/* {selectedContent.content.map(content => (
+
+          {
+            // TODO:
+            pageType === undefined ? null :
+              pageType !== "process" ?
+                // this.renderModalProducts() 
+                this.renderModalProducts()
+                :
+                "Products/Innovations"
+          }
+
+          {/* {selectedContent.content.map(content => (
               <div key={content.item + "-" + selectedContent.title} className="roadmap-item">
                 <img className="item-bullet" src={renderIcon("blueBullet")} alt=""></img>
                 <label className="item-label">{content.item}</label>
               </div>
             ))} */}
-          </div>
         </Popover>
       </div>
     );
