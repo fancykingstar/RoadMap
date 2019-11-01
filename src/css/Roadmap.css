@@ -132,12 +132,12 @@
 
 .roadmap-stepper-popover.info-single .MuiPopover-paper {
     margin-top: 22px;
-    width: 254px;
-    max-width: 254px;
+    width: 414px;
+    max-width: 414px;
 }
 .roadmap-stepper-popover.info-single .MuiPopover-paper .content,
 .roadmap-stepper-popover.info-single .MuiPopover-paper .content {
-    width: 203px;
+    width: 363px;
 }
 
 .roadmap-stepper-popover.info-single .MuiPopover-paper .content .title-container .title,
@@ -173,7 +173,7 @@ line-height: 21px;
 .popover-arrow-container {
   position: absolute;
   padding-left: calc(25% + 10px);
-  
+
 }
 .popover-style-arrow {
   /* position:absolute !important; */
