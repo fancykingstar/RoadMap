@@ -39,11 +39,11 @@ class Header extends Component {
       roadmap: undefined,
       processes: [],
       products: [],
+      pageType: undefined,
       headerimage: '',
       /* Info Popover Properties */
       isInfoOpen: false,
       anchorEl: null,
-
       /*Info Popover End */
       resultspage: this.props.resultspage || false,
       resulthandler: this.props.resulthandler || false
@@ -53,6 +53,8 @@ class Header extends Component {
     this.renderProductHeaderContainers = this.renderProductHeaderContainers.bind(this);
     this.padHeaderOffset = this.padHeaderOffset.bind(this);
     this.unpadHeaderOffset = this.unpadHeaderOffset.bind(this);
+    this.handleInfoClick = this.handleInfoClick.bind(this);
+    this.handleInfoClickClose = this.handleInfoClickClose.bind(this);
   }
 
   componentDidMount() {
@@ -110,6 +112,23 @@ class Header extends Component {
   }
 
   // Offsets padding from MUI PopoverDefault
+
+  handleInfoClick = (e) => {
+    if (!this.state.isInfoOpen) {
+      this.setState({
+        anchorEl: e.target,
+        isInfoOpen: true
+      })
+    }
+  }
+  handleInfoClickClose = () => {
+    if (this.state.isInfoOpen) {
+      this.setState({
+        anchorEl: null,
+        isInfoOpen: false
+      })
+    }
+  }
   padHeaderOffset() {
     document.querySelector(".header-content-container").classList.add("offset");
   }
@@ -117,6 +136,7 @@ class Header extends Component {
   unpadHeaderOffset() {
     document.querySelector(".header-content-container").classList.remove("offset");
   }
+
   renderProcessHeaderContainers = () => {
     const { title, compact, headerimage, roadmap } = this.state;
     return (
@@ -128,10 +148,10 @@ class Header extends Component {
           <div className={"title title-" + (compact ? "compact" : "default")
             + (this.props.smallWindow ? " title-small" : "")
             + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")}>{title}
-            <img src={info} alt="info" style={{ position: this.props.windowWidth < 816 ? "relative" : "absolute", paddingLeft: 13 + "px", paddingTop: 21 + "px" }} />
+            <img src={info} alt="info" style={{ position: this.props.windowWidth < 816 ? "relative" : "absolute", paddingLeft: 13 + "px", paddingTop: 21 + "px" }} onClick={this.handleInfoClick} ref={this.state.anchorEl} />
           </div>
           <div className="header-roadmap-container">
- 
+
             {roadmap && roadmap.length > 0 ? this.props.windowWidth < 1240 ? <RoadmapVertical roadmap={roadmap} /> : <MultiRoadmap roadmap={roadmap} hideArrows={this.state.process === "twm"} /> : null}
           </div>
         </div>
@@ -140,7 +160,7 @@ class Header extends Component {
   }
 
   renderProductHeaderContainers = () => {
-    const { title, description, compact, type, headerimage, pageType } = this.state;
+    const { title, description, compact, type, headerimage } = this.state;
     let border = "0px solid red";
     return (
       <div className={"header-divided-container" + (title == "product roadmaps" ? " home-header" : " product-header"
@@ -149,7 +169,15 @@ class Header extends Component {
         )}>
           <div className={"title title-" + (compact ? "compact" : "default") + (title === "product roadmaps" ? " home-title" : " product-header")
             + (this.props.smallWindow ? " title-small" : "")
-            + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")}>{title}</div>
+            + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")}>{title}
+            <img src={info} alt="info" style={{
+              position: this.props.windowWidth < 816 ? "relative" : "absolute",
+              paddingLeft: 13 + "px",
+              paddingTop: this.props.windowWidth < 816 ? 5 + "px" : 21 + "px"
+            }}
+              onClick={this.handleInfoClick}
+              ref={this.state.anchorEl} />
+          </div>
           <div className={"description-" + (compact ? "compact" : "default")
             + (this.props.smallWindow ? " description-small" : " description")}>
             <div className="header-bullet-description-container">
@@ -181,7 +209,7 @@ class Header extends Component {
     )
   }
   render() {
-    const { title, processes, products, compact, type, resultspage, resulthandler } = this.state;
+    const { title, processes, products, compact, type, resultspage, resulthandler, pageType } = this.state;
     return (
       <div className={"page-header-default"
         + (type === "regular" ? " page-header-minheight" : "")
@@ -250,16 +278,16 @@ class Header extends Component {
           }
         </div>
         <Popover
-          className="roadmap-stepper-popover"
+          className={"roadmap-stepper-popover" + " info-" + pageType}
           id={this.state.isInfoOpen ? "simple-popover" : undefined}
           open={this.state.isInfoOpen}
-          // anchorEl={anchorEl}
-          // onClose={handleClose}
+          anchorEl={this.state.anchorEl}
+          onClose={this.handleInfoClickClose}
           onEnter={this.padHeaderOffset}
           onExit={this.unpadHeaderOffset}
           anchorOrigin={{
             vertical: 'bottom',
-            horizontal: 'right',
+            horizontal: 'center',
           }}
           transformOrigin={{
             vertical: 'top',
@@ -269,7 +297,13 @@ class Header extends Component {
           <div className="content">
             <div className="title-container">
               <div className="title-bar"></div>
-              <div className="title">Innovations</div>
+              <div className="title">
+              
+              {
+                // TODO:
+                pageType === undefined ? null : 
+                  pageType === "process" ? "Innovations" : "Products/Innovations"
+              }</div>
             </div>
             {/* {selectedContent.content.map(content => (
               <div key={content.item + "-" + selectedContent.title} className="roadmap-item">

@@ -231,6 +231,8 @@
 .header-content .title-compact {
   color: #0a6ed1;
   padding-left: 45px;
+  /* Design concern for less than long titles */
+  /* min-height: 134px; */
 }
 .header-content .title.title-long {
   max-width: 768px;

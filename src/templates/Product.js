@@ -109,7 +109,7 @@ class Products extends Component {
     const { title, description, whatsnew, releases, template, product, subproduct, timeline, tabValue, windowWidth } = this.state;
     return (
       <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
-        <Header title={title} description={description} image={this.renderImage(product)} compact={true} smallWindow={this.state.smallWindow} type="sub-page" pageType={product} />
+        <Header title={title} description={description} image={this.renderImage(product)} compact={true} smallWindow={this.state.smallWindow} type="sub-page" pageType={"product"} windowWidth={this.state.windowWidth} />
         <Feedback />
         <div className="right-side-bg"></div>
         <div className={"content-container" + (this.state.smallWindow ? " content-container-small" : "")}>

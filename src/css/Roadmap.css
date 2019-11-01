@@ -1,121 +1,131 @@
-
 .roadmap-stepper .MuiPaper-root {
-    background: transparent;
+  background: transparent;
 }
 
 .roadmap-stepper-single-line {
-    margin-top: 58px;
+  margin-top: 58px;
 }
 
 .roadmap-svg-group {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
-.roadmap-svg-icon svg{
-    margin-top: 100%;
-    margin-bottom: 100%;
+.roadmap-svg-icon svg {
+  margin-top: 100%;
+  margin-bottom: 100%;
 }
-
-
 
 .roadmap-stepper-label .MuiStepLabel-label {
-    font-family: "72";
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 21px;
-    text-align: center;
-    color: #0A6ED1;
-    cursor: pointer;
+  font-family: "72";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  color: #0a6ed1;
+  cursor: pointer;
 }
 
 .roadmap-stepper-label .MuiStepLabel-label.MuiStepLabel-active {
-    font-weight: normal;
-    color: #0A6ED1;
+  font-weight: normal;
+  color: #0a6ed1;
 }
 
-
 .roadmap-stepper-popover .MuiPopover-paper {
-    border-radius: 18px;
+  border-radius: 18px;
 }
 
 .MuiCard-root.roadmap-stepper-popover-card {
-    box-shadow: none;
+  box-shadow: none;
 }
 
-.roadmap-stepper-icon-color circle{
-    fill: #0A6ED1;
+.roadmap-stepper-icon-color circle {
+  fill: #0a6ed1;
 }
 
 .roadmap-stepper-icon-color path {
-    fill: #FFFFFF;
+  fill: #ffffff;
 }
 
 .roadmap-stepper-popover .title-container {
-    margin: 20px 0;
-    font-size: 2rem;
-    color: #000;
+  margin: 20px 0;
+  font-size: 2rem;
+  color: #000;
 }
 
 .roadmap-stepper-popover .title {
-    margin-top: 2px;
-    text-transform: uppercase;
-    font-family: '72';
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 21px;
-    color: #F0AB00;
+  margin-top: 2px;
+  text-transform: uppercase;
+  font-family: "72";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  color: #f0ab00;
 }
 
 .roadmap-stepper-popover .title-bar {
-    background-color: #F0AB00;
-    width: 37px;
-    height: 2px;
+  background-color: #f0ab00;
+  width: 37px;
+  height: 2px;
 }
 
 .roadmap-stepper-popover .header {
-    margin-top: 14px;
-    color: #000;
-    font-family: '72';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 21px;
+  margin-top: 14px;
+  color: #000;
+  font-family: "72";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
 }
 
 .roadmap-stepper-popover .body {
-    margin-top: 4px;
-    font-family: '72';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 21px;
-    color: #666666;
+  margin-top: 4px;
+  font-family: "72";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  color: #666666;
 }
 
 .roadmap-stepper-popover .content {
-    width: 400px;
-    margin: 31px 33px 31px 24px;
-    position: relative;
+  width: 400px;
+  margin: 31px 33px 31px 24px;
+  position: relative;
 }
 .roadmap-stepper-popover .roadmap-item {
   display: flex;
   align-items: end;
 }
-.roadmap-stepper-popover .item-bullet{
-    /* triangleBulletCSS */
-    /* margin-top: 4px; */
-    /*blueBulletCSS */
-    margin-top: 12px;
-    margin-left: 4px;
-    margin-right: 14px;
+.roadmap-stepper-popover .item-bullet {
+  /* triangleBulletCSS */
+  /* margin-top: 4px; */
+  /*blueBulletCSS */
+  margin-top: 12px;
+  margin-left: 4px;
+  margin-right: 14px;
 }
 .roadmap-stepper-popover .item-label {
-  font-family: '72';
+  font-family: "72";
   font-style: normal;
   font-weight: 300;
   font-size: 20px;
   line-height: 32px;
+}
+
+/* CSS for Info Icon Popover -- keeping things DRY */
+
+.roadmap-stepper-popover.info-process .MuiPopover-paper {
+  margin-top: 22px;
+  width: 254px;
+  height: 331px;
+}
+
+.roadmap-stepper-popover.info-product .MuiPopover-paper {
+    margin-top: 22px;
+    width: 507px;
+    height: 252px;
 }

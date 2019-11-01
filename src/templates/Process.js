@@ -97,7 +97,7 @@ class Process extends Component {
     const { title, description, whatsnew, tabValue, roadmap, timeline, releases, template, process, subprocess } = this.state;
     return (
       <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
-        {roadmap.length > 0 ? <Header title={title} description={description} image={this.renderImage(process)} compact={true} smallWindow={this.state.smallWindow} roadmap={roadmap} windowWidth={this.state.windowWidth} process={this.state.process} pagetype={"process"}type="sub-page" /> : null}
+        {roadmap.length > 0 ? <Header title={title} description={description} image={this.renderImage(process)} compact={true} smallWindow={this.state.smallWindow} roadmap={roadmap} windowWidth={this.state.windowWidth} process={this.state.process} pageType={"process"} type="sub-page" /> : null}
         <Feedback />
         <div className="right-side-bg"></div>
         <div className={"content-container" + (this.state.smallWindow ? " content-container-small" : "")}>

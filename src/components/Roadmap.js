@@ -59,7 +59,6 @@ export function Roadmap(props) {
     }
 
     function handleClose() {
-        // console.log(typeof anchorEl, anchorEl.parentNode.nodeName);
         if (anchorEl) {
             anchorEl.classList.remove("roadmap-stepper-icon-color");
         }
