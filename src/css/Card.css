@@ -7,8 +7,8 @@
 }
 
 .default-card.process-card {
-  width: 300px;
-  min-width: 300px;
+  width: 324px;
+  min-width: 324px;
   height: 291px;
 }
 
@@ -149,14 +149,15 @@
 }
 
 .static-card {
-  height: 270px;
-  min-height: 270px;
+  height: 291px;
+  min-height: 291px;
 }
 
 .static-card .content {
   margin: 15px 12px 26px 12px;
   position: relative;
-  height: 218px;
+  width: 248px;
+  height: 211px;
 }
 
 .static-card .title-container .title {

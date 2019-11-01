@@ -16,7 +16,7 @@ import { ProductIcons } from '../assets/prod-icons';
 const useColorlibTimelineIconStyles = makeStyles({
     root: {
         zIndex: 1,
-        height: 31,
+        height: 32,
         display: 'flex',
         alignItems: 'flex-end'
     }
@@ -50,7 +50,7 @@ class TimelineCurve extends Component {
                                     <label className="roadmap-timeline-label timeline-curve-label">{item.label}</label>
                                     {item.bullets.map(bullet => (
                                         <div key={bullet.id} className="roadmap-bullet-content">
-                                            <img className="roadmap-bullet-image" src={renderIcon("triangleBullet")} alt=""></img>
+                                            <img className="roadmap-bullet-image" src={renderIcon("blueBullet")} alt=""></img>
                                             <label className="roadmap-timeline-bullet-label">
                                                 {bullet.text}
                                             </label>

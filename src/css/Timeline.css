@@ -39,5 +39,10 @@
 }
 
 .roadmap-bullet-image{
-    margin-top: 4px;
+    /* blue-bullet arrow */
+    /* margin-top: 4px; */
+    /* blue-bullet rounded */
+    margin-top: 14px;
+    margin-left: 18px;
+    margin-right: 10px;
 }

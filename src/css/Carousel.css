@@ -31,6 +31,10 @@
 .roadmap-carousel-content-container {
     position: relative;
     margin: auto;
+    width: calc(108% - 30px);
+    top: -20px;
+    left: -50px;
+
 }
 
 .roadmap-carousel-content-container .slideInner___2mfX9 {
@@ -38,9 +42,10 @@
 }
 
 .roadmap-slide-dimensions {
-    padding-left: 40px;
+    padding-bottom: 4rem;
     height: 300px;
-    width: 990px;
+    /* max-width: 900px; */
+    min-width: 975px;
   }
   
   .roadmap-slide-dimensions-small {
@@ -66,4 +71,8 @@
     height: 250px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.0001) 2.08%, #FFFFFF 50.88%);
     transform: rotate(90deg);
+  }
+
+  .roadmap-carousel-content-container .carousel__slider-tray--horizontal{
+      /* Setting max width makes carousel non-responsive */
   }

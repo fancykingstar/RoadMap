@@ -448,7 +448,7 @@ class PlannedReleases extends Component {
   }
 
   scrollToTop = () => {
-    window.scrollTo(0, this.paginationRef.current.offsetTop - 100);
+    window.scrollTo(0, this.paginationRef.current.offsetTop - 77);
   }
 
   render() {
@@ -465,7 +465,6 @@ class PlannedReleases extends Component {
                 return <ReleaseForm key={form.id} title={form.title} expandable={form.expandable} status={form.state} data={form.fields} count={form.count} manageTagArray={this.manageTagArray} icon={form.icon} iconclass={form.iconclass} />
               }
             })}
-            <Button onClick={this.scrollToTop}> test </Button>
             <Button className="clearButton" onClick={this.clearForms} disableFocusRipple={true} disableRipple={true}>CLEAR ALL FILTERS</Button>
           </div>
           <div className={"pr-results" + (this.props.smallWindow ? " pr-results-small" : "")}>

@@ -28,8 +28,9 @@ class CarouselCards extends Component {
                 className={this.props.smallWindow ? "roadmap-slide-dimensions-small" : "roadmap-slide-dimensions"}
                 visibleSlides={this.props.windowWidth > 1000 ? (this.props.windowWidth / carouselWidthThreshold) :
                     (this.props.windowWidth / (carouselWidthThreshold + 70))}
-                naturalSlideWidth={this.props.smallWindow ? 200 : 134}
+                naturalSlideWidth={this.props.smallWindow ? 300 : 134}
                 naturalSlideHeight={150}
+                lockOnWindowScroll={true}
                 totalSlides={this.props.slides.length}
             >
                 <div className="roadmap-carousel-content-container">

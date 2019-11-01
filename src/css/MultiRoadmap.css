@@ -42,23 +42,26 @@
   border-color: #b1b1b1;
   border-width: 2px;
   height: 237px;
-  width: 83%;
+  width: 74.9%;
   margin-top: 64px;
   margin-left: 70px;
 }
 
 .roadmap-stepper .MuiStepper-alternativeLabel {
   /* width: 730px; */
-  max-width: 83%;
+  min-width: 799px;
+  max-width: 883px;
 }
 
 .roadmap-stepper .MuiStepper-root {
   padding: 0px;
 }
 .roadmap-stepper .MuiStepConnector-root {
-  top: 12px;
-  left: calc(-60% + 55px);
-  right: calc(50% + 45px);
+  top: 13px;
+  padding-left: 2px;
+  padding-right: 9px;
+  left: calc(-61% + 55px);
+  right: calc(50% + 47.9px);
 }
 
 .roadmap-stepper .MuiStepLabel-iconContainer .roadmap-svg-icon {
