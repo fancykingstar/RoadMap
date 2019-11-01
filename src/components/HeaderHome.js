@@ -134,16 +134,34 @@ class Header extends Component {
 
   renderModalProcesses = () => {
     if (this.state.description) {
-      const about = this.state.descriptions[0]["descriptions"]
+      const { products, title } = this.state
+      console.log("prod:", products);
       return (
-        <div className="content">
-          <div className="title-container">
-            <div className="title">Products/Innovations</div>
+        <div className="title-process-container">
+          <div className="content">
+            <div className="title-container">
+              <div className="title-bar"></div>
+              <div className="title">Products</div>
+            </div>
+            {products.map((product, i) => (
+              <div key={title + " " + i} className="roadmap-item">
+                <img className="item-bullet" src={ProductIcons[0]["blueBullet"]} alt="" />
+                <label className="item-label">{product.title}</label>
+              </div>
+            ))}
           </div>
-          {/* {
-            // Map over contents
-            about.map((item,i) => {i})
-          } */}
+          <div className="content">
+            <div className="title-container">
+              <div className="title-bar"></div>
+              <div className="title">Innovation Topics</div>
+            </div>
+            {products.map((product, i) => (
+              <div key={title + " " + i} className="roadmap-item">
+                <img className="item-bullet" src={ProductIcons[0]["blueBullet"]} alt="" />
+                <label className="item-label">{product.title}</label>
+              </div>
+            ))}
+          </div>
         </div>
       )
     }
@@ -221,15 +239,14 @@ class Header extends Component {
           <div className={"description-" + (compact ? "compact" : "default")
             + (this.props.smallWindow ? " description-small" : " description")
             + (title === "product roadmaps" ? " home-header-description" : "")
-            }>
+          }>
             <div className="header-bullet-description-container">
-              </div>
+            </div>
 
-              {
-                // TODO:
-                type === 'sub-page' ? (description ? description[0]["descriptions"]: null) :
+            {
+              type === 'sub-page' ? (description ? description[0]["descriptions"] : null) :
                 <ProductSearch placeholder="Search for topics, products, or industries" suggestions={suggestions} trends={trends} isHomePage={title && title === "product roadmaps"} />
-              }
+            }
 
           </div>
           {compact ? null : <div className="button-container">
@@ -348,7 +365,7 @@ class Header extends Component {
                 // this.renderModalProducts() 
                 this.renderModalProducts()
                 :
-                "Products/Innovations"
+                this.renderModalProcesses()
           }
         </Popover>
       </div>

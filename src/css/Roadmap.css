@@ -119,7 +119,11 @@
 }
 
 /* CSS for Info Icon Popover -- keeping things DRY */
-
+.roadmap-stepper-popover.info-process .content {
+  width: calc(100% - 50px);
+  height: 100%;
+  margin: 10px 10px 30px 33px;
+}
 .roadmap-stepper-popover.info-process .MuiPopover-paper {
     margin-top: 22px;
     width: 507px;
@@ -131,17 +135,20 @@
     width: 254px;
     max-width: 254px;
 }
+.roadmap-stepper-popover.info-product .MuiPopover-paper .content,
 .roadmap-stepper-popover.info-product .MuiPopover-paper .content {
     width: 203px;
-    min-height: 239px;
 }
 
-.roadmap-stepper-popover.info-product .MuiPopover-paper .content .title-container .title {
+.roadmap-stepper-popover.info-product .MuiPopover-paper .content .title-container .title,
+.roadmap-stepper-popover.info-process .MuiPopover-paper .content .title-container .title  {
 font-weight: normal;
 font-size: 18px;
 line-height: 21px;
 }
-.roadmap-stepper-popover.info-product .MuiPopover-paper .content .roadmap-item .item-label {
+
+.roadmap-stepper-popover.info-product .MuiPopover-paper .content .roadmap-item .item-label,
+.roadmap-stepper-popover.info-process .MuiPopover-paper .content .roadmap-item .item-label {
   line-height: 23px;
   padding-bottom: 15px;
 }
@@ -150,4 +157,15 @@ line-height: 21px;
   margin-top: 7px;
   margin-left: 4px;
   margin-right: 8px;
+}
+.roadmap-stepper-popover.info-process .MuiPopover-paper .content .roadmap-item .item-bullet {
+  margin-top: 8px;
+  margin-left: 4px;
+  margin-right: 14px;
+}
+.roadmap-stepper-popover .title-process-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  overflow-y: hidden;
+  padding-right: 4px;
 }
