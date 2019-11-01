@@ -6,7 +6,7 @@
                   {"label": "SAP Marketing Cloud", "key": "marketingcloud", "link": ""},
                   {"label": "SAP Sales Cloud", "key": "salescloud", "link": ""},
                   {"label": "SAP Service Cloud", "key": "servicecloud", "link": ""}]},
-                  {"title": "Innovations", "items":
+                  {"title": "Innovation topics", "items":
                   [{"label": "Integrated end-to-end processes for Lead to Cash", "key": "innovation1", "link": ""},
                   {"label": "Intelligence (AI/ML) capabilities and analytics", "key": "innovation2", "link": ""},
                   {"label": "UX harmonization across the SAP C/4HANA suite", "key": "innovation3", "link": ""}, 

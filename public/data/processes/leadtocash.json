@@ -3,7 +3,7 @@
   "description": [{"title": "Products", "items":
                   [{"label": "SAP C/4HANA", "key": "c4hana", "link": ""},
                   {"label": "SAP S/4HANA", "key": "s4hana", "link": ""}]},
-                  {"title": "Innovations", "items":
+                  {"title": "Innovation topics", "items":
                   [{"label": "Native user experience for increased productivity", "key": "innovation1", "link": ""},
                   {"label": "Embedded intelligence for performance and outcome optimization", "key": "innovation2", "link": ""},
                   {"label": "Operational and experience data integration", "key": "innovation3", "link": ""}]}],

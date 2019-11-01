@@ -1,7 +1,7 @@
 {
     "title": "SAP SuccessFactors",
     "description": [{"title": "About", "descriptions":"SAP SuccessFactors is a complete human capital management (HCM) suite that helps you attract, develop, motivate, and engage a diverse, global workforce by delivering awesome experiences for every user and providing a global people platform for HR."},
-                  {"title": "Innovations", "items":
+                  {"title": "Innovation topics", "items":
                   [{"label": "Reimagine user experience", "key": "innovation1", "link": ""},
                   {"label": "Expand recruiting capabilities", "key": "innovation2", "link": ""},
                   {"label": "Support localized HR and payroll compliance", "key": "innovation3", "link": ""},

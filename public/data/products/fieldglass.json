@@ -1,7 +1,7 @@
 {
     "title": "SAP Fieldglass",
     "description": [{"title": "About", "descriptions":"SAP Fieldglass provides industry-leading solutions to find, engage, and manage your external workforce and services procurement resources, including temporary staff, Statement-of-Work based consultants, freelancers, contractors, and more."},
-      {"title": "Innovations", "items": [{"label": "Machine learning", "key": "innovation1", "link": ""},
+      {"title": "Innovation topics", "items": [{"label": "Machine learning", "key": "innovation1", "link": ""},
       {"label": "Digital Partner Network", "key": "innovation2", "link": ""},
       {"label": "Integrations", "key": "innovation3", "link": ""},
       {"label": "User experience", "key": "innovation4", "link": ""}]} ],

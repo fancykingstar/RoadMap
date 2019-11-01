@@ -1,7 +1,7 @@
 {
     "title": "SAP Service Cloud Solution",
     "description": [{"title": "About", "descriptions":"The SAP Service Cloud solution offers robust omnichannel customer service and field service support. It helps provide a smooth service experience to your customers throughout their entire journey, bridging the gap between front-office engagements and back-office processes."},
-                  {"title": "Innovations", "items":
+                  {"title": "Innovation topics", "items":
                   []}],
     "whatsnew" : [
       {
@@ -34,65 +34,44 @@
     "timelineTitle": "Release Highlights",
     "timeline": [
     {
-      "label": "Aug 2019",
-      "id": "aug2019",
-      "bullets": [
-        {
-          "text": "Harmonized SAP Fiori 3 look and feel across SAP C/4HANA Suite",
-          "id": "aug2019-0"
-        },
-        {
-          "text": "Lead to Cash process integration",
-          "id": "aug2019-1"
-        },
-        {
-          "text": "AI/ML driven intelligent scenarios",
-          "id": "aug2019-2"
-        },
-        {
-          "text": "Cloud administration and user management via SAP CX Cockpit",
-          "id": "aug2019-3"
-        }
-      ]
-    },
-    {
-      "label": "Nov 2019",
+      "label": "Q4 2019 (Release 1911)",
       "id": "nov2019",
       "bullets": [
         {
-          "text": "Continue look and feel harmonization with Fiori 3",
+          "text": "360 Agent Experience",
           "id": "nov2019-0"
         },
         {
-          "text": "One identity authentication",
+          "text": "Ticket Intelligence: Email Template and Similar Tickets",
           "id": "nov2019-1"
-        },
-        {
-          "text": "SAP Cloud Platform Extension Factory prebuilt application connectivity, management console, and service catalogues",
-          "id": "nov2019-2"
         }
       ]
     },
-
     {
-      "label": "Feb 2020",
+      "label": "Q1 2020 (Release 2002)",
       "id": "feb2020",
       "bullets": [
         {
-          "text": "One global identity for all users",
+          "text": "Moment Flows",
+          "id": "feb2020-0"
+        },
+        {
+          "text": "Qualtrics XM: closed-loop feedback",
+          "id": "feb2020-1"
+        }
+      ]
+    },
+    {
+      "label": "Q2 2020 (Release 2005)",
+      "id": "may2020",
+      "bullets": [
+        {
+          "text": "Agent assist bots",
           "id": "may2020-0"
         },
         {
-          "text": "Consumable APIs for (de)provisioning",
+          "text": "Enhanced SAP S/4HANA integration",
           "id": "may2020-1"
-        },
-        {
-          "text": "Real-time measurement of end-user experience",
-          "id": "may2020-2"
-        },
-        {
-          "text": "Facilitate open ecosystem with SAP Graph",
-          "id": "may2020-3"
         }
       ]
     }

@@ -1,7 +1,7 @@
 {
   "title": "SAP Ariba",
   "description": [{"title": "About", "descriptions":"SAP Ariba provides market-leading applications for executing source-to-pay processes with integration to suppliers over the world’s largest business network. SAP Ariba is how companies connect to get business done."},
-                  {"title": "Innovations", "items":
+                  {"title": "Innovation topics", "items":
                   [{"label": "API / data access", "key": "innovation1", "link": ""},
                   {"label": "Digital Partner Network", "key": "innovation2", "link": ""},
                   {"label": "Integrations", "key": "innovation3", "link": ""},

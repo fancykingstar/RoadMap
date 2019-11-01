@@ -1,40 +1,32 @@
 {
-    "title": "SAP Concur",
-    "description": [{"title": "About", "descriptions":"SAP Concur provides innovative and actionable tools to help businesses efficiently transact, control, and maximize the value of employee discretionary spend."},
-                    {"title": "Innovations", "items":
-                  [{"label": "Travel, expense and invoice processes automation and integrations", "key": "innovation1", "link": ""},
-                  {"label": "Efficient transaction, control and maximizing the value of employee discretionary spend", "key": "innovation2", "link": ""}]}],
+    "title": "SAP Concur Solutions",
+    "description": [{"title": "About", "descriptions":"SAP Concur solutions provide innovative and actionable tools to help businesses efficiently transact, control, and maximize the value of employee discretionary spend."},
+    {"title": "Innovation topics", "items":
+                  [{"label": "Automating and integrating travel, expense, and invoice processes that give customers greater visibility, control, and employee productivity", "key": "innovation1", "link": ""}]}],
     "whatsnew" : [
       {
-      "id": 1,
-      "type": "start",
-      "title": "Integration",
-      "header": "Master Data Service For Cost Center",
-      "body" : "Delivers consistent cost center data to enable digital end-to-end business processes across solutions in the Intelligent Enterprise.",
-      "buttonText" : "Learn More",
-      "buttonLink" : "concur"
-      },{
-      "id": 2,
-      "type": "mid",
-      "title": "SAP Concur",
-      "header": "NEC",
-      "body": "See how NEC cut T&E management time by 40% and saved US$1.8 million per year",
-      "buttonText": "Watch the Video",
-      "buttonLink": "https://www.concur.com/en-us/casestudy/nec-achieves-cost-savings-and-compliance"
-      },{
-        "id": 5,
+        "id": 1,
         "type": "mid",
-        "title": "Event",
+        "title": "SAP Concur",
         "header": "Fusion Exchange – Toronto, October 15, 2019",
         "body": "Please join us for this event.",
         "buttonText": "Register Now",
         "buttonLink": "https://www.concur.ca/fusion-exchange/toronto"
+      },
+      {
+          "id": 2,
+          "type": "mid",
+          "title": "SAP Concur",
+          "header": "Fusion Exchange – Shanghai, November 19, 2019",
+          "body": "Please join us for this event.",
+          "buttonText": "Register Now",
+          "buttonLink": "https://www.concur.cn/fusion-exchange/shanghai"
       }
     ],
   "timelineTitle": "Release Highlights",
   "timeline": [
   {
-    "label": "Sep 2019",
+    "label": "Q3 2019 (Release 1909)",
     "id": "sep2019",
     "bullets": [
       {
@@ -44,7 +36,17 @@
     ]
   },
   {
-    "label": "Nov 2019",
+    "label": "Q3 2019 (Release 1910)",
+    "id": "oct2019",
+    "bullets": [
+      {
+        "text": "The Concur TripLink Web service is now connected with Lufthansa",
+        "id": "oct2019-0"
+      }
+    ]
+  },
+  {
+    "label": "Q3 2019 (Release 1909)",
     "id": "nov2019",
     "bullets": [
       {

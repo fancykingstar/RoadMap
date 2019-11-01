@@ -4,7 +4,7 @@
                   [{"label": "SAP Ariba", "key": "ariba", "link": ""},
                   {"label": "SAP Fieldglass", "key": "fieldglass", "link": ""},
                   {"label": "SAP S/4HANA", "key": "s4hana", "link": ""}]},
-                  {"title": "Innovations", "items":
+                  {"title": "Innovation topics", "items":
                   [{"label": "Deliver the most robust and complete source to pay collaborative platform and applications", "key": "innovation1", "link": ""}]}],
   "whatsnew": [
     {
