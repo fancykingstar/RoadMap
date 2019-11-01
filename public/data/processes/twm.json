@@ -6,7 +6,7 @@
                   {"label": "SAP Concur", "key": "concur", "link": ""},
                   {"label": "SAP S/4HANA", "key": "s4hana", "link": ""}, 
                   {"label": "Qualtrics", "key": "qualtrics", "link": ""}]},
-                  {"title": "Innovations", "items":
+                  {"title": "Innovation topics", "items":
                   [{"label": "Master data services", "key": "innovation1", "link": ""},
                   {"label": "Time management", "key": "innovation2", "link": ""},
                   {"label": "User experience harmonization", "key": "innovation3", "link": ""},
