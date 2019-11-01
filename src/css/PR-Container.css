@@ -135,8 +135,8 @@
 
 .pr-results .pr-search-container .pr-search-icon {
     padding: 18px 15px 12px 15px;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    border-top-left-radius: 32px;
+    border-bottom-left-radius: 32px;
     border-width: 1px;
     border-style: solid;
     border-color: #ccc transparent #ccc #ccc;
@@ -153,8 +153,8 @@
 .pr-results .pr-search-container .search-input {
     width: 918px;
     height: 64px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-top-right-radius: 32px;
+    border-bottom-right-radius: 32px;
     border-width: 1px;
     border-style: solid;
     border-color:  #ccc #ccc #ccc transparent;
