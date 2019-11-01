@@ -15,9 +15,11 @@ import { ProductIcons } from '../assets/prod-icons';
 const useColorlibTimelineIconStyles = makeStyles({
     root: {
         zIndex: 1,
-        height: 31,
+        height: 6,
         display: 'flex',
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
+        top: 13,
+        position: 'relative'
     }
 });
 
@@ -36,7 +38,7 @@ function ColorlibTimelineIcon(args) {
     const dot = args.smallWindow ? "timelineDotSmall" : "timelineDot";
     return (
         <div className={args.smallWindow ? smallClasses.root : classes.root}>
-            <img src={renderIcon(dot)} alt={args.item.label}></img>
+            <img src={renderIcon(dot)} alt={args.item.label} className="roadmap-timeline-vertical-line-icon"></img>
         </div>
     );
 }
@@ -44,7 +46,7 @@ function ColorlibTimelineIcon(args) {
 function ColorlibTimelineBulletIcon(item) {
     const classes = useColorlibTimelineIconStyles();
     return (
-        <img className={classes.root} src={renderIcon("triangleBullet")} alt={item.label}></img>
+        <img className={classes.root} src={renderIcon("roundBullet")} alt={item.label}></img>
     );
 }
 
