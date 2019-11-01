@@ -80,6 +80,25 @@ class Header extends Component {
           console.log(error);
         }
       )
+      /* DEVELOPMENT ONLY */
+      fetch(`/data/processes/${this.props.process}.json`)
+        .then(res => res.json())
+        .then((result) => {
+          result.description.forEach( ({title, items}) => {
+            if (typeof title === "string" && title === "Products") {
+              this.setState({
+                productTitles: items
+              })
+            } else if (typeof title === "string" && title ==="Innovations") {
+              this.setState({
+                innovationTopics: items
+              })
+            }
+          })
+        }
+
+        )
+      /* DEVELOPMENT ONLY */
     this.setState({
       description: this.props.description,
       title: this.props.title || "",
@@ -116,7 +135,7 @@ class Header extends Component {
 
   handleInfoClick = (e) => {
     this.setState({ isInfoOpen: !this.state.isInfoOpen }
-      , () => console.log("descriptions:", this.state.description[0]["descriptions"], "\nproducts:", this.state.products)
+      // , () => console.log("descriptions:", this.state.description[0]["descriptions"], "\nproducts:", this.state.products, "\nprocesses:", this.state.process)
     )
   }
 
@@ -133,9 +152,8 @@ class Header extends Component {
   }
 
   renderModalProcesses = () => {
-    if (this.state.description) {
-      const { products, title } = this.state
-      console.log("prod:", products);
+    if (this.state.productTitles && this.state.innovationTopics) {
+      const { productTitles, innovationTopics, title } = this.state
       return (
         <div className="title-process-container">
           <div className="content">
@@ -143,10 +161,10 @@ class Header extends Component {
               <div className="title-bar"></div>
               <div className="title">Products</div>
             </div>
-            {products.map((product, i) => (
+            {productTitles.map(({label}, i) => (
               <div key={title + " " + i} className="roadmap-item">
                 <img className="item-bullet" src={ProductIcons[0]["blueBullet"]} alt="" />
-                <label className="item-label">{product.title}</label>
+                <label className="item-label">{label}</label>
               </div>
             ))}
           </div>
@@ -155,10 +173,10 @@ class Header extends Component {
               <div className="title-bar"></div>
               <div className="title">Innovation Topics</div>
             </div>
-            {products.map((product, i) => (
+            {innovationTopics.map(({label}, i) => (
               <div key={title + " " + i} className="roadmap-item">
                 <img className="item-bullet" src={ProductIcons[0]["blueBullet"]} alt="" />
-                <label className="item-label">{product.title}</label>
+                <label className="item-label">{label}</label>
               </div>
             ))}
           </div>

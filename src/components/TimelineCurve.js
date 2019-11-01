@@ -36,11 +36,6 @@ function renderIcon(icon) {
 }
 
 class TimelineCurve extends Component {
-    componentDidUpdate(prevProps) {
-        if(prevProps !== this.props) {
-            console.log("punk curve", this.props);
-        }
-    }
     render() {
         return (
             <div className={"timeline-curve" + (this.props.pageType && this.props.pageType === "product" ? " product-curve" : " process-curve") + (this.props.title &&this.props.title.length < 16 ? " offset-top" : "")}>
