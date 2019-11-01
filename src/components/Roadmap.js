@@ -46,7 +46,7 @@ const useColorlibStepIconStyles = makeStyles({
 });
 
 export function Roadmap(props) {
-    
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [selectedContent, setSelectedContent] = React.useState(defaultContent);
 
@@ -92,9 +92,7 @@ export function Roadmap(props) {
     function renderIcon(icon) {
         return ProductIcons[0][icon];
     }
-    function padHeaderOffset() {
-        document.querySelector(".header-content-container").classList.toggle("offset");
-    }
+
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
     const testStyles = {
@@ -106,10 +104,10 @@ export function Roadmap(props) {
                 {props.roadmap.map(item => (
                     <Step key={item.label}>
                         <StepLabel onClick={(e) => handleStepClick(e, item)}
-                            className={"roadmap-stepper-label roadmap-stepper-label" 
+                            className={"roadmap-stepper-label roadmap-stepper-label"
                                 + (props.reverseDirection ? "-left" : "-right")}
                             StepIconComponent={ColorlibStepIcon}
-                            StepIconProps={{ "item": item, "reverseDirection": props.reverseDirection, 
+                            StepIconProps={{ "item": item, "reverseDirection": props.reverseDirection,
                                             "multiLine": props.multiLine, "hideArrows": false}}>
                             {item.label}
                         </StepLabel>
@@ -122,7 +120,6 @@ export function Roadmap(props) {
                 open={open}
                 anchorEl={anchorEl}
                 onClose={handleClose}
-                onEnter={padHeaderOffset}
                 anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'right',
@@ -132,7 +129,7 @@ export function Roadmap(props) {
                     horizontal: 'center',
                 }}
                 style={testStyles}
-            >   
+            >
                 <div className="popover-arrow-container">
                 <div className="popover-style-arrow"></div>
                 </div>

@@ -54,7 +54,6 @@ class Header extends Component {
     this.renderProcessHeaderContainers = this.renderProcessHeaderContainers.bind(this);
     this.renderProductHeaderContainers = this.renderProductHeaderContainers.bind(this);
     this.renderInfoModal = this.renderInfoModal.bind(this);
-    this.padHeaderOffset = this.padHeaderOffset.bind(this);
     this.handleInfoClick = this.handleInfoClick.bind(this);
   }
 
@@ -144,9 +143,6 @@ class Header extends Component {
   // Offsets padding from MUI PopoverDefault
 
 
-  padHeaderOffset() {
-    document.querySelector(".header-content-container").classList.toggle("offset");
-  }
 
   renderInfoModal = () => {
     if (this.state.productTitles && this.state.innovationTopics) {
@@ -318,7 +314,7 @@ class Header extends Component {
                   </ul>
                 </nav>
                 <SearchBar resultspage={resultspage} resulthandler={resulthandler} suggestions={suggestions} trends={trends} compact={compact} />
-                {/* 
+                {/*
                   // TODO: Notification Bell
                 <img className="header-notification-bell" alt="bell" src={compact ? notificationBell : null } /> */}
                 <img className="header-user-account" alt="account" src={compact ? compactAccountIcon : accountIcon}
@@ -356,8 +352,6 @@ class Header extends Component {
           open={this.state.isInfoOpen}
           anchorEl={this.anchorEl.current}
           onClose={this.handleInfoClick}
-          onEnter={this.padHeaderOffset}
-          onExit={this.padHeaderOffset}
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'center',
