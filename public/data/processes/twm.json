@@ -153,7 +153,7 @@
   "timelineTitle": "Product Delivery Timeline",
   "timeline": [
   {
-    "label": "Aug 2019",
+    "label": "Q3 2019 (Release 1908)",
     "id": "aug2019",
     "bullets": [
       {
@@ -167,7 +167,7 @@
     ]
   },
   {
-    "label": "Nov 2019",
+    "label": "Q4 2019 (Release 1911)",
     "id": "nov2019",
     "bullets": [
       {
@@ -190,7 +190,7 @@
   },
 
   {
-    "label": "Feb 2020",
+    "label": "Q2 2020 (Release 2005)",
     "id": "feb2020",
     "bullets": [
       {

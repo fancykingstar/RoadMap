@@ -38,7 +38,7 @@
     "timelineTitle": "Release Highlights",
     "timeline": [
     {
-      "label": "Aug 2019",
+      "label": "Q3 2019 (Release 1908)",
       "id": "aug2019",
       "bullets": [
         {
@@ -46,17 +46,17 @@
           "id": "aug2019-0"
         },
         {
-          "text": "Lead to Cash process end-to-end integration across SAP C/4HANA, SAP S/4HANA and SAP Analytics Cloud. Please check the separated roadmap for the Lead-to-Cash process",
+          "text": "Lead to Cash process end-to-end integration across SAP C/4HANA, SAP S/4HANA and SAP Analytics Cloud",
           "id": "aug2019-1"
         },
         {
-          "text": "SAP Customer Order Sourcing: Cloud service for product availability, sourcing, and reservations; Integration into SAP S/4HANA for ATP stock availability incl. delta snapshot; preconfigured rules for distribution centers, stores, and third-party locations; UI to maintain sourcing strategies",
+          "text": "SAP Customer Order Sourcing: Cloud service for product availability, sourcing, and reservations",
           "id": "aug2019-2"
         }
       ]
     },
     {
-      "label": "Nov 2019",
+      "label": "Q4 2019 (Release 1911)",
       "id": "nov2019",
       "bullets": [
         {
@@ -74,7 +74,7 @@
       ]
     },
     {
-      "label": "Feb 2020",
+      "label": "Q1 2020 (Release 2002)",
       "id": "feb2020",
       "bullets": [
         {
@@ -86,13 +86,13 @@
           "id": "feb2020-1"
         },
         {
-          "text": "SAP Customer Order Sourcing: enhanced sourcing strategies; further extensibility options for sourcing; shipping/transportation data in sourcing strategies, e.g. lead times, schedules, etc.",
+          "text": "SAP Customer Order Sourcing: enhanced sourcing strategies; further extensibility options for sourcing; shipping/ transportation data in sourcing strategies",
           "id": "feb2020-2"
         }
       ]
     },
     {
-      "label": "May 2020",
+      "label": "Q2 2020 (Release 2005)",
       "id": "may2020",
       "bullets": [
         {
