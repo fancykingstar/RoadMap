@@ -165,7 +165,6 @@
   text-align: left;
   width: 100%;
   /* box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1); */
-  border-color: rgba(0, 0, 0, 0.333)
 }
 
 .product-search-container.home-page {
@@ -239,7 +238,7 @@ input:focus, textarea:focus {
   font-size: 1.6666666666666667rem;
   color: #CCCCCC;
   padding-left: 15px;
-  width: calc(700px + 1rem);
+  width: calc(546px + 1rem);
   margin-block-end: 0em;
   margin-block-start: 0em;
 }
