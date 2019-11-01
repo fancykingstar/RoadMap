@@ -169,3 +169,26 @@ line-height: 21px;
   overflow-y: hidden;
   padding-right: 4px;
 }
+
+.popover-arrow-container {
+  position: absolute;
+  padding-left: calc(25% + 10px);
+  
+}
+.popover-style-arrow {
+  /* position:absolute !important; */
+  /* moves arrow up */
+  margin-top: -25px;
+  z-index: 1301;
+}
+
+.popover-style-arrow::before {
+  content: "";
+  position: absolute !important;
+  border-style: solid;
+  border-bottom: 10px solid black;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-top: 10px solid transparent;
+  z-index:1301;
+}

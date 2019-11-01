@@ -97,7 +97,9 @@ export function Roadmap(props) {
     }
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
-
+    const testStyles = {
+        zIndex: '1299'
+    }
     return (
         <div className={"roadmap-stepper " + (props.multiLine ? "" : "roadmap-stepper-single-line")}>
             <Stepper alternativeLabel nonLinear={true} connector={props.nodash ? <ConnectorStyleNoDash /> : <ConnectorStyle />} >
@@ -121,7 +123,6 @@ export function Roadmap(props) {
                 anchorEl={anchorEl}
                 onClose={handleClose}
                 onEnter={padHeaderOffset}
-                onExit={padHeaderOffset}
                 anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'right',
@@ -130,7 +131,11 @@ export function Roadmap(props) {
                     vertical: 'top',
                     horizontal: 'center',
                 }}
-            >
+                style={testStyles}
+            >   
+                <div className="popover-arrow-container">
+                <div className="popover-style-arrow"></div>
+                </div>
                 <div className="content">
                     <div className="title-container">
                         <div className="title-bar"></div>
