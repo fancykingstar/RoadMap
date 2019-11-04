@@ -26,6 +26,7 @@ import info from '../assets/images/info.svg';
 import logo from '../assets/images/sap-logo.svg';
 import accountIcon from '../assets/images/home-account.svg';
 import compactAccountIcon from '../assets/images/compact-account.svg';
+import clipMask from '../assets/images/clippingMask.svg';
 
 class Header extends Component {
 
@@ -262,16 +263,7 @@ class Header extends Component {
         {this.props.smallWindow ? null : <div className="header-right-container product-header">
           {compact ? <img src={headerimage} alt={title} /> : null}
         </div>}
-        {this.props.smallWindow || compact ? null : <svg width="100%" height="230"
-          viewBox="0 0 1440 676" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
-          <defs>
-            <clipPath id="clipping" clipPathUnits="objectBoundingBox"
-              transform="scale(0.000694 0.001479)">
-              <path fillRule="evenodd" clipRule="evenodd"
-                d="M1440 380.254C1348.15 432.998 1055.79 586.784 831.346 547.605C580.501 503.817 323.196 477.945 0 675.098V0H1440V380.254Z" />
-            </clipPath>
-          </defs>
-        </svg>}
+        {this.props.smallWindow || compact ? null : <img src={clipMask} alt="mask" />}
       </div>
 
     )
