@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 //import custom components
 import Snackbar from '@material-ui/core/Snackbar';
@@ -251,7 +252,7 @@ class Header extends Component {
             </div>
 
             {
-              type === 'sub-page' ? (description ? description[0]["descriptions"] : null) :
+              type === 'sub-page' ? (description ? ReactHtmlParser(description[0]["descriptions"]) : null) :
                 <ProductSearch placeholder="Search for topics, products, or industries" suggestions={suggestions} trends={trends} isHomePage={title && title === "product roadmaps"} />
             }
 
