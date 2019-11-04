@@ -277,6 +277,12 @@
   color: #000000;
 }
 
+.description a {
+  color: #0a6ed1;
+  font-weight: 400;
+  text-decoration: none;
+}
+
 button {
   cursor: pointer;
 }

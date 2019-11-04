@@ -1,6 +1,6 @@
 {
     "title": "SAP C/4HANA SUITE",
-    "description": [{"title": "About", "descriptions":"SAP C/4HANA is the customer experience suite of five cloud solutions: <a href='./'>Commerce Cloud</a>, Marketing Cloud, Customer Data Cloud, Service Cloud, and Sales Cloud."},
+    "description": [{"title": "About", "descriptions":"SAP C/4HANA is the customer experience suite of five cloud solutions: <a href='./commercecloud'>Commerce Cloud</a>, <a href='./marketingcloud'>Marketing Cloud</a>, <a href='./customerdatacloud'>Customer Data Cloud</a>, <a href='./servicecloud'>Service Cloud</a>, and <a href='./salescloud'>Sales Cloud</a>."},
                   {"title": "Innovation topics", "items":
                   [{"label": "Integrated comprehensive processes for lead to cash across SAP business applications", "key": "innovation1", "link": ""},
                   {"label": "Intelligence capabilities (for example, artificial intelligence and machine learning) and analytics", "key": "innovation2", "link": ""},
