@@ -86,6 +86,19 @@
   cursor: pointer;
 }
 
+.dd-sublist-item {
+  font-size: 1.5rem;
+  padding: 8px 12px;
+  margin-left: 30px;
+  line-height: 23px;
+  display: inline-block;
+  text-overflow: ellipsis;
+}
+
+.dd-sublist-item.active {
+  cursor: pointer;
+}
+
 .dd-list-item.inactive {
   color: rgba(0, 0, 0, 0.5);
 }
