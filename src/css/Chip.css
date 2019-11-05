@@ -27,6 +27,12 @@
   height: 18px;
 }
 
+.release-chip.MuiChip-root:hover,
+.release-chip.MuiChip-root:focus {
+    color: #F0AB00;
+    background: transparent;
+}
+
 
 .MuiChip-root .MuiChip-label {
     padding-left: 0;
