@@ -130,6 +130,8 @@ class PlannedReleases extends Component {
 
                     ),
                   }, function () {
+                    // API CALL TO MAIN DATABASE
+                    
                     this.filterFormResults();
                   })
                 },
