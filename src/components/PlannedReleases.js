@@ -131,41 +131,7 @@ class PlannedReleases extends Component {
                     ),
                   }, function () {
                     // API CALL TO MAIN DATABASE
-                    // TESTING PURPOSES ONLY
-                    let querySubstr = this.state.cardfilter.charAt(0).toUpperCase() + this.state.cardfilter.slice(1);
-                    let baseURL = 'https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com'
-                    let query = baseURL + `/odata/v4/roadmap/Roadmap?$filter=contains%28productSearch%2C%27${querySubstr}%27%29&$skip=0&$orderby=date%20asc&$expand=products%2Cfutureplans`
-                    fetch(query)
-                      .then(res => {
-                        let response = res.json();
-                        return response;
-                      })
-                      .then(({ value }) => {
-                        let tags = [];
-                        value.forEach(result => {
-                          if (!result.businessvalues) { result.businessvalues = []; }
-                          if (!result.featuredetails) { result.featuredetails = []; }
-                          if (result.date) {
-                            let datevalue = new Date(result.date);
-                            result.date = datevalue.setDate(datevalue.getDate() + 1); // fallback
-                            result.numericdate = datevalue.getTime() / 1000.0;
-                            result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
-                            result.futureplans = this.manageDates(result.futureplans);
-                            // set tags
-                            if (result.process.length && !tags.includes(result.process)) { tags.push(result.process) }
-                            if (result.integration.length && !tags.includes(result.integration)) { tags.push(result.integration) }
-                            if (result.products.length) {
-                              result.products.forEach(({ product }) => {
-                                if (!tags.includes(product)) tags.push(product)
-                              })
-                            }
-                            result.tags = tags;
-                          }
-                        });
-                        console.log('newResults:', value);
-                      },
-
-                        (error) => console.log(error))
+                    
                     this.filterFormResults();
                   })
                 },
