@@ -141,8 +141,8 @@ class PlannedReleases extends Component {
                         return response;
                       })
                       .then(({ value }) => {
-                        let tags = [];
                         value.forEach(result => {
+                          let tags = [];
                           if (!result.businessvalues) { result.businessvalues = []; }
                           if (!result.featuredetails) { result.featuredetails = []; }
                           if (result.date) {
