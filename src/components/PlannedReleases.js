@@ -63,8 +63,8 @@ class PlannedReleases extends Component {
     let pagination = false, pages = 0, sortDates = [];
     fetch(staging ? "https://roadmap-staging.cfapps.us10.hana.ondemand.com/releases/" + this.state.cardfilter : 
     "https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases/" + this.state.cardfilter)
-       fetch(staging ? "https://roadmap-staging.cfapps.us10.hana.ondemand.com/releases/" + this.state.cardfilter : "https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases/" + this.state.cardfilter)
-      .then(res => res.json)
+      // fetch(staging ? "https://roadmap-staging.cfapps.us10.hana.ondemand.com/releases/" + this.state.cardfilter : "https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases/" + this.state.cardfilter)
+      .then(res => res.json())
       .then(
         (result) => {
           result.releases.forEach(result => {
@@ -225,7 +225,6 @@ class PlannedReleases extends Component {
       When all release dates are not selected
       If there are one or multiple release dates clicked,
       an AND relationship must exist for the case of multiple
-
       This must also rerender to the different processes a new occurence count
     */
     // if quarterDateTag-key is passed in
