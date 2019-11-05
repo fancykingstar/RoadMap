@@ -4,7 +4,7 @@
                   [{"label": "SAP SuccessFactors", "key": "successfactors", "link": ""},
                   {"label": "SAP Fieldglass", "key": "fieldglass", "link": ""},
                   {"label": "SAP Concur", "key": "concur", "link": ""},
-                  {"label": "SAP S/4HANA", "key": "s4hana", "link": ""}, 
+                  {"label": "SAP S/4HANA", "key": "s4hana", "link": ""},
                   {"label": "Qualtrics", "key": "qualtrics", "link": ""}]},
                   {"title": "Innovation topics", "items":
                   [{"label": "Master data services", "key": "innovation1", "link": ""},
@@ -191,7 +191,7 @@
 
   {
     "label": "Q2 2020 (Release 2005)",
-    "id": "feb2020",
+    "id": "may2020",
     "bullets": [
       {
         "text": "One aligned workforce data model across all solutions",

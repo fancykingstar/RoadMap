@@ -10,27 +10,89 @@
       {
       "id": 1,
       "type": "start",
-      "title": "Feature Release",
-      "header": "Richer Recruiting Experience",
-      "body" : "Tools to make life of recruiters' easy by providing mass actions and easy to use tools.",
+      "title": "Event",
+      "header": "Transform Workforce Experiences with SAP SuccessFactors HXM Suite",
+      "body" : "As announced at our SuccessConnect Las Vegas event in September, we are pleased to share our new strategic intent to help organizations reinvent human experiences in ways that accelerate business growth.",
       "buttonText" : "Learn More",
-      "buttonLink" : "concur"
+      "buttonLink" : "https://events.sap.com/successconnect/en/session/48305"
       },{
         "id": 2,
         "type": "mid",
-        "title": "event",
-        "header": "SuccessConnect",
-        "body": "Highlights and news from SuccessConnect Las Vegas",
-        "buttonText": "More",
-        "buttonLink": "blue"
-      },{
-      "id": 3,
-      "type": "mid",
-      "title": "SAP SuccessFactors",
-      "header": "Managing Talent Effectively as You Grow",
-      "body": "Find out how you can entice the right talent by converting digital investments into meaningful employee experiences...",
-      "buttonText": "Read Blog",
-      "buttonLink": "https://www.digitalistmag.com/future-of-work/2018/09/04/growing-companys-guide-to-talent-management-leadership-06185111"
+        "title": "webinars",
+        "header": "Q4 2019 Release Webinars",
+        "body": "The Q4 2019 release includes the following release materials to help you learn about and adopt innovations faster than ever",
+        "buttonText": "Learn More",
+        "buttonLink": "https://community.successfactors.com/t5/custom/page/page-id/Release?blogid=ProductUpdates"
       }
-    ]
+    ],
+    "timelineTitle": "Product Delivery Timeline",
+    "timeline": [
+    {
+      "label": "Q3 2019 (Release 1908)",
+      "id": "aug2019",
+      "bullets": [
+        {
+          "text": "Improved flexibility and control of core HR processes",
+          "id": "aug2019-0"
+        },
+        {
+          "text": "Streamlined and automated applicant management workflow for recruiting",
+          "id": "aug2019-1"
+        },
+        {
+          "text": "Enhanced information security controls for cloud services with ISO 27017 certification",
+          "id": "aug2019-2"
+        }
+      ]
+    },
+    {
+      "label": "Q4 2019(Release 1911)",
+      "id": "nov2019",
+      "bullets": [
+        {
+          "text": "New next generation Onboarding 2.0 solution",
+          "id": "nov2019-0"
+        },
+        {
+          "text": "Automated benefits administration and improved enrollment experience",
+          "id": "nov2019-1"
+        },
+        {
+          "text": "Improved usability and performance of SAP SuccessFactors Employee Central Service Center",
+          "id": "nov2019-2"
+        },
+        {
+          "text": "Expanded reward and recognition options for SAP SuccessFactors Compensation",
+          "id": "nov2019-3"
+        },
+        {
+          "text": "Streamlined application process in SAP SuccessFactors Recruiting",
+          "id": "nov2019-4"
+        }
+      ]
+    },
+
+    {
+      "label": "Q2 2020 (Release 2005)",
+      "id": "may2020",
+      "bullets": [
+        {
+          "text": "Improved user experience including new home page design, Recruiting search capabilities and modern Continuous Performance Management features and functionality",
+          "id": "may2020-0"
+        },
+        {
+          "text": "Enhanced chatbot, search and digital assistant activities",
+          "id": "may2020-1"
+        },
+        {
+          "text": "Continued addition of new localizations for employee central and SAP SuccessFactors Employee Central Payroll",
+          "id": "may2020-2"
+        },
+        {
+          "text": "Unified and simplified administration across the SAP SuccessFactors suite, including controlled instance refresh and provisioning",
+          "id": "may2020-3"
+        }
+      ]
+    }
+  ]
 }
