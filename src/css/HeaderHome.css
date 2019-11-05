@@ -40,7 +40,7 @@
 }
 
 .page-header-minheight {
-  height: 440px;
+  height: 515px; /*header image and menu bar*/
   overflow: visible;
 }
 
