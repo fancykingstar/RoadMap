@@ -61,9 +61,10 @@ class PlannedReleases extends Component {
 
   componentDidMount() {
     let pagination = false, pages = 0, sortDates = [];
-    fetch(staging ? "https://roadmap-staging.cfapps.us10.hana.ondemand.com/releases/" + this.state.cardfilter : 
-    "https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases/" + this.state.cardfilter)
+//    fetch(staging ? "https://roadmap-staging.cfapps.us10.hana.ondemand.com/releases/" + this.state.cardfilter : 
+//    "https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases/" + this.state.cardfilter)
       // fetch(staging ? "https://roadmap-staging.cfapps.us10.hana.ondemand.com/releases/" + this.state.cardfilter : "https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases/" + this.state.cardfilter)
+      fetch("/data/release_prod.json")
       .then(res => res.json())
       .then(
         (result) => {

@@ -189,7 +189,8 @@
 
 .static-card .content .body,
 .release-card .release-description {
-  margin-top: 3px;
+  margin-top: 5px;
+  margin-bottom: 15px;
   font-size: 1.6666666666666667rem;
   font-weight: 200;
   color: #666666;

@@ -123,7 +123,8 @@ export default function ReleaseCard(props) {
               <div className="release-description">{state.description}</div>
               <div className="release-trigger"><img onClick={handleArrowCollapseableSection} alt="collapse" src={state.icon} /></div>
           </div>
-          <div className="release-tag-container" text="TAGS:">
+          <div className="release-tag-container">
+              <div className="TagTitle">TAGS:</div>
             {state.chips.map(chip => (
                 <Chip
                           key={chip.key}
