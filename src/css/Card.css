@@ -181,6 +181,11 @@
   margin-top: 14px;
   font-size: 2rem;
   color: #000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .page-container-small .static-card .content .header {
@@ -301,7 +306,7 @@
 .product-active.MuiPaper-root:hover .icon-products {
   /* background: url(../assets/images/prod-icons/icon-offstate.png);  */
   background: rgba(255, 255, 255, 1) !important;
-  border-radius: 28px;  
+  border-radius: 28px;
 }
 
 .product-card .icon > img {
