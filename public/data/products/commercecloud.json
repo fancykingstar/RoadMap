@@ -1,11 +1,5 @@
 {
-    "title": "SAP Commerce Cloud",
-    "description": [{"title": "Products", "items":
-                  [{"label": "SAP Commerce Cloud", "key": "commercecloud", "link": ""},
-                  {"label": "SAP Customer Data Cloud", "key": "customerdatacloud", "link": ""},
-                  {"label": "SAP Marketing Cloud", "key": "marketingcloud", "link": ""},
-                  {"label": "SAP Sales Cloud", "key": "salescloud", "link": ""},
-                  {"label": "SAP Service Cloud", "key": "servicecloud", "link": ""}]},
+    "title": "SAP Commerce Cloud","description": [{"title": "About", "descriptions":""},
                   {"title": "Innovation topics", "items":
                   [{"label": "Integrated end-to-end processes for Lead to Cash", "key": "innovation1", "link": ""},
                   {"label": "Intelligence (AI/ML) capabilities and analytics", "key": "innovation2", "link": ""},
