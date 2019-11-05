@@ -33,7 +33,7 @@ class SearchResults extends Component {
         super(props)
         this.state = {
             result: props.match.params.result,
-            sorting: 'title',
+            sorting: 'relevance',
             results: [],
             forms: [],
             tags: [],
@@ -62,7 +62,7 @@ class SearchResults extends Component {
     componentDidMount() {
         document.title = "SAP Product Roadmap - Search Results";
         // fetch("https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases")
-        fetch("https://uckilp3hxopsuuml-roadmap-api-srv.cfapps.eu10.hana.ondemand.com/odata/v4/roadmap/")
+        fetch("https://roadmap-ui-dev.internal.cfapps.sap.hana.ondemand.com/srv_api/odata/v4/roadmap/Roadmap")
             .then(res => res.json())
             .then(
                 (result) => {
