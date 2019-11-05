@@ -4,9 +4,10 @@
                   [{"label": "SAP C/4HANA", "key": "c4hana", "link": ""},
                   {"label": "SAP S/4HANA", "key": "s4hana", "link": ""}]},
                   {"title": "Innovation topics", "items":
-                  [{"label": "Native user experience for increased productivity", "key": "innovation1", "link": ""},
-                  {"label": "Embedded intelligence for performance and outcome optimization", "key": "innovation2", "link": ""},
-                  {"label": "Operational and experience data integration", "key": "innovation3", "link": ""}]}],
+                  [{"label": "Support new business models by enabling sales of physical products with services and subscription products", "key": "innovation1", "link": ""},
+                  {"label": "Incorporate user experience", "key": "innovation2", "link": ""},
+                  {"label": "Embed intelligence to optimize process performance and outcome", "key": "innovation3", "link": ""},
+                  {"label": "Combine operational and experience data to gain insights into customer needs to act proactively", "key": "innovation4", "link": ""}]}],
   "whatsnew" : [
     {
     "id": 1,
@@ -199,29 +200,7 @@
   "timelineTitle": "Product Delivery Timeline",
   "timeline": [
     {
-      "label": "Aug 2019",
-      "id": "aug2019",
-      "bullets": [
-        {
-          "text": "Quote request in SAP Commerce Cloud with handover to SAP Sales Cloud ",
-          "id": "aug2019-0"
-        },
-        {
-          "text": "Begin harmonizing look and feel across SAP C/4HANA Suite",
-          "id": "aug2019-1"
-        },
-        {
-          "text": "Lead to Cash process integration",
-          "id": "aug2019-2"
-        },
-        {
-          "text": "AI/ML driven intelligent scenarios along the Lead to Cash process",
-          "id": "aug2019-3"
-        }
-      ]
-    },
-    {
-      "label": "Nov 2019",
+      "label": "Q4 2019 (Release 1911)",
       "id": "nov2019",
       "bullets": [
         {
@@ -229,7 +208,7 @@
           "id": "nov2019-0"
         },
         {
-          "text": "Data exchange between SAP Commerce Cloud and SAP Marketing Cloud",
+          "text": "Data exchange between SAP Commerce Cloud and SAP Marketing Cloud for campaign planning and execution",
           "id": "nov2019-1"
         },
         {
@@ -239,20 +218,38 @@
       ]
     },
     {
-      "label": "Feb 2020",
+      "label": "Q1 2020 (Release 2002)",
       "id": "feb2020",
       "bullets": [
         {
-          "text": "Enhance Quote-to-Order process to support subscription products via SAP Commerce Cloud",
+          "text": "Quote-to-Order process for physical, simple service and subscription products using SAP Commerce Cloud",
           "id": "feb2020-0"
         },
         {
-          "text": "Target group and lead collaboration across marketing and sales",
+          "text": "Lead information is transferred from SAP Marketing Cloud to SAP Sales Cloud to provide a consistent lead handover process",
           "id": "feb2020-1"
         },
         {
           "text": "Harmonized Fiori 3 look and feel for SAP C/4HANA",
           "id": "feb2020-2"
+        }
+      ]
+    },
+    {
+      "label": "Q2 2020 (Release 2005)",
+      "id": "may2020",
+      "bullets": [
+        {
+          "text": "Quote-to-Order process for physical products and subscription products via SAP C/4HANA Order Management",
+          "id": "may2020-0"
+        },
+        {
+          "text": "Integration of SAP Intelligent Sales Execution and Account-Based Marketing in SAP Marketing Cloud",
+          "id": "may2020-1"
+        },
+        {
+          "text": "Conversational AI scenarios across SAP C/4HANA",
+          "id": "may2020-2"
         }
       ]
     }
