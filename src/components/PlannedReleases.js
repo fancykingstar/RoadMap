@@ -152,11 +152,11 @@ class PlannedReleases extends Component {
                             result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
                             result.futureplans = this.manageDates(result.futureplans);
                             // set tags
-                            if (result.process.length && !tags.includes(result.process)) { tags.push(result.process) }
-                            if (result.integration.length && !tags.includes(result.integration)) { tags.push(result.integration) }
+                            if (result.process.length > 0 && !tags.includes(result.process)) { tags.push(result.process.trim()) }
+                            if (result.integration.length > 0 && !tags.includes(result.integration)) { tags.push(result.integration.trim()) }
                             if (result.products.length) {
                               result.products.forEach(({ product }) => {
-                                if (!tags.includes(product)) tags.push(product)
+                                if (!tags.includes(product) && product.length > 0) tags.push(product.trim())
                               })
                             }
                             result.tags = tags;
