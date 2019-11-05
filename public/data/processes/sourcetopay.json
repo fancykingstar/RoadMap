@@ -46,10 +46,10 @@
             "item": "Category Strategy"
           },
           {
-            "item": "Source Material and Service"
+            "item": "Source Material and Services"
           },
           {
-            "item": "Contracts"
+            "item": "Contract"
           }
         ]
       }
@@ -86,7 +86,7 @@
             "item": "Request"
           },
           {
-            "item": "Orders"
+            "item": "Order"
           },
           {
             "item": "Deliver and Receive"
@@ -107,7 +107,7 @@
             "item": "Approve"
           },
           {
-            "item": "Credit Memo"
+            "item": "Credit"
           },
           {
             "item": "Pay"
@@ -126,6 +126,9 @@
           },
           {
             "item": "Minimize Risks"
+          },
+          {
+            "item": "Adapt to Change"
           }
         ]
       }
@@ -149,24 +152,7 @@
   "timelineTitle": "Product Delivery Timeline",
   "timeline": [
     {
-      "label": "Aug 2019",
-      "id": "aug2019",
-      "bullets": [
-        {
-          "text": "Dynamic pricing support and APIs for content lookup and elimination of item redundancy in Catalog and CMS",
-          "id": "aug2019-0"
-        },
-        {
-          "text": "Support for Lean Services in Guided Buying and S/4HANA Procurement",
-          "id": "aug2019-1"
-        },
-        {
-          "text": "Enhanced team access control for two-envelope bidding procedures",
-          "id": "aug2019-2"
-        }
-      ]
-    },{
-      "label": "Nov 2019",
+      "label": "Q4 2019 (Release 1911)",
       "id": "nov2019",
       "bullets": [
         {
@@ -174,17 +160,21 @@
           "id": "nov2019-0"
         },
         {
-          "text": "Trading Partner Collaboration as a service",
+          "text": "Support for Lean Services in Guided Buying and S/4HANA Procurement",
           "id": "nov2019-1"
         },
         {
-          "text": "New eSignature API to support any signature provider",
+          "text": "Trading Partner Collaboration as a service",
           "id": "nov2019-2"
+        },
+        {
+          "text": "Bank information management for supplier profiles",
+          "id": "nov2019-3"
         }
       ]
     },
     {
-      "label": "Feb 2020",
+      "label": "Q1 2020 (Release 2002)",
       "id": "feb2020",
       "bullets": [
         {
@@ -202,6 +192,28 @@
         {
           "text": "Purchase order status API",
           "id": "feb2020-3"
+        }
+      ]
+    },
+    {
+      "label": "Q2 2020 (Release 2005)",
+      "id": "may2020",
+      "bullets": [
+        {
+          "text": "Intelligent contract repository",
+          "id": "may2020-0"
+        },
+        {
+          "text": "Guided buying MRO and inventory reservation",
+          "id": "may2020-1"
+        },
+        {
+          "text": "Advanced payment invoices with taxes",
+          "id": "may2020-2"
+        },
+        {
+          "text": "Multi-tier buy/sell process support",
+          "id": "may2020-3"
         }
       ]
     }
