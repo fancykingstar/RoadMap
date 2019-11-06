@@ -37,7 +37,9 @@ class ReleaseForm extends Component {
       expandable: this.props.expandable,
       status: this.props.status,
       data: this.props.data
-    }, ()=> console.log('releaeform data:', this.state.data))
+    }, 
+    // ()=> console.log('releaseform data:', this.state.data)
+    )
   }
 
   componentDidUpdate(prevProps) {

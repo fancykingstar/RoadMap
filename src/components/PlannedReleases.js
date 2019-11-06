@@ -36,6 +36,7 @@ class PlannedReleases extends Component {
       cardfilter: this.props.cardfilter,
       subfilter: this.props.subfilter,
       placeholder: this.props.placeholder,
+      endpoint: this.props.endpoint === 'twm' ? 'totalworkforcemanagement' :this.props.endpoint,
       sorting: 'date',
       initialitem: 0,
       lastitem: 10,
@@ -93,7 +94,10 @@ class PlannedReleases extends Component {
           let chips = [], tags = [];
           if (!result.businessvalues) { result.businessvalues = []; }
           if (!result.featuredetails) { result.featuredetails = []; }
-          if (result.date) {
+          if (!result.date) { // *Note: results lacking a date will cause sub-components render issues
+            throw('result lacking a date', result);
+            // return;
+          } else {
             let datevalue = new Date(result.date);
             result.date = datevalue.setDate(datevalue.getDate() + 1); // fallback
             result.numericdate = datevalue.getTime() / 1000.0;
@@ -141,7 +145,7 @@ class PlannedReleases extends Component {
             }
             if (result.products.length) {
               result.products.forEach(({ product }) => {
-                const productKey = product.toLowerCase().replace(/(sap)\s/g, "")
+                const productKey = product.toLowerCase().replace(/(sap)|\s/g, "")
                 if (!chips.includes(product) && product.length > 1) {
                   tags.push(productKey);
                   chips.push({
@@ -204,7 +208,7 @@ class PlannedReleases extends Component {
                   )),
                   keyLabelMap: keyLabelMap
                 }, function () {
-                  console.log('keylabelmap:', this.state.keyLabelMap)
+                  console.log('beforefilterformresults')
                   this.filterFormResults();
                 })
               }, (error) => { console.log(error); }
@@ -234,7 +238,8 @@ class PlannedReleases extends Component {
   }
 
   filterFormResults = () => {
-    let cardfilter = this.state.cardfilter;
+    console.log('filterformresults invoked');
+    let cardfilter = this.state.endpoint;
     let releases = this.state.releases;
     let forms = this.state.forms;
     let subfilter = this.state.subfilter;
@@ -242,17 +247,12 @@ class PlannedReleases extends Component {
 
     //get tags from release data
     releases.forEach(release => {
-      var containsTag = false;
-      release.tags.forEach(tag => {
-        if (tag.includes(cardfilter)) {
-          containsTag = true;
-          // return;
-        }
-      })
-      if (containsTag) {
+      console.log(release.tags, 'cf:', cardfilter);
+      if (release.tags.includes(cardfilter)) {
         releasetags = releasetags.concat(release.tags);
+        // console.log('endpoint:', cardfilter, release.tags.indexOf(cardfilter));
+        // console.log('releasetaggerinos:', releasetags);
       }
-      // console.log(releasetags); // show release tags
     })
 
     forms.forEach(form => {
@@ -269,8 +269,6 @@ class PlannedReleases extends Component {
         }
         form.fields[i].count = 0;
         let occurences = this.getOccurrence(releasetags, form.fields[i].key);
-         occurences = 0;
-        console.log('occurrences:', occurences);
         form.fields[i].count = occurences;
         form.count += occurences;
         form.fields[i].count = form.fields[i].count === null ? 0 : form.fields[i].count;
