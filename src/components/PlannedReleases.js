@@ -297,11 +297,11 @@ class PlannedReleases extends Component {
 
 
   manageTagArray = (state, key) => {
-    let tags, pagination = false, pages = 0;
+    let tags, pagination = false, pages = 0, {quarterDateTags, selectedDates} = this.state;
     tags = this.state.tags;
-
-    if (this.state.quarterDateTags[key]) {
-      let selectedDates = this.state.selectedDates, index = selectedDates.indexOf(key);
+    console.log('tagkey:', key)
+    if (quarterDateTags[key]) {
+      let index = selectedDates.indexOf(key);
       if (index === -1) {
         selectedDates.push(key);
       } else {
@@ -330,7 +330,6 @@ class PlannedReleases extends Component {
       form.fields.forEach(field => {
         tags.forEach(tag => {
           if (field.key === tag) {
-            console.log('fieldkey:', field.key, 'tag:', tag);
             tagCollection.push(tag);
           } else if (field.children.length > 0) {
             field.children.forEach(childField => {
@@ -473,7 +472,7 @@ class PlannedReleases extends Component {
   }
 
   scrollToTop = () => {
-    window.scrollTo(0, this.paginationRef.current.offsetTop - 77);
+    window.scrollTo(0, this.paginationRef.current.offsetTop - 66.521);
   }
 
   render() {
@@ -520,7 +519,7 @@ class PlannedReleases extends Component {
                 <div className="pr-filter-tag-container">
                   {tags.length > 0 ?
                     tags.map(filterTag => (
-                      <Chip variant="outlined" clickable="false" label={keyLabelMap[filterTag]} deleteIcon={<img src={DeleteTag} alt={filterTag} />} onDelete={this.handleDeleteTagClick} tabindex={tabIndex++} />
+                      <Chip variant="outlined" clickable="false" label={keyLabelMap[filterTag]} lkey={filterTag} deleteIcon={<img src={DeleteTag} alt={filterTag} />} onDelete={this.handleDeleteTagClick} tabindex={tabIndex++} />
                     ))
                     : null}
                 </div>
