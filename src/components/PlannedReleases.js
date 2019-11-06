@@ -83,37 +83,59 @@ class PlannedReleases extends Component {
             result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
             result.futureplans = this.manageDates(result.futureplans);
             // set tags
-            if (result.process.length > 1 && !chips.includes(result.process)) { 
+            if (result.process.length > 1 && !chips.includes(result.process)) {
               const processKey = result.process.toLowerCase().replace(/\s/g, "");
+              /* Exception Keys */
+              if (processKey === "designtooperate") {
+                processKey = "d2o";
+              }
               tags.push(processKey);
               chips.push({
                 category: 'process',
                 key: processKey,
                 label: result.process
-              }) 
+              })
             }
-            
-            if (result.integration.length > 1 && !chips.includes(result.integration)) { 
+
+            if (result.integration.length > 1 && !chips.includes(result.integration)) {
               const integrationKey = result.integration.toLowerCase().replace(/\s/g, "");
               tags.push(integrationKey);
               chips.push({
-              category: 'integration',
-              key: integrationKey,
-              label: result.integration
-            }) 
-          }
+                category: 'integration',
+                key: integrationKey,
+                label: result.integration
+              })
+            }
+
+            if (result.industry.length > 1 && !chips.includes(result.industry)) {
+              const industryKey = result.industry.toLowerCase().replace(/\s/g, "");
+              if (industryKey === "retail/hospitality") {
+                industryKey = "retail";
+              } else if (industryKey === "publicsector/government") {
+                industryKey ="publicsector"
+              }
+              
+              tags.push(industryKey);
+              chips.push({
+                category: 'industry',
+                key: industryKey,
+                label: result.industry
+              })
+            }
             if (result.products.length) {
               result.products.forEach(({ product }) => {
-                const productKey = product.toLowerCase().replace(/\s/g, "")
+                const productKey = product.toLowerCase().replace(/(sap)\s/g, "")
                 if (!chips.includes(product) && product.length > 1) {
                   tags.push(productKey);
                   chips.push({
-                  category: "product",
-                  key: productKey,
-                  label: product
-                })}
+                    category: "product",
+                    key: productKey,
+                    label: product
+                  })
+                }
               })
             }
+
             result.chips = chips;
             result.tags = tags;
           }
@@ -210,7 +232,7 @@ class PlannedReleases extends Component {
           return;
         }
       })
-      if (containsTag){
+      if (containsTag) {
         releasetags = releasetags.concat(release.tags);
       }
       // console.log(releasetags); // show release tags
@@ -290,7 +312,7 @@ class PlannedReleases extends Component {
       let index = tags.indexOf(key);
       tags.splice(index, 1);
     }
-    this.setState({ tags: tags }, ()=> console.log(this.state.tags));
+    this.setState({ tags: tags }, () => console.log(this.state.tags));
 
     let filterReleases = this.state.releases;
     this.state.forms.forEach(form => {
@@ -375,14 +397,19 @@ class PlannedReleases extends Component {
         if (Array.isArray(release[key]) && release[key].length > 0) {
           if (filters[key].length === 1) {
             return release[key].some(tag => tag.includes(this.state.cardfilter));
-          } 
+          }
           else {
             var bool = release[key].some(keyEle => {
-              // console.log('keyEle:', keyEle, filters[key])
-              return filters[key].some((keyElem) => keyElem.includes(keyEle)) 
-              && release[key].some(tag => tag.includes(this.state.cardfilter))
+              console.log('keyEle:', keyEle, 'filters[key]:', filters[key], release[key])
+              return filters[key]
+                .some((elem) => {
+                  if (elem.length > 1) {
+                    return keyEle.includes(elem)
+                  }
+                  return false;
+                })
+                && release[key].some(tag => tag.includes(this.state.cardfilter))
             })
-            console.log("BOOL", bool);
             return bool;
           }
         }
