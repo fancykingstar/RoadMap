@@ -61,121 +61,116 @@ class PlannedReleases extends Component {
 
   componentDidMount() {
     let pagination = false, pages = 0, sortDates = [];
-    fetch(staging ? "https://roadmap-staging.cfapps.us10.hana.ondemand.com/releases/" + this.state.cardfilter : 
-    "https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases/" + this.state.cardfilter)
-      // fetch(staging ? "https://roadmap-staging.cfapps.us10.hana.ondemand.com/releases/" + this.state.cardfilter : "https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases/" + this.state.cardfilter)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          result.releases.forEach(result => {
-            if (!result.businessvalues) {
-              result.businessvalues = [];
-            }
-            if (!result.featuredetails) {
-              result.featuredetails = [];
-            }
+    let querySubstr = this.state.cardfilter.charAt(0).toUpperCase() + this.state.cardfilter.slice(1);
+    let baseURL = 'https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com' || window.location.origin
+    let query = baseURL + `/odata/v4/roadmap/Roadmap?$filter=contains%28productSearch%2C%27${querySubstr}%27%29&$skip=0&$orderby=date%20asc&$expand=products%2Cfutureplans`
+    // fetch(staging ? "https://roadmap-staging.cfapps.us10.hana.ondemand.com/releases/" + this.state.cardfilter : 
+    // "https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases/" + this.state.cardfilter)
+    fetch(query)
+      .then(res => {
+        console.log('RES:', res);
+        let response = res.json();
+        return response;
+      })
+      .then(({ value }) => {
+        value.forEach(result => {
+          let chips = [], tags = [];
+          if (!result.businessvalues) { result.businessvalues = []; }
+          if (!result.featuredetails) { result.featuredetails = []; }
+          if (result.date) {
             let datevalue = new Date(result.date);
-            result.date = datevalue.setDate(datevalue.getDate() + 1);
+            result.date = datevalue.setDate(datevalue.getDate() + 1); // fallback
             result.numericdate = datevalue.getTime() / 1000.0;
             result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
             result.futureplans = this.manageDates(result.futureplans);
+            // set tags
+            if (result.process.length > 0 && !chips.includes(result.process)) { 
+              const processKey = result.process.toLowerCase().replace(/\s/g, "");
+              tags.push(processKey);
+              chips.push({
+                category: 'process',
+                key: processKey,
+                label: result.process
+              }) 
+            }
+            
+            if (result.integration.length > 0 && !chips.includes(result.integration)) { 
+              const integrationKey = result.integration.toLowerCase().replace(/\s/g, "");
+              tags.push(integrationKey);
+              chips.push({
+              category: 'integration',
+              key: integrationKey,
+              label: result.integration
+            }) 
+          }
+            if (result.products.length) {
+              result.products.forEach(({ product }) => {
+                const productKey = product.toLowerCase().replace(/\s/g, "")
+                if (!chips.includes(product) && product.length > 0) {
+                  tags.push(productKey);
+                  chips.push({
+                  category: "product",
+                  key: productKey,
+                  label: product
+                })}
+              })
+            }
+            result.chips = chips;
+            result.tags = tags;
+          }
+        });
+        console.log('newResults:', value);
+
+        if (value.length > 10) {
+          pagination = true;
+          pages = Math.ceil(value.length / this.state.maxperpage);
+        }
+
+        if (value && value.releases) {
+          let tempDates = {};
+          value.forEach(release => {
+            const quarterDate = this.getQuarter(new Date(release.date));
+            if (!tempDates.hasOwnProperty(quarterDate)) {
+              sortDates.push({ numericDate: release.date, displayDate: quarterDate });
+              tempDates[quarterDate] = quarterDate;
+            }
           });
-
-          if (result.releases.length > 10) {
-            pagination = true;
-            pages = Math.ceil(result.releases.length / this.state.maxperpage);
-          }
-
-          // if (result && result.releases) {
-          //   let tempDates = {};
-          //   result.releases.forEach(release => {
-          //     if (tempDates[release.numericdate] !== release.displaydate) {
-          //       sortDates.push({ numericDate: release.numericdate, displayDate: release.displaydate });
-          //       tempDates[release.numericdate] = release.displaydate;
-          //     }
-          //   });
-          // }
-
-          if (result && result.releases) {
-            let tempDates = {};
-            result.releases.forEach(release => {
-              const quarterDate = this.getQuarter(new Date(release.date));
-              if (!tempDates.hasOwnProperty(quarterDate)) {
-                sortDates.push({ numericDate: release.date, displayDate: quarterDate });
-                tempDates[quarterDate] = quarterDate;
-              }
-            });
-            this.setState({
-              quarterDateTags: tempDates
-            })
-          }
-
           this.setState({
-            releases: result.releases,
-            filterreleases: result.releases,
-            pages: pages,
-            pagination: pagination,
-            dateTags: sortDates
-          }, function () {
-            fetch("/data/rform.json")
-              .then(res => res.json())
-              .then(
-                (result) => {
-                  this.setState({
-                    forms: result.forms.filter(form => (this.props.type !== 'process' ?
-                      form.title !== 'Subprocesses'
-                      :
-                      (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent === this.props.cardfilter
-                    )
-
-                    ),
-                  }, function () {
-                    // API CALL TO MAIN DATABASE
-                    // TESTING PURPOSES ONLY
-                    let querySubstr = this.state.cardfilter.charAt(0).toUpperCase() + this.state.cardfilter.slice(1);
-                    let baseURL = 'https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com'
-                    let query = baseURL + `/odata/v4/roadmap/Roadmap?$filter=contains%28productSearch%2C%27${querySubstr}%27%29&$skip=0&$orderby=date%20asc&$expand=products%2Cfutureplans`
-                    fetch(query)
-                      .then(res => {
-                        let response = res.json();
-                        return response;
-                      })
-                      .then(({ value }) => {
-                        value.forEach(result => {
-                          let tags = [];
-                          if (!result.businessvalues) { result.businessvalues = []; }
-                          if (!result.featuredetails) { result.featuredetails = []; }
-                          if (result.date) {
-                            let datevalue = new Date(result.date);
-                            result.date = datevalue.setDate(datevalue.getDate() + 1); // fallback
-                            result.numericdate = datevalue.getTime() / 1000.0;
-                            result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
-                            result.futureplans = this.manageDates(result.futureplans);
-                            // set tags
-                            if (result.process.length > 0 && !tags.includes(result.process)) { tags.push(result.process.trim()) }
-                            if (result.integration.length > 0 && !tags.includes(result.integration)) { tags.push(result.integration.trim()) }
-                            if (result.products.length) {
-                              result.products.forEach(({ product }) => {
-                                if (!tags.includes(product) && product.length > 0) tags.push(product.trim())
-                              })
-                            }
-                            result.tags = tags;
-                          }
-                        });
-                        console.log('newResults:', value);
-                      },
-
-                        (error) => console.log(error))
-                    this.filterFormResults();
-                  })
-                },
-                (error) => {
-                  console.log(error);
-                }
-              )
-
+            quarterDateTags: tempDates
           })
-        },
+        }
+
+        this.setState({
+          releases: value,
+          filterreleases: value,
+          pages: pages,
+          pagination: pagination,
+          dateTags: sortDates
+        }, function () {
+          fetch("/data/rform.json")
+            .then(res => res.json())
+            .then(
+              (result) => {
+                this.setState({
+                  forms: result.forms.filter(form => (this.props.type !== 'process' ?
+                    form.title !== 'Subprocesses'
+                    :
+                    (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent === this.props.cardfilter
+                  )
+
+                  ),
+                }, function () {
+
+                  this.filterFormResults();
+                })
+              },
+              (error) => {
+                console.log(error);
+              }
+            )
+
+        })
+      },
         (error) => {
           console.log(error);
         }
@@ -207,11 +202,18 @@ class PlannedReleases extends Component {
 
     //get tags from release data
     releases.forEach(release => {
-      if (release.tags.includes(cardfilter)) {
+      var containsTag = false;
+      release.tags.forEach(tag => {
+        if (tag.includes(cardfilter)) {
+          containsTag = true;
+          return;
+        }
+      })
+      if (containsTag){
         releasetags = releasetags.concat(release.tags);
       }
+      // console.log(releasetags); // show release tags
     })
-
 
     forms.forEach(form => {
       form.icon = null;
@@ -575,7 +577,7 @@ class PlannedReleases extends Component {
                 ))}
             {
               this.state.pagination
-                ? <Pagination pages={this.state.pages} paginate={this.paginate} scrollToTop={this.scrollToTop}/>
+                ? <Pagination pages={this.state.pages} paginate={this.paginate} scrollToTop={this.scrollToTop} />
                 : null
             }
             <div className="disclaimer">
