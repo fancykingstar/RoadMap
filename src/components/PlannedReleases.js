@@ -46,6 +46,7 @@ class PlannedReleases extends Component {
       selectedDateElement: undefined,
       dateTags: [],
       quarterDateTags: {},
+      keyLabelMap: {},
       showToast: false
     };
     this.paginationRef = React.createRef();
@@ -188,15 +189,22 @@ class PlannedReleases extends Component {
             .then(res => res.json())
             .then(
               (result) => {
+                let keyLabelMap = {};
+                result.forms.forEach(({ fields }) => {
+                  fields.forEach(({ key, label }) => {
+                    if (!keyLabelMap[key]) {
+                      keyLabelMap[key] = label;
+                    }
+                  })
+                })
                 this.setState({
                   forms: result.forms.filter(form => (this.props.type !== 'process' ?
                     form.title !== 'Subprocesses'
-                    :
-                    (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent === this.props.cardfilter
-                  )
-
-                  ),
+                    : (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent === this.props.cardfilter
+                  )),
+                  keyLabelMap: keyLabelMap
                 }, function () {
+                  console.log('keylabelmap:', this.state.keyLabelMap)
                   this.filterFormResults();
                 })
               }, (error) => { console.log(error); }
@@ -509,7 +517,7 @@ class PlannedReleases extends Component {
   }
 
   render() {
-    const { forms, placeholder, sorting, tags } = this.state;
+    const { forms, placeholder, sorting, tags, keyLabelMap } = this.state;
     let tabIndex = 1;
 
     return (
@@ -552,7 +560,7 @@ class PlannedReleases extends Component {
                 <div className="pr-filter-tag-container">
                   {tags.length > 0 ?
                     tags.map(filterTag => (
-                      <Chip variant="outlined" clickable="false" label={filterTag} deleteIcon={<img src={DeleteTag} alt={filterTag} />} onDelete={this.handleDeleteTagClick} tabindex={tabIndex++} />
+                      <Chip variant="outlined" clickable="false" label={keyLabelMap[filterTag]} deleteIcon={<img src={DeleteTag} alt={filterTag} />} onDelete={this.handleDeleteTagClick} tabindex={tabIndex++} />
                     ))
                     : null}
                 </div>
