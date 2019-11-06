@@ -62,12 +62,13 @@
   padding-left: 13px;
 }
 
-.clear-all-filters {
+.pr-sort-container .clear-all-filters {
   border: 0px !important;
+  padding-left: 20px !important;
 }
 
-.clear-all-filters:hover,
-.clear-all-filters:focus {
+.pr-sort-container .clear-all-filters:hover,
+.pr-sort-container .clear-all-filters:focus {
   background-color: #FFF !important;
   color: #0A6ED1 !important;
 }
