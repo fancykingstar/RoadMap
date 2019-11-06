@@ -28,6 +28,8 @@ import logo from '../assets/images/sap-logo.svg';
 import accountIcon from '../assets/images/home-account.svg';
 import compactAccountIcon from '../assets/images/compact-account.svg';
 import clipMask from '../assets/images/clippingMask.svg';
+import Fuse from 'fuse.js';
+
 
 class Header extends Component {
 
@@ -49,7 +51,8 @@ class Header extends Component {
       anchorEl: null,
       /*Info Popover End */
       resultspage: this.props.resultspage || false,
-      resulthandler: this.props.resulthandler || false
+      resulthandler: this.props.resulthandler || false,
+      searchhandler: null
     };
     this.anchorEl = React.createRef();
     this.handleAccountClick = this.handleAccountClick.bind(this);
@@ -79,6 +82,20 @@ class Header extends Component {
           console.log(error);
         }
       )
+    
+      fetch('/data/Roadmap.json')
+      .then(res => res.json())
+          .then(
+              (result) => {
+                  this.setState({results: result.value})
+                  //this.cleanData(result.value)
+                  this.filterResultData(result.value);
+              },
+              (error) => {
+                  console.log(error);
+              }
+          );
+        
     /* DEVELOPMENT ONLY */
     if (this.props.pageType) {
       const pathString = this.props.pageType === "process" ? `processes/${this.props.process}` : `products/${this.props.product}`;
@@ -111,6 +128,97 @@ class Header extends Component {
       pageType: this.props.pageType,
     }, () => console.log("pageType: ", this.state.pageType))
   }
+
+  filterResultData(results) {
+    let productresults = [], processresults = []
+    //Fuse should be abstarcted into a different function to prevent recreating it every time. Create Fuse object once and set in state
+    var options = {
+        shouldSort: true,
+        keys : [{
+            name: "title",
+            weight : 0.9    
+        },
+        {
+            name: "description",
+            weight: 0.1
+        }]
+    }
+    const fuse = new Fuse(results, options);
+    this.setState({searchhandler: fuse});
+    var searchresults = fuse.search(this.state.result);
+    // searchresults.forEach(result => {
+
+    //     if (result.date) {
+    //         let datevalue = new Date(result.date);
+    //         result.numericdate = datevalue.getTime() / 1000.0;
+    //         result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
+    //         //  let datearr = result.date.split(" ");
+    //         //result.numericdate = Number(months[0][datearr[0]] + datearr[1]);
+    //     } else {
+    //         result.numericdate = 0;
+    //     }
+
+    //     //check to see if result is a product card
+    //     if (result.type === "product") {
+    //         productresults.push(result);
+    //     }
+
+    //     //check to see if result is a  process card
+    //     if (result.type === "process") {
+    //         processresults.push(result);
+    //     }
+
+    //     // if (result.chips) {
+    //     //     result.chips.forEach(chip => {
+    //     //         if (chip.category === "process") {
+    //     //             processresults.push(result);
+    //     //         }
+    //     //         if (chip.category === "product") {
+    //     //             productresults.push(result);
+    //     //         }
+    //     //     })
+    //     // }
+
+    //     filterall += 1;
+    //     filteredresults.push(result);
+    // })
+    // const prodset = new Set();
+    // const procset = new Set();
+
+    // productresults = productresults.filter(el => {
+    //     const duplicate = prodset.has(el.title);
+    //     prodset.add(el.title);
+    //     return !duplicate;
+    // });
+    // processresults = processresults.filter(el => {
+    //     const duplicate = procset.has(el.title);
+    //     procset.add(el.title);
+    //     return !duplicate;
+    // });
+
+    // filterprocess = processresults.length;
+    // filterproducts = productresults.length;
+
+    // if (filteredresults.length > 10) {
+    //     pagination = true;
+    //     pages = Math.ceil(filteredresults.length / this.state.maxperpage);
+    // }
+
+    //console.log(filteredresults)
+
+
+     //   });
+    //console.log(filteredresults)
+    this.setState({
+        filteredresults: searchresults,
+        productresults: productresults,
+        processresults: processresults
+        // pages: 0,
+        // pagination: false,
+        // initialitem: 0,
+        // lastitem: 10
+    });
+}
 
   componentDidUpdate(prevProps) {
     if (prevProps.description !== this.props.description) {
@@ -224,7 +332,7 @@ class Header extends Component {
   }
 
   renderProductHeaderContainers = () => {
-    const { title, description, compact, type, headerimage } = this.state;
+    const { title, description, compact, type, headerimage, searchhandler } = this.state;
     return (
       <div className={"header-divided-container" + (title === "product roadmaps" ? " home-header" : " product-header"
       )}>
@@ -253,7 +361,7 @@ class Header extends Component {
 
             {
               type === 'sub-page' ? (description ? ReactHtmlParser(description[0]["descriptions"]) : null) :
-                <ProductSearch placeholder="Search for topics, products, or industries" suggestions={suggestions} trends={trends} isHomePage={title && title === "product roadmaps"} />
+                <ProductSearch placeholder="Search for topics, products, or industries" suggestions={suggestions} trends={trends} searchhandler={searchhandler} isHomePage={title && title === "product roadmaps"} />
             }
 
           </div>
@@ -270,7 +378,7 @@ class Header extends Component {
     )
   }
   render() {
-    const { processes, products, compact, type, resultspage, resulthandler, pageType } = this.state;
+    const { processes, products, compact, type, resultspage, resulthandler, pageType, searchhandler } = this.state;
     return (
       <div className={"page-header-default"
         + (type === "regular" ? " page-header-minheight" : "")
@@ -306,7 +414,7 @@ class Header extends Component {
                     </li>
                   </ul>
                 </nav>
-                <SearchBar resultspage={resultspage} resulthandler={resulthandler} suggestions={suggestions} trends={trends} compact={compact} />
+                <SearchBar resultspage={resultspage} resulthandler={resulthandler} suggestions={suggestions} trends={trends} compact={compact} searchhandler={searchhandler}/>
                 {/*
                   // TODO: Notification Bell
                 <img className="header-notification-bell" alt="bell" src={compact ? notificationBell : null } /> */}

@@ -27,6 +27,7 @@ import FooterMobile from '../components/FooterMobile';
 import { activeprocesses } from '../utils/processutils';
 
 
+
 //import svg assets
 import { ProductIcons } from '../assets/prod-icons';
 
@@ -48,7 +49,6 @@ class Home extends Component {
       smallWindow: false
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-    console.log(props);
   }
 
 
@@ -76,6 +76,8 @@ class Home extends Component {
           console.log(error);
         }
       )
+
+          
     window.addEventListener('scroll', this.controlHeader, true);
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
@@ -117,7 +119,7 @@ class Home extends Component {
   }
 
   render() {
-    const { title, description, tags, products, solutions, compact } = this.state;
+    const { title, description, tags, products, solutions, compact} = this.state;
 
     return (
       <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
