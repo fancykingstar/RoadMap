@@ -30,7 +30,7 @@ class DetailContainer extends Component {
       title: this.props.title,
       details: this.props.details,
       fullwidth: this.props.fullwidth
-    }, () => console.log('mountedDetails:', this.state.details));
+    });
   }
 
 
@@ -99,14 +99,13 @@ class StepContainer extends Component {
   componentDidMount() {
     if (!this.state.businessvalues.length) {
       let businessvalues = this.props.businessvalues.replace(/\*/g, "").split('\n')
-      console.log('*steps', this.props.steps);
       this.setState({
         title: this.props.title,
         details: this.props.details,
         businessvalues: businessvalues,
         featuredetails: this.props.featuredetails,
         steps: this.props.steps
-      }, () => console.log(this.state));
+      })
     }
   }
 

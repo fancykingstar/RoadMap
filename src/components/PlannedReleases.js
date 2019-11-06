@@ -36,7 +36,7 @@ class PlannedReleases extends Component {
       cardfilter: this.props.cardfilter,
       subfilter: this.props.subfilter,
       placeholder: this.props.placeholder,
-      endpoint: this.props.endpoint === 'twm' ? 'totalworkforcemanagement' :this.props.endpoint,
+      endpoint: this.props.endpoint === 'twm' ? 'totalworkforcemanagement' : this.props.endpoint,
       sorting: 'date',
       initialitem: 0,
       lastitem: 10,
@@ -44,7 +44,6 @@ class PlannedReleases extends Component {
       pages: 0,
       pagination: false,
       selectedDates: [],
-      selectedDateElement: undefined,
       dateTags: [],
       quarterDateTags: {},
       keyLabelMap: {},
@@ -83,7 +82,7 @@ class PlannedReleases extends Component {
 
     // fetch(staging ? "https://roadmap-staging.cfapps.us10.hana.ondemand.com/releases/" + this.state.cardfilter : 
     // "https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases/" + this.state.cardfilter)
-    console.log('query:', queryURL, 'pageType:', this.state.type, 'cardfilter:', this.state.cardfilter);
+    // console.log('query:', queryURL, 'pageType:', this.state.type, 'cardfilter:', this.state.cardfilter);
     fetch(queryURL)
       .then(res => {
         let response = res.json();
@@ -96,9 +95,9 @@ class PlannedReleases extends Component {
           if (!result.businessvalues) { result.businessvalues = []; }
           if (!result.featuredetails) { result.featuredetails = []; }
           if (!result.date) { // *Note: results lacking a date will cause sub-components render issues
-            throw('result lacking a date', result);
-            // return;
-          } else {
+            // throw('result lacking a date', result);
+            return;
+          } else if (result.date) {
             let datevalue = new Date(result.date);
             result.date = datevalue.setDate(datevalue.getDate() + 1); // fallback
             result.numericdate = datevalue.getTime() / 1000.0;
@@ -161,7 +160,7 @@ class PlannedReleases extends Component {
             result.tags = tags;
           }
         });
-        console.log('newResults:', value);
+
         // Establish quarterDates
         let sortDates = [];
         if (value && value.releases) {
@@ -178,16 +177,9 @@ class PlannedReleases extends Component {
           })
         }
 
-
-        // if (value.length > 10) {
-        //   pagination = true;
-        //   pages = Math.ceil(value.length / this.state.maxperpage);
-        // }
-
-
         this.setState({
           releases: value,
-          filterreleases: value, // initially unfiltered
+          filterreleases: value,
           pages: value.length > 10 ? Math.ceil(value.length / this.state.maxperpage) : 0,
           pagination: value.length > 10 ? true : false,
           dateTags: sortDates
@@ -428,7 +420,6 @@ class PlannedReleases extends Component {
         filterreleases: this.state.releases,
         initialitem: 0,
         lastitem: 10,
-        selectedDateElement: undefined,
       });
     });
   }
