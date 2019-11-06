@@ -52,8 +52,8 @@
 }
 
 .release-card .content.MuiCardContent-root {
-  margin: 24px 30px 2px 40px;
-  padding: 0 0 25px 0;
+  margin: 25px 30px;
+  padding: 0;
   position: relative;
 }
 
@@ -109,7 +109,7 @@
 }
 
 .release-card .release-title {
-  margin: 8px 0 4px 0;
+  margin-top: 5px;
   font-size: 2rem;
   color: #000;
   text-transform: capitalize;
@@ -181,6 +181,11 @@
   margin-top: 14px;
   font-size: 2rem;
   color: #000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .page-container-small .static-card .content .header {
@@ -189,7 +194,8 @@
 
 .static-card .content .body,
 .release-card .release-description {
-  margin-top: 3px;
+  margin-top: 5px;
+  margin-bottom: 15px;
   font-size: 1.6666666666666667rem;
   font-weight: 200;
   color: #666666;
@@ -300,7 +306,7 @@
 .product-active.MuiPaper-root:hover .icon-products {
   /* background: url(../assets/images/prod-icons/icon-offstate.png);  */
   background: rgba(255, 255, 255, 1) !important;
-  border-radius: 28px;  
+  border-radius: 28px;
 }
 
 .product-card .icon > img {

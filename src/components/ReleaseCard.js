@@ -121,14 +121,17 @@ export default function ReleaseCard(props) {
           <div className="release-title">{state.title}</div>
           <div className="release-actionbar">
               <div className="release-description">{state.description}</div>
-              <div className="release-trigger"><img onClick={handleArrowCollapseableSection} alt="collapse" src={state.icon} /></div>
+              <div className="release-trigger"><img onClick={handleArrowCollapseableSection} alt="collapse
+              
+              " src={state.icon} /></div>
           </div>
           {/* <div className="release-tag-container">
+              <div className="TagTitle">TAGS:</div>
             {state.chips.map(chip => (
                 <Chip
                           key={chip.key}
                           label={chip.label}
-                          className={"release-chip " + chip.category + (props.smallWindow ? " release-chip-small" : "")}
+                          className={"release-chip " + (props.smallWindow ? " release-chip-small" : "")}
                           onClick={() => handleTagClick(chip)}
                         />
             ))}

@@ -3,9 +3,20 @@
   margin-bottom: 20px;
 }
 
+/*
+
 .chip.MuiChip-outlined {
   border: 1px solid #0A6ED1;
   background-color: transparent;
+}
+*/
+
+.TagTitle {
+    font-size: 1.3333333333333333rem;
+    font-weight: 500;
+    display: inline-flex;
+    vertical-align: middle;
+    margin-right: 15px;
 }
 
 .chip.MuiChip-root {
@@ -13,7 +24,19 @@
   font-weight: 400;
   color: #0A6ED1;
   border-radius: 47px;
-  height: 40px;
+  height: 18px;
+}
+
+.release-chip.MuiChip-root:hover,
+.release-chip.MuiChip-root:focus {
+    color: #F0AB00;
+    background: transparent;
+}
+
+
+.MuiChip-root .MuiChip-label {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .chip.MuiChip-clickable.MuiChip-outlined:hover,
@@ -21,7 +44,6 @@
   background-color: #0A6ED1;
   color: #fff;
 }
-
 
 .chip .MuiChip-label {
   padding-left: 20px;
@@ -50,17 +72,19 @@
 }
 
 .release-chip.MuiChip-root {
-    border-radius: 10px;
+/*    border-radius: 10px;*/
     font-size: 1.3333333333333333rem;
     font-family: "72",Arial,Helvetica,sans-serif;
     font-weight: 500;
     text-transform: uppercase;
+/*
     height: 34px;
     transition: none;
-    padding-left: 4px;
-    padding-right: 4px;
-    margin-right: 8px;
-    margin-top: 8px;
+*/
+    padding: 0;
+    margin-right: 15px;
+    background-color: #FFFFFF; 
+    color: #0A6ED1;
 }
 
 .page-container-small .release-chip.MuiChip-root {
@@ -71,6 +95,7 @@
 .release-chip-small {
   margin-bottom: 8px;
 }
+/*
 
 .release-chip.integration.MuiChip-root {
   background-color: rgba(0, 182, 240, 0.12);
@@ -81,6 +106,8 @@
 .release-chip.integration.MuiChip-clickable:focus {
   background-color: rgba(0, 182, 240, 0.12);
 }
+*/
+/*
 
 Line-style chip
 .release-chip.integration.MuiChip-root {
@@ -100,13 +127,17 @@ Line-style chip
   background-color: rgba(61, 130, 240, 0.12);
   color: #0A6ED1;
 }
+*/
 
+/*
 .release-chip.product.MuiChip-clickable:hover,
 .release-chip.product.MuiChip-clickable:focus,
 .release-chip.subproduct.MuiChip-clickable:hover,
 .release-chip.subproduct.MuiChip-clickable:focus {
-  background-color: rgba(61, 130, 240, 0.12);
+   background-color: rgba(61, 130, 240, 0.12);
+    color: #f0ab00;
 }
+
 
 .release-chip.process.MuiChip-root {
   background-color: rgba(240, 171, 0, 0.12);
@@ -117,3 +148,4 @@ Line-style chip
 .release-chip.process.MuiChip-clickable:focus {
   background-color: rgba(240, 171, 0, 0.12);
 }
+*/
