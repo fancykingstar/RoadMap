@@ -126,7 +126,7 @@ class Header extends Component {
       process: this.props.process,
       product: this.props.product,
       pageType: this.props.pageType
-    }),
+    })
   }
 
   filterResultData(results) {
