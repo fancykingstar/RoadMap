@@ -269,6 +269,7 @@ class PlannedReleases extends Component {
         }
         form.fields[i].count = 0;
         let occurences = this.getOccurrence(releasetags, form.fields[i].key);
+         occurences = 0;
         console.log('occurrences:', occurences);
         form.fields[i].count = occurences;
         form.count += occurences;
@@ -395,42 +396,6 @@ class PlannedReleases extends Component {
       const rtags = tags.join(' ')
       return currentTags.every((tag) => rtags.indexOf(tag) !== -1)
     })
-    console.log('filterArray?:', filterArray);
-    // let currentags = tags;
-    // currentags.push("");
-    // const filters = {
-    //   tags: currentags
-    // };
-
-    // const filterKeys = Object.keys(filters);
-    // const filteredArray = releases.filter(release => {
-    //   return filterKeys.every(key => { // key = tags
-    //     if (!filters[key].length) return true;
-    //     // Loops again if release[key] is an array.
-    //     if (Array.isArray(release[key]) && release[key].length > 0) {
-    //       if (filters[key].length === 1) {
-    //         // Rerender with no filters
-    //         return release[key].some(tag => tag.includes(this.state.cardfilter));
-    //       }
-    //       else { // Otherwise, apply filters
-    //         // release[key] is an array >= 2 elements
-    //         // filter through any release that has all tags
-    //         var bool = release[key].some(keyEle => {
-    //           return filters[key]
-    //             .some((elem) => {
-    //               if (elem.length > 1) {
-    //                 return keyEle.includes(elem)
-    //               }
-    //               return false;
-    //             })
-    //             && release[key].some(tag => tag.includes(this.state.cardfilter))
-    //         })
-    //         return bool;
-    //       }
-    //     }
-    //     return filters[key].includes(release[key]);
-    //   });
-    // });
     return filterArray;
   };
 

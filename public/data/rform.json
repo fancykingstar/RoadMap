@@ -2,7 +2,7 @@
   "forms": [
     {
       "id": 0,
-      "expandable": true,
+      "expandable": false,
       "state": false,
       "title": "Release Dates",
       "fields": [
