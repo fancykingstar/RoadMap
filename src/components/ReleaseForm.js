@@ -91,7 +91,7 @@ class ReleaseForm extends Component {
     const BtnIcon = this.state.icon;
     return (
       <div className={"pr-form-container" 
-      + ((title !== "Release Dates" && count > 0) ? "" : title !== "Release Dates" ? ` pr-container-hidden` : "")
+      // + ((title !== "Release Dates" && count > 0) ? "" : title !== "Release Dates" ? ` pr-container-hidden` : "")
       }>
         <div className="pr-form-header">
           {expandable ? <div className="pr-form-title title-expandable" onClick={this.handleExpandClick}>{title}</div> : <div className="pr-form-title">{title}</div>}
@@ -105,7 +105,7 @@ class ReleaseForm extends Component {
               } else {
                 return <FormControlLabel
                   className={"checkInput" 
-                  + (item.count === 0  && title !== "Release Dates" ? " checkInput-hidden" : "")
+                  // + (item.count === 0  && title !== "Release Dates" ? " checkInput-hidden" : "")
                 }
 
                   key={item.key}

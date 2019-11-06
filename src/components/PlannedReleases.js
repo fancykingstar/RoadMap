@@ -68,7 +68,6 @@ class PlannedReleases extends Component {
     // "https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases/" + this.state.cardfilter)
     fetch(query)
       .then(res => {
-        console.log('RES:', res);
         let response = res.json();
         return response;
       })
@@ -84,7 +83,7 @@ class PlannedReleases extends Component {
             result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
             result.futureplans = this.manageDates(result.futureplans);
             // set tags
-            if (result.process.length > 0 && !chips.includes(result.process)) { 
+            if (result.process.length > 1 && !chips.includes(result.process)) { 
               const processKey = result.process.toLowerCase().replace(/\s/g, "");
               tags.push(processKey);
               chips.push({
@@ -94,7 +93,7 @@ class PlannedReleases extends Component {
               }) 
             }
             
-            if (result.integration.length > 0 && !chips.includes(result.integration)) { 
+            if (result.integration.length > 1 && !chips.includes(result.integration)) { 
               const integrationKey = result.integration.toLowerCase().replace(/\s/g, "");
               tags.push(integrationKey);
               chips.push({
@@ -106,7 +105,7 @@ class PlannedReleases extends Component {
             if (result.products.length) {
               result.products.forEach(({ product }) => {
                 const productKey = product.toLowerCase().replace(/\s/g, "")
-                if (!chips.includes(product) && product.length > 0) {
+                if (!chips.includes(product) && product.length > 1) {
                   tags.push(productKey);
                   chips.push({
                   category: "product",
@@ -189,7 +188,9 @@ class PlannedReleases extends Component {
 
   getOccurrence = (array, value) => {
     var count = 0;
-    array.forEach((v) => (v === value && count++));
+    array.forEach((v) => {
+      (v.includes(value) && count++)
+    });
     return count;
   }
 
@@ -229,6 +230,7 @@ class PlannedReleases extends Component {
         }
         form.fields[i].count = 0;
         let occurences = this.getOccurrence(releasetags, form.fields[i].key);
+        // console.log('occurrences:', occurences);
         form.fields[i].count = occurences;
         form.count += occurences;
         form.fields[i].count = form.fields[i].count === null ? 0 : form.fields[i].count;
@@ -288,7 +290,7 @@ class PlannedReleases extends Component {
       let index = tags.indexOf(key);
       tags.splice(index, 1);
     }
-    this.setState({ tags: tags });
+    this.setState({ tags: tags }, ()=> console.log(this.state.tags));
 
     let filterReleases = this.state.releases;
     this.state.forms.forEach(form => {
@@ -326,7 +328,7 @@ class PlannedReleases extends Component {
       initialitem: 0,
       lastitem: 10
     }, () => {
-      // console.log("filterreleases:", this.state.filterreleases)
+      console.log("filterreleases:", this.state.filterreleases)
       this.setState({
         filterreleases: filterReleases,
         pages: pages,
@@ -370,11 +372,18 @@ class PlannedReleases extends Component {
       return filterKeys.every(key => {
         if (!filters[key].length) return true;
         // Loops again if release[key] is an array.
-        if (Array.isArray(release[key])) {
+        if (Array.isArray(release[key]) && release[key].length > 0) {
           if (filters[key].length === 1) {
-            return release[key].includes(this.state.cardfilter);
-          } else {
-            return release[key].some(keyEle => filters[key].includes(keyEle)) && release[key].includes(this.state.cardfilter);
+            return release[key].some(tag => tag.includes(this.state.cardfilter));
+          } 
+          else {
+            var bool = release[key].some(keyEle => {
+              // console.log('keyEle:', keyEle, filters[key])
+              return filters[key].some((keyElem) => keyElem.includes(keyEle)) 
+              && release[key].some(tag => tag.includes(this.state.cardfilter))
+            })
+            console.log("BOOL", bool);
+            return bool;
           }
         }
         return filters[key].includes(release[key]);
