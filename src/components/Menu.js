@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import Collapse from '@material-ui/core/Collapse';
+
 //import assets
 import downdefault from '../assets/images/menu-down-arrow-white.svg';
 import updefault from '../assets/images/menu-up-arrow-white.svg';
@@ -73,9 +75,17 @@ class Menu extends Component{
             return (a.state === b.state) ? 0: a.state ? -1 : 1;
           })
           .map((item)=> {
+            const hasChildren = (item.children.length > 0)
             if (item.state) {
-              return <li className="dd-list-item active" key={item.id} onClick={() => this.selectItem(item.key)}>{item.title}</li>
-            } else {
+              return (
+                  <div>
+                    <li className="dd-list-item active" key={item.id} onClick={() => this.selectItem(item.key)}>{item.title}</li>
+                    {hasChildren ? 
+                            item["children"].map(subitem => (
+                            <li className="dd-sublist-item dd-list-item active" key={subitem.id} onClick={() => this.selectItem(subitem.key)}>{subitem.title}</li>))                     
+                    : null}
+                  </div>
+                    )} else {
               return <li className="dd-list-item inactive" key={item.id}>{item.title}</li>
             }
           })}

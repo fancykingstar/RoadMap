@@ -109,7 +109,7 @@ class Header extends Component {
       process: this.props.process,
       product: this.props.product,
       pageType: this.props.pageType
-    })
+    }),
   }
 
   componentDidUpdate(prevProps) {
@@ -227,7 +227,7 @@ class Header extends Component {
             + (this.props.smallWindow ? " title-small" : "")
             + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")}>{title}
             {
-              title && title !== "product roadmaps" ? <img src={info} alt="info" style={{
+              title && title !== "product roadmaps" && (this.state.description[1]["items"].length > 0) ? <img src={info} alt="info" style={{
                 position: this.props.windowWidth < 816 ? "relative" : "absolute",
                 paddingLeft: 13 + "px",
                 paddingTop: this.props.windowWidth < 816 ? 5 + "px" : 21 + "px"
