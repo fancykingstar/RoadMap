@@ -1,6 +1,6 @@
 {
-    "title": "SAP Fieldglass",
-    "description": [{"title": "About", "descriptions":"SAP Fieldglass provides industry-leading solutions to find, engage, and manage your external workforce and services procurement resources, including temporary staff, Statement-of-Work based consultants, freelancers, contractors, and more."},
+    "title": "SAP Fieldglass Solutions",
+    "description": [{"title": "About", "descriptions":"Industry-leading SAP Fieldglass solutions help you find, engage, and manage your external workforce and services procurement resources, including temporary staff, statement-of-work-based consultants, freelancers, contractors, and more."},
       {"title": "Innovation topics", "items": [{"label": "Machine learning", "key": "innovation1", "link": ""},
       {"label": "Digital Partner Network", "key": "innovation2", "link": ""},
       {"label": "Integrations", "key": "innovation3", "link": ""},
@@ -9,103 +9,114 @@
       {
       "id": 1,
       "type": "start",
-      "title": "SAP Fieldglass",
-      "header": "Multi-Channel Workforce",
-      "body" : "Are you making the most of your external workforce? Our solution helps you answer these critical questions and many more.",
+      "title": "SAP Fieldglass Solutions",
+      "header": "",
+      "body" : "Are you making the most of your external workforce? Our solutions help you answer this critical question and many more.",
       "buttonText" : "Learn More",
-      "buttonLink" : "http://sap.to/6046EAYV0"
-      },{
-      "id": 2,
-      "type": "mid",
-      "title": "SAP Fieldglass",
-      "header": "Services Procurement Insights",
-      "body": "Non-payroll workers and services providers account for 42% of total workforce spend. How well do you manage them? Check out our research in partnership with Oxford Economics.",
-      "buttonText": "Learn More",
-      "buttonLink": "http://sap.to/6043EAWxV"
-    },{
-    "id": 3,
-    "type": "mid",
-    "title": "Insights",
-    "header": "IDC Brief:",
-    "body": "The Business Value of Intelligent Spend Management",
-    "buttonText": "Download",
-    "buttonLink": "https://www.fieldglass.com/downloads/idc-business-value-intelligent-spend-management"
-    }
+      "buttonLink" : "https://www.linkedin.com/company/sapfieldglass/"
+      }
     ],
     "timelineTitle": "Release Highlights",
     "timeline": [
     {
-      "label": "Jul 2019",
-      "id": "jul2019",
-      "bullets": [
-        {
-          "text": "Manager Hub – SOW Worker & Profile Workers Support",
-          "id": "jul2019-0"
-        },
-        {
-          "text": "Supplier Widget – My Active Job Postings",
-          "id": "jul2019-1"
-        },
-        {
-          "text": "SOW Bid Distribution Enhancements",
-          "id": "jul2019-2"
-        },
-        {
-          "text": "Tenure & Rate Change Matrix Implementation Tools",
-          "id": "jul2019-3"
-        },
-        {
-          "text": "Time Sheet Settings - SOW & Contingent Types",
-          "id": "jul2019-4"
-        }
-      ]
-    },
-    {
-      "label": "Nov 2019",
+      "label": "Q4 2019 (Release 1911)",
       "id": "nov2019",
       "bullets": [
         {
-          "text": "Advanced Analytics",
+          "text": "Crew Worker Management",
           "id": "nov2019-0"
         },
         {
-          "text": "100% accessibility compliance",
+          "text": "Configurable Work Order Views",
           "id": "nov2019-1"
         },
         {
-          "text": "Buyer-defined Rate Change Matrix simplification",
+          "text": "Rate Change Matrix Improvements",
           "id": "nov2019-2"
         },
         {
-          "text": "Activity Items for SOW Bid",
+          "text": "Support for non-employees procuring external talent",
           "id": "nov2019-3"
         },
         {
-          "text": "Crew Worker Management",
+          "text": "SAP S4 Procurement Integration",
           "id": "nov2019-4"
+        },
+        {
+          "text": "WCAG 2.0 Level AA compliance",
+          "id": "nov2019-5"
+        },
+        {
+          "text": "Resume Scoring using M/L",
+          "id": "nov2019-6"
+        },
+        {
+          "text": "Master Data Service for External Workforce",
+          "id": "nov2019-7"
         }
       ]
     },
-
     {
-      "label": "Mar 2020",
-      "id": "mar2020",
+      "label": "Q1 2020 (Release 2002)",
+      "id": "feb2020",
       "bullets": [
         {
-          "text": "Advanced Analytics enhancements",
-          "id": "mar2020-0"
+          "text": "Contract Integration",
+          "id": "feb2020-0"
         },
         {
-          "text": "Resume Ranking for direct sourcing",
-          "id": "mar2020-1"
+          "text": "Intelligent Spend Services Integration",
+          "id": "feb2020-1"
         },
         {
-          "text": "Time Entry mobile app enhancements",
-          "id": "mar2020-2"
+          "text": "Analytics with embedded SAC",
+          "id": "feb2020-2"
+        }
+      ]
+    },
+    {
+      "label": "Q2 2020 (Release 2005)",
+      "id": "may2020",
+      "bullets": [
+        {
+          "text": "Flexible Procurement: SOW or Work Order",
+          "id": "may2020-0"
         },
         {
-          "text": "SAP Ariba integration enhancements",
-          "id": "mar2020-3"
+          "text": "SOW Bid Response to Leverage Master SOW",
+          "id": "may2020-1"
+        },
+        {
+          "text": "SOW Bid Supplier Type",
+          "id": "may2020-2"
+        },
+        {
+          "text": "Coordinator/Team Support on SOW",
+          "id": "may2020-3"
+        },
+        {
+          "text": "Rate Simplification",
+          "id": "may2020-4"
+        },
+        {
+          "text": "Worker Line Item Ownership",
+          "id": "may2020-5"
+        },
+        {
+          "text": "Job Matching using M/L",
+          "id": "may2020-6"
+        },
+        {
+          "text": "Support for Hyperscalers",
+          "id": "may2020-7"
+        },
+        {
+          "text": "In-App Assistant using Conversational AI",
+          "id": "may2020-8"
+        },
+        {
+          "text": "Support for Single Tenancy",
+          "id": "may2020-9"
         }
       ]
     }

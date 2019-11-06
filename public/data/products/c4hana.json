@@ -12,16 +12,16 @@
       "id": 1,
       "type": "start",
       "title": "SAP C/4HANA SUITE",
-      "header": "SAP Customer Experience LIVE event in Munich, Germany, on November 5, 2019",
-      "body" : "",
+      "header": "SAP Customer Experience LIVE event in Munich, Germany",
+      "body" : "November 5, 2019",
       "buttonText" : "Register Now",
       "buttonLink" : "https://events.sap.com/de/cx-live-2019-munich/en/home"
       },{
       "id": 2,
       "type": "mid",
       "title": "SAP C/4HANA SUITE",
-      "header": "SAP Customer Experience LIVE event in London, UK, on October 3, 2019",
-      "body": "",
+      "header": "SAP Customer Experience LIVE event in London, UK",
+      "body": "October 3, 2019",
       "buttonText": "Register Now",
       "buttonLink": "https://events.sap.com/gb/cx-live-2019-london/en/home"
       },
@@ -29,8 +29,8 @@
       "id": 3,
       "type": "mid",
       "title": "SAP C/4HANA SUITE",
-      "header": "SAP Customer Experience LIVE in Dubai, UAE, on October 6, 2019",
-      "body": "",
+      "header": "SAP Customer Experience LIVE in Dubai, UAE",
+      "body": "October 6, 2019",
       "buttonText": "Register Now",
       "buttonLink": "https://events.sap.com/ae/cx-live-2019-dubai/en/home"
       }
