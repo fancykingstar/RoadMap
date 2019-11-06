@@ -61,7 +61,7 @@ class PlannedReleases extends Component {
 
 
   componentDidMount() {
-    let pagination = false, pages = 0, sortDates = [];
+
     let querySubstr = (this.state.type && this.state.type === 'product' ?
       this.state.cardfilter === 'c4hana' ? 'C/4HANA' :
         this.state.cardfilter === 'successfactors' ? 'SuccessFactors' :
@@ -92,6 +92,7 @@ class PlannedReleases extends Component {
       .then(({ value }) => {
         value.forEach(result => {
           let chips = [], tags = [];
+           // parseData
           if (!result.businessvalues) { result.businessvalues = []; }
           if (!result.featuredetails) { result.featuredetails = []; }
           if (!result.date) { // *Note: results lacking a date will cause sub-components render issues
@@ -161,13 +162,8 @@ class PlannedReleases extends Component {
           }
         });
         console.log('newResults:', value);
-
-        if (value.length > 10) {
-          pagination = true;
-          pages = Math.ceil(value.length / this.state.maxperpage);
-        }
-
         // Establish quarterDates
+        let sortDates = [];
         if (value && value.releases) {
           let tempDates = {};
           value.forEach(release => {
@@ -182,11 +178,18 @@ class PlannedReleases extends Component {
           })
         }
 
+
+        // if (value.length > 10) {
+        //   pagination = true;
+        //   pages = Math.ceil(value.length / this.state.maxperpage);
+        // }
+
+
         this.setState({
           releases: value,
           filterreleases: value, // initially unfiltered
-          pages: pages,
-          pagination: pagination,
+          pages: value.length > 10 ? Math.ceil(value.length / this.state.maxperpage) : 0,
+          pagination: value.length > 10 ? true : false,
           dateTags: sortDates
         }, function () {
           fetch("/data/rform.json")
@@ -208,7 +211,6 @@ class PlannedReleases extends Component {
                   )),
                   keyLabelMap: keyLabelMap
                 }, function () {
-                  console.log('beforefilterformresults')
                   this.filterFormResults();
                 })
               }, (error) => { console.log(error); }
@@ -238,7 +240,6 @@ class PlannedReleases extends Component {
   }
 
   filterFormResults = () => {
-    console.log('filterformresults invoked');
     let cardfilter = this.state.endpoint;
     let releases = this.state.releases;
     let forms = this.state.forms;
@@ -247,7 +248,7 @@ class PlannedReleases extends Component {
 
     //get tags from release data
     releases.forEach(release => {
-      console.log(release.tags, 'cf:', cardfilter);
+      // console.log(release.tags, 'cf:', cardfilter);
       if (release.tags.includes(cardfilter)) {
         releasetags = releasetags.concat(release.tags);
         // console.log('endpoint:', cardfilter, release.tags.indexOf(cardfilter));
@@ -360,7 +361,7 @@ class PlannedReleases extends Component {
       initialitem: 0,
       lastitem: 10
     }, () => {
-      console.log("&filterreleases:", this.state.filterreleases)
+      // console.log("&filterreleases:", this.state.filterreleases)
       this.setState({
         filterreleases: filterReleases,
         pages: pages,
@@ -411,10 +412,6 @@ class PlannedReleases extends Component {
       })
       return form;
     });
-
-    // if (this.state.selectedDateElement) {
-    //   this.state.selectedDateElement.classList.remove('pr-selected-filter-chip');
-    // }
 
     this.setState({
       filterreleases: this.state.releases,
@@ -555,8 +552,8 @@ class PlannedReleases extends Component {
                 .slice(this.state.initialitem, this.state.lastitem)
                 .map(release => (
                   <ReleaseCard
-                    key={release._id}
-                    _id={release._id}
+                    key={release.id}
+                    _id={release.id}
                     title={release.title}
                     date={release.displaydate}
                     description={release.description}
