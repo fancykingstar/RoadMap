@@ -33,9 +33,10 @@ class PlannedReleases extends Component {
       statustags: [],
       tags: [],
       type: this.props.type,
-      cardfilter: this.props.cardfilter === "twm" ? "totalworkforcemanagement" : this.props.cardfilter,
+      cardfilter: this.props.cardfilter,
       subfilter: this.props.subfilter,
       placeholder: this.props.placeholder,
+      endpoint: this.props.endpoint === 'twm' ? 'totalworkforcemanagement' : this.props.endpoint,
       sorting: 'date',
       initialitem: 0,
       lastitem: 10,
@@ -43,9 +44,9 @@ class PlannedReleases extends Component {
       pages: 0,
       pagination: false,
       selectedDates: [],
-      selectedDateElement: undefined,
       dateTags: [],
       quarterDateTags: {},
+      keyLabelMap: {},
       showToast: false
     };
     this.paginationRef = React.createRef();
@@ -53,133 +54,163 @@ class PlannedReleases extends Component {
     this.scrollToTop = this.scrollToTop.bind(this);
     this.manageTagArray = this.manageTagArray.bind(this);
     this.filterFormResults = this.filterFormResults.bind(this);
-    // this.handleDateChipClick = this.handleDateChipClick.bind(this);
     this.handleExportClick = this.handleExportClick.bind(this);
     this.handleDeleteTagClick = this.handleDeleteTagClick.bind(this);
   }
 
 
   componentDidMount() {
-    let pagination = false, pages = 0, sortDates = [];
-    fetch(staging ? "https://roadmap-staging.cfapps.us10.hana.ondemand.com/releases/" + this.state.cardfilter : 
-    "https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases/" + this.state.cardfilter)
-      // fetch(staging ? "https://roadmap-staging.cfapps.us10.hana.ondemand.com/releases/" + this.state.cardfilter : "https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases/" + this.state.cardfilter)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          result.releases.forEach(result => {
-            if (!result.businessvalues) {
-              result.businessvalues = [];
-            }
-            if (!result.featuredetails) {
-              result.featuredetails = [];
-            }
+
+    let querySubstr = (this.state.type && this.state.type === 'product' ?
+      this.state.cardfilter === 'c4hana' ? 'C/4HANA' :
+        this.state.cardfilter === 'successfactors' ? 'SuccessFactors' :
+          this.state.cardfilter.charAt(0).toUpperCase() + this.state.cardfilter.slice(1) :
+      // Process cardfilter
+      this.state.cardfilter.replace(/\s/g, "%20"))
+    let baseURL = staging ? window.location.origin : 'https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com'
+    let queryURL = staging ?
+      baseURL.concat("/srv_api/" + this.state.type && this.state.type === 'product' ?
+        `/odata/v4/roadmap/Roadmap?$filter=contains%28productSearch%2C%27${querySubstr}%27%29&$skip=0&$orderby=date%20asc&$expand=products%2Cfutureplans`
+        : this.state.type === 'process' ?
+          `/odata/v4/roadmap/Roadmap?$filter=contains%28process%2C%27${querySubstr}%27%29&$skip=0&$orderby=date%20asc&$expand=products%2Cfutureplans`
+          : null)
+      : baseURL.concat(this.state.type && this.state.type === 'product' ?
+        `/odata/v4/roadmap/Roadmap?$filter=contains%28productSearch%2C%27${querySubstr}%27%29&$skip=0&$orderby=date%20asc&$expand=products%2Cfutureplans`
+        : this.state.type === 'process' ?
+          `/odata/v4/roadmap/Roadmap?$filter=contains%28process%2C%27${querySubstr}%27%29&$skip=0&$orderby=date%20asc&$expand=products%2Cfutureplans`
+          : null)
+
+    // fetch(staging ? "https://roadmap-staging.cfapps.us10.hana.ondemand.com/releases/" + this.state.cardfilter : 
+    // "https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases/" + this.state.cardfilter)
+    // console.log('query:', queryURL, 'pageType:', this.state.type, 'cardfilter:', this.state.cardfilter);
+    fetch(queryURL)
+      .then(res => {
+        let response = res.json();
+        return response;
+      })
+      .then(({ value }) => {
+        value.forEach(result => {
+          let chips = [], tags = [];
+           // parseData
+          if (!result.businessvalues) { result.businessvalues = []; }
+          if (!result.featuredetails) { result.featuredetails = []; }
+          if (!result.date) { // *Note: results lacking a date will cause sub-components render issues
+            // throw('result lacking a date', result);
+            return;
+          } else if (result.date) {
             let datevalue = new Date(result.date);
-            result.date = datevalue.setDate(datevalue.getDate() + 1);
+            result.date = datevalue.setDate(datevalue.getDate() + 1); // fallback
             result.numericdate = datevalue.getTime() / 1000.0;
             result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
             result.futureplans = this.manageDates(result.futureplans);
-          });
-
-          if (result.releases.length > 10) {
-            pagination = true;
-            pages = Math.ceil(result.releases.length / this.state.maxperpage);
-          }
-
-          // if (result && result.releases) {
-          //   let tempDates = {};
-          //   result.releases.forEach(release => {
-          //     if (tempDates[release.numericdate] !== release.displaydate) {
-          //       sortDates.push({ numericDate: release.numericdate, displayDate: release.displaydate });
-          //       tempDates[release.numericdate] = release.displaydate;
-          //     }
-          //   });
-          // }
-
-          if (result && result.releases) {
-            let tempDates = {};
-            result.releases.forEach(release => {
-              const quarterDate = this.getQuarter(new Date(release.date));
-              if (!tempDates.hasOwnProperty(quarterDate)) {
-                sortDates.push({ numericDate: release.date, displayDate: quarterDate });
-                tempDates[quarterDate] = quarterDate;
+            // set tags
+            if (result.process.length > 1 && !chips.includes(result.process)) {
+              const processKey = result.process.toLowerCase().replace(/\s/g, "");
+              /* Exception Keys */
+              if (processKey === "designtooperate") {
+                processKey = "d2o";
               }
-            });
-            this.setState({
-              quarterDateTags: tempDates
-            })
-          }
+              tags.push(processKey);
+              chips.push({
+                category: 'process',
+                key: processKey,
+                label: result.process
+              })
+            }
 
-          this.setState({
-            releases: result.releases,
-            filterreleases: result.releases,
-            pages: pages,
-            pagination: pagination,
-            dateTags: sortDates
-          }, function () {
-            fetch("/data/rform.json")
-              .then(res => res.json())
-              .then(
-                (result) => {
-                  this.setState({
-                    forms: result.forms.filter(form => (this.props.type !== 'process' ?
-                      form.title !== 'Subprocesses'
-                      :
-                      (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent === this.props.cardfilter
-                    )
+            if (result.integration.length > 1 && !chips.includes(result.integration)) {
+              const integrationKey = result.integration.toLowerCase().replace(/\s/g, "");
+              tags.push(integrationKey);
+              chips.push({
+                category: 'integration',
+                key: integrationKey,
+                label: result.integration
+              })
+            }
 
-                    ),
-                  }, function () {
-                    // API CALL TO MAIN DATABASE
-                    // TESTING PURPOSES ONLY
-                    let querySubstr = this.state.cardfilter.charAt(0).toUpperCase() + this.state.cardfilter.slice(1);
-                    let baseURL = 'https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com'
-                    let query = baseURL + `/odata/v4/roadmap/Roadmap?$filter=contains%28productSearch%2C%27${querySubstr}%27%29&$skip=0&$orderby=date%20asc&$expand=products%2Cfutureplans`
-                    fetch(query)
-                      .then(res => {
-                        let response = res.json();
-                        return response;
-                      })
-                      .then(({ value }) => {
-                        value.forEach(result => {
-                          let tags = [];
-                          if (!result.businessvalues) { result.businessvalues = []; }
-                          if (!result.featuredetails) { result.featuredetails = []; }
-                          if (result.date) {
-                            let datevalue = new Date(result.date);
-                            result.date = datevalue.setDate(datevalue.getDate() + 1); // fallback
-                            result.numericdate = datevalue.getTime() / 1000.0;
-                            result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
-                            result.futureplans = this.manageDates(result.futureplans);
-                            // set tags
-                            if (result.process.length > 0 && !tags.includes(result.process)) { tags.push(result.process.trim()) }
-                            if (result.integration.length > 0 && !tags.includes(result.integration)) { tags.push(result.integration.trim()) }
-                            if (result.products.length) {
-                              result.products.forEach(({ product }) => {
-                                if (!tags.includes(product) && product.length > 0) tags.push(product.trim())
-                              })
-                            }
-                            result.tags = tags;
-                          }
-                        });
-                        console.log('newResults:', value);
-                      },
+            if (result.industry.length > 1 && !chips.includes(result.industry)) {
+              const industryKey = result.industry.toLowerCase().replace(/\s/g, "");
+              if (industryKey === "retail/hospitality") {
+                industryKey = "retail";
+              } else if (industryKey === "publicsector/government") {
+                industryKey = "publicsector"
+              }
 
-                        (error) => console.log(error))
-                    this.filterFormResults();
+              tags.push(industryKey);
+              chips.push({
+                category: 'industry',
+                key: industryKey,
+                label: result.industry
+              })
+            }
+            if (result.products.length) {
+              result.products.forEach(({ product }) => {
+                const productKey = product.toLowerCase().replace(/(sap)|\s/g, "")
+                if (!chips.includes(product) && product.length > 1) {
+                  tags.push(productKey);
+                  chips.push({
+                    category: "product",
+                    key: productKey,
+                    label: product
                   })
-                },
-                (error) => {
-                  console.log(error);
                 }
-              )
+              })
+            }
+            result.chips = chips;
+            result.tags = tags;
+          }
+        });
 
+        // Establish quarterDates
+        let sortDates = [];
+        if (value && value.releases) {
+          let tempDates = {};
+          value.forEach(release => {
+            const quarterDate = this.getQuarter(new Date(release.date));
+            if (!tempDates.hasOwnProperty(quarterDate)) {
+              sortDates.push({ numericDate: release.date, displayDate: quarterDate });
+              tempDates[quarterDate] = quarterDate;
+            }
+          });
+          this.setState({
+            quarterDateTags: tempDates
           })
-        },
-        (error) => {
-          console.log(error);
         }
-      )
+
+        this.setState({
+          releases: value,
+          filterreleases: value,
+          pages: value.length > 10 ? Math.ceil(value.length / this.state.maxperpage) : 0,
+          pagination: value.length > 10 ? true : false,
+          dateTags: sortDates
+        }, function () {
+          fetch("/data/rform.json")
+            .then(res => res.json())
+            .then(
+              (result) => {
+                let keyLabelMap = {};
+                result.forms.forEach(({ fields }) => {
+                  fields.forEach(({ key, label }) => {
+                    if (!keyLabelMap[key]) {
+                      keyLabelMap[key] = label;
+                    }
+                  })
+                })
+                this.setState({
+                  forms: result.forms.filter(form => (this.props.type !== 'process' ?
+                    form.title !== 'Subprocesses'
+                    : (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent === this.props.cardfilter
+                  )),
+                  keyLabelMap: keyLabelMap
+                }, function () {
+                  this.filterFormResults();
+                })
+              }, (error) => { console.log(error); }
+            )
+        })
+      }, (error) => {
+        console.log(error);
+      })
   }
 
   manageDates = (array) => {
@@ -194,12 +225,14 @@ class PlannedReleases extends Component {
 
   getOccurrence = (array, value) => {
     var count = 0;
-    array.forEach((v) => (v === value && count++));
+    array.forEach((v) => {
+      (v.includes(value) && count++)
+    });
     return count;
   }
 
   filterFormResults = () => {
-    let cardfilter = this.state.cardfilter;
+    let cardfilter = this.state.endpoint;
     let releases = this.state.releases;
     let forms = this.state.forms;
     let subfilter = this.state.subfilter;
@@ -207,11 +240,13 @@ class PlannedReleases extends Component {
 
     //get tags from release data
     releases.forEach(release => {
+      // console.log(release.tags, 'cf:', cardfilter);
       if (release.tags.includes(cardfilter)) {
         releasetags = releasetags.concat(release.tags);
+        // console.log('endpoint:', cardfilter, release.tags.indexOf(cardfilter));
+        // console.log('releasetaggerinos:', releasetags);
       }
     })
-
 
     forms.forEach(form => {
       form.icon = null;
@@ -254,18 +289,11 @@ class PlannedReleases extends Component {
 
 
   manageTagArray = (state, key) => {
-    let tags, pagination = false, pages = 0;
+    let tags, pagination = false, pages = 0, {quarterDateTags, selectedDates} = this.state;
     tags = this.state.tags;
-    /* Release Dates are tags with special functionality
-      They must be able to render all possible results
-      When all release dates are not selected
-      If there are one or multiple release dates clicked,
-      an AND relationship must exist for the case of multiple
-      This must also rerender to the different processes a new occurence count
-    */
-    // if quarterDateTag-key is passed in
-    if (this.state.quarterDateTags[key]) {
-      let selectedDates = this.state.selectedDates, index = selectedDates.indexOf(key);
+    console.log('tagkey:', key)
+    if (quarterDateTags[key]) {
+      let index = selectedDates.indexOf(key);
       if (index === -1) {
         selectedDates.push(key);
       } else {
@@ -286,7 +314,7 @@ class PlannedReleases extends Component {
       let index = tags.indexOf(key);
       tags.splice(index, 1);
     }
-    this.setState({ tags: tags });
+    this.setState({ tags: tags }, () => console.log(this.state.tags));
 
     let filterReleases = this.state.releases;
     this.state.forms.forEach(form => {
@@ -324,18 +352,12 @@ class PlannedReleases extends Component {
       initialitem: 0,
       lastitem: 10
     }, () => {
-      // console.log("filterreleases:", this.state.filterreleases)
+      // console.log("&filterreleases:", this.state.filterreleases)
       this.setState({
         filterreleases: filterReleases,
         pages: pages,
         pagination: pagination
       });
-    });
-  }
-
-  dateChipFilter = (releases) => {
-    return releases.filter(release => {
-      return release.displaydate === this.state.selectedDate;
     });
   }
 
@@ -355,29 +377,16 @@ class PlannedReleases extends Component {
   }
 
   multiPropsFilter = (releases, tags) => {
-
-    let currentags = tags;
-    currentags = currentags.concat(this.state.statustags);
-    currentags.push("");
-    const filters = {
-      tags: currentags
-    };
-
-    const filterKeys = Object.keys(filters);
-    return releases.filter(release => {
-      return filterKeys.every(key => {
-        if (!filters[key].length) return true;
-        // Loops again if release[key] is an array.
-        if (Array.isArray(release[key])) {
-          if (filters[key].length === 1) {
-            return release[key].includes(this.state.cardfilter);
-          } else {
-            return release[key].some(keyEle => filters[key].includes(keyEle)) && release[key].includes(this.state.cardfilter);
-          }
-        }
-        return filters[key].includes(release[key]);
-      });
-    });
+    if (tags.length === 0) {
+      return releases;
+    }
+    let currentTags = tags;
+    let filterArray = [];
+    filterArray = releases.filter(({ tags }) => {
+      const rtags = tags.join(' ')
+      return currentTags.every((tag) => rtags.indexOf(tag) !== -1)
+    })
+    return filterArray;
   };
 
 
@@ -395,10 +404,6 @@ class PlannedReleases extends Component {
       return form;
     });
 
-    // if (this.state.selectedDateElement) {
-    //   this.state.selectedDateElement.classList.remove('pr-selected-filter-chip');
-    // }
-
     this.setState({
       filterreleases: this.state.releases,
       pages: 0,
@@ -415,7 +420,6 @@ class PlannedReleases extends Component {
         filterreleases: this.state.releases,
         initialitem: 0,
         lastitem: 10,
-        selectedDateElement: undefined,
       });
     });
   }
@@ -434,28 +438,6 @@ class PlannedReleases extends Component {
     this.setState({ sorting: value });
   }
 
-  handleClick = (chip) => {
-    this.setState({
-      tags: chip.tags
-    });
-  }
-  //release.tags.every(rt => !tags.includes(rt))
-
-  // handleDateChipClick = (event) => {
-  //   // console.log(event.currentTarget.textContent);
-  //   if (this.state.selectedDateElement) {
-  //     this.state.selectedDateElement.classList.remove('pr-selected-filter-chip');
-  //   } else if (document.getElementsByClassName("pr-selected-filter-chip").length > 0) {
-  //     document.getElementsByClassName("pr-selected-filter-chip")[0].classList.remove('pr-selected-filter-chip');
-  //   }
-
-  //   event.currentTarget.classList.add('pr-selected-filter-chip');
-
-  //   this.setState({
-  //     selectedDateElement: event.currentTarget,
-  //     selectedDate: event.currentTarget.textContent
-  //   }, () => this.manageTagArray());
-  // }
 
   handleExportClick = () => {
     const showToast = !this.state.showToast;
@@ -481,11 +463,11 @@ class PlannedReleases extends Component {
   }
 
   scrollToTop = () => {
-    window.scrollTo(0, this.paginationRef.current.offsetTop - 77);
+    window.scrollTo(0, this.paginationRef.current.offsetTop - 66.521);
   }
 
   render() {
-    const { forms, placeholder, sorting, tags } = this.state;
+    const { forms, placeholder, sorting, tags, keyLabelMap } = this.state;
     let tabIndex = 1;
 
     return (
@@ -528,7 +510,7 @@ class PlannedReleases extends Component {
                 <div className="pr-filter-tag-container">
                   {tags.length > 0 ?
                     tags.map(filterTag => (
-                      <Chip variant="outlined" clickable="false" label={filterTag} deleteIcon={<img src={DeleteTag} alt={filterTag} />} onDelete={this.handleDeleteTagClick} tabindex={tabIndex++} />
+                      <Chip variant="outlined" clickable="false" label={keyLabelMap[filterTag]} lkey={filterTag} deleteIcon={<img src={DeleteTag} alt={filterTag} />} onDelete={this.handleDeleteTagClick} tabindex={tabIndex++} />
                     ))
                     : null}
                 </div>
@@ -560,8 +542,8 @@ class PlannedReleases extends Component {
                 .slice(this.state.initialitem, this.state.lastitem)
                 .map(release => (
                   <ReleaseCard
-                    key={release._id}
-                    _id={release._id}
+                    key={release.id}
+                    _id={release.id}
                     title={release.title}
                     date={release.displaydate}
                     description={release.description}
@@ -575,7 +557,7 @@ class PlannedReleases extends Component {
                 ))}
             {
               this.state.pagination
-                ? <Pagination pages={this.state.pages} paginate={this.paginate} scrollToTop={this.scrollToTop}/>
+                ? <Pagination pages={this.state.pages} paginate={this.paginate} scrollToTop={this.scrollToTop} />
                 : null
             }
             <div className="disclaimer">

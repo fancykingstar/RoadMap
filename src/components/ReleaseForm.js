@@ -37,7 +37,9 @@ class ReleaseForm extends Component {
       expandable: this.props.expandable,
       status: this.props.status,
       data: this.props.data
-    })
+    }, 
+    // ()=> console.log('releaseform data:', this.state.data)
+    )
   }
 
   componentDidUpdate(prevProps) {
@@ -107,7 +109,6 @@ class ReleaseForm extends Component {
                   className={"checkInput" 
                   + (item.count === 0  && title !== "Release Dates" ? " checkInput-hidden" : "")
                 }
-
                   key={item.key}
                   control={<Checkbox onChange={() => this.handleCheck(item)} checked={item.checked} disableFocusRipple={true} disableRipple={true} value={item.key} />}
                   label={item.label + " (" + item.count + ")"} />

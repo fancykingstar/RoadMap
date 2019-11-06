@@ -22,7 +22,6 @@ export default function Pagination(props) {
         }
 
         else if (value === "right" && selection < (state.pages - 1)) {
-            console.log((state.pages - 1));
             selection += 1;
         }
         else if (typeof value === "number") {
@@ -33,8 +32,6 @@ export default function Pagination(props) {
             selected: selection
         }))
         state.pagination(selection);
-        // props.scrollToTop();
-        console.log(props)
         props.scrollToTop();
     }
 

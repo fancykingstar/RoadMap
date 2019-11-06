@@ -89,11 +89,11 @@ class Header extends Component {
             if (typeof title === "string" && title === "Products") {
               this.setState({
                 productTitles: items
-              }, () => console.log("productTitles:", this.state.productTitles))
+              })
             } else if (typeof title === "string" && title === "Innovation topics") {
               this.setState({
                 innovationTopics: items
-              }, () => console.log("innovationTitles:", this.state.innovationTopics))
+              })
             }
           })
         }, (error) => console.log("Failure fetching data", error, pathString))
@@ -108,8 +108,8 @@ class Header extends Component {
       roadmap: this.props.roadmap,
       process: this.props.process,
       product: this.props.product,
-      pageType: this.props.pageType,
-    }, () => console.log("pageType: ", this.state.pageType))
+      pageType: this.props.pageType
+    }),
   }
 
   componentDidUpdate(prevProps) {
@@ -136,15 +136,8 @@ class Header extends Component {
   }
 
   handleInfoClick = (e) => {
-    this.setState({ isInfoOpen: !this.state.isInfoOpen }
-      , () => console.log("descriptions:", this.state.description[0]["descriptions"], "\nproducts:", this.state.products, "\nprocesses:", this.state.process)
-    )
+    this.setState({ isInfoOpen: !this.state.isInfoOpen })
   }
-
-
-  // Offsets padding from MUI PopoverDefault
-
-
 
   renderInfoModal = () => {
     if (this.state.productTitles && this.state.innovationTopics) {
