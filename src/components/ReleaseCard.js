@@ -45,7 +45,7 @@ export default function ReleaseCard(props) {
         date: props.date,
         relevance: props.relevance || 0,
         description: addPeriod(props.description),
-        //chips: props.chips,
+        chips: props.chips,
         businessvalues: props.values,
         featuredetails: props.details,
         futureplans: props.futureplans,
@@ -125,17 +125,17 @@ export default function ReleaseCard(props) {
               
               " src={state.icon} /></div>
           </div>
-          {/* <div className="release-tag-container">
+          <div className="release-tag-container">
               <div className="TagTitle">TAGS:</div>
-            {state.chips.map(chip => (
+            {state.chips && state.chips.length ? state.chips.map(chip => (
                 <Chip
                           key={chip.key}
                           label={chip.label}
                           className={"release-chip " + (props.smallWindow ? " release-chip-small" : "")}
                           onClick={() => handleTagClick(chip)}
                         />
-            ))}
-            </div> */}
+            )) : null}
+            </div>
            <Collapse in={state.status} timeout="auto" unmountOnExit>
               <div className={"collapse-container" + (props.smallWindow ? " collapse-container-small" : "")} onClick={handleContentSection}>
                 <div className={"details-left" +  (props.smallWindow ? " details-left-small" : "") + (state.futureplans.length === 0 ? " single-column" : "") + ((state.businessvalues.length === 0 && state.featuredetails.length === 0) ? " hide-details" : "")}>

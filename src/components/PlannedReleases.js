@@ -79,9 +79,7 @@ class PlannedReleases extends Component {
         : this.state.type === 'process' ?
           `/odata/v4/roadmap/Roadmap?$filter=contains%28process%2C%27${querySubstr}%27%29&$skip=0&$orderby=date%20asc&$expand=products%2Cfutureplans`
           : null)
-
-    // fetch(staging ? "https://roadmap-staging.cfapps.us10.hana.ondemand.com/releases/" + this.state.cardfilter : 
-    // "https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases/" + this.state.cardfilter)
+  
     console.log('query:', queryURL, 'pageType:', this.state.type, 'cardfilter:', this.state.cardfilter);
     fetch(queryURL)
       .then(res => {
@@ -90,14 +88,13 @@ class PlannedReleases extends Component {
       })
       .then(({ value }) => {
         let results = value.filter((result) => result.date.length > 1);
-        console.log('results:', results);
         for (var i = 0; i < results.length; i++) {
           let result = results[i], chips = [], tags = [];
           // parseData
           if (!result.businessvalues) { result.businessvalues = []; }
           if (!result.featuredetails) { result.featuredetails = []; }
-          let datevalue = result.date ? new Date(result.date) : new Date();
-          result.date = datevalue.setDate(datevalue.getDate() + 1); // fallback
+          let datevalue = new Date(result.date);
+          result.date = datevalue.setDate(datevalue.getDate() + 1); // fallback for misformatted date-data
           result.numericdate = datevalue.getTime() / 1000.0;
           result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
           result.futureplans = this.manageDates(result.futureplans);
@@ -159,7 +156,6 @@ class PlannedReleases extends Component {
         }
 
 
-        console.log("newResults:", results);
         // Establish quarterDates
         let sortDates = [];
         if (results && results.releases) {
@@ -509,7 +505,7 @@ class PlannedReleases extends Component {
                 <div className="pr-filter-tag-container">
                   {tags.length > 0 ?
                     tags.map(filterTag => (
-                      <Chip variant="outlined" clickable="false" label={keyLabelMap[filterTag]} lkey={filterTag} deleteIcon={<img src={DeleteTag} alt={filterTag} />} onDelete={this.handleDeleteTagClick} tabindex={tabIndex++} />
+                      <Chip variant="outlined" clickable="false" label={keyLabelMap[filterTag]} lkey={filterTag} deleteIcon={<img src={DeleteTag} alt={filterTag} />} onDelete={this.handleDeleteTagClick} tabIndex={tabIndex++} />
                     ))
                     : null}
                 </div>
