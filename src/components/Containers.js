@@ -131,8 +131,10 @@ class StepContainer extends Component {
                       return (
                         <p className={'contentpoint ' + ((item.detail.length > 1) ? ((level1 === 0) ? 'addBullet bullet' : ((detail.substr(0, 1) === '-') ? 'bullet' : '')) : '') + (detail.substr(0, 1) === '>' ? ' secondBullet addBullet' : '')} key={index}>{(detail.substr(0, 1) === '>') ? detail.substr(2) : detail}</p>
                       )
-                    }) : typeof item.detail === "string" ? <p className="contentpoint">{item.detail}</p> : null
-              }</StepContent>
+                    }) : typeof item.detail === "string" ?
+                      <p className={"contentpoint " + (item.detail.includes("*") ? 'addBullet' : "")}>{item.detail.replace("*", "")}
+                      </p> : null
+                }</StepContent>
               </Step>
             ))}
           </Stepper>
