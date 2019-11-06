@@ -1,5 +1,3 @@
-import { responsiveFontSizes } from "@material-ui/core";
-
 export const onChange = (e, props, ref) => {
     const { suggestions, searchhandler } = props;
     const userInput = e.currentTarget.value;
@@ -12,7 +10,6 @@ export const onChange = (e, props, ref) => {
     return result.title;
   }
   const filteredSuggestions = searchresults.map(extractTitle).slice(0,5)
-
 
     // // Filter our suggestions that don't contain the user's input
     // const filteredSuggestions = suggestions.filter(
@@ -79,35 +76,23 @@ export const onChange = (e, props, ref) => {
 
 
   export const selectSearch = (ref, inputvalue) => {
-    var retvalue = "";
-
-    ref.setState({
-     showSuggestions: false,
-   }, () => {ref.setState({
-     showSuggestions: false,
-   })
-
-    if (inputvalue.trend) {
-     retvalue = inputvalue.trend;
+     var retvalue = "";
+     if (inputvalue.trend) {
+      retvalue = inputvalue.trend;
+     }
+     if (inputvalue.suggestion) {
+       retvalue = inputvalue.suggestion;
+     } 
+    if (ref.state.resulthandler) {
+        ref.state.resulthandler(retvalue);
+    } else {
+      window.location.href = "/search/" + retvalue;
     }
-    if (inputvalue.suggestion) {
-      retvalue = inputvalue.suggestion;
-    } 
-   if (ref.state.resulthandler) {
-       ref.state.resulthandler(retvalue);
-   } else {
-     window.location.href = "/search/" + retvalue;
-   }
-   ref.setState(prevState =>
-   ({
-     ...prevState,
-       userInput: "start",
-       showSuggestions: !prevState.showSuggestions
-   }))
-   //console.log(ref)
- });
-   
- }
+    ref.setState(prevState => ({
+      ...prevState,
+        userInput: "start"
+    }))
+  }
 
   export const trendSearch = (ref, inputvalue) => {
     if (ref.state.resulthandler) {

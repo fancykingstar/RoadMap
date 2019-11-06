@@ -87,18 +87,9 @@ class Header extends Component {
       .then(res => res.json())
           .then(
               (result) => {
-                var uniqueTitles = new Set()
-                    var uniqueResult = new Array()
-                    result.value.forEach(item =>{
-                        if(!uniqueTitles.has(item.title)){
-                            uniqueTitles.add(item.title)
-                            uniqueResult.push(item)
-                        }
-                    })
-                  
-                  this.setState({results: uniqueResult})
+                  this.setState({results: result.value})
                   //this.cleanData(result.value)
-                  this.filterResultData(uniqueResult);
+                  this.filterResultData(result.value);
               },
               (error) => {
                   console.log(error);

@@ -74,19 +74,9 @@ class SearchResults extends Component {
         .then(res => res.json())
             .then(
                 (result) => {
-
-                    var uniqueTitles = new Set()
-                    var uniqueResult = new Array()
-                    result.value.forEach(item =>{
-                        if(!uniqueTitles.has(item.title)){
-                            uniqueTitles.add(item.title)
-                            uniqueResult.push(item)
-                        }
-                    })
-
                     this.setState({
 
-                        results: uniqueResult
+                        results: result.value
                     }, () => fetch("/data/rform.json")
                         .then(res => res.json())
                         .then(
@@ -109,7 +99,7 @@ class SearchResults extends Component {
                         )
                     )
                     //this.cleanData(result.value)
-                    this.filterResultData(uniqueResult);
+                    this.filterResultData(result.value);
                 },
                 (error) => {
                     console.log(error);
@@ -307,7 +297,6 @@ class SearchResults extends Component {
 
 
             });
-
         //console.log(filteredresults)
         this.setState({
             filteredresults: filteredresults,
