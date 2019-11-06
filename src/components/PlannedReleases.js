@@ -82,7 +82,7 @@ class PlannedReleases extends Component {
 
     // fetch(staging ? "https://roadmap-staging.cfapps.us10.hana.ondemand.com/releases/" + this.state.cardfilter : 
     // "https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases/" + this.state.cardfilter)
-    // console.log('query:', queryURL, 'pageType:', this.state.type, 'cardfilter:', this.state.cardfilter);
+    console.log('query:', queryURL, 'pageType:', this.state.type, 'cardfilter:', this.state.cardfilter);
     fetch(queryURL)
       .then(res => {
         let response = res.json();
@@ -95,8 +95,8 @@ class PlannedReleases extends Component {
           if (!result.businessvalues) { result.businessvalues = []; }
           if (!result.featuredetails) { result.featuredetails = []; }
           if (!result.date) { // *Note: results lacking a date will cause sub-components render issues
-            // throw('result lacking a date', result);
-            return;
+            throw('result lacking a date', result);
+            // return;
           } else if (result.date) {
             let datevalue = new Date(result.date);
             result.date = datevalue.setDate(datevalue.getDate() + 1); // fallback
@@ -160,7 +160,7 @@ class PlannedReleases extends Component {
             result.tags = tags;
           }
         });
-
+        console.log("newResults:",value);
         // Establish quarterDates
         let sortDates = [];
         if (value && value.releases) {
