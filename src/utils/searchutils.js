@@ -1,12 +1,24 @@
 export const onChange = (e, props, ref) => {
-    const { suggestions } = props;
+    const { suggestions, searchhandler } = props;
     const userInput = e.currentTarget.value;
 
-    // Filter our suggestions that don't contain the user's input
-    const filteredSuggestions = suggestions.filter(
-      suggestion =>
-        suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
-    );
+  //console.log(ref)
+  //var fuse = new Fuse(results, options);
+  var searchresults = searchhandler.search(userInput);
+  //console.log(searchhandler)
+  function extractTitle(result) {
+    return result.title;
+  }
+  const filteredSuggestions = searchresults.map(extractTitle).slice(0,5)
+
+    // // Filter our suggestions that don't contain the user's input
+    // const filteredSuggestions = suggestions.filter(
+    //   suggestion =>
+    //     suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+    // );
+
+    // console.log(filteredSuggestions)
+    // console.log(suggestions)
 
     ref.setState({
       activeSuggestion: 0,

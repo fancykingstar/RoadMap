@@ -1,3 +1,5 @@
+
+
 import React, { Component } from 'react';
 import Fuse from 'fuse.js';
 
@@ -24,6 +26,10 @@ import ReleaseForm from '../components/ReleaseForm';
 
 import { suggestions, trends } from '../utils/searchutils';
 
+function isString (value) {
+    return typeof value === 'string' || value instanceof String;
+}
+
 
 // import sort from '../assets/images/sort-icon.svg';
 
@@ -33,7 +39,7 @@ class SearchResults extends Component {
         super(props)
         this.state = {
             result: props.match.params.result,
-            sorting: 'title',
+            sorting: 'relevance',
             results: [],
             forms: [],
             tags: [],
@@ -62,12 +68,15 @@ class SearchResults extends Component {
     componentDidMount() {
         document.title = "SAP Product Roadmap - Search Results";
         // fetch("https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases")
-        fetch("https://uckilp3hxopsuuml-roadmap-api-srv.cfapps.eu10.hana.ondemand.com/odata/v4/roadmap/")
-            .then(res => res.json())
+        //fetch("https://roadmap-ui-dev.internal.cfapps.sap.hana.ondemand.com/srv_api/odata/v4/roadmap/Roadmap")
+        //fetch("./data.json")
+        fetch('/data/Roadmap.json')
+        .then(res => res.json())
             .then(
                 (result) => {
                     this.setState({
-                        results: result.releases
+
+                        results: result.value
                     }, () => fetch("/data/rform.json")
                         .then(res => res.json())
                         .then(
@@ -89,7 +98,8 @@ class SearchResults extends Component {
                             }
                         )
                     )
-                    this.filterResultData(result.releases);
+                    //this.cleanData(result.value)
+                    this.filterResultData(result.value);
                 },
                 (error) => {
                     console.log(error);
@@ -169,10 +179,21 @@ class SearchResults extends Component {
 
     filterResultData(results) {
         let filterall = 0, filterprocess = 0, filterproducts = 0, filterfeatures = 0, filteredresults = [], productresults = [], processresults = [], pagination = false, pages = 0;
-        var options = { keys: ['title', 'description', 'tags'] };
-        var fuse = new Fuse(results, options);
+        //Fuse should be abstarcted into a different function to prevent recreating it every time. Create Fuse object once and set in state
+        var options = {
+            shouldSort: true,
+            keys : [{
+                name: "title",
+                weight : 0.9    
+            },
+            {
+                name: "description",
+                weight: 0.1
+            }]
+        }
+        const fuse = new Fuse(results, options);
+        this.setState({searchhandler: fuse});
         var searchresults = fuse.search(this.state.result);
-
         searchresults.forEach(result => {
 
             if (result.date) {
@@ -195,16 +216,16 @@ class SearchResults extends Component {
                 processresults.push(result);
             }
 
-            if (result.chips) {
-                result.chips.forEach(chip => {
-                    if (chip.category === "process") {
-                        processresults.push(result);
-                    }
-                    if (chip.category === "product") {
-                        productresults.push(result);
-                    }
-                })
-            }
+            // if (result.chips) {
+            //     result.chips.forEach(chip => {
+            //         if (chip.category === "process") {
+            //             processresults.push(result);
+            //         }
+            //         if (chip.category === "product") {
+            //             productresults.push(result);
+            //         }
+            //     })
+            // }
 
             filterall += 1;
             filteredresults.push(result);
@@ -231,6 +252,52 @@ class SearchResults extends Component {
             pages = Math.ceil(filteredresults.length / this.state.maxperpage);
         }
 
+        //console.log(filteredresults)
+
+        filteredresults.map(
+            form => {
+
+                // The current format of the backend service no longer matches the form in whihc the release cards were made in\
+                // To do so the items were delimeted be \r\n so we split on those field however that caused inconsistent arrays:
+                //      \r\n\r\n creates empty list items with dashes so we remove them for consistency
+                //      \* is a proxy for dashes so we remove them for consistency
+                //      \• is a worse proxy for dashes so we remove them for consistency
+                //      All empty list items are removed from the release card and all items get a dash as the whole array doesnt have dashes as default behavior
+
+                //console.log(form)
+                if(isString(form.businessvalues)){
+                    form.businessvalues = form.businessvalues.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").split("\r\n")
+                }
+                if(isString(form.featuredetails)){
+                    form.featuredetails = form.featuredetails.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").split("\r\n")
+                }
+                
+                form.futureplans.map(detail =>{
+                    if(isString(detail.detail)){
+                        detail.detail = detail.detail.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").split("\r\n")
+                    }
+                    if(detail.detail.length == 1){
+                        if(detail.detail[0] == ""){
+                            detail.detail = []
+                        }
+                    }
+                })
+
+                if (form.businessvalues.length == 1) {
+                    if (form.businessvalues[0] == ""){
+                        form.businessvalues = []
+                    }
+                }
+
+                if (form.featuredetails.length == 1) {
+                    if (form.featuredetails[0] == ""){
+                        form.featuredetails = []
+                    }
+                }
+
+
+            });
+        //console.log(filteredresults)
         this.setState({
             filteredresults: filteredresults,
             productresults: productresults,
@@ -253,7 +320,7 @@ class SearchResults extends Component {
                 pages: pages,
                 initialitem: 0,
                 lastitem: 10,
-                focus: 'all'
+                focus: 'all',
             });
         });
     }
@@ -439,7 +506,7 @@ class SearchResults extends Component {
     }
 
     render() {
-        const { result, sorting, filteredresults, filterall, filterprocesses, filterproducts, filterfeatures, initialitem, lastitem, pagination, focus } = this.state;
+        const { result, sorting, filteredresults, filterall, filterprocesses, filterproducts, filterfeatures, initialitem, lastitem, pagination, focus, searchhandler } = this.state;
         return (
             <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
                 
@@ -447,13 +514,10 @@ class SearchResults extends Component {
                 <Feedback />
                 <div className={"content-container" + (this.state.smallWindow ? " content-container-small" : "")}>
                     <div className="search-page-container">
-                        <SiteSearch resultspage={true} resulthandler={this.handleUserResult} value={result} suggestions={suggestions} trends={trends} />
+                        <SiteSearch resultspage={true} resulthandler={this.handleUserResult} value={result} suggestions={suggestions} trends={trends} searchhandler={searchhandler}/>
                     </div>
                     <div className="search-content-container-topics util-container">
-                        <div className={"filterlink" + (focus === "all" ? " filterselection" : "")} onClick={(e) => this.handleSelectFilter(e, "all")}>{"All (" + filterall + ")"}</div>
-                        <div className={"filterlink" + (focus === "processes" ? " filterselection" : "")} onClick={(e) => this.handleSelectFilter(e, "processes")}>{"Processes (" + filterprocesses + ")"}</div>
-                        <div className={"filterlink" + (focus === "products" ? " filterselection" : "")} onClick={(e) => this.handleSelectFilter(e, "products")}>{"Products (" + filterproducts + ")"}</div>
-                        <div className={"filterlink" + (focus === "features" ? " filterselection" : "")} onClick={(e) => this.handleSelectFilter(e, "features")}>{"Feature Releases (" + filterfeatures + ")"}</div>
+                        <div className={"filterlink" + (focus === "all" ? " filterselection" : "")} onClick={(e) => this.handleSelectFilter(e, "all")}></div>
                     </div>
                     {/* <div className="search-content-container util-container pr-sort-container">
                                 <img src={sort} alt="sort" />
@@ -495,7 +559,7 @@ class SearchResults extends Component {
                                                     date={result.displaydate}
                                                     description={result.description}
                                                     likes={result.likes}
-                                                    chips={result.chips}
+                                                    //chips={result.chips}
                                                     values={result.businessvalues}
                                                     details={result.featuredetails}
                                                     futureplans={result.futureplans}

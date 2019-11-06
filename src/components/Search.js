@@ -16,6 +16,7 @@ import { IconButton } from '../components/Button';
 //import utilities
 import { onChange, onKeyDown, selectSearch, trendSearch, suggestionSearch } from '../utils/searchutils';
 
+
 class SearchBar extends Component {
 
   static propTypes = {
@@ -25,6 +26,7 @@ class SearchBar extends Component {
    static defaultProps = {
      suggestions: []
    };
+
 
   constructor(props) {
       super(props)
@@ -46,9 +48,11 @@ class SearchBar extends Component {
       }
       this.openSearch = this.openSearch.bind(this);
       this.handleOutsideClick = this.handleOutsideClick.bind(this);
+      //console.log(props)
     }
 
     componentDidUpdate(prevProps) {
+      //console.log(this.props.compact)
       if (prevProps.compact !== this.props.compact) {
         this.setState({
           compact: this.props.compact
@@ -178,12 +182,13 @@ class SiteSearch extends Component {
           }));
       }
     }
-    if (prevState.showSuggestions !== this.props.showresults) {
-      this.setState(prevState => ({
-        ...prevState,
-        showSuggestions: this.props.showresults
-      }));
-    }
+    // if (prevState.showSuggestions !== this.props.showresults) {
+    //   console.log(this.props)
+    //   this.setState(prevState => ({
+    //     ...prevState,
+    //     showSuggestions: this.props.showresults
+    //   }));
+    // }
     }
 
     openSearch = () => {
@@ -221,7 +226,6 @@ class SiteSearch extends Component {
 
          let prodsuggestionsListComponent;
          let input = userInput === "start" ? inputvalue : userInput;
-
 
       if (showSuggestions) {
             if (filteredSuggestions.length && userInput) {
