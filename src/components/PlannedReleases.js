@@ -89,85 +89,82 @@ class PlannedReleases extends Component {
         return response;
       })
       .then(({ value }) => {
-        value.forEach(result => {
-          let chips = [], tags = [];
-           // parseData
+        let results = value.filter((result) => result.date.length > 1);
+        console.log('results:', results);
+        for (var i = 0; i < results.length; i++) {
+          let result = results[i], chips = [], tags = [];
+          // parseData
           if (!result.businessvalues) { result.businessvalues = []; }
           if (!result.featuredetails) { result.featuredetails = []; }
-          if (!result.date) { // *Note: results lacking a date will cause sub-components render issues
-            // throw('result lacking a date', result);
-            result.date = new Date();
-          } 
-          
-          if (result.date) {
-            let datevalue = new Date(result.date);
-            result.date = datevalue.setDate(datevalue.getDate() + 1); // fallback
-            result.numericdate = datevalue.getTime() / 1000.0;
-            result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
-            result.futureplans = this.manageDates(result.futureplans);
-            // set tags
-            if (result.process.length > 1 && !chips.includes(result.process)) {
-              const processKey = result.process.toLowerCase().replace(/\s/g, "");
-              /* Exception Keys */
-              if (processKey === "designtooperate") {
-                processKey = "d2o";
-              }
-              tags.push(processKey);
-              chips.push({
-                category: 'process',
-                key: processKey,
-                label: result.process
-              })
+          let datevalue = result.date ? new Date(result.date) : new Date();
+          result.date = datevalue.setDate(datevalue.getDate() + 1); // fallback
+          result.numericdate = datevalue.getTime() / 1000.0;
+          result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
+          result.futureplans = this.manageDates(result.futureplans);
+          // set tags
+          if (result.process.length > 1 && !chips.includes(result.process)) {
+            const processKey = result.process.toLowerCase().replace(/\s/g, "");
+            /* Exception Keys */
+            if (processKey === "designtooperate") {
+              processKey = "d2o";
             }
-
-            if (result.integration.length > 1 && !chips.includes(result.integration)) {
-              const integrationKey = result.integration.toLowerCase().replace(/\s/g, "");
-              tags.push(integrationKey);
-              chips.push({
-                category: 'integration',
-                key: integrationKey,
-                label: result.integration
-              })
-            }
-
-            if (result.industry.length > 1 && !chips.includes(result.industry)) {
-              const industryKey = result.industry.toLowerCase().replace(/\s/g, "");
-              if (industryKey === "retail/hospitality") {
-                industryKey = "retail";
-              } else if (industryKey === "publicsector/government") {
-                industryKey = "publicsector"
-              }
-
-              tags.push(industryKey);
-              chips.push({
-                category: 'industry',
-                key: industryKey,
-                label: result.industry
-              })
-            }
-            if (result.products.length) {
-              result.products.forEach(({ product }) => {
-                const productKey = product.toLowerCase().replace(/(sap)|\s/g, "")
-                if (!chips.includes(product) && product.length > 1) {
-                  tags.push(productKey);
-                  chips.push({
-                    category: "product",
-                    key: productKey,
-                    label: product
-                  })
-                }
-              })
-            }
-            result.chips = chips;
-            result.tags = tags;
+            tags.push(processKey);
+            chips.push({
+              category: 'process',
+              key: processKey,
+              label: result.process.trim()
+            })
           }
-        });
-        console.log("newResults:",value);
+
+          if (result.integration.length > 1 && !chips.includes(result.integration)) {
+            const integrationKey = result.integration.toLowerCase().replace(/\s/g, "");
+            tags.push(integrationKey);
+            chips.push({
+              category: 'integration',
+              key: integrationKey,
+              label: result.integration.trim()
+            })
+          }
+
+          if (result.industry.length > 1 && !chips.includes(result.industry)) {
+            const industryKey = result.industry.toLowerCase().replace(/\s/g, "");
+            if (industryKey === "retail/hospitality") {
+              industryKey = "retail";
+            } else if (industryKey === "publicsector/government") {
+              industryKey = "publicsector"
+            }
+
+            tags.push(industryKey);
+            chips.push({
+              category: 'industry',
+              key: industryKey,
+              label: result.industry.trim()
+            })
+          }
+          if (result.products.length) {
+            result.products.forEach(({ product }) => {
+              const productKey = product.toLowerCase().replace(/(sap)|\s/g, "")
+              if (!chips.includes(product) && product.length > 1) {
+                tags.push(productKey);
+                chips.push({
+                  category: "product",
+                  key: productKey,
+                  label: product.trim()
+                })
+              }
+            })
+          }
+          result.chips = chips;
+          result.tags = tags;
+        }
+
+
+        console.log("newResults:", results);
         // Establish quarterDates
         let sortDates = [];
-        if (value && value.releases) {
+        if (results && results.releases) {
           let tempDates = {};
-          value.forEach(release => {
+          results.forEach(release => {
             const quarterDate = this.getQuarter(new Date(release.date));
             if (!tempDates.hasOwnProperty(quarterDate)) {
               sortDates.push({ numericDate: release.date, displayDate: quarterDate });
@@ -180,10 +177,10 @@ class PlannedReleases extends Component {
         }
 
         this.setState({
-          releases: value,
-          filterreleases: value,
-          pages: value.length > 10 ? Math.ceil(value.length / this.state.maxperpage) : 0,
-          pagination: value.length > 10 ? true : false,
+          releases: results,
+          filterreleases: results,
+          pages: results.length > 10 ? Math.ceil(value.length / this.state.maxperpage) : 0,
+          pagination: results.length > 10 ? true : false,
           dateTags: sortDates
         }, function () {
           fetch("/data/rform.json")
@@ -291,7 +288,7 @@ class PlannedReleases extends Component {
 
 
   manageTagArray = (state, key) => {
-    let tags, pagination = false, pages = 0, {quarterDateTags, selectedDates} = this.state;
+    let tags, pagination = false, pages = 0, { quarterDateTags, selectedDates } = this.state;
     tags = this.state.tags;
     console.log('tagkey:', key)
     if (quarterDateTags[key]) {
