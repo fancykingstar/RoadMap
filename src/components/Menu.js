@@ -80,9 +80,10 @@ class Menu extends Component{
               return (
                   <div>
                     <li className="dd-list-item active" key={item.id} onClick={() => this.selectItem(item.key)}>{item.title}</li>
-                    {hasChildren ? item["children"].map(subitem => (
-                        <li className="dd-sublist-item dd-list-item active" key={subitem.id} onClick={() => this.selectItem(subitem.key)}>{subitem.title}</li>
-                    )): null}
+                    {hasChildren ? 
+                            item["children"].map(subitem => (
+                            <li className="dd-sublist-item dd-list-item active" key={subitem.id} onClick={() => this.selectItem(subitem.key)}>{subitem.title}</li>))                     
+                    : null}
                   </div>
                     )} else {
               return <li className="dd-list-item inactive" key={item.id}>{item.title}</li>
