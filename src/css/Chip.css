@@ -55,10 +55,11 @@
   background-color: rgb(255, 255, 255) !important;
   color: #0A6ED1 !important;
 }
-.MuiChip-deleteIcon {
-  width: 12px !important;
-  height: 12px !important;
-  padding-right: 11px !important;
+
+.pr-filter-tag-container .MuiChip-deleteIcon {
+  width: 12px;
+  height: 12px;
+  padding-left: 13px;
 }
 
 .clear-all-filters {

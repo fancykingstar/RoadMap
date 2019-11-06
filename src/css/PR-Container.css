@@ -217,6 +217,8 @@
   border: 1px solid #0A6ED1;
   box-sizing: border-box;
   border-radius: 47px;
+  padding-left: 12px;
+  padding-right: 11px; /* padding on buttons as listed in Figma */
   font-family: "72";
   font-style: normal;
   font-weight: normal;
