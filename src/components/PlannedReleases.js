@@ -95,9 +95,11 @@ class PlannedReleases extends Component {
           if (!result.businessvalues) { result.businessvalues = []; }
           if (!result.featuredetails) { result.featuredetails = []; }
           if (!result.date) { // *Note: results lacking a date will cause sub-components render issues
-            throw('result lacking a date', result);
-            // return;
-          } else if (result.date) {
+            // throw('result lacking a date', result);
+            result.date = new Date();
+          } 
+          
+          if (result.date) {
             let datevalue = new Date(result.date);
             result.date = datevalue.setDate(datevalue.getDate() + 1); // fallback
             result.numericdate = datevalue.getTime() / 1000.0;
