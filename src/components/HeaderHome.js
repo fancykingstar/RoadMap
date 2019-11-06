@@ -89,11 +89,11 @@ class Header extends Component {
             if (typeof title === "string" && title === "Products") {
               this.setState({
                 productTitles: items
-              }, () => console.log("productTitles:", this.state.productTitles))
+              })
             } else if (typeof title === "string" && title === "Innovation topics") {
               this.setState({
                 innovationTopics: items
-              }, () => console.log("innovationTitles:", this.state.innovationTopics))
+              })
             }
           })
         }, (error) => console.log("Failure fetching data", error, pathString))
@@ -109,7 +109,7 @@ class Header extends Component {
       process: this.props.process,
       product: this.props.product,
       pageType: this.props.pageType
-    }, () => console.log("pageType: ", this.state.pageType))
+    })
   }
 
   componentDidUpdate(prevProps) {

@@ -53,7 +53,6 @@ class PlannedReleases extends Component {
     this.scrollToTop = this.scrollToTop.bind(this);
     this.manageTagArray = this.manageTagArray.bind(this);
     this.filterFormResults = this.filterFormResults.bind(this);
-    // this.handleDateChipClick = this.handleDateChipClick.bind(this);
     this.handleExportClick = this.handleExportClick.bind(this);
     this.handleDeleteTagClick = this.handleDeleteTagClick.bind(this);
   }
@@ -66,6 +65,7 @@ class PlannedReleases extends Component {
     let query = baseURL + `/odata/v4/roadmap/Roadmap?$filter=contains%28productSearch%2C%27${querySubstr}%27%29&$skip=0&$orderby=date%20asc&$expand=products%2Cfutureplans`
     // fetch(staging ? "https://roadmap-staging.cfapps.us10.hana.ondemand.com/releases/" + this.state.cardfilter : 
     // "https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases/" + this.state.cardfilter)
+    console.log('query:', query)
     fetch(query)
       .then(res => {
         let response = res.json();
@@ -229,7 +229,7 @@ class PlannedReleases extends Component {
       release.tags.forEach(tag => {
         if (tag.includes(cardfilter)) {
           containsTag = true;
-          return;
+          // return;
         }
       })
       if (containsTag) {
@@ -282,14 +282,7 @@ class PlannedReleases extends Component {
   manageTagArray = (state, key) => {
     let tags, pagination = false, pages = 0;
     tags = this.state.tags;
-    /* Release Dates are tags with special functionality
-      They must be able to render all possible results
-      When all release dates are not selected
-      If there are one or multiple release dates clicked,
-      an AND relationship must exist for the case of multiple
-      This must also rerender to the different processes a new occurence count
-    */
-    // if quarterDateTag-key is passed in
+
     if (this.state.quarterDateTags[key]) {
       let selectedDates = this.state.selectedDates, index = selectedDates.indexOf(key);
       if (index === -1) {
@@ -320,6 +313,7 @@ class PlannedReleases extends Component {
       form.fields.forEach(field => {
         tags.forEach(tag => {
           if (field.key === tag) {
+            console.log('fieldkey:', field.key, 'tag:', tag);
             tagCollection.push(tag);
           } else if (field.children.length > 0) {
             field.children.forEach(childField => {
@@ -350,7 +344,7 @@ class PlannedReleases extends Component {
       initialitem: 0,
       lastitem: 10
     }, () => {
-      console.log("filterreleases:", this.state.filterreleases)
+      console.log("&filterreleases:", this.state.filterreleases)
       this.setState({
         filterreleases: filterReleases,
         pages: pages,
@@ -381,41 +375,52 @@ class PlannedReleases extends Component {
   }
 
   multiPropsFilter = (releases, tags) => {
+    if (tags.length === 0) {
+      return releases;
+    }
+    let currentTags = tags;
+    let filterArray = [];
+    filterArray = releases.filter( ({tags} )=> {
+      const rtags = tags.join(' ')
+      return currentTags.every((tag) => rtags.indexOf(tag) !== -1)
+    })
+    console.log('filterArray?:', filterArray);
+    // let currentags = tags;
+    // currentags.push("");
+    // const filters = {
+    //   tags: currentags
+    // };
 
-    let currentags = tags;
-    currentags = currentags.concat(this.state.statustags);
-    currentags.push("");
-    const filters = {
-      tags: currentags
-    };
-
-    const filterKeys = Object.keys(filters);
-    return releases.filter(release => {
-      return filterKeys.every(key => {
-        if (!filters[key].length) return true;
-        // Loops again if release[key] is an array.
-        if (Array.isArray(release[key]) && release[key].length > 0) {
-          if (filters[key].length === 1) {
-            return release[key].some(tag => tag.includes(this.state.cardfilter));
-          }
-          else {
-            var bool = release[key].some(keyEle => {
-              console.log('keyEle:', keyEle, 'filters[key]:', filters[key], release[key])
-              return filters[key]
-                .some((elem) => {
-                  if (elem.length > 1) {
-                    return keyEle.includes(elem)
-                  }
-                  return false;
-                })
-                && release[key].some(tag => tag.includes(this.state.cardfilter))
-            })
-            return bool;
-          }
-        }
-        return filters[key].includes(release[key]);
-      });
-    });
+    // const filterKeys = Object.keys(filters);
+    // const filteredArray = releases.filter(release => {
+    //   return filterKeys.every(key => { // key = tags
+    //     if (!filters[key].length) return true;
+    //     // Loops again if release[key] is an array.
+    //     if (Array.isArray(release[key]) && release[key].length > 0) {
+    //       if (filters[key].length === 1) {
+    //         // Rerender with no filters
+    //         return release[key].some(tag => tag.includes(this.state.cardfilter));
+    //       }
+    //       else { // Otherwise, apply filters
+    //         // release[key] is an array >= 2 elements
+    //         // filter through any release that has all tags
+    //         var bool = release[key].some(keyEle => {
+    //           return filters[key]
+    //             .some((elem) => {
+    //               if (elem.length > 1) {
+    //                 return keyEle.includes(elem)
+    //               }
+    //               return false;
+    //             })
+    //             && release[key].some(tag => tag.includes(this.state.cardfilter))
+    //         })
+    //         return bool;
+    //       }
+    //     }
+    //     return filters[key].includes(release[key]);
+    //   });
+    // });
+    return filterArray;
   };
 
 
@@ -472,28 +477,6 @@ class PlannedReleases extends Component {
     this.setState({ sorting: value });
   }
 
-  handleClick = (chip) => {
-    this.setState({
-      tags: chip.tags
-    });
-  }
-  //release.tags.every(rt => !tags.includes(rt))
-
-  // handleDateChipClick = (event) => {
-  //   // console.log(event.currentTarget.textContent);
-  //   if (this.state.selectedDateElement) {
-  //     this.state.selectedDateElement.classList.remove('pr-selected-filter-chip');
-  //   } else if (document.getElementsByClassName("pr-selected-filter-chip").length > 0) {
-  //     document.getElementsByClassName("pr-selected-filter-chip")[0].classList.remove('pr-selected-filter-chip');
-  //   }
-
-  //   event.currentTarget.classList.add('pr-selected-filter-chip');
-
-  //   this.setState({
-  //     selectedDateElement: event.currentTarget,
-  //     selectedDate: event.currentTarget.textContent
-  //   }, () => this.manageTagArray());
-  // }
 
   handleExportClick = () => {
     const showToast = !this.state.showToast;
