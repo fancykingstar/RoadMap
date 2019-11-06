@@ -1,0 +1,361 @@
+.default-card {
+  width: 415px;
+  min-width: 415px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-top: 30px;
+}
+
+.default-card.process-card {
+  width: 324px;
+  min-width: 324px;
+  height: 291px;
+}
+
+.page-container-small .default-card {
+  width: 350px;
+  min-width: 350px;
+  margin-right: 4px;
+  margin-left: 4px;
+  margin-top: 10px;
+}
+
+.default-card.MuiPaper-rounded {
+  border-radius: 18px;
+}
+
+.default-card.MuiPaper-elevation1 {
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.release-card {
+  width: 966px;
+  min-height: 192px;
+  height: auto;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 16px;
+  cursor: pointer;
+}
+
+.release-card-small {
+  width: 350px;
+  min-width: 350px;
+}
+
+.detail-card {
+  cursor: pointer;
+}
+
+.content.MuiCardContent-root .body {
+  height: 64px;
+}
+
+.release-card .content.MuiCardContent-root {
+  margin: 24px 30px 2px 40px;
+  padding: 0 0 25px 0;
+  position: relative;
+}
+
+
+.release-card .pr-toolbar .date-container .date {
+  margin-top: 2px;
+  text-transform: uppercase;
+  color: #f0ab00;
+  font-size: 1.1666666666666667rem;
+}
+
+.release-card .pr-toolbar,
+.release-card .release-actionbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.release-actionbar .release-trigger {
+  cursor: pointer;
+}
+
+.action-container .actionButton.MuiButton-root {
+  min-width: 30px;
+  line-height: 1;
+}
+
+.action-container .actionButton.MuiButton-text {
+  padding: 0 0 0 8px;
+}
+
+.action-container .actionButton .actionLabel {
+  margin-left: 8px;
+  font-size: 1.3333333333333333rem;
+  font-weight: 400;
+  color: #666666;
+}
+
+.action-container .card-type {
+  text-transform: uppercase;
+  font-size: 1.3333333333333333rem;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.action-container .actionButton.MuiButton-root:hover {
+  background-color: transparent;
+}
+
+.release-card .pr-toolbar .date-container .date-bar {
+  background-color: #f0ab00;
+  width: 37px;
+  height: 2px;
+}
+
+.release-card .release-title {
+  margin: 8px 0 4px 0;
+  font-size: 2rem;
+  color: #000;
+  text-transform: capitalize;
+}
+
+.page-container-small .release-card .release-title {
+  font-size: 20px;
+}
+
+.release-card .release-tag-container {
+  margin-top: 10px;
+}
+
+.release-card .collapse-container {
+  margin-top: 6px;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.release-card .collapse-container-small {
+  flex-direction: column;
+}
+
+.collapse-container .details-left {
+  margin-right: 80px;
+}
+
+.collapse-container .details-left.hide-details {
+  display: none;
+}
+
+.collapse-container .details-left-small,
+.collapse-container .details-left.single-column {
+  margin-right: 0px;
+}
+
+.static-card {
+  height: 291px;
+  min-height: 291px;
+}
+
+.static-card .content {
+  margin: 15px 12px 26px 12px;
+  position: relative;
+  width: 248px;
+  height: 211px;
+}
+
+.static-card .title-container .title {
+  margin-top: 2px;
+  text-transform: uppercase;
+  color: #f0ab00;
+  font-size: 1.1666666666666667rem;
+}
+
+.page-container-small .static-card .title-container .title {
+  font-size: 14px;
+}
+
+.static-card .title-container .title-bar {
+  background-color: #f0ab00;
+  width: 37px;
+  height: 2px;
+}
+
+.static-card .content .header {
+  margin-top: 14px;
+  font-size: 2rem;
+  color: #000;
+}
+
+.page-container-small .static-card .content .header {
+  font-size: 20px;
+}
+
+.static-card .content .body,
+.release-card .release-description {
+  margin-top: 3px;
+  font-size: 1.6666666666666667rem;
+  font-weight: 200;
+  color: #666666;
+}
+
+.static-card .content .body {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  height: 33%;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.page-container-small .static-card .content .body,
+.page-container-small .release-card .release-description {
+  font-size: 16px;
+}
+
+.static-card .content .static__link {
+  position: absolute;
+  bottom: 0;
+  text-decoration: none;
+  font-size: 1.3333333333333333rem;
+  color: #358cd8;
+}
+
+.page-container-small .static-card .content .static__link {
+  font-size: 16px;
+}
+
+.product-card {
+  height: 207px;
+  min-height: 207px;
+  width: 378px;
+  min-width: 378px;
+  margin-right: 16px;
+  margin-left: 16px;
+}
+
+.product-active.MuiPaper-root:hover,
+.product-active.MuiPaper-root:focus {
+  background: linear-gradient(61.54deg, #0a6ed1 0%, #77e8fb 116.03%);
+  color: #fff;
+}
+
+.product-active-top.MuiPaper-root:hover,
+.product-active-top.MuiPaper-root:focus {
+  background: linear-gradient(61.2deg, #E98324 22.49%, #F8D625 136.68%);
+  color: #fff;
+}
+.product-inactive.MuiPaper-root {
+  background: #fff;
+}
+
+/* .product-inactive.MuiPaper-root .title-container {
+  color: #999;
+}
+
+.product-inactive.MuiPaper-root .body {
+  color: #cccccc;
+} */
+
+.product-inactive .icon {
+  background: url(../assets/images/prod-icons/icon-offstate.png) no-repeat;
+  width: 54px;
+  height: 54px;
+  background-position: -6px 0px;
+}
+
+.product-active.MuiPaper-root:hover .title-container,
+.product-active.MuiPaper-root:focus .title-container,
+.product-active.MuiPaper-root:hover .body,
+.product-active.MuiPaper-root:focus .body {
+  color: #fff;
+}
+
+.product-card .MuiCardActionArea-root {
+  height: 100%;
+}
+
+.product-card .content {
+  position: relative;
+  justify-content: left;
+  text-align: left;
+}
+
+
+.product-active .icon {
+  background: url(../assets/images/prod-icons/icon-offstate.png);
+  width: 54px;
+  height: 54px;
+  background-position: -6px 0px;
+}
+
+.product-active .icon.icon-products {
+  background: url(../assets/images/prod-icons/icon-offstate-pr.png) !important;
+  background-repeat: no-repeat !important;
+  background-position: 0% 33% !important;
+}
+
+.product-active.MuiPaper-root:hover .icon {
+  background: url(../assets/images/prod-icons/icon-onstate.png);
+  width: 54px;
+  height: 54px;
+}
+
+.product-active.MuiPaper-root:hover .icon-products {
+  /* background: url(../assets/images/prod-icons/icon-offstate.png);  */
+  background: rgba(255, 255, 255, 1) !important;
+  border-radius: 28px;  
+}
+
+.product-card .icon > img {
+  margin-left: 12px;
+  margin-top: 12px;
+}
+
+.product-card .title-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 2rem;
+  color: #000;
+}
+
+.page-container-small .product-card .title-container {
+  font-size: 20px;
+}
+
+.product-card .body {
+  font-size: 1.07rem;
+  line-height: 16px;
+  color: #666666;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Cpham CSS work */
+
+.product-card .icon-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-card .coming-soon-root {
+  display:flex;
+  position: relative;
+  vertical-align: middle;
+  width: 153px;
+  height: 28px;
+  background: #e2eef9;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+}
+
+
+.product-card .coming-soon-root > span {
+white-space: nowrap;
+width: 113px;
+height: 18px;
+font-family: 72;
+font-size: 16px;
+line-height: 18px;
+color: #0A6ED1;
+text-transform: uppercase;
+}

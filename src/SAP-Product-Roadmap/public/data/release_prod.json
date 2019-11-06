@@ -1,0 +1,715 @@
+{
+    "releases": [{
+        "title": "Harmonized User Experience for SAP C/4HANA Cloud",
+        "date": "AUG 2019",
+        "description": "Harmonized look and feel across all five SAP C/4HANA cloud solutions with Fiori 3.",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"c4hana", "label": "c/4hana", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "c4hana"],
+        "businessvalues": [
+            "Improves usability, user adoption and satisfaction of SAP C/4HANA.",
+            "Consistent terminology and placement of actions ensures that end users know where to go next, thereby reducing their cognitive load.",
+            "Provides a consistent, coherent and modern user experience for the intelligent suite across SAP C/4HANA  and SAP S/4HANA."
+        ],
+        "featuredetails": [
+            "One design system and one design language for SAP C/4HANA.",
+            "Consistent color scheme, consistent typography, and  terminology across SAP C/4HANA.",
+            "Harmonized action placement and shell bar design across SAP C/4HANA."
+        ],
+        "futureplans": [
+        {
+            "date": "NOV 2019",
+            "detail": [
+                "Open Source Library for SAP Fiori fundamentals",
+                "SAP Marketing Cloud with new Fiori-based segmentation UI."
+            ]
+        },
+        {
+            "date": "FEB 2020",
+            "detail": [
+                "Harmonized SAP Fiori 3 look and feel for all SAP C/4HANA Clouds."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "Integration between SAP C/4HANA and SAP S/4HANA",
+        "date": "JUN 2019",
+        "description": "Consistent and aligned Lead-to-Cash process for physical products (sell from stock) across demand-chain and supply-chain with focus on Discrete Manufacturing (Extended), including SAP C/4HANA and SAP S/4HANA.",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"c4hana", "label": "c/4hana", "category" : "product"},
+        {"key":"s4hana", "label": "s/4hana", "category" : "product"},
+        {"key":"experiencemanagement", "label": "experience management", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "c4hana", "s4hana", "experiencemanagement"],
+        "businessvalues": [
+            "Achieve an end-to-end business process representation supported by best-in-class software solutions.",
+            "Ensure consistent handling of business process steps across the SAP C/4HANA Suite.",
+            "Implement your own direct sales or omnichannel-commerce business process driven by best practice processes.",
+            "Reduce time to create process definitions during implementation projects by using reference business processes."
+        ],
+        "featuredetails": [
+            "Extension of Lead-to-Cash process to include customer service.",
+            "Adaptation of Lead-to-Cash process for Consumer Industries, including SAP C/4HANA and SAP S/4HANA."
+
+        ],
+        "futureplans": [
+        {
+            "date": "AUG 2019",
+            "detail": [
+                "Enhancement of existing reference processes with innovative elements across the SAP C/4HANA Suite.",
+                "Quote-to-Order for subscription products (basic) without Commerce.",
+                "Adaptation of Lead-to-Cash process for further industries (Utilities, High-Tech)."
+            ]
+        },
+        {
+            "date": "NOV 2019",
+            "detail": [
+                "Industry-specific reference architectures for SAP C/4HANA.",
+                "Experience data use cases embedded into classic business processes.",
+                "Quote-to-Order for subscription products (extended) without Commerce.",
+                "Use returns from SAP S/4HANA to determine best customers for campaigns."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "SAP Marketing Cloud and SAP Commerce Cloud Integration with SAP CPI",
+        "date": "JUN 2019",
+        "description": "Tight integration between SAP Marketing Cloud and SAP Commerce Cloud",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"marketingcloud", "label": "marketing cloud", "category" : "product"},
+        {"key":"commercecloud", "label": "commerce cloud", "category" : "product"},
+        {"key":"cloudplatformintegration", "label": "cloud platform integration", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "marketingcloud", "commercecloud", "cloudplatformintegration"],
+        "businessvalues": [
+            "Standard integration with SAP Commerce Cloud and SAP Context-Driven Services for web tracking.",
+            "Tight integration of digital commerce into SAP Marketing Cloud for cross-channel offer and product recommendations and more.",
+            "Utilizing clickstreams for superior customer experience."
+        ],
+        "featuredetails": [
+            "Consumer and product master data integration.",
+            "Integration of transactional data like shopping cart, sales orders, product recommendations, reviews, and promotions.",
+            "Clickstream behavior and profiling integration via SAP Context-Driven Services."
+
+        ],
+        "futureplans": []
+    },
+    {
+        "title": "Customer Order Sourcing Business Service",
+        "date": "AUG 2019",
+        "description": "Make intelligent order sourcing decisions based on business requirements.",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"c4hana", "label": "c/4hana", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "c4hana"],
+        "businessvalues": [
+            "Having a single, coherent view of availability lets you exploit distributed data across your entire estate.",
+            "Providing an endless aisle increases sales by preventing customer disappointment both online and in-store.",
+            "Selecting the optimal fulfillment location for orders reduces costs and increases customer satisfaction.",
+            "As a cloud-based service COS makes availability information available to any SAP cloud or third-party application."
+        ],
+        "featuredetails": [
+            "Provides a central service for Article Availability from data stored across multiple systems.",
+            "Pre-configured with rules for sourcing orders according to optimal combinations of lead-time, availability, fewest shipments, and prioritized locations.",
+            "Inventory reservation after sourcing items to prevent overselling.",
+            "Fiori-based UI for drag and drop configuration of sourcing rules."
+        ],
+        "futureplans": [
+        {
+            "date": "NOV 2019",
+            "detail": [
+                "Customer Order Sourcing (COS) integration into SAP Commerce Cloud."
+            ]
+        },
+        {
+            "date": "FEB 2020",
+            "detail": [
+                "Optimize your supply based on more attributes like cost or margin.",
+                "Integrate customer-related attributions into your optimization."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "Omnichannel Promotion Pricing Business Service",
+        "date": "AUG 2019",
+        "description": "Achieve consistent pricing across all sales channels.",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"c4hana", "label": "c/4hana", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "c4hana"],
+        "businessvalues": [
+            "As a cloud-based service, OPP makes consistent pricing information available to any SAP cloud or third-party application.",
+            "Use this solution in your sales channel applications, such as your Web shop or your stores, using the same calculation logic and the same price and promotion data.",
+            "Build brand loyalty by ensuring a consistent customer buying experience with consistent price and promotion data across all sales channels.",
+            "Increase revenue through higher customer satisfaction and greater customer loyalty."
+
+        ],
+        "featuredetails": [
+            "Calculation service to provide consistent price and promotion information by using the same calculation logic and the same price and promotion data.",
+            "Data Upload service to upload regular sales prices and promotional rules to the cloud environment.",
+            "Data Access service (OData service) to read sales prices and promotional rules.",
+            "Administration service to delete obsolete sales prices and promotional rules in the cloud environment."
+        ],
+        "futureplans": [
+        {
+            "date": "NOV 2019",
+            "detail": [
+                "Omnichannel Promotion Pricing enhanced use cases."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "SAP Cloud Platform Extension Factory",
+        "date": "AUG 2019",
+        "description": "Extend SAP Commerce Cloud using microserviceswithout writing any code on the Commerce platform.",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"c4hana", "label": "c/4hana", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "c4hana"],
+        "businessvalues": [
+            "Speed: Prebuilt integration into SAP C/4 HANA solutions make it easy to extend, experiment and get to market fast.",
+            "Speed: Use any language, any third-party service.",
+            "Agility: By decoupling core systems of record from innovation processes via an agility layer, Extension Factory enables customers to experiment with next digital experiences, learn and iterate using agile development and microservices.",
+            "Reuse: By providing a specific catalog of services, companies can accelerate deployment speed, eliminate a lot of duplicate integration and standardize on core services, bringing consistency and cost savings to new developments."
+
+        ],
+        "featuredetails": [
+            "Serverless: Build nanoservice that runs in response to events or http triggers and can scale up or scale down automatically.",
+            "Application connectivity: Pre-built integration with SAP applications and ability to connect in your other systems.",
+            "Service management: Drive agility and reuse across the enterprise."
+        ],
+        "futureplans": [
+        {
+            "date": "NOV 2019",
+            "detail": [
+                "Service Catalog : list all connected apps’ APIs and Events with the meta data in a consistent way."
+            ]
+        },
+        {
+            "date": "FEB 2020",
+            "detail": [
+                "Extension Factory provides prebuilt connectivity to all C4 applications.",
+                "Prebuilt application connectivity with other SAP products (example: SuccessFactors)."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "Commerce Insights with SAP Analytics Cloud",
+        "date": "AUG 2019",
+        "description": "Gain insights into Commerce with real time out-of-the-box analytics using SAP Analytics Cloud.",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"commercecloud", "label": "commerce cloud", "category" : "product"},
+        {"key":"analyticscloud", "label": "analytics cloud", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "commercecloud","analyticscloud"],
+        "businessvalues": [
+            "Improve customer experience with insight to action in context of your Commerce’s business processes.",
+            "Gain operational visibility into your data. Make confident end-to-end decisions using real-time data & analytics together in one place.",
+            "Optimize merchandising to maximize your return."
+
+        ],
+        "featuredetails": [
+            "Access Commerce data in real-time to take any required actions, conduct detailed analysis and leverage insights into data quickly and easily using key capabilities of SAP Analytics Cloud.",
+            "Quickly connect Commerce to SAP Analytics Cloud using Integration API for connectivity – configure APIs without code!",
+            "Jump start development by utilizing sample dashboards in SAP Analytics Cloud and APIs in Commerce.",
+            "Conduct detailed analysis by importing necessary data from Commerce using the flexibility of integration APIs. Analyze key metrics and aggregate data for better insights."
+        ],
+        "futureplans": [
+        {
+            "date": "NOV 2019",
+            "detail": [
+                "Merchandising Reporting."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "Customer Experience Management",
+        "date": "AUG 2019",
+        "description": "Combine experience data and operational data to gain new business insights and reach a new level of customer satisfaction.",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"c4hana", "label": "c/4hana", "category" : "product"},
+        {"key":"experiencemanagement", "label": "experience management", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "c4hana", "experiencemanagement"],
+        "businessvalues": [
+            "Collect experience data along the business process flow to get new insights.",
+            "Combine new data with existing data and take your customer-centricity to the next level.",
+            "Benefit from a harmonized User Experience across SAP C/4HANA along the end-to-end Process.",
+            "Leverage industry-specific reference processes to better reflect your industry business process."
+
+        ],
+        "featuredetails": [
+            "Experience data use cases embedded into classic business processes to gain maximum output from X-data and O-data.",
+            "Pre-packaged integration content and integration scenarios defined along the end-to-end processes."
+        ],
+        "futureplans": [
+        {
+            "date": "NOV 2019",
+            "detail": [
+                "Customer Data Cloud and Qualtrics XM Directory integration."
+            ]
+        },
+        {
+            "date": "FEB 2020",
+            "detail": [
+                "Customer Data and Marketing Cloud account integration.",
+                "Marketing orchestration across CX and XM."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "Customer Master",
+        "date": "AUG 2019",
+        "description": "Customer master data always up-to-date and connected across your landscape.",
+        "likes": 0,
+        "chips": [
+        {"key":"leadtocash", "label": "lead to cash", "category": "process"},
+        {"key":"c4hana", "label": "c/4hana", "category" : "product"}
+        ],
+        "tags": ["leadtocash", "c4hana"],
+        "businessvalues": [
+            "Run simple with connected customer records across your front and back office.",
+            "Deliver on your promises with pre-configured integration, enabling seamless processes for your customers."
+
+        ],
+        "featuredetails": [
+            "Customer Master service initial focus on lookup, extensibility, and distribution- across B2C and B2B.",
+            "Simplified integration across the ecosystem with a common API and Master Data Management."
+        ],
+        "futureplans": [
+        {
+            "date": "NOV 2019",
+            "detail": [
+                "Unified Customer ID across all SAP C/4HANA clouds and beyond.",
+                "Covering all B2C consumer, B2B accounts and contacts.",
+                "From the first identified engagement to a mature, loyal customer."
+            ]
+        },
+        {
+            "date": "FEB 2020",
+            "detail": [
+                "Customer Master service deeper managed integration and extensibilit.",
+                "SAP Marketing Cloud: Integration of Business Partner and Business Partner Relationships."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "Master Data Service for Workforce",
+        "date": "NOV 2019",
+        "description": "Delivers consistent people data to enable digital end-to-end business processes across solutions in the Intelligent Enterprise.",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "Total workforce management", "category": "process"},
+        {"key":"successfactors", "label": "SuccessFactors", "category" : "product"},
+        {"key":"s4hana", "label": "S/4HANA", "category" : "product"},
+        {"key":"concur", "label": "Concur", "category" : "product"},
+        {"key":"fieldglass", "label": "Fieldglass", "category" : "product"},
+        {"key":"cloudplatform", "label": "Cloud Platform", "category" : "product"}
+        ],
+        "tags": ["twm", "successfactors","s4hana", "concur", "fieldglass", "cloudplatform"],
+        "businessvalues": [
+            "One aligned data model across all solutions.",
+            "Avoid information silios and reduce integration effort.",
+            "Access the latest and accurate information without worrying about data replication and synchrionization."
+        ],
+        "featuredetails": [
+          "One aligned data model  for distributing people data from EC to S4 based on SAP Cloud Platform.",
+          "Common repository for all workforce master data.",
+          "Latest service based technology (OData V4).",
+          "Open standards, extensible.",
+          "Point-to-point or middleware based integration."
+        ],
+        "futureplans": [
+        {
+            "date": "MAY 2020",
+            "detail": [
+                "Further unification of workforce master data distribution and move towards oneMDS framework to comply with latest Technology Guidelines."
+            ]
+        },
+        {
+            "date": "NOV 2020",
+            "detail": [
+                "Extending oneMDS for people data to include contingent worker integration:",
+                "- Fieldglass - EC integration.",
+                "- Enable fields Purch.Org and Purch. Plant in oneMDS for MDW.",
+                "- oneMDS including Freelancer."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "Master Data Service for Cost Center",
+        "date": "FEB 2020",
+        "description": "Delivers consistent cost center data to enable digital end-to-end business processes across solutions in the Intelligent Enterprise.",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "Total workforce management", "category": "process"},
+        {"key":"successfactors", "label": "SuccessFactors", "category" : "product"},
+        {"key":"s4hana", "label": "S/4HANA", "category" : "product"},
+        {"key":"concur", "label": "Concur", "category" : "product"},
+        {"key":"fieldglass", "label": "Fieldglass", "category" : "product"},
+        {"key":"cloudplatform", "label": "Cloud Platform", "category" : "product"}
+        ],
+        "tags": ["twm", "successfactors", "s4hana", "concur","fieldglass","cloudplatform"],
+        "businessvalues": [
+            "One aligned data model across all solutions.",
+            "Avoid information silios and reduce integration effort.",
+            "Access the latest and accurate information without worrying about data replication and synchrionization."
+        ],
+        "featuredetails": [
+            "One aligned data model for distributing controlling objects (cost center) from S4 to SF and Concur.",
+            "Common repository for all cost center master data.",
+            "Latest service based technology (OData V4).",
+            "Open standards, extensible.",
+            "Point-to-point or middleware based integration."
+        ],
+        "futureplans": [
+        {
+            "date": "MAY 2020",
+            "detail": [
+                "Master Data Service for Cost Center consumed by other applications like SF LMS, EC Payroll and Fieldglass."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "Time as a Service",
+        "date": "FEB 2020",
+        "description": "Time as a service (TaaS) will eliminate the need of redundant investments in time management while providing a simplified and single SAP product. TaaS will deliver a highly configurable and layered solution to address the differing needs of SAP LoBs and its customers.",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "Total workforce management", "category": "process"},
+        {"key":"successfactors", "label": "SuccessFactors", "category" : "product"},
+        {"key":"s4hana", "label": "S/4HANA", "category" : "product"},
+        {"key":"fieldglass", "label": "Fieldglass", "category" : "product"},
+        {"key":"cloudplatform", "label": "Cloudplatform", "category" : "product"}
+
+        ],
+        "tags": ["twm", "successfactors", "s4hana", "fieldglass","cloudplatform"],
+        "businessvalues": [
+            "The service will be comprised of four layers including Activity Tracking, Time Records, Daily Time, and Time Sheet.",
+            "Customers will be able to use all four layers or a part thereof depending on their specfic needs.",
+            "Standardized APIs, allow easy integration into other systems as needed for consuming and sending data.",
+            "A reference mobile app and desktop will be provided for time entry however other time entry interfaces can be used."
+        ],
+        "featuredetails": [
+            "Deliver clock in/clock out including activity and time record for SF EC Time to begin consuming the service.",
+            "Consuming and storing activities.",
+            "Activity to time record paring logic.",
+            "Activity and time record messages.",
+            "Time keeper capabilities.",
+            "Time record edits, approvals (workflow engine).",
+            "APIs (details to be provided).",
+            "Supporting Admin users, CICO time entry desktop and mobile app (tbd), and Time keeper desktop.",
+            "TaaS rule engine framework.",
+            "Data available via APIs to SAC and other reporting tools as required."
+        ],
+        "futureplans": [
+        {
+            "date": "NOV 2020",
+            "detail": [
+                "Deliver remaining time sheet capabilities:",
+                "- Daily time and time sheet.",
+                "- Time accrualsInput validation including but not limited to consuming work schedule and absence data.",
+                "- Maintain the TaaS rule engine options as required.",
+                "- Daily time and time sheet time entry user interfaces, ongoing improvements to all UI.",
+                "- Maintain person record needs as required.",
+                "- Utilize Business Services, Worker Business Service."
+            ]
+        },
+        {
+            "date": "",
+            "detail": [
+                "Drive TaaS adoption across all LoBs.",
+                "Utilization of Business Service Work Schedules and Resource Assignments."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "Common Fiori Inbox",
+        "date": "NOV 2019",
+        "description": "Common Fiori Inbox provides one single place for all approvals and actions across all products",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "Total workforce management", "category": "process"},
+        {"key":"successfactors", "label": "successfactors", "category" : "product"},
+        {"key":"s4hana", "label": "S/4HANA", "category" : "product"},
+        {"key":"fieldglass", "label": "Fieldglass", "category" : "product"},
+        {"key":"concur", "label": "Concur", "category" : "product"},
+        {"key":"cloudplatform", "label": "Cloud Platform", "category" : "product"}
+        ],
+        "tags": ["twm", "successfactors", "s4hana", "fieldglass","concur","cloudplatform"],
+        "businessvalues": [
+            "A single entry point for all approvals and requests results in a better user experience and execution. It will be accessible from a mobile device increasing productivity and engagement. Common Inbox can be integrated in other platforms providing adiditional flexibility for the customer."
+        ],
+        "featuredetails": [
+            "The following categories are integrated in Common Fiori Inbox: Onboarding, Recruiting, Employe Central, Compensation, Job Profile Builder."
+        ],
+        "futureplans": [
+        {
+            "date": "MAY 2020",
+            "detail": [
+                "All SuccessFactors and S/4 HANA categories required to run Total Workforce Management are integrated in Common Fiori Inbox."
+            ]
+        },
+        {
+            "date": "NOV 2020",
+            "detail": [
+                "Common Fiori Inbox is avaiable for all processes and products within Total Workforce Management."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "Cross Product navigation",
+        "date": "FEB 2020",
+        "description": "Seamless navigation between different application while keeping the context",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "Total workforce management", "category": "process"},
+        {"key":"successfactors", "label": "successfactors", "category" : "product"},
+        {"key":"s4hana", "label": "S/4HANA", "category" : "product"},
+        {"key":"fieldglass", "label": "Fieldglass", "category" : "product"},
+        {"key":"concur", "label": "Concur", "category" : "product"},
+        {"key":"cloudplatform", "label": "Cloud Platform", "category" : "product"}
+        ],
+        "tags": ["twm", "successfactors", "s4hana", "fieldglass","concur","cloudplatform"],
+        "businessvalues": [
+            "Users are able to navigate across products without losing the context. Thus, they can seamlessly execute their end-to-end business process steps."
+        ],
+        "featuredetails": [
+            "Deep linking support for SuccessFactors' relevant objects and actions. Context navigation beetween Employee Central and S/4 for Cost Center object."
+        ],
+        "futureplans": [
+        {
+            "date": "MAY 2020",
+            "detail": [
+                "Deep linking support for SuccessFactors and S/4 HANA relevant objects and actions. Context navigation beetween Employee Central and S/4 for Cost Center and Employee objects."
+            ]
+        },
+        {
+            "date": "NOV 2020",
+            "detail": [
+                "Full context enabled navigation for the complete Total Workforce Management process."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "UX harmonization, theming and branding ",
+        "date": "NOV 2019",
+        "description": "Delivery of a best in class, consistent and modern user experience across all business processes and products.",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "Total workforce management", "category": "process"},
+        {"key":"successfactors", "label": "successfactors", "category" : "product"},
+        {"key":"s4hana", "label": "S/4HANA", "category" : "product"},
+        {"key":"fieldglass", "label": "Fieldglass", "category" : "product"},
+        {"key":"concur", "label": "Concur", "category" : "product"},
+        {"key":"cloudplatform", "label": "Cloud Platform", "category" : "product"}
+        ],
+          "tags": ["twm", "successfactors", "s4hana", "fieldglass","concur","cloudplatform"],
+        "businessvalues": [
+            "A common shell will allow users to navigate easily and search across products, and access common functions like settings and CoPilot at any time, improving dramatically their experience.",
+            "Consistent terminology and placement of actions ensures that users always know where to click to trigger an action or complete a task, reducing the margin for error.",
+            "With SAP Fiori design SAP products will be accessible for everyone."
+        ],
+        "featuredetails": [
+            "Adoption of SAP Fiori design and terminology unification between applications."
+        ],
+        "futureplans": [
+        {
+            "date": "MAY 2020",
+            "detail": [
+                "Common launchpad and shellbar adoption for SuccessFactors and S/4 HANA applications."
+            ]
+        },
+        {
+            "date": "NOV 2020",
+            "detail": [
+                "SuccessFactors UX rebuild and consistent user experience across the complete Total Workforce Management process."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "Onboarding 2.0",
+        "date": "NOV 2019",
+        "description": "Redefined onboarding to simplify experiences, processes and administration.",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "Total workforce management", "category": "process"},
+        {"key":"successfactors", "label": "successfactors", "category" : "product"}
+        ],
+        "tags": ["twm", "successfactors"],
+        "businessvalues": [
+            "Streamlined configuration and administration decreasing complexity for the customer.",
+            "Overall consistent and engaging user experience through the adoption of Fiori design.",
+            "Improved flexibility and extensibility reducing cost and effort for integrations.",
+            "Reduction of duplicate functionalities such as notifications, permissions and document storage."
+        ],
+        "featuredetails": [
+            "Renewed onboarding experience including: Forms Management, Task and Process Management, New Hire Portal, Document Center, Reporting, Hire to Retire process integration, Third Party Integration."
+        ],
+        "futureplans": [
+        {
+            "date": "MAY 2020",
+            "detail": [
+                "New offboarding capabilities for an engaging employee experience and improved task management.",
+                "Integrated reporting in People Analytics (enbedded and advanced editions).",
+                "Standard form support for United States and Canada."
+            ]
+        },
+        {
+            "date": "NOV 2020",
+            "detail": [
+                "Integration with digital asistant for new hires.",
+                "Standard form support for India, Canada, the UK, and Australia."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "Central SAP Cloud Identity Access Governance and SAP Cloud Platform Identity Authentication",
+        "date": "MAY 2019",
+        "description": "Seamless Single Sign-On between applications and  centrally managed User Lifecycle with automatic service provision",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "Total workforce management", "category": "process"},
+        {"key":"successfactors", "label": "successfactors", "category" : "product"},
+        {"key":"s4hana", "label": "S/4HANA", "category" : "product"},
+        {"key":"fieldglass", "label": "Fieldglass", "category" : "product"},
+        {"key":"concur", "label": "Concur", "category" : "product"},
+        {"key":"cloudplatform", "label": "Cloud Platform", "category" : "product"}
+        ],
+        "tags": ["twm", "successfactors", "s4hana", "fieldglass","concur","cloudplatform"],
+        "businessvalues": [
+            "Users  only will log in once to execute all steps of the end-to-end  business process and they be provided with all required authorizations based on their profile. This increases eficiency and provides a better experience.",
+            "Administrators will have a central Identiy Access Governance and Identity Authentication tool for all products. They will be able to assign business roles to users automatically by means of rules. This will decrease complexity and reduce errors."
+        ],
+        "featuredetails": [
+            "Application support SSO with SAP Cloud Platform Identity Authentication service."
+        ],
+        "futureplans": [
+        {
+            "date": "NOV 2019",
+            "detail": [
+                "Real-time provisioning of access requests using SAP Cloud Platform Identity Provisioning service and SAP Cloud Identity Access Governance."
+            ]
+        },
+        {
+            "date": "MAY 2020",
+            "detail": [
+                "Predefined content for business user role management."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "People Analytics, advanced edition",
+        "date": "AUG 2019",
+        "description": "Next generation of Workforce Analytics to lead your workforce, accelerate change, and drive results",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "Total workforce management", "category": "process"},
+        {"key":"successfactors", "label": "successfactors", "category" : "product"}
+        ],
+        "tags": ["twm", "successfactors"],
+        "businessvalues": [
+            "Access to data from across the enterprise, including HR, finance, and operations to become the single source of truth.",
+            "Out-of-the-box metric packs to facilitate data analysis and decission making.",
+            "Predictive capabilities based on machine learning technology to detect future trends."
+        ],
+        "featuredetails": [
+            "Beta release for early collaboration and feedback initiated with SAP Analytics Cloud: Data factory integrated with SAP Analytics Cloud; Customer production data;Core metric pack available as SAP Analytics Cloud template content."
+        ],
+        "futureplans": [
+        {
+            "date": "NOV 2019",
+            "detail": [
+                "Continued beta for collaboration and feedback with SAP Analytics Cloud:",
+                "- Content for additional metrics packs in SAP Analytics Cloud: Performance management, Recruiting management, Compensation; ",
+                "- Support for external data."
+            ]
+        },
+        {
+            "date": "FEB 2020",
+            "detail": [
+                "GA of people analytics:",
+                "- Single Reporting Solution  for  SAP SuccessFactors  solutions;",
+                "- Unified  Data Model."
+            ]
+        }
+        ]
+    },
+    {
+        "title": "People Analytics, planning edition",
+        "date": "NOV 2019",
+        "description": "Next generation of Workforce Planning with collaborative workforce planning and visualizations enabled by SAP Analytics Cloud",
+        "likes": 0,
+        "chips": [
+        {"key":"twm", "label": "Total workforce management", "category": "process"},
+        {"key":"successfactors", "label": "successfactors", "category" : "product"}
+        ],
+        "tags": ["twm", "successfactors"],
+        "businessvalues": [
+            "Powerful planning capabilities to allow quick application of changes and facilitate decission making.",
+            "Built-in collaboration tools to streamline business processes.",
+            "Version management to create different scenarios and share with users from different levels."
+        ],
+        "featuredetails": [
+            "Planning model for extended  analytics [beta].",
+            "Data factory integration.",
+            "Customer production data.",
+            "Core metric pack available as template content​ prerequisite.",
+            "SAP SuccessFactors Employee Central.",
+            "Existing WFA on HANA implementation."
+        ],
+        "futureplans": [
+        {
+            "date": "FEB 2020",
+            "detail": [
+                "Strategic and operational  workforce planning for extended  analytics.",
+                "- Integration in Report Center.",
+                "- Data Permissions."
+            ]
+        },
+        {
+            "date": "MAY 2020",
+            "detail": [
+                "Advanced edition.",
+                "- General availability release.",
+                "- Core Workforce Metrics Pack.",
+                "- Driver based demand modeling."
+            ]
+        }
+        ]
+    }
+    ]
+}

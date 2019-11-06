@@ -1,0 +1,108 @@
+.page-footer {
+
+  left: 0;
+  margin-top:-100px;
+  height: 756px;;
+  width: 100%;
+  background-image: url(../assets/images/footer-x2.png);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: cover;
+  overflow: auto;
+  display: inline-table;
+  grid-column: span 2;
+}
+
+.footer-container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1599px;
+}
+
+.footer-content {
+  margin-top: 400px;
+  margin-left: 100px;
+  margin-right: 100px;
+  display: flex;
+}
+
+.footer-content .link-container {
+  padding-right: 54px;
+  color: #fff;
+}
+
+.footer-content .link-container .title {
+  font-size: 2rem;
+  line-height: 23px;
+  font-weight: 400;
+}
+
+.footer-content .link-container ul {
+  padding: 0;
+  margin-top: 24px;
+}
+
+
+.footer-content .link-container li {
+  margin: 0;
+  list-style: none;
+  padding-bottom:5px;
+}
+
+.footer-content .link-container a {
+  font-size: 1.6666666666666667rem;
+  line-height: 23px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 100;
+}
+
+.footer-content .subscribe-container {
+    margin-left: 8px;
+    margin-top: -14px;
+}
+
+.footer-content .subscribe-container .title {
+  font-size: 3.3333333333333335rem;
+   font-weight: 300;
+  color: #fff;
+  line-height: 46px;
+}
+
+.footer-content .subscribe-container {
+  float: left;
+  margin-left: 8px;
+  margin-top: -14px;
+}
+
+.footer-content .subscribe-container .form-container {
+  margin-top: 24px;
+}
+
+.footer-content .subscribe-container .form-container .email-input {
+  margin-right: 16px;
+  margin-bottom: 16px;
+  width: 280px;
+  height: 38px;
+  border-radius: 39px;
+  border-color: transparent;
+  text-indent: 16px;
+  color: rgba(0, 0, 0, 0.34);
+  font: 400 1.6666666666666667rem '72';
+}
+
+.footer-content .subscribe-container .form-container .email-input::placeholder {
+  color: rgba(0, 0, 0, 0.34);
+}
+.footer-content .subscribe-container .form-container .email-input:focus {
+  outline-offset: 0px;
+  outline: transparent auto 0px;
+}
+
+.footer-content .subscribe-container .social-container {
+  margin-top: 24px;
+}
+
+.footer-content .subscribe-container .social-container .social-link {
+  margin-right: 10px;
+}

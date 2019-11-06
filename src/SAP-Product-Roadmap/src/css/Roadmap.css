@@ -1,0 +1,198 @@
+.roadmap-stepper .MuiPaper-root {
+  background: transparent;
+}
+
+.roadmap-stepper-single-line {
+  margin-top: 58px;
+}
+
+.roadmap-svg-group {
+  display: flex;
+  flex-direction: row;
+}
+
+.roadmap-svg-icon svg {
+  margin-top: 100%;
+  margin-bottom: 100%;
+}
+
+.roadmap-stepper-label .MuiStepLabel-label {
+  font-family: "72";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  color: #0a6ed1;
+  cursor: pointer;
+}
+
+.roadmap-stepper-label .MuiStepLabel-label.MuiStepLabel-active {
+  font-weight: normal;
+  color: #0a6ed1;
+}
+
+.roadmap-stepper-popover .MuiPopover-paper {
+  border-radius: 18px;
+  margin-top: 22px;
+/*  max-width: 350px;*/
+}
+
+.MuiCard-root.roadmap-stepper-popover-card {
+  box-shadow: none;
+}
+
+.roadmap-stepper-icon-color circle {
+  fill: #0a6ed1;
+}
+
+.roadmap-stepper-icon-color path {
+  fill: #ffffff;
+}
+
+.roadmap-stepper-popover .title-container {
+  margin: 0 0 20px;
+  font-size: 2rem;
+  color: #000;
+}
+
+.roadmap-stepper-popover .title {
+  margin-top: 2px;
+  text-transform: uppercase;
+  font-family: "72";
+  font-style: normal;
+  font-weight: 400; 
+  font-size: 18px;
+  line-height: 21px;
+  color: #f0ab00;
+}
+
+.roadmap-stepper-popover .title-bar {
+  background-color: #f0ab00;
+  width: 37px;
+  height: 2px;
+}
+
+.roadmap-stepper-popover .header {
+  margin-top: 14px;
+  color: #000;
+  font-family: "72";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.roadmap-stepper-popover .body {
+  margin-top: 4px;
+  font-family: "72";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  color: #666666;
+}
+
+.roadmap-stepper-popover .content {
+  width: 313px;
+  margin: 30px;
+  position: relative;
+}
+.roadmap-stepper-popover .roadmap-item {
+  display: flex;
+  align-items: end;
+}
+.roadmap-stepper-popover .item-bullet {
+  /* triangleBulletCSS */
+  /* margin-top: 4px; */
+  /*blueBulletCSS */
+  margin-top: 12px;
+  margin-left: 4px;
+  margin-right: 14px;
+}
+.roadmap-stepper-popover .item-label {
+  font-family: "72";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 32px;
+}
+
+/* CSS for Info Icon Popover -- keeping things DRY */
+.roadmap-stepper-popover.info-multi .content {
+  width: calc(100% - 50px);
+  height: 100%;
+}
+
+.roadmap-stepper-popover.info-multi .MuiPopover-paper {
+    margin-top: 25px;
+/*    width: 507px;*/
+    max-width: 600px;
+}
+
+.roadmap-stepper-popover.info-single .MuiPopover-paper {
+    margin-top: 25px;
+    width: 414px;
+/*    max-width: 414px;*/
+}
+.roadmap-stepper-popover.info-single .MuiPopover-paper .content,
+.roadmap-stepper-popover.info-single .MuiPopover-paper .content {
+    width: 363px;
+}
+
+.roadmap-stepper-popover.info-single .MuiPopover-paper .content .title-container .title,
+.roadmap-stepper-popover.info-multi .MuiPopover-paper .content .title-container .title  {
+font-weight: normal;
+font-size: 18px;
+line-height: 21px;
+}
+
+.roadmap-stepper-popover.info-single .MuiPopover-paper .content .roadmap-item .item-label,
+.roadmap-stepper-popover.info-multi .MuiPopover-paper .content .roadmap-item .item-label {
+  line-height: 23px;
+  padding-bottom: 15px;
+}
+
+.roadmap-stepper-popover.info-single .MuiPopover-paper .content .roadmap-item .item-bullet {
+  margin-top: 7px;
+  margin-left: 4px;
+  margin-right: 8px;
+}
+.roadmap-stepper-popover.info-multi .MuiPopover-paper .content .roadmap-item .item-bullet {
+  margin-top: 8px;
+  margin-left: 4px;
+  margin-right: 14px;
+}
+.roadmap-stepper-popover .title-process-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  overflow-y: hidden;
+  margin: 30px;
+}
+
+.title-process-container .content {
+    margin: 0;
+}
+
+.popover-arrow-container {
+  position: absolute;
+  padding-left: calc(25% + 10px);
+
+}
+.popover-style-arrow {
+  /* position:absolute !important; */
+  /* moves arrow up */
+  margin-top: -25px;
+  z-index: 1301;
+}
+
+.popover-style-arrow::before {
+  content: "";
+  position: absolute !important;
+  border-style: solid;
+  border-bottom: 10px solid black;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-top: 10px solid transparent;
+  z-index:1301;
+}

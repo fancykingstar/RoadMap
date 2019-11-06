@@ -1,0 +1,76 @@
+.roadmap-multi {
+  width: 100%;
+  position: relative;
+  margin-top: 58px;
+  height: 440px;
+  display: flex;
+  justify-content: center;
+}
+
+.roadmap-multi .roadmap-stepper:nth-child(2) {
+  margin-top: 240px;
+}
+
+.roadmap-multi .roadmap-stepper {
+  position: absolute;
+  width: 100%;
+}
+.roadmap-stepper .MuiStepLabel-iconContainer {
+  cursor: pointer;
+}
+.roadmap-stepper-label-right .MuiStepLabel-iconContainer {
+  /* margin-right: 32px; */
+}
+
+.roadmap-stepper-label-left .MuiStepLabel-iconContainer {
+  margin-left: 32px;
+}
+
+.roadmap-stepper .MuiStep-root:nth-child(1) .MuiStepLabel-iconContainer {
+  margin-right: 0px;
+}
+
+.roadmap-multi .roadmap-stepper .MuiStepper-root {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.roadmap-multi-lines {
+  border-bottom-style: dashed;
+  border-top-style: dashed;
+  border-right-style: dashed;
+  border-color: #b1b1b1;
+  border-width: 2px;
+  height: 237px;
+  width: 74.9%;
+  margin-top: 64px;
+  margin-left: 70px;
+}
+
+.roadmap-stepper .MuiStepper-alternativeLabel {
+  /* width: 730px; */
+  min-width: 799px;
+  max-width: 924px;
+}
+
+.roadmap-stepper .MuiStepper-root {
+  padding: 0px;
+}
+.roadmap-stepper .MuiStepConnector-root {
+  top: 13px;
+  padding-left: 2px;
+  padding-right: 9px;
+  left: calc(-61% + 55px);
+  right: calc(50% + 47.9px);
+}
+
+.roadmap-stepper .MuiStepLabel-iconContainer .roadmap-svg-icon {
+  /* top: 30px; */
+  position: relative;
+}
+.roadmap-stepper .MuiStepLabel-iconContainer .roadmap-svg-icon svg {
+  position: absolute;
+  bottom: 0px;
+  margin-bottom: 20px;
+  right: 1rem;
+}

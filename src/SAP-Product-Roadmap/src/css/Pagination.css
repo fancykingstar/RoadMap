@@ -1,0 +1,40 @@
+.paginator {
+    display: flex;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 50px;
+    align-content: center;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 300;
+  }
+
+  .paginationArrow {
+      cursor: pointer;
+  }
+
+  .pageLeft {
+      margin-right: 24px;
+  }
+
+  .pageRight {
+      margin-left: 24px;
+  }
+
+  .pageNumber {
+      margin-left: 10px;
+      margin-right: 10px;
+      cursor: pointer;
+  }
+
+  .pageNumber:focus, .pageNumber:hover, .pageSelected {
+      color: #F0AB00;
+  }
+
+  .pageNumberContainer {
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
+
+  }

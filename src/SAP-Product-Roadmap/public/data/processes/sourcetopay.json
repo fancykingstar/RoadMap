@@ -1,0 +1,209 @@
+{
+  "title": "Source to Pay",
+  "description": [{"title": "Products", "items":
+                  [{"label": "SAP Ariba", "key": "ariba", "link": ""},
+                  {"label": "SAP Fieldglass", "key": "fieldglass", "link": ""},
+                  {"label": "SAP S/4HANA", "key": "s4hana", "link": ""}]},
+                  {"title": "Innovation topics", "items":
+                  [{"label": "Deliver the most robust and complete source to pay collaborative platform and applications", "key": "innovation1", "link": ""}]}],
+  "whatsnew": [
+    {
+      "id": 1,
+      "type": "start",
+      "title": "feature release",
+      "header": "Login once across SAP applications",
+      "body": "Provide single-sign-on processing for SAP Ariba applications",
+      "buttonText": "Learn More",
+      "buttonLink": "ariba"
+    },{
+      "id": 2,
+      "type": "mid",
+      "title": "Feature Release",
+      "header": "Improved User Experience",
+      "body": "Deliver a consistent user experience across IES related applications.",
+      "buttonText": "Learn More",
+      "buttonLink": "ariba"
+    },{
+      "id": 3,
+      "type": "mid",
+      "title": "Partner",
+      "header": "Accenture",
+      "body": "Hear how Accenture enables contract compliance and savings",
+      "buttonText": "Watch Video",
+      "buttonLink": "https://www.ariba.com/resources/library/library-pages/accenture"
+    }
+  ],
+  "roadmapTitle": "Source to Pay",
+  "roadmap": [
+    {
+      "label": "Source and Contact",
+      "icon": "source",
+      "isFirst": true,
+      "moreDetails": {
+        "title": "Key Capabilities",
+        "content": [
+          {
+            "item": "Category Strategy"
+          },
+          {
+            "item": "Source Material and Service"
+          },
+          {
+            "item": "Contracts"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Plan and Forecast",
+      "icon": "planForecast",
+      "moreDetails": {
+        "title": "Key Capabilities",
+        "content": [
+          {
+            "item": "Plan"
+          },
+          {
+            "item": "Forecast"
+          },
+          {
+            "item": "Schedule"
+          },
+          {
+            "item": "Confirm"
+          }
+        ]
+      }
+    },
+
+    {
+      "label": "Buy and Deliver",
+      "icon": "buy",
+      "moreDetails": {
+        "title": "Key Capabilities",
+        "content": [
+          {
+            "item": "Request"
+          },
+          {
+            "item": "Orders"
+          },
+          {
+            "item": "Deliver and Receive"
+          }
+        ]
+      }
+    },
+      {
+      "label": "Invoice and Pay",
+      "icon": "invoice",
+      "moreDetails": {
+        "title": "Key Capabilities",
+        "content": [
+          {
+            "item": "Invoice"
+          },
+          {
+            "item": "Approve"
+          },
+          {
+            "item": "Credit Memo"
+          },
+          {
+            "item": "Pay"
+          }
+        ]
+      }
+    },
+      {
+      "label": "Trading Partner and Risk Management",
+      "icon": "tradingPartner",
+      "moreDetails": {
+        "title": "Key Capabilities",
+        "content": [
+          {
+            "item": "Manage Trade Relationships"
+          },
+          {
+            "item": "Minimize Risks"
+          }
+        ]
+      }
+    },
+      {
+      "label": "Trading Partner Collaboration",
+      "icon": "tradingPartnerCollab",
+      "moreDetails": {
+        "title": "Key Capabilities",
+        "content": [
+          {
+            "item": "Network Integration"
+          },
+          {
+            "item": "Source to Pay Collaboration"
+          }
+        ]
+      }
+    }
+  ],
+  "timelineTitle": "Product Delivery Timeline",
+  "timeline": [
+    {
+      "label": "Aug 2019",
+      "id": "aug2019",
+      "bullets": [
+        {
+          "text": "Dynamic pricing support and APIs for content lookup and elimination of item redundancy in Catalog and CMS",
+          "id": "aug2019-0"
+        },
+        {
+          "text": "Support for Lean Services in Guided Buying and S/4HANA Procurement",
+          "id": "aug2019-1"
+        },
+        {
+          "text": "Enhanced team access control for two-envelope bidding procedures",
+          "id": "aug2019-2"
+        }
+      ]
+    },{
+      "label": "Nov 2019",
+      "id": "nov2019",
+      "bullets": [
+        {
+          "text": "Guided buying item recommendation for end users",
+          "id": "nov2019-0"
+        },
+        {
+          "text": "Trading Partner Collaboration as a service",
+          "id": "nov2019-1"
+        },
+        {
+          "text": "New eSignature API to support any signature provider",
+          "id": "nov2019-2"
+        }
+      ]
+    },
+    {
+      "label": "Feb 2020",
+      "id": "feb2020",
+      "bullets": [
+        {
+          "text": "Synchronize across catalog and CMS",
+          "id": "feb2020-0"
+        },
+        {
+          "text": "Guided buying recommender",
+          "id": "feb2020-1"
+        },
+        {
+          "text": "Extended custom forms",
+          "id": "feb2020-2"
+        },
+        {
+          "text": "Purchase order status API",
+          "id": "feb2020-3"
+        }
+      ]
+    }
+  ]
+}

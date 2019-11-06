@@ -1,0 +1,225 @@
+{
+    "title": "SAP Sales Cloud",
+    "description": [{"title": "Products", "items":
+                  [{"label": "SAP Commerce Cloud", "key": "commercecloud", "link": ""},
+                  {"label": "SAP Customer Data Cloud", "key": "customerdatacloud", "link": ""},
+                  {"label": "SAP Marketing Cloud", "key": "marketingcloud", "link": ""},
+                  {"label": "SAP Sales Cloud", "key": "salescloud", "link": ""},
+                  {"label": "SAP Service Cloud", "key": "servicecloud", "link": ""}]},
+                  {"title": "Innovation topics", "items":
+                  [{"label": "Integrated end-to-end processes for Lead to Cash", "key": "innovation1", "link": ""},
+                  {"label": "Intelligence (AI/ML) capabilities and analytics", "key": "innovation2", "link": ""},
+                  {"label": "UX harmonization across the SAP C/4HANA suite", "key": "innovation3", "link": ""}, 
+                  {"label": "Extension capabilities, authentication, cloud administration and user management via SAP CX Cockpit", "key": "innovation4", "link": ""},
+                  {"label": "Provisioning orchestration", "key": "innovation5", "link": ""}]}],
+    "whatsnew" : [
+      {
+      "id": 1,
+      "type": "start",
+      "title": "SAP C/4HANA",
+      "header": "Retail Omnichannel integration with SAP Commerce Cloud",
+      "body" : "Integrates SAP Retail article master data and omnichannel innovations with SAP Commerce Cloud.",
+      "buttonText" : "Learn More",
+      "buttonLink" : "c4hana"
+      },{
+      "id": 2,
+      "type": "mid",
+      "title": "SAP C/4HANA",
+      "header": "SAP C/4HANA cockpit adminX",
+      "body": "Efficiently run and extend  SAP C/4HANA to design and deliver amazing customer experiences.",
+      "buttonText": "Learn More",
+      "buttonLink": "c4hana"
+      },
+      {
+      "id": 3,
+      "type": "mid",
+      "title": "EVENT",
+      "header": "SAP Customer Experience Live LONDON, UK on Oct 3, 2019",
+      "body": "Please join us for this event.",
+      "buttonText": "Learn More",
+      "buttonLink": "https://events.sap.com/gb/cx-live-2019-london/en/home"
+      },{
+        "id": 4,
+        "type": "mid",
+        "title": "EVENT",
+        "header": "SAP Customer Experience Live DUBAI, UAE on Oct 6, 2019",
+        "body": "Please join us for this event.",
+        "buttonText": "Learn More",
+        "buttonLink": "https://events.sap.com/ae/cx-live-2019-dubai/en/home"
+      },
+      {
+      "id": 5,
+      "type": "mid",
+      "title": "EVENT",
+      "header": "SAP Customer Experience Live MUNICH, Germany on Nov 5, 2019",
+      "body" : "Please join us for this event.",
+      "buttonText" : "Learn More",
+      "buttonLink" : "https://events.sap.com/de/cx-live-2019-munich/en/home"
+      },
+      {
+        "id": 6,
+        "type": "mid",
+        "title": "Customer data cloud",
+        "header": "Global Identity Management Experiences",
+        "body": "Globally Access powers the identity management capabilities into any digital property.",
+        "buttonText": "Learn More",
+        "buttonLink": "c4hana"
+      },
+      {
+        "id": 7,
+        "type": "mid",
+        "title": "Customer data cloud",
+        "header": "Native support for 'Sign in with apple' ",
+        "body": "Integration of 'Sign-in with Apple' for secure login and data privacy.",
+        "buttonText": "Learn More",
+        "buttonLink": "c4hana"
+      },
+      {
+        "id": 8,
+        "type": "mid",
+        "title": "Sales cloud",
+        "header": "Administrator Workspaces & Capabilities",
+        "body": "New and enhanced workspaces and features supporting compensation admins.",
+        "buttonText": "Learn More",
+        "buttonLink": "c4hana"
+      },
+      {
+        "id": 9,
+        "type": "mid",
+        "title": "Sales cloud",
+        "header": "Globalization Requirements",
+        "body": "Delivery of key capabilities required by global organizations and international companies.",
+        "buttonText": "Learn More",
+        "buttonLink": "c4hana"
+      },
+      {
+        "id": 10,
+        "type": "mid",
+        "title": "Sales cloud",
+        "header": "Retail Execution - Perfect Store Execution Enhancements",
+        "body": "Perfect Store Execution allows to guide the sales representative during visit execution and to measure the ... ",
+        "buttonText": "Learn More",
+        "buttonLink": "c4hana"
+      },
+      {
+        "id": 11,
+        "type": "mid",
+        "title": "Sales cloud",
+        "header": "User Experience, UI Harmonization & Accessibility",
+        "body": "Improved experience for sales and administrative users",
+        "buttonText": "Learn More",
+        "buttonLink": "c4hana"
+      },
+      {
+        "id": 12,
+        "type": "mid",
+        "title": "Sales cloud",
+        "header": "Suite intelligence & Analytics",
+        "body": "Leverage deep analytics and intelligence to make data-driven decisions",
+        "buttonText": "Learn More",
+        "buttonLink": "c4hana"
+      },
+      {
+        "id": 13,
+        "type": "mid",
+        "title": "Customer data cloud",
+        "header": "Remove the need for passwords!",
+        "body": "Out of the box Passwordless authentication options.",
+        "buttonText": "Learn More",
+        "buttonLink": "c4hana"
+      },
+      {
+        "id": 14,
+        "type": "mid",
+        "title": "Customer data cloud",
+        "header": "X Data powered by First Party Data",
+        "body": "Improve experience management campaign performance with first party customer data, preferences and consent.",
+        "buttonText": "Learn More",
+        "buttonLink": "c4hana"
+      },
+      {
+        "id": 15,
+        "type": "mid",
+        "title": "Customer data cloud",
+        "header": "Simplify Consent Collection, Reduce Business Risk",
+        "body": "Simplify complex deployments across languages and regions along with the storage of the legal documents ...",
+        "buttonText": "Learn More",
+        "buttonLink": "c4hana"
+      },
+      {
+        "id": 16,
+        "type": "mid",
+        "title": "Customer data cloud",
+        "header": "Partner User Onboarding with CIAM for B2B",
+        "body": "Allow partners to use their own Identity Providers with the CIAM for B2B solution.",
+        "buttonText": "Learn More",
+        "buttonLink": "c4hana"
+      }
+    ],
+    "timelineTitle": "Release Highlights",
+    "timeline": [
+    {
+      "label": "Aug 2019",
+      "id": "aug2019",
+      "bullets": [
+        {
+          "text": "Harmonized SAP Fiori 3 look and feel across SAP C/4HANA Suite",
+          "id": "aug2019-0"
+        },
+        {
+          "text": "Lead to Cash process integration",
+          "id": "aug2019-1"
+        },
+        {
+          "text": "AI/ML driven intelligent scenarios",
+          "id": "aug2019-2"
+        },
+        {
+          "text": "Cloud administration and user management via SAP CX Cockpit",
+          "id": "aug2019-3"
+        }
+      ]
+    },
+    {
+      "label": "Nov 2019",
+      "id": "nov2019",
+      "bullets": [
+        {
+          "text": "Continue look and feel harmonization with Fiori 3",
+          "id": "nov2019-0"
+        },
+        {
+          "text": "One identity authentication",
+          "id": "nov2019-1"
+        },
+        {
+          "text": "SAP Cloud Platform Extension Factory prebuilt application connectivity, management console, and service catalogues",
+          "id": "nov2019-2"
+        }
+      ]
+    },
+
+    {
+      "label": "Feb 2020",
+      "id": "feb2020",
+      "bullets": [
+        {
+          "text": "One global identity for all users",
+          "id": "may2020-0"
+        },
+        {
+          "text": "Consumable APIs for (de)provisioning",
+          "id": "may2020-1"
+        },
+        {
+          "text": "Real-time measurement of end-user experience",
+          "id": "may2020-2"
+        },
+        {
+          "text": "Facilitate open ecosystem with SAP Graph",
+          "id": "may2020-3"
+        }
+      ]
+    }
+  ]
+}

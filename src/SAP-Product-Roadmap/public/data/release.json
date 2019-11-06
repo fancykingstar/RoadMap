@@ -1,0 +1,148 @@
+{
+    "releases": [{
+        "title": "High Volume Recruting",
+        "date": "NOV 2019",
+        "description": "Run continuous mass hiring process",
+        "likes": 32,
+        "chips": [
+        {"key":"development", "label": "in development", "category": "status"},
+        {"key":"successfactors", "label": "successfactors", "category": "product"},
+        {"key":"hiretoretire", "label": "hire to retire", "category" : "process"}
+        ],
+        "tags": ["development", "successfactors", "hiretoretire"],
+        "businessvalues": "Use of a shared master data will eliminate information silos and reduce integration efforts by IT organizations.",
+        "featuredetails": "Employees get timely approval against their team’s budget, for travel request during pre-trip plans and managers can influence budget for the travel expenses to come",
+        "futureplans": [
+        {
+            "date": "FEB 2020",
+            "detail": "Further integration with SAP Cloud Platform Identity Authentication Service to enable employee single sign on"
+        },
+        {
+            "date": "MAY 2020",
+            "detail": "Eliminate need to for data replication and synchronization. Easy onboarding of other SAP cloud products using the same employee master data. Ability to extend master data centrally and only once."
+        }
+        ]
+    },
+    {
+        "title": "Onboarding 2.0",
+        "date": "NOV 2019",
+        "description": "New onboarding module integrated with employee central",
+        "likes": 161,
+        "chips": [
+        {"key":"preview", "label": "in preview", "category": "status"},
+        {"key":"successfactors", "label": "successfactors", "category": "product"},
+        {"key":"hiretoretire", "label": "hire to retire", "category" : "process"}
+        ],
+        "tags": ["preview", "successfactors", "hiretoretire"],
+        "businessvalues": "Use of a shared master data will eliminate information silos and reduce integration efforts by IT organizations.",
+        "featuredetails": "Employees get timely approval against their team’s budget, for travel request during pre-trip plans and managers can influence budget for the travel expenses to come",
+        "futureplans": [{
+            "date": "FEB 2020",
+            "detail": "Further integration with SAP Cloud Platform Identity Authentication Service to enable employee single sign on"
+        },
+        {
+            "date": "MAY 2020",
+            "detail": "Eliminate need to for data replication and synchronization. Easy onboarding of other SAP cloud products using the same employee master data. Ability to extend master data centrally and only once."
+        }
+        ]
+    },
+    {
+        "title": "Re-Open Expense Report",
+        "date": "NOV 2019",
+        "description": "Capability to re-open a reimbursed expense for changes",
+        "likes": 135,
+        "chips": [
+        {"key":"development", "label": "in development", "category": "status"},
+        {"key":"concur", "label": "concur", "category": "product"},
+        {"key":"s4hana", "label": "s/4hana", "category": "product"},
+        {"key":"hiretoretire", "label": "hire to retire", "category" : "process"}
+        ],
+        "tags": ["development", "concur", "s4hana", "hiretoretire"],
+        "businessvalues": "Use of a shared master data will eliminate information silos and reduce integration efforts by IT organizations.",
+        "featuredetails": "Employees get timely approval against their team’s budget, for travel request during pre-trip plans and managers can influence budget for the travel expenses to come",
+        "futureplans": [{
+            "date": "FEB 2020",
+            "detail": "Further integration with SAP Cloud Platform Identity Authentication Service to enable employee single sign on"
+        },
+        {
+            "date": "MAY 2020",
+            "detail": "Eliminate need to for data replication and synchronization. Easy onboarding of other SAP cloud products using the same employee master data. Ability to extend master data centrally and only once."
+        }
+        ]
+    },
+    {
+        "title": "Master Data Service for Controlling Objects",
+        "date": "NOV 2019",
+        "description": "Manage and extend the same controlling objects master data like Cost Centers, WBS Elements etc., across all SAP applications",
+        "likes": 8,
+        "chips": [
+        {"key":"development", "label": "in development", "category": "status"},
+        {"key":"concur", "label": "concur", "category": "product"},
+        {"key":"hiretoretire", "label": "hire to retire", "category" : "process"}
+        ],
+        "tags": ["development", "concur", "hiretoretire"],
+        "businessvalues": "Use of a shared master data will eliminate information silos and reduce integration efforts by IT organizations.",
+        "featuredetails": "Employees get timely approval against their team’s budget, for travel request during pre-trip plans and managers can influence budget for the travel expenses to come",
+        "futureplans": [{
+            "date": "FEB 2020",
+            "detail": "Further integration with SAP Cloud Platform Identity Authentication Service to enable employee single sign on"
+        },
+        {
+            "date": "MAY 2020",
+            "detail": "Eliminate need to for data replication and synchronization. Easy onboarding of other SAP cloud products using the same employee master data. Ability to extend master data centrally and only once."
+        },
+        {
+            "date": "JULY 2020",
+            "detail": "Testing third point."
+        }
+        ]
+    },
+    {
+        "title": "Master Data Service for Workforce (MDW)",
+        "date": "NOV 2019",
+        "description": "Manage and extend the same employee master data across all SAP applications",
+        "likes": 23,
+        "chips": [
+        {"key":"development", "label": "in development", "category": "status"},
+        {"key":"successfactors", "label": "successfactors", "category": "product"},
+        {"key":"concur", "label": "concur", "category": "product"},
+        {"key":"hiretoretire", "label": "hire to retire", "category" : "process"}
+        ],
+        "tags": ["development", "successfactors", "concur", "hiretoretire"],
+        "businessvalues": "Use of a shared master data will eliminate information silos and reduce integration efforts by IT organizations.",
+        "featuredetails": "Employees get timely approval against their team’s budget, for travel request during pre-trip plans and managers can influence budget for the travel expenses to come",
+        "futureplans": [{
+            "date": "FEB 2020",
+            "detail": "Further integration with SAP Cloud Platform Identity Authentication Service to enable employee single sign on"
+        },
+        {
+            "date": "MAY 2020",
+            "detail": "Eliminate need to for data replication and synchronization. Easy onboarding of other SAP cloud products using the same employee master data. Ability to extend master data centrally and only once."
+        }
+        ]
+    },
+    {
+        "title": "People Analytics",
+        "date": "NOV 2019",
+        "description": "Gain insight and understanding from your workforce",
+        "likes": 2,
+        "chips": [
+        {"key":"preview", "label": "in preview", "category": "status"},
+        {"key":"successfactors", "label": "successfactors", "category": "product"},
+        {"key":"hiretoretire", "label": "hire to retire", "category" : "process"}
+        ],
+        "tags": ["preview", "successfactors", "hiretoretire"],
+        "businessvalues": "Use of a shared master data will eliminate information silos and reduce integration efforts by IT organizations.",
+        "featuredetails": "Employees get timely approval against their team’s budget, for travel request during pre-trip plans and managers can influence budget for the travel expenses to come",
+        "futureplans": [{
+            "date": "FEB 2020",
+            "detail": "Further integration with SAP Cloud Platform Identity Authentication Service to enable employee single sign on"
+        },
+        {
+            "date": "MAY 2020",
+            "detail": "Eliminate need to for data replication and synchronization. Easy onboarding of other SAP cloud products using the same employee master data. Ability to extend master data centrally and only once."
+        }
+        ]
+    }
+    ]
+}

@@ -1,0 +1,97 @@
+.timeline-curve {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: -180px;
+}
+
+.timeline-curve.product-curve.offset-top,
+.timeline-curve.process-curve.offset-top {
+    margin-top: -3px;
+}
+
+.timeline-curve-steps-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 64px;
+    margin-top: -20px;
+}
+
+/* Container Margin */
+.timeline-curve-steps-container-2 {
+    margin-left: 0px;
+}
+
+.timeline-curve-steps-container-3 {
+    /* margin-left: 65px; */
+}
+
+.timeline-curve-steps-container-4 {
+    margin-left: 110px;
+}
+
+/* Step Margin Top 1 item*/
+.timeline-curve-steps-container-1 .MuiStep-root:nth-child(1) {
+    margin-top: -87px;
+}
+
+/* Step Margin Top 1st item */
+.timeline-curve-steps-container-2 .MuiStep-root:nth-child(1) {
+    margin-top: -21px;
+}
+
+/* Step Margin Top 2nd item */
+.timeline-curve-steps-container-2 .MuiStep-root:nth-child(2) {
+    margin-top: -112px;
+}
+
+.timeline-curve-steps-container-3 .MuiStep-root:nth-child(2) {
+    margin-top: -52px;
+}
+
+.timeline-curve-steps-container-4 .MuiStep-root:nth-child(2) {
+    margin-top: -37px;;
+}
+
+
+/* Step Margin Top 3rd item */
+
+.timeline-curve-steps-container-3 .MuiStep-root:nth-child(3) {
+    margin-top: -103px;
+}
+
+.timeline-curve-steps-container-4 .MuiStep-root:nth-child(3) {
+    margin-top: -166px;
+}
+
+/* Step Margin Top 4th item */
+.timeline-curve-steps-container-4 .MuiStep-root:nth-child(4) {
+    margin-top: -216px;
+}
+
+.timeline-curve-steps-container .MuiStepLabel-root{
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.timeline-curve-step-label-2 {
+    margin-left: 130px;
+    margin-top: 16px;
+}
+
+.timeline-curve-step-label-3 {
+    margin-left: 56px;
+}
+
+.timeline-curve-step-label-4 {
+    margin-left: 0px;
+}
+
+.timeline-curve-step-label .MuiStepLabel-iconContainer{
+    margin-left: 22px;
+    margin-bottom: 20px;
+}
+
+.timeline-curve-label {
+    margin-bottom: 16px;
+}

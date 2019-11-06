@@ -1,0 +1,372 @@
+.page-home-header {
+  position: relative;
+}
+
+.page-home-header::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  clip-path: url(#clipping);
+  background-image: url(../assets/images/header-2.svg);
+  background-size: cover;
+}
+
+.page-header-default {
+  margin: 0;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  position: relative;
+}
+
+.header-divided-container.home-header {
+  padding-top: 68px;
+  padding-left: 120px;
+}
+
+@media screen and (max-width: 668px) {
+  .header-divided-container.home-header {
+    padding-left: 0;
+  }
+}
+
+.page-header-default-small {
+  min-height: 100%;
+}
+
+.page-header-minheight {
+  height: 440px;
+  overflow: visible;
+}
+
+.header-container {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.header-container-compact {
+  position: fixed;
+  z-index: 300;
+  width: 100%;
+  background: linear-gradient(0deg, #ffffff, #ffffff);
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.header-container-compact-mobile {
+  width: 100%;
+  background: linear-gradient(0deg, #ffffff, #ffffff);
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.header-content-container {
+  width: 100%;
+  align-items: flex-start;
+  padding-left: 120px;
+  padding-right: 120px;
+}
+
+.header-content-container.offset{
+  padding-right:135px;
+}
+
+.header-content-container-small {
+  padding-left: 10px;
+  padding-right: 12px;
+}
+
+.page-home-header .header-content {
+  background: none;
+}
+.header-content {
+  /* margin-top: 54px; */
+  /* padding-left: 100px; */
+  background: linear-gradient(180deg, #f4f9ff 0%, rgba(244, 249, 255, 0) 116.62%);
+}
+
+.header-content.header-content-small {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 30px;
+}
+
+.header-content.header-content-compact.header-content-small {
+  margin-top: 85px;
+}
+
+.header-content-none {
+  display: none;
+}
+
+.header-content-compact {
+  margin-top: 67px;
+  padding-top: 3px;
+}
+
+.header-standard {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.header-mobile {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-items: center;
+  justify-content: space-between;
+}
+
+.header-divided-container {
+  display: flex;
+  /* flex-wrap: wrap-reverse; */
+  overflow: hidden;
+}
+
+.header-divided-container.process-header {
+  justify-content: space-around;
+}
+
+@media screen and (min-width: 768px) {
+  .header-divided-container.product-header {
+    padding-left: 100px;
+    /* justify-content: space-evenly; */
+  }
+}
+
+.header-left-container {
+  flex-direction: column;
+  align-content: flex-start;
+}
+
+.header-left-container.process-header {
+  padding-left: 7px;
+  padding-top: 30px;
+}
+
+.header-left-container.hidden {
+  display: none;
+}
+
+.header-right-container {
+  flex-direction: row;
+
+  /* margin-left: auto; */
+}
+
+.header-right-container.process-header{
+  margin-top: 55px;
+  /* margin-left: 45px; */
+  width:100%;
+}
+
+.header-left-container.product-header{
+  padding-top: 69px;
+}
+.header-right-container.product-header {
+  padding-top: 16px;
+}
+
+.header-roadmap-container {
+  width: 100%;
+}
+.hidden.header-right-container {
+  display: none;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0 16px 0 0;
+  flex-shrink: 2.6;
+  z-index: 100;
+}
+
+.logo-wrapper img {
+  max-width: none;
+  height: 34px;
+}
+
+.logo-wrapper::after {
+  content: "";
+  display: table;
+}
+
+.header-content .title {
+  text-transform: uppercase;
+  font-size: 4rem;
+  line-height: 67px;
+  color: #fff;
+  font-weight: bold;
+  min-width: 320px;
+}
+
+.header-content .title > img:hover {
+  cursor: pointer;
+}
+
+.header-content .title-small {
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 36px;
+  text-align: center;
+  max-width: 100%;
+}
+
+.header-content .title-default {
+  color: #fff;
+}
+
+.header-content .title-default.home-title {
+  white-space: nowrap;
+  font-size: 50px;
+  line-height: 67px;
+}
+
+.header-content .title-compact {
+  color: #0a6ed1;
+  padding-left: 45px;
+  /* Design concern for less than long titles */
+  /* min-height: 134px; */
+}
+.header-content .title.title-long {
+  max-width: 768px;
+}
+
+.header-content .description {
+  margin-left: 47px;
+  font-size: 1.6666666666666667rem;
+  font-weight: 200;
+  color: #fff;
+  width: 565px;
+  white-space: pre-wrap;
+  overflow: visible;
+  line-height: 24px;
+}
+
+.header-content .description.home-header-description {
+  margin-top: 18px;
+  margin-left: 0px;
+}
+
+.header-content .description-small {
+  margin-top: 27px;
+  font-family: "72";
+  font-style: normal;
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 18px;
+  max-width: 520px;
+  text-align: center;
+}
+
+.header-content .description-default {
+  color: #fff;
+}
+
+.header-content .description-compact {
+  color: #000000;
+}
+
+button {
+  cursor: pointer;
+}
+
+.header-content .button-container {
+  margin-top: 25px;
+}
+
+.header-content-small .button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.compact-header-text {
+  position: absolute;
+  font-family: "72";
+  font-size: 22px;
+  line-height: 25px;
+  color: #0a6ed1;
+}
+
+.header-mobile .hamburger-menu-button {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-right: 100px;
+}
+
+.header-mobile .hamburger-menu-button svg {
+  height: 28px;
+  width: 28px;
+}
+
+.header-mobile .logo-wrapper img {
+  height: 26px;
+}
+
+.head-mobile-menu .MuiPaper-root {
+  top: 0px !important;
+  left: 0px !important;
+}
+
+.head-mobile-menu .collapse-section {
+  padding-left: 16px;
+}
+
+.head-mobile-menu .menu-title {
+  font-family: "72";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+}
+
+.head-mobile-menu .sub-menu-title {
+  font-family: "72";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.head-mobile-menu .MuiList-padding {
+  padding-top: 0px;
+}
+
+.header-bullet-description-container {
+  display: flex;
+  align-items: flex-start;
+}
+
+.toast-messages {
+  font-family: "72";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  width: 100%;
+}
+
+.toast-window .MuiSnackbarContent-root {
+  background-color: #0a6ed1;
+}
+
+.toast-window .MuiSnackbarContent-message {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-user-account {
+  margin-left: 24px;
+  cursor: pointer;
+}

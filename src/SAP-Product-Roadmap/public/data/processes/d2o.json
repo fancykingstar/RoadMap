@@ -1,0 +1,201 @@
+{
+  "title": "design to operate",
+  "description": "The classical manufacturing process comprises the steps through which raw materials are transformed into a final product, starting from Design, over the manufacturing and delivery of an asset, to the final step of Operating the asset at a customer site. The SAP Intelligent Enterprise brings together our Digital Supply Chain Management Solutions, SAP S4/HANA and SAP Ariba. ",
+  "whatsnew": [
+    {
+      "id": 1,
+      "type": "start",
+      "title": "feature release",
+      "header": "People Analytics, Advanced Edition",
+      "body": "Next generation of Workforce Analytics to lead your workforce, accelerate change, and drive results.",
+      "buttonText": "Learn More",
+      "buttonLink": "concur"
+    },
+    {
+      "id": 2,
+      "type": "mid",
+      "title": "integration",
+      "header": "Common Fiori Inbox",
+      "body": "Common Fiori Inbox provides one single place for all approvals and actions across all products.",
+      "buttonText": "Learn More",
+      "buttonLink": "successfactors"
+    },
+    {
+      "id": 3,
+      "type": "mid",
+      "title": "webinar",
+      "header": "Onboarding 2.0",
+      "body": "Redefined onboarding to simplify experiences, processes and administration.",
+      "buttonText": "Register Now >",
+      "buttonLink": "blue"
+    },
+    {
+      "id": 4,
+      "type": "mid",
+      "title": "Supply",
+      "header": "Supply Chain 1911 Release",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+      "buttonText": "Register Now >",
+      "buttonLink": "blue"
+    }
+  ],
+  "roadmapTitle": "Design to Operate",
+  "roadmap": [
+    {
+      "label": "Design",
+      "icon": "design",
+      "isFirst": true,
+      "moreDetails": {
+        "title": "Key Capabilities",
+        "content": [
+          {
+            "item": "Develop Requirements and Design Systems"
+          },
+          {
+            "item": "Create Detailed Design"
+          },
+          {
+            "item": "Handover to Manufacturing and Service"
+          },
+          {
+            "item": "Manage MBOM and Routing"
+          }
+        ]
+      }
+    },
+
+    {
+      "label": "Plan",
+      "icon": "plan",
+      "moreDetails": {
+        "title": "Key Capabilities",
+        "content": [
+          {
+            "item": "Plan Demand"
+          },
+          {
+            "item": "Plan Supply"
+          },
+          {
+            "item": "Create Master Schedule for Production & Procurement"
+          },
+          {
+            "item": "Schedule Production"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Manufacture",
+      "icon": "manufacture",
+      "moreDetails": {
+        "title": "Key Capabilities",
+        "content": [
+          {
+            "item": "Create ad release production Order"
+          },
+          {
+            "item": "Stage Material to shop floor"
+          },
+          {
+            "item": "Execute and Control and optimize Manufacturing Process"
+          },
+          {
+            "item": "Register Asset on AIN"
+          },
+          {
+            "item": "Receive Finished Product into Warehouse"
+          }
+        ]
+      }
+    },
+      {
+      "label": "Deliver",
+      "icon": "deliver",
+      "moreDetails": {
+        "title": "Key Capabilities",
+        "content": [
+          {
+            "item": "Create Delivery"
+          },
+          {
+            "item": "Pick/Pack"
+          },
+          {
+            "item": "Deliver to Customer"
+          },
+          {
+            "item": "Track/Trace Outbound Shipment"
+          }
+        ]
+      }
+    },
+      {
+      "label": "Operate",
+      "icon": "operate",
+      "moreDetails": {
+        "title": "Key Capabilities",
+        "content": [
+          {
+            "item": "Onboard Assets"
+          },
+          {
+            "item": "Monitor and Predict Asset Failures"
+          },
+          {
+            "item": "Create and Release Maintenance Order"
+          },
+          {
+            "item": "Perform Asset Maintenance"
+          },
+          {
+            "item": "Request Asset Improvement"
+          }
+        ]
+      }
+    }
+  ],
+  "timelineTitle": "Product Delivery Timeline",
+  "timeline": [
+    {
+      "label": "Nov 2019",
+      "id": "nov2019",
+      "bullets": [
+        {
+          "text": "One aligned workforce data model across all solutions (controlled availability)",
+          "id": "nov2019-0"
+        },
+        {
+          "text": "OnBoarding 2.0 (Beta)",
+          "id": "nov2019-1"
+        },
+        {
+          "text": "Single Sign-on across solutions",
+          "id": "nov2019-2"
+        },
+        {
+          "text": "People analytics",
+          "id": "nov2019-3"
+        }
+      ]
+    },
+    {
+      "label": "Feb 2020",
+      "id": "feb2020",
+      "bullets": [
+        {
+          "text": "One aligned cost center data model across SAP S/4HANA, SAP SuccessFactors and SAP Concur",
+          "id": "feb2020-0"
+        },
+        {
+          "text": "Time as a Service (TaaS) for activity tracking, time records, daily time, and time sheets (controlled availability)",
+          "id": "feb2020-1"
+        },
+        {
+          "text": "Onboarding 2.0 (General Availability)",
+          "id": "feb2020-2"
+        }
+      ]
+    }
+  ]
+}
