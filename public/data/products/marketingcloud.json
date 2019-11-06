@@ -2,22 +2,26 @@
     "title": "SAP Marketing Cloud",
     "description": [{"title": "About", "descriptions":"SAP Marketing Cloud solutions enable your organization to orchestrate personalized customer engagements, gain visibility and control of the entire closed-loop marketing process, and make data-driven decisions to increase marketing ROI."},
                   {"title": "Innovation topics", "items":
-                  []}],
+                  [{"label": "Account based Marketing", "key": "innovation1", "link": ""},
+                   {"label": "Account based reports for X+O data ", "key": "innovation2", "link": ""},
+                   {"label": "Dynamic customer profiling and segmentation incl. accounts and service tickets", "key": "innovation3", "link": ""},
+                   {"label": "Identify web visitors with Google Analytics", "key": "innovation4", "link": ""},
+                   {"label": "Deep linking in mobile push notification", "key": "innovation5", "link": ""}]}],
     "whatsnew" : [
       {
       "id": 1,
       "type": "start",
       "title": "SAP C/4HANA SUITE",
-      "header": "SAP Customer Experience LIVE event in Munich, Germany, on November 5, 2019",
-      "body" : "",
+      "header": "SAP Customer Experience LIVE event in Munich, Germany",
+      "body" : "November 5, 2019",
       "buttonText" : "Register Now",
       "buttonLink" : "https://events.sap.com/de/cx-live-2019-munich/en/home"
       },{
       "id": 2,
       "type": "mid",
       "title": "SAP C/4HANA SUITE",
-      "header": "SAP Customer Experience LIVE event in London, UK, on October 3, 2019",
-      "body": "",
+      "header": "SAP Customer Experience LIVE event in London, UK",
+      "body": "October 3, 2019",
       "buttonText": "Register Now",
       "buttonLink": "https://events.sap.com/gb/cx-live-2019-london/en/home"
       },
@@ -25,8 +29,8 @@
       "id": 3,
       "type": "mid",
       "title": "SAP C/4HANA SUITE",
-      "header": "SAP Customer Experience LIVE in Dubai, UAE, on October 6, 2019",
-      "body": "",
+      "header": "SAP Customer Experience LIVE in Dubai, UAE",
+      "body": "October 6, 2019",
       "buttonText": "Register Now",
       "buttonLink": "https://events.sap.com/ae/cx-live-2019-dubai/en/home"
       }

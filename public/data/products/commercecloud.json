@@ -1,7 +1,11 @@
 {
-    "title": "SAP Commerce Cloud","description": [{"title": "About", "descriptions":"SAP Commerce Cloud is a comprehensive, market-leading commerce platform that includes product content management, experience management, personalization, and order management."},
+    "title": "SAP Commerce Cloud","description": [{"title": "About", "descriptions":"SAP Commerce Cloud is a comprehensive, market-leading commerce platform that includes product content management, experience management, personalization, and order management. SAP Commerce Cloud will help B2B, B2C and B2B2C businesses to thrive in today's digital economy."},
                   {"title": "Innovation topics", "items":
-                  []}],
+                  [{"label": "5-year Gartner MQ Leader", "key": "innovation1", "link": ""},
+                   {"label": "Spartacus based headless UI storefront", "key": "innovation2", "link": ""},
+                   {"label": "Central extensibility in SAP Cloud Platform Extension factory", "key": "innovation3", "link": ""},
+                   {"label": "Real-time personalization and marketing with Content Driven Services add-on", "key": "innovation4", "link": ""},
+                   {"label": "Sell products on Amazon, Facebook, Google Shopping and 1500 other sales channels by connecting SAP Product Content Hub", "key": "innovation5", "link": ""}]}],
     "whatsnew" : [
       {
       "id": 1,
@@ -37,20 +41,24 @@
       "id": "dec2019",
       "bullets": [
         {
-          "text": "Public CLI & API",
+          "text": "Spartacus, new core and B2B features",
           "id": "dec2019-0"
         },
         {
-          "text": "Self-service VPN & NAT",
+          "text": "Product Bundles in Backoffice Product Cockpit",
           "id": "dec2019-1"
         },
         {
-          "text": "New core and B2B features",
+          "text": "A/B Testing for Merchandising",
           "id": "dec2019-2"
         },
         {
-          "text": "Product Bundles in Backoffice Product Cockpit",
+          "text": "SAP Analytics Cloud Integration",
           "id": "dec2019-3"
+        },
+        {
+          "text": "Enhancements to Integration with MDM Business Partner Service",
+          "id": "dec2019-4"
         }
       ]
     },
@@ -59,16 +67,20 @@
       "id": "feb2020",
       "bullets": [
         {
-          "text": "Deployment optimization",
+          "text": "Enhancements to Omnichannel Commerce Quotation Management with SAP CPQ",
           "id": "feb2020-0"
         },
         {
-          "text": "Content Delivery Network support",
+          "text": "Integration with S/4HANA Service Management",
           "id": "feb2020-1"
         },
         {
-          "text": "Enhancements to core and B2B features",
+          "text": "Enhancements to identity management with the SAP Customer Data Cloud",
           "id": "feb2020-2"
+        },
+        {
+          "text": "Migration of existing customer records in SAP Commerce Cloud to SAP Customer Data Cloud",
+          "id": "feb2020-3"
         }
       ]
     },
@@ -78,16 +90,12 @@
       "id": "may2020",
       "bullets": [
         {
-          "text": "Cloud Automation: Amazon Web Services",
+          "text": "Cloud Automation, Amazon Web Services",
           "id": "may2020-0"
         },
         {
-          "text": "Product Content: HubStaging environment",
+          "text": "SAP Product Content Hub, Staging environment",
           "id": "may2020-1"
-        },
-        {
-          "text": "Product Content Hub: Productivity and usability enhancements",
-          "id": "may2020-2"
         }
       ]
     }

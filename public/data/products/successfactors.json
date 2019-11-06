@@ -1,11 +1,11 @@
 {
     "title": "SAP SuccessFactors",
-    "description": [{"title": "About", "descriptions":"SAP SuccessFactors is a complete human capital management (HCM) suite that helps you attract, develop, motivate, and engage a diverse, global workforce by delivering awesome experiences for every user and providing a global people platform for HR."},
+    "description": [{"title": "About", "descriptions":"SAP SuccessFactors solutions comprise a complete human experience management (HXM) suite that helps you attract, develop, motivate, and engage a diverse, global workforce by delivering awesome experiences for every user and providing a global people platform for HR."},
                   {"title": "Innovation topics", "items":
                   [{"label": "Reimagine user experience", "key": "innovation1", "link": ""},
                   {"label": "Expand recruiting capabilities", "key": "innovation2", "link": ""},
                   {"label": "Support localized HR and payroll compliance", "key": "innovation3", "link": ""},
-                  {"label": "Consolidate total rewards data across pay, benefits and non-monetary rewards", "key": "innovation4", "link": ""}]}],
+                  {"label": "Consolidate total rewards data across pay, benefits and nonmonetary rewards", "key": "innovation4", "link": ""}]}],
     "whatsnew" : [
       {
       "id": 1,
@@ -23,6 +23,15 @@
         "body": "The Q4 2019 release includes the following release materials to help you learn about and adopt innovations faster than ever",
         "buttonText": "Learn More",
         "buttonLink": "https://community.successfactors.com/t5/custom/page/page-id/Release?blogid=ProductUpdates"
+      },
+      {
+        "id": 3,
+        "type": "mid",
+        "title": "Information",
+        "header": "Q4 2019 Release",
+        "body": "For details and information on other enhancements in the Q4 2019 release, please see the full “Release Information Document” in our customer community.",
+        "buttonText": "Learn More",
+        "buttonLink": "https://community.successfactors.com/ "
       }
     ],
     "timelineTitle": "Product Delivery Timeline",

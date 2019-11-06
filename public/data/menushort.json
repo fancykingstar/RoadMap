@@ -67,7 +67,7 @@
   "products": [
     {
       "id": 1,
-      "title": "SAP Ariba",
+      "title": "SAP Ariba Solutions",
       "selected": false,
       "key": "ariba",
       "children": []
@@ -93,7 +93,7 @@
           },
           {
               "id": 10,
-              "title": "SAP Customer Data Portfolio",
+              "title": "SAP Customer Data",
               "selected": false,
               "key": "customerdatacloud"
           },
@@ -111,7 +111,7 @@
           },
           {
               "id": 13,
-              "title": "SAP Service Cloud Solution",
+              "title": "SAP Service Cloud",
               "selected": false,
               "key": "servicecloud"
           }
