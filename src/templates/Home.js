@@ -48,6 +48,7 @@ class Home extends Component {
       smallWindow: false
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+    console.log(props);
   }
 
 

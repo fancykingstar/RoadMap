@@ -26,6 +26,10 @@ import ReleaseForm from '../components/ReleaseForm';
 
 import { suggestions, trends } from '../utils/searchutils';
 
+function isString (value) {
+    return typeof value === 'string' || value instanceof String;
+}
+
 
 // import sort from '../assets/images/sort-icon.svg';
 
@@ -175,6 +179,7 @@ class SearchResults extends Component {
 
     filterResultData(results) {
         let filterall = 0, filterprocess = 0, filterproducts = 0, filterfeatures = 0, filteredresults = [], productresults = [], processresults = [], pagination = false, pages = 0;
+        //Fuse should be abstarcted into a different function to prevent recreating it every time. Create Fuse object once and set in state
         var options = {
             shouldSort: true,
             keys : [{
@@ -186,7 +191,8 @@ class SearchResults extends Component {
                 weight: 0.1
             }]
         }
-        var fuse = new Fuse(results, options);
+        const fuse = new Fuse(results, options);
+        this.setState({searchhandler: fuse});
         var searchresults = fuse.search(this.state.result);
         searchresults.forEach(result => {
 
@@ -246,7 +252,7 @@ class SearchResults extends Component {
             pages = Math.ceil(filteredresults.length / this.state.maxperpage);
         }
 
-        console.log(filteredresults)
+        //console.log(filteredresults)
 
         filteredresults.map(
             form => {
@@ -258,12 +264,18 @@ class SearchResults extends Component {
                 //      \• is a worse proxy for dashes so we remove them for consistency
                 //      All empty list items are removed from the release card and all items get a dash as the whole array doesnt have dashes as default behavior
 
-                console.log(form)
-                form.businessvalues = form.businessvalues.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").split("\r\n")
-                form.featuredetails = form.featuredetails.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").split("\r\n")
+                //console.log(form)
+                if(isString(form.businessvalues)){
+                    form.businessvalues = form.businessvalues.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").split("\r\n")
+                }
+                if(isString(form.featuredetails)){
+                    form.featuredetails = form.featuredetails.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").split("\r\n")
+                }
                 
                 form.futureplans.map(detail =>{
-                    detail.detail = detail.detail.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").split("\r\n")
+                    if(isString(detail.detail)){
+                        detail.detail = detail.detail.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").split("\r\n")
+                    }
                     if(detail.detail.length == 1){
                         if(detail.detail[0] == ""){
                             detail.detail = []
@@ -285,7 +297,7 @@ class SearchResults extends Component {
 
 
             });
-        console.log(filteredresults)
+        //console.log(filteredresults)
         this.setState({
             filteredresults: filteredresults,
             productresults: productresults,
@@ -308,7 +320,7 @@ class SearchResults extends Component {
                 pages: pages,
                 initialitem: 0,
                 lastitem: 10,
-                focus: 'all'
+                focus: 'all',
             });
         });
     }
@@ -494,7 +506,7 @@ class SearchResults extends Component {
     }
 
     render() {
-        const { result, sorting, filteredresults, filterall, filterprocesses, filterproducts, filterfeatures, initialitem, lastitem, pagination, focus } = this.state;
+        const { result, sorting, filteredresults, filterall, filterprocesses, filterproducts, filterfeatures, initialitem, lastitem, pagination, focus, searchhandler } = this.state;
         return (
             <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
                 
@@ -502,7 +514,7 @@ class SearchResults extends Component {
                 <Feedback />
                 <div className={"content-container" + (this.state.smallWindow ? " content-container-small" : "")}>
                     <div className="search-page-container">
-                        <SiteSearch resultspage={true} resulthandler={this.handleUserResult} value={result} suggestions={suggestions} trends={trends} />
+                        <SiteSearch resultspage={true} resulthandler={this.handleUserResult} value={result} suggestions={suggestions} trends={trends} searchhandler={searchhandler}/>
                     </div>
                     <div className="search-content-container-topics util-container">
                         <div className={"filterlink" + (focus === "all" ? " filterselection" : "")} onClick={(e) => this.handleSelectFilter(e, "all")}></div>

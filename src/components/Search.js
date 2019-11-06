@@ -15,6 +15,8 @@ import { IconButton } from '../components/Button';
 
 //import utilities
 import { onChange, onKeyDown, selectSearch, trendSearch, suggestionSearch } from '../utils/searchutils';
+import useFuse from '../utils/fuse_hook'
+
 
 class SearchBar extends Component {
 
@@ -25,6 +27,7 @@ class SearchBar extends Component {
    static defaultProps = {
      suggestions: []
    };
+
 
   constructor(props) {
       super(props)
@@ -46,9 +49,11 @@ class SearchBar extends Component {
       }
       this.openSearch = this.openSearch.bind(this);
       this.handleOutsideClick = this.handleOutsideClick.bind(this);
+      //console.log(props)
     }
 
     componentDidUpdate(prevProps) {
+      //console.log(this.props.compact)
       if (prevProps.compact !== this.props.compact) {
         this.setState({
           compact: this.props.compact
