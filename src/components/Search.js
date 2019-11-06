@@ -15,7 +15,6 @@ import { IconButton } from '../components/Button';
 
 //import utilities
 import { onChange, onKeyDown, selectSearch, trendSearch, suggestionSearch } from '../utils/searchutils';
-import useFuse from '../utils/fuse_hook'
 
 
 class SearchBar extends Component {
@@ -183,12 +182,13 @@ class SiteSearch extends Component {
           }));
       }
     }
-    if (prevState.showSuggestions !== this.props.showresults) {
-      this.setState(prevState => ({
-        ...prevState,
-        showSuggestions: this.props.showresults
-      }));
-    }
+    // if (prevState.showSuggestions !== this.props.showresults) {
+    //   console.log(this.props)
+    //   this.setState(prevState => ({
+    //     ...prevState,
+    //     showSuggestions: this.props.showresults
+    //   }));
+    // }
     }
 
     openSearch = () => {
@@ -226,7 +226,6 @@ class SiteSearch extends Component {
 
          let prodsuggestionsListComponent;
          let input = userInput === "start" ? inputvalue : userInput;
-
 
       if (showSuggestions) {
             if (filteredSuggestions.length && userInput) {

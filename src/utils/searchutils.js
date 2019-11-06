@@ -1,6 +1,3 @@
-import Fuse from 'fuse.js';
-import { tsTypeReference } from '@babel/types';
-
 export const onChange = (e, props, ref) => {
     const { suggestions, searchhandler } = props;
     const userInput = e.currentTarget.value;
