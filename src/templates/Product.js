@@ -128,7 +128,6 @@ class Products extends Component {
               </div> : null}
             </div>
           </div>
-
           <PlannedReleases releases={releases} type={template} cardfilter={product} subfilter={subproduct} placeholder="Travel Expenses" smallWindow={this.state.smallWindow} />
         </div>
 

@@ -136,15 +136,8 @@ class Header extends Component {
   }
 
   handleInfoClick = (e) => {
-    this.setState({ isInfoOpen: !this.state.isInfoOpen }
-      , () => console.log("descriptions:", this.state.description[0]["descriptions"], "\nproducts:", this.state.products, "\nprocesses:", this.state.process)
-    )
+    this.setState({ isInfoOpen: !this.state.isInfoOpen })
   }
-
-
-  // Offsets padding from MUI PopoverDefault
-
-
 
   renderInfoModal = () => {
     if (this.state.productTitles && this.state.innovationTopics) {

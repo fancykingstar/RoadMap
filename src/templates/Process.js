@@ -131,7 +131,8 @@ class Process extends Component {
 
 
           {/* planned releases */}
-          <PlannedReleases releases={releases} type={template} cardfilter={process} subfilter={subprocess} placeholder="Onboarding" smallWindow={this.state.smallWindow} />
+          {title ? <PlannedReleases releases={releases} type={template} cardfilter={title} subfilter={subprocess} placeholder="Onboarding" smallWindow={this.state.smallWindow} /> : null}
+
 
           {/* cards carousel */}
           {/* <SectionHeaderTitle title="Additional Resources" smallWindow={this.state.smallWindow} firstSection={false} /> */}

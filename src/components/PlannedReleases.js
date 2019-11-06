@@ -33,7 +33,7 @@ class PlannedReleases extends Component {
       statustags: [],
       tags: [],
       type: this.props.type,
-      cardfilter: this.props.cardfilter === "twm" ? "totalworkforcemanagement" : this.props.cardfilter,
+      cardfilter: this.props.cardfilter,
       subfilter: this.props.subfilter,
       placeholder: this.props.placeholder,
       sorting: 'date',
@@ -60,13 +60,29 @@ class PlannedReleases extends Component {
 
   componentDidMount() {
     let pagination = false, pages = 0, sortDates = [];
-    let querySubstr = this.state.cardfilter.charAt(0).toUpperCase() + this.state.cardfilter.slice(1);
-    let baseURL = 'https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com' || window.location.origin
-    let query = baseURL + `/odata/v4/roadmap/Roadmap?$filter=contains%28productSearch%2C%27${querySubstr}%27%29&$skip=0&$orderby=date%20asc&$expand=products%2Cfutureplans`
+    let querySubstr = (this.state.type && this.state.type === 'product' ?
+      this.state.cardfilter === 'c4hana' ? 'C/4HANA' :
+        this.state.cardfilter === 'successfactors' ? 'SuccessFactors' :
+          this.state.cardfilter.charAt(0).toUpperCase() + this.state.cardfilter.slice(1) :
+      // Process cardfilter
+      this.state.cardfilter.replace(/\s/g, "%20"))
+    let baseURL = staging ? window.location.origin : 'https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com'
+    let queryURL = staging ?
+      baseURL.concat("/srv_api/" + this.state.type && this.state.type === 'product' ?
+        `/odata/v4/roadmap/Roadmap?$filter=contains%28productSearch%2C%27${querySubstr}%27%29&$skip=0&$orderby=date%20asc&$expand=products%2Cfutureplans`
+        : this.state.type === 'process' ?
+          `/odata/v4/roadmap/Roadmap?$filter=contains%28process%2C%27${querySubstr}%27%29&$skip=0&$orderby=date%20asc&$expand=products%2Cfutureplans`
+          : null)
+      : baseURL.concat(this.state.type && this.state.type === 'product' ?
+        `/odata/v4/roadmap/Roadmap?$filter=contains%28productSearch%2C%27${querySubstr}%27%29&$skip=0&$orderby=date%20asc&$expand=products%2Cfutureplans`
+        : this.state.type === 'process' ?
+          `/odata/v4/roadmap/Roadmap?$filter=contains%28process%2C%27${querySubstr}%27%29&$skip=0&$orderby=date%20asc&$expand=products%2Cfutureplans`
+          : null)
+
     // fetch(staging ? "https://roadmap-staging.cfapps.us10.hana.ondemand.com/releases/" + this.state.cardfilter : 
     // "https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases/" + this.state.cardfilter)
-    console.log('query:', query)
-    fetch(query)
+    console.log('query:', queryURL, 'pageType:', this.state.type, 'cardfilter:', this.state.cardfilter);
+    fetch(queryURL)
       .then(res => {
         let response = res.json();
         return response;
@@ -112,9 +128,9 @@ class PlannedReleases extends Component {
               if (industryKey === "retail/hospitality") {
                 industryKey = "retail";
               } else if (industryKey === "publicsector/government") {
-                industryKey ="publicsector"
+                industryKey = "publicsector"
               }
-              
+
               tags.push(industryKey);
               chips.push({
                 category: 'industry',
@@ -135,7 +151,6 @@ class PlannedReleases extends Component {
                 }
               })
             }
-
             result.chips = chips;
             result.tags = tags;
           }
@@ -147,6 +162,7 @@ class PlannedReleases extends Component {
           pages = Math.ceil(value.length / this.state.maxperpage);
         }
 
+        // Establish quarterDates
         if (value && value.releases) {
           let tempDates = {};
           value.forEach(release => {
@@ -163,7 +179,7 @@ class PlannedReleases extends Component {
 
         this.setState({
           releases: value,
-          filterreleases: value,
+          filterreleases: value, // initially unfiltered
           pages: pages,
           pagination: pagination,
           dateTags: sortDates
@@ -181,21 +197,14 @@ class PlannedReleases extends Component {
 
                   ),
                 }, function () {
-
                   this.filterFormResults();
                 })
-              },
-              (error) => {
-                console.log(error);
-              }
+              }, (error) => { console.log(error); }
             )
-
         })
-      },
-        (error) => {
-          console.log(error);
-        }
-      )
+      }, (error) => {
+        console.log(error);
+      })
   }
 
   manageDates = (array) => {
@@ -252,7 +261,7 @@ class PlannedReleases extends Component {
         }
         form.fields[i].count = 0;
         let occurences = this.getOccurrence(releasetags, form.fields[i].key);
-        // console.log('occurrences:', occurences);
+        console.log('occurrences:', occurences);
         form.fields[i].count = occurences;
         form.count += occurences;
         form.fields[i].count = form.fields[i].count === null ? 0 : form.fields[i].count;
@@ -353,12 +362,6 @@ class PlannedReleases extends Component {
     });
   }
 
-  dateChipFilter = (releases) => {
-    return releases.filter(release => {
-      return release.displaydate === this.state.selectedDate;
-    });
-  }
-
   quarterDateChipFilter = (releases) => {
     return releases.filter(release => {
       const date = this.getQuarter(new Date(release.date));
@@ -380,7 +383,7 @@ class PlannedReleases extends Component {
     }
     let currentTags = tags;
     let filterArray = [];
-    filterArray = releases.filter( ({tags} )=> {
+    filterArray = releases.filter(({ tags }) => {
       const rtags = tags.join(' ')
       return currentTags.every((tag) => rtags.indexOf(tag) !== -1)
     })
