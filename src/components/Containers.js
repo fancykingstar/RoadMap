@@ -37,13 +37,12 @@ class DetailContainer extends Component {
   render() {
     let { title, details, fullwidth } = this.state, level1, lineitems;
     if (typeof details === "string") {
-      details = details.replace(/\*/g, "").split('\n')
-      level1 = details.filter(detail => detail.substr(0, 1) === '-').length;
-      lineitems = details.map((detail, index) =>
-        <p className={'contentpoint ' + ((details.length > 1) ? ((level1 === 0) ? 'addBullet bullet'
-          :
-          ((detail.substr(0, 1) === '-') ? 'bullet' : '')) : '') + (detail.substr(0, 1) === '>' ? ' secondBullet addBullet' : '')} key={index}>{(detail.substr(0, 1) === '>') ? detail.substr(2) : detail}
-        </p>);
+      details = details.split('\n')
+      level1 = details.filter(detail => detail.substr(0, 1) === '*').length;
+      console.log('level1', level1);
+      lineitems = details.map((detail, index) => {
+      if (!detail.length) { return; }
+      return <p className={'contentpoint ' + ((details.length>1) ? ( (level1 === 0) ? 'addBullet bullet' : ((detail.substr(0,1) === '-') ? 'bullet' : '') ) : '') + (detail.substr(0,1)==='*' ? ' secondBullet addBullet' : '')} key={index}>{(detail.substr(0,1)==='*' )? detail.replace(/\*/gi, "") : detail}</p>});
     }
 
     return (
@@ -128,11 +127,31 @@ class StepContainer extends Component {
                     item.detail.map(function (detail, index) {
                       const level1 = item.detail.filter(detail => detail.substr(0, 1) === '-').length;
                       return (
-                        <p className={'contentpoint ' + ((item.detail.length > 1) ? ((level1 === 0) ? 'addBullet bullet' : ((detail.substr(0, 1) === '-') ? 'bullet' : '')) : '') + (detail.substr(0, 1) === '>' ? ' secondBullet addBullet' : '')} key={index}>{(detail.substr(0, 1) === '>') ? detail.substr(2) : detail}</p>
+                        <p className={'contentpoint ' + ((item.detail.length > 1) ?
+                          ((level1 === 0) ? 'addBullet bullet' : ((detail.substr(0, 1) === '-') ?
+                            'bullet' : '')) : '') + (detail.substr(0, 1) === '*' ? ' secondBullet addBullet' : '')} key={index}>
+                          {(detail.substr(0, 1) === '*') ? detail.replace("*", "") : detail}
+                        </p>
                       )
                     }) : typeof item.detail === "string" ?
-                      <p className={"contentpoint " + (item.detail.includes("*") ? 'addBullet' : "")}>{item.detail.replace("*", "")}
-                      </p> : null
+                      item.detail.includes('\n') ?
+                        item.detail
+                          .split('\n')
+                          .map((str, i) => {
+                            console.log(str);
+                            return (
+                              <p className={'contentpoint' + ((str.length > 1 && (str[0] !== '-' && str[0] !== '*') ? ' addBullet bullet' :
+                               str[0] === '-' ? ' bullet' : '' + str[0] === '*' ? ' secondBullet addBullet' : ''
+                               ))} key={i}>
+                                 {
+                                  //  str.replace(/\*/gi, "")
+                                  str.replace("*", "")
+                                   }
+                              </p>
+                            )
+                          })
+                        : <p className={"contentpoint addBullet bullet"}>{item.detail}
+                        </p> : null
                 }</StepContent>
               </Step>
             ))}
