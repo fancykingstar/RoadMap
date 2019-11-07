@@ -83,6 +83,12 @@
     margin-left: 56px;
 }
 
+@media screen and (max-width: 1300px) {
+    .timeline-curve-step-label-3 {
+        margin-left: 0;
+    }
+}
+
 .timeline-curve-step-label-4 {
     margin-left: 0px;
 }

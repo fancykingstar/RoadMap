@@ -7,6 +7,11 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MinIcon from '@material-ui/icons/Minimize';
 import Chip from '@material-ui/core/Chip';
 
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+
+
 //import css
 import '../css/PR-Container.css';
 import '../css/Chip.css';
@@ -23,6 +28,17 @@ import DeleteTag from '../assets/images/close-x.svg'
 
 
 const staging = false;
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
+
 class PlannedReleases extends Component {
 
   constructor(props) {
@@ -510,6 +526,7 @@ class PlannedReleases extends Component {
     return (
       <div className="pr-section" ref={this.paginationRef}>
         <SectionHeaderTitle title={"Planned Releases"} smallWindow={this.props.smallWindow} leftAligned={false} />
+
         <div className={"pr-body" + (this.props.smallWindow ? " pr-body-small" : "")}>
           <div className="pr-navigation">
             {forms.map(form => {
