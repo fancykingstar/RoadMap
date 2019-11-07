@@ -304,6 +304,9 @@ class Header extends Component {
 
   renderProcessHeaderContainers = () => {
     const { title, compact, headerimage, roadmap } = this.state;
+    if (!title) {
+      return null;
+    }
     return (
       <div className="header-divided-container">
         <div className={"header-left-container process-header" + (this.props.smallWindow ? " hidden" : "")}>
@@ -326,6 +329,9 @@ class Header extends Component {
 
   renderProductHeaderContainers = () => {
     const { title, description, compact, type, headerimage, searchhandler } = this.state;
+    if (!title) {
+      return null;
+    }
     return (
       <div className={"header-divided-container" + (title === "product roadmaps" ? " home-header" : " product-header"
       )}>
