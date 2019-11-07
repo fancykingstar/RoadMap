@@ -337,14 +337,7 @@ class Header extends Component {
               roadmap && roadmap.length > 0 ? this.props.windowWidth < 1240 ? <RoadmapVertical roadmap={roadmap} /> : <MultiRoadmap roadmap={roadmap} hideArrows={this.state.process === "twm"} /> : null
             }
 
-            {
-              roadmap && roadmap.length > 0 ? 
-              this.props.windowWidth > 1300 ?
-              <MultiRoadmap roadmap={roadmap} hideArrows={this.state.process === "twm"} /> :
-              
-              <RoadmapVertical roadmap={roadmap} /> : 
-              null
-            }
+
           </div>
         </div>
       </div>
