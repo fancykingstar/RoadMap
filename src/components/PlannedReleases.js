@@ -47,7 +47,9 @@ class PlannedReleases extends Component {
       dateTags: [],
       quarterDateTags: {},
       keyLabelMap: {},
-      showToast: false
+      showToast: false,
+
+      searchKey: ''
     };
     this.paginationRef = React.createRef();
     this.paginate = this.paginate.bind(this);
@@ -60,26 +62,34 @@ class PlannedReleases extends Component {
 
 
   componentDidMount() {
+    const { type, cardfilter } = this.state;
+    const baseURL = staging ? window.location.origin : 'https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com'
 
-    let querySubstr = (this.state.type && this.state.type === 'product' ?
-      this.state.cardfilter === 'c4hana' ? 'C/4HANA' :
-        this.state.cardfilter === 'successfactors' ? 'SuccessFactors' :
-          this.state.cardfilter.charAt(0).toUpperCase() + this.state.cardfilter.slice(1) :
-      // Process cardfilter
-      this.state.cardfilter.replace(/\s/g, "%20"))
-    let baseURL = staging ? window.location.origin : 'https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com'
-    let queryURL = staging ?
-      baseURL.concat("/srv_api/" + this.state.type && this.state.type === 'product' ?
-        `/odata/v4/roadmap/Roadmap?$filter=contains%28productSearch%2C%27${querySubstr}%27%29&$skip=0&$orderby=date%20asc&$expand=products%2Cfutureplans`
-        : this.state.type === 'process' ?
-          `/odata/v4/roadmap/Roadmap?$filter=contains%28process%2C%27${querySubstr}%27%29&$skip=0&$orderby=date%20asc&$expand=products%2Cfutureplans`
-          : null)
-      : baseURL.concat(this.state.type && this.state.type === 'product' ?
-        `/odata/v4/roadmap/Roadmap?$filter=contains%28productSearch%2C%27${querySubstr}%27%29&$skip=0&$orderby=date%20asc&$expand=products%2Cfutureplans`
-        : this.state.type === 'process' ?
-          `/odata/v4/roadmap/Roadmap?$filter=contains%28process%2C%27${querySubstr}%27%29&$skip=0&$orderby=date%20asc&$expand=products%2Cfutureplans`
-          : null)
-  
+    let querySubstr = '';
+    if (type && type === 'product') {
+      if (cardfilter === 'c4hana') {
+        querySubstr = 'C/4HANA';
+      } else if (cardfilter === 'successfactors') {
+        querySubstr = 'SuccessFactors';
+      } else {
+        querySubstr = this.state.cardfilter.charAt(0).toUpperCase() + this.state.cardfilter.slice(1); 
+      }
+    } else {
+      querySubstr = this.state.cardfilter.replace(/\s/g, "%20");
+    }
+
+
+    let queryURL = '';
+    let searchType = type === 'product' 
+      ? 'productSearch' 
+      : (type === 'process' ? 'process' : '');
+
+    if (staging) {
+      queryURL = `${baseURL}/srv_api/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans`;
+    } else {
+      queryURL = `${baseURL}/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans`;
+    }
+
     console.log('query:', queryURL, 'pageType:', this.state.type, 'cardfilter:', this.state.cardfilter);
     fetch(queryURL)
       .then(res => {
@@ -208,6 +218,8 @@ class PlannedReleases extends Component {
       })
   }
 
+  onSearchInputChanged = (e) => this.setState({ searchKey: e.target.value }, this.manageTagArray)
+
   manageDates = (array) => {
     array.forEach(item => {
       let itemvalue = new Date(item.date);
@@ -284,8 +296,9 @@ class PlannedReleases extends Component {
 
 
   manageTagArray = (state, key) => {
-    let tags, pagination = false, pages = 0, { quarterDateTags, selectedDates } = this.state;
+    let tags, pagination = false, pages = 0, { quarterDateTags, selectedDates, searchKey } = this.state;
     tags = this.state.tags;
+
     console.log('tagkey:', key)
     if (quarterDateTags[key]) {
       let index = selectedDates.indexOf(key);
@@ -335,6 +348,12 @@ class PlannedReleases extends Component {
       filterReleases = this.quarterDateChipFilter(filterReleases);
     }
 
+    if (searchKey) {
+      filterReleases = filterReleases.filter(release => {
+        return release.chips.filter(chip => chip.label.toLowerCase().indexOf(searchKey.toLowerCase()) != -1).length > 0;
+      })
+    }
+    
     if (filterReleases.length > 10) {
       pagination = true;
       pages = Math.ceil(filterReleases.length / this.state.maxperpage);
@@ -462,7 +481,7 @@ class PlannedReleases extends Component {
   }
 
   render() {
-    const { forms, placeholder, sorting, tags, keyLabelMap } = this.state;
+    const { forms, placeholder, sorting, tags, keyLabelMap, searchKey, filterreleases } = this.state;
     let tabIndex = 1;
 
     return (
@@ -483,7 +502,7 @@ class PlannedReleases extends Component {
               <div className="pr-search-icon">
                 <SearchIcon fontSize="large" />
               </div>
-              <input className="search-input" type="text" placeholder={placeholder} />
+              <input className="search-input" type="text" placeholder={placeholder} onChange={this.onSearchInputChanged} value={searchKey} />
             </div>
             <div className="pr-card-container">
               <div className="pr-sort-container">
@@ -526,7 +545,7 @@ class PlannedReleases extends Component {
               </div>
             </div>
             {
-              this.state.filterreleases
+              filterreleases
                 .sort((a, b) => {
                   if (sorting === "title") {
                     return a.title > b.title ? 1 : a.title < b.title ? -1 : 0;
@@ -549,7 +568,8 @@ class PlannedReleases extends Component {
                     futureplans={release.futureplans}
                     smallWindow={this.props.smallWindow}
                     staging={staging} />
-                ))}
+                ))
+            }
             {
               this.state.pagination
                 ? <Pagination pages={this.state.pages} paginate={this.paginate} scrollToTop={this.scrollToTop} />
