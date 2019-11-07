@@ -78,11 +78,11 @@ export const onChange = (e, props, ref) => {
   export const selectSearch = (ref, inputvalue) => {
      var retvalue = "";
 
-     ref.setState({
-      showSuggestions: false,
-    }, () => {ref.setState({
-      showSuggestions: false,
-    })})
+    //  ref.setState({
+    //   showSuggestions: false,
+    // }, () => {ref.setState({
+    //   showSuggestions: false,
+    // })})
 
      if (inputvalue.trend) {
       retvalue = inputvalue.trend;
@@ -96,11 +96,14 @@ export const onChange = (e, props, ref) => {
     } else {
       window.location.href = "/search/" + retvalue;
     }
+    //console.log(ref)
+    ref.setState({showSuggestions: false})
     ref.setState(prevState => ({
       ...prevState,
-        userInput: "start",
-        showSuggestions: !prevState.showSuggestions
+        userInput: "start"//,
+        //showSuggestions: !prevState.showSuggestions
     }))
+    //console.log(ref)
   }
 
   export const trendSearch = (ref, inputvalue) => {

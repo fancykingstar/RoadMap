@@ -520,8 +520,8 @@ class SearchResults extends Component {
 
     render() {
         const { result, sorting, filteredresults, filterall, filterprocesses, filterproducts, filterfeatures, initialitem, lastitem, pagination, focus, searchhandler } = this.state;
-        console.log(filteredresults)
-        console.log(this.state.forms)
+        //console.log(filteredresults)
+        //console.log(this.state.forms)
         return (
             <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
                 
