@@ -36,7 +36,7 @@
 }
 
 .pr-navigation {
-  width: 280px;
+  /*width: 280px;*/
   flex: 1;
 }
 
@@ -49,7 +49,7 @@
 
 
 .pr-results {
-  width: 966px;
+  /*width: 966px;*/
   margin-left: 20px;
   flex: 1;
 }
@@ -63,7 +63,7 @@
 }
 
 .pr-results .pr-search-container {
-  width: 966px;
+  /*width: 966px;*/
   display: flex;
 }
 
@@ -151,7 +151,7 @@
 }
 
 .pr-results .pr-search-container .search-input {
-    width: 918px;
+    width: 100%;
     height: 64px;
     border-top-right-radius: 32px;
     border-bottom-right-radius: 32px;
@@ -203,6 +203,15 @@
   text-decoration: none;
   color: #0A6ED1;
 }
+
+@media (max-width: 996px) {
+
+    .disclaimer {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
+
 
 @media (max-width: 767px) {
 
