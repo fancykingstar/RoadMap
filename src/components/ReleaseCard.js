@@ -33,7 +33,7 @@ function handleTagClick(tag) {
   if (tag.category === "process" || tag.category === "product" || tag.category === "integration") {
     let tagKey = tag.key;
     tagKeyMatchTable.forEach(row => tagKey = row.from === tagKey ? row.to : tagKey);
-    
+
     window.location.href = `/${tag.category}/${tagKey}`;
   }
   if (tag.category === "subprocess" || tag.category === "subproduct") {
@@ -96,7 +96,7 @@ export default function ReleaseCard(props) {
   //   console.log('download pdf');
   //   e.stopPropagation();
   // }
-  
+
   const editReleaseCard = e => {
     window.location = 'https://roadmap-staging.cfapps.us10.hana.ondemand.com/update?id='+ state._id;
     e.stopPropagation();
@@ -115,23 +115,18 @@ export default function ReleaseCard(props) {
                 <div className="date">{state.date}</div>
             </div>
 
-            {state.staging
-            ?
-            <div className="action-container">
-              <Button className="actionButton" disableFocusRipple={true} disableRipple={true} onClick={editReleaseCard}><img src={edit} alt="edit" /><span className="actionLabel">Edit</span></Button>
-            </div>
-            :
+            
             <div className="action-container">
               <Button className="actionButton" disableFocusRipple={true} disableRipple={true} onClick={increaseLikeCount}><img src={star} alt="add to favorite" /></Button>
 
             </div>
-            }
+
           </div>
           <div className="release-title">{state.title}</div>
           <div className="release-actionbar">
             <div className="release-description">{state.description}</div>
             <div className="release-trigger"><img onClick={handleArrowCollapseableSection} alt="collapse
-            
+
             " src={state.icon} /></div>
           </div>
           <div className="release-tag-container">
