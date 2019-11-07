@@ -368,7 +368,12 @@ class PlannedReleases extends Component {
 
     if (searchKey) {
       filterReleases = filterReleases.filter(release => {
-        return release.chips.filter(chip => chip.label.toLowerCase().indexOf(searchKey.toLowerCase()) != -1).length > 0;
+        
+        const includedInChips = release.chips.filter(chip => chip.label.toLowerCase().indexOf(searchKey.toLowerCase()) != -1).length > 0;
+        const includedInTitle = release.title.toLowerCase().indexOf(searchKey.toLowerCase()) != -1;
+        const includedInDesc = release.description.toLowerCase().indexOf(searchKey.toLowerCase()) != -1;
+
+        return includedInChips || includedInTitle || includedInDesc;
       })
     }
     

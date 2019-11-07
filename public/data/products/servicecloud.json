@@ -10,28 +10,82 @@
       {
       "id": 1,
       "type": "start",
-      "title": "SAP C/4HANA SUITE",
-      "header": "SAP Customer Experience LIVE event in Munich, Germany",
-      "body" : "November 5, 2019",
-      "buttonText" : "Register Now",
-      "buttonLink" : "https://events.sap.com/de/cx-live-2019-munich/en/home"
+      "title": "SAP SERVICE CLOUD",
+      "header": "SAP Service Cloud at a Glance",
+      "body" : "",
+      "buttonText" : "Read More",
+      "buttonLink" : "https://www.sap.com/products/crm/customer-service.html"
       },{
       "id": 2,
       "type": "mid",
-      "title": "SAP C/4HANA SUITE",
-      "header": "SAP Customer Experience LIVE event in London, UK",
-      "body": "October 3, 2019",
-      "buttonText": "Register Now",
-      "buttonLink": "https://events.sap.com/gb/cx-live-2019-london/en/home"
+      "title": "SAP SERVICE CLOUD",
+      "header": "SAP Field Service Management named Visionary in 2019 Gartner’s MQ",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://news.sap.com/2019/10/sap-leader-gartner-cpq-magic-quadrant/"
       },
       {
       "id": 3,
       "type": "mid",
+      "title": "SAP SERVICE CLOUD",
+      "header": "SAP CX Enablement portal - SAP Service Cloud",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://enable.cx.sap.com/category/Service/89743431"
+    },
+      {
+      "id": 4,
+      "type": "mid",
+      "title": "SAP SERVICE CLOUD",
+      "header": "Project Delivery Framework for SAP Service Cloud",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://www.sap.com/cxworks/article/435955321/Project_Delivery_Framework_for_SAP_Service_Cloud"
+      },
+      {
+      "id": 5,
+      "type": "mid",
+      "title": "SAP SERVICE CLOUD",
+      "header": "SAP Service Cloud – Expert Recommendations",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://www.sap.com/cxworks/expert-recommendations/articles/service-cloud"
+      },
+      {
+      "id": 6,
+      "type": "mid",
       "title": "SAP C/4HANA SUITE",
-      "header": "SAP Customer Experience LIVE in Dubai, UAE",
-      "body": "October 6, 2019",
-      "buttonText": "Register Now",
-      "buttonLink": "https://events.sap.com/ae/cx-live-2019-dubai/en/home"
+      "header": "SAP C/4HANA webinars",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://webinars.sap.com/sap-user-groups-k4u/en/c4hana "
+      },
+      {
+      "id": 7,
+      "type": "mid",
+      "title": "SAP C/4HANA SUITE",
+      "header": "SAP C/4HANA Book - Explore the world of SAP C/4HANA",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://www.sap-press.com/sap-c4hana_4852/ "
+      },
+      {
+      "id": 8,
+      "type": "mid",
+      "title": "SAP C/4HANA SUITE",
+      "header": "SAP Customer Experience Enablement Video Portal",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://enable.cx.sap.com/ "
+      },
+      {
+      "id": 9,
+      "type": "mid",
+      "title": "SAP C/4HANA SUITE",
+      "header": "Customer Experience at SAP",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://www.sap.com/products/crm.html"
       }
     ],
     "timelineTitle": "Release Highlights",

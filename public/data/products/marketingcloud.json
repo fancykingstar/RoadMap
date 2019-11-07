@@ -11,28 +11,91 @@
       {
       "id": 1,
       "type": "start",
-      "title": "SAP C/4HANA SUITE",
-      "header": "SAP Customer Experience LIVE event in Munich, Germany",
-      "body" : "November 5, 2019",
-      "buttonText" : "Register Now",
-      "buttonLink" : "https://events.sap.com/de/cx-live-2019-munich/en/home"
+      "title": "SAP MARKETING CLOUD",
+      "header": "SAP Marketing Cloud at a Glance",
+      "body" : "",
+      "buttonText" : "Read More",
+      "buttonLink" : "https://www.sap.com/products/crm/marketing.html "
       },{
       "id": 2,
       "type": "mid",
-      "title": "SAP C/4HANA SUITE",
-      "header": "SAP Customer Experience LIVE event in London, UK",
-      "body": "October 3, 2019",
-      "buttonText": "Register Now",
-      "buttonLink": "https://events.sap.com/gb/cx-live-2019-london/en/home"
+      "title": "SAP MARKETING CLOUD",
+      "header": "SAP Marketing Cloud named Leader in 2019 Gartner’s MQ",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://news.sap.com/2019/04/sap-leader-magic-quadrant-multichannel-marketing-hubs/ "
       },
       {
       "id": 3,
       "type": "mid",
+      "title": "SAP MARKETING CLOUD",
+      "header": "SAP Marketing Cloud – Free Trial",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://www.sap.com/registration/trial.d820e214-2fbb-463d-a55a-aa037b52d19e.html"
+    },
+      {
+      "id": 4,
+      "type": "mid",
+      "title": "SAP MARKETING CLOUD",
+      "header": "SAP CX Enablement portal - SAP Marketing Cloud",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://enable.cx.sap.com/category/Marketing/89743391"
+      },
+      {
+      "id": 5,
+      "type": "mid",
+      "title": "SAP MARKETING CLOUD",
+      "header": "Project Delivery Framework for SAP Marketing Cloud",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://www.sap.com/cxworks/article/435955309/Project_Delivery_Framework_for_SAP_Marketing_Cloud"
+      },
+      {
+      "id": 6,
+      "type": "mid",
+      "title": "SAP MARKETING CLOUD",
+      "header": "SAP Marketing Cloud – Expert Recommendations",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://www.sap.com/cxworks/expert-recommendations/articles/marketing-cloud"
+      },
+      {
+      "id": 7,
+      "type": "mid",
       "title": "SAP C/4HANA SUITE",
-      "header": "SAP Customer Experience LIVE in Dubai, UAE",
-      "body": "October 6, 2019",
-      "buttonText": "Register Now",
-      "buttonLink": "https://events.sap.com/ae/cx-live-2019-dubai/en/home"
+      "header": "SAP C/4HANA webinars",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://webinars.sap.com/sap-user-groups-k4u/en/c4hana "
+      },
+      {
+      "id": 8,
+      "type": "mid",
+      "title": "SAP C/4HANA SUITE",
+      "header": "SAP C/4HANA Book - Explore the world of SAP C/4HANA",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://www.sap-press.com/sap-c4hana_4852/ "
+      },
+      {
+      "id": 9,
+      "type": "mid",
+      "title": "SAP C/4HANA SUITE",
+      "header": "SAP Customer Experience Enablement Video Portal",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://enable.cx.sap.com/ "
+      },
+      {
+      "id": 10,
+      "type": "mid",
+      "title": "SAP C/4HANA SUITE",
+      "header": "Customer Experience at SAP",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://www.sap.com/products/crm.html"
       }
     ],
     "timelineTitle": "Release Highlights",

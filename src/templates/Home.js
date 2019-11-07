@@ -19,6 +19,7 @@ import SectionHeaderTitle from '../components/SectionHeaderTitle';
 import Feedback from '../components/Feedback';
 import Footer from '../components/Footer';
 import FooterMobile from '../components/FooterMobile';
+import FooterTablet from '../components/FooterTablet';
 // import { ProductSearch } from '../components/Search';
 
 // import { suggestions, trends } from '../utils/searchutils';
@@ -201,7 +202,9 @@ class Home extends Component {
           </div>
 
         </div>
-        {this.state.smallWindow ? <FooterMobile /> : <Footer />}
+        {
+          this.state.windowWidth > 850 ? <Footer /> : this.state.windowWidth > 550 ? <FooterTablet /> : <FooterMobile />
+        }
       </div>
     )
   }
