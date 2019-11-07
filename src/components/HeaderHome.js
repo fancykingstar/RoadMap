@@ -65,6 +65,8 @@ class Header extends Component {
   }
 
   componentDidMount() {
+    const baseURL = 'https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com'
+    const queryURL = `${baseURL}/odata/v4/roadmap/Roadmap?ProductSearch&$skip=0&$orderby=date asc&$expand=products,futureplans`
     fetch("/data/menushort.json")
       .then(res => res.json())
       .then(
@@ -84,8 +86,7 @@ class Header extends Component {
           console.log(error);
         }
       )
-    
-      fetch('/data/Roadmap.json')
+      fetch(queryURL)
       .then(res => res.json())
           .then(
               (result) => {
