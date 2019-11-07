@@ -1,6 +1,7 @@
 .roadmap-carousel-button {
     position: absolute;
-    top: 50%;
+    top: 40%;
+    vertical-align: middle;
     transform: translateY(-50%);
     border-style: none;
     background-color: transparent;
