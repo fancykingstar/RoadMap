@@ -96,18 +96,17 @@ class StepContainer extends Component {
   }
 
   componentDidMount() {
-    if (!this.state.businessvalues.length) {
-      let businessvalues = this.props.businessvalues.replace(/\*/g, "").split('\n')
+    // if (!this.state.businessvalues.length) {
+    //   let businessvalues = this.state.businessvalues.replace(/\*/g, "").split('\n')
+    //   console.log(this.props)
       this.setState({
         title: this.props.title,
         details: this.props.details,
-        businessvalues: businessvalues,
+        businessvalues: this.state.businessvalues,
         featuredetails: this.props.featuredetails,
         steps: this.props.steps
       })
     }
-  }
-
 
   render() {
     const { title, steps, businessvalues, featuredetails } = this.state;
@@ -139,6 +138,7 @@ class StepContainer extends Component {
                           .split('\n')
                           .map((str, i) => {
                             console.log(str);
+                            console.log(item)
                             return (
                               <p className={'contentpoint' + ((str.length > 1 && (str[0] !== '-' && str[0] !== '*') ? ' addBullet bullet' :
                                str[0] === '-' ? ' bullet' : '' + str[0] === '*' ? ' secondBullet addBullet' : ''
@@ -161,5 +161,4 @@ class StepContainer extends Component {
     )
   }
 }
-
 export { DetailContainer, StepContainer }
