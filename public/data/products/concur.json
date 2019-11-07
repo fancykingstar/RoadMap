@@ -7,16 +7,16 @@
       {
         "id": 1,
         "type": "mid",
-        "title": "SAP Concur",
+        "title": "Event",
         "header": "Fusion Exchange – Toronto, October 15, 2019",
-        "body": "Please join us for this event.",
-        "buttonText": "Register Now",
+        "body": "",
+        "buttonText": "Read More",
         "buttonLink": "https://www.concur.ca/fusion-exchange/toronto"
       },
       {
           "id": 2,
           "type": "mid",
-          "title": "SAP Concur",
+          "title": "Event",
           "header": "Fusion Exchange – Shanghai, November 19, 2019",
           "body": "Please join us for this event.",
           "buttonText": "Register Now",
