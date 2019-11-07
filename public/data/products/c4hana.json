@@ -1,6 +1,6 @@
 {
     "title": "SAP C/4HANA SUITE",
-    "description": [{"title": "About", "descriptions":"SAP C/4HANA is the customer experience suite of five cloud solutions: <a href='./commercecloud'>Commerce Cloud</a>, <a href='./marketingcloud'>Marketing Cloud</a>, <a href='./customerdatacloud'>Customer Data Cloud</a>, <a href='./servicecloud'>Service Cloud</a>, and <a href='./salescloud'>Sales Cloud</a>."},
+    "description": [{"title": "About", "descriptions":"Improve your customer experience management with SAP C/4HANA. Build a connected customer journey based on empathy and trust with SAP C/4HANA, a suite of five industry-leading cloud solution portfolios: <a href='./commercecloud'>Commerce Cloud</a>, <a href='./marketingcloud'>Marketing Cloud</a>, <a href='./customerdatacloud'>Customer Data Cloud</a>, <a href='./servicecloud'>Service Cloud</a>, and <a href='./salescloud'>Sales Cloud</a>."},
                   {"title": "Innovation topics", "items":
                   [{"label": "Integrated comprehensive processes for lead to cash across SAP business applications", "key": "innovation1", "link": ""},
                   {"label": "Intelligence capabilities (for example, artificial intelligence and machine learning) and analytics", "key": "innovation2", "link": ""},
@@ -12,28 +12,92 @@
       "id": 1,
       "type": "start",
       "title": "SAP C/4HANA SUITE",
-      "header": "SAP Customer Experience LIVE event in Munich, Germany",
-      "body" : "November 5, 2019",
-      "buttonText" : "Register Now",
-      "buttonLink" : "https://events.sap.com/de/cx-live-2019-munich/en/home"
+      "header": "SAP’s Customer Experience Suite at a Glance",
+      "body" : "",
+      "buttonText" : "Read More",
+      "buttonLink" : "https://www.sap.com/products/crm.html "
       },{
       "id": 2,
       "type": "mid",
       "title": "SAP C/4HANA SUITE",
-      "header": "SAP Customer Experience LIVE event in London, UK",
-      "body": "October 3, 2019",
-      "buttonText": "Register Now",
-      "buttonLink": "https://events.sap.com/gb/cx-live-2019-london/en/home"
+      "header": "SAP named Leader in 2019 Forrester Wave for Digital Experience Platforms",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://www.sap.com/cmp/cx/digital-experience-platforms-forrester-gch13/index.html"
       },
       {
       "id": 3,
       "type": "mid",
       "title": "SAP C/4HANA SUITE",
-      "header": "SAP Customer Experience LIVE in Dubai, UAE",
-      "body": "October 6, 2019",
-      "buttonText": "Register Now",
-      "buttonLink": "https://events.sap.com/ae/cx-live-2019-dubai/en/home"
+      "header": "Reimagine Customer Experience with SAP C/4HANA - free online training",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://open.sap.com/courses/c4h1 "
+      },
+      {
+      "id": 4,
+      "type": "mid",
+      "title": "SAP C/4HANA SUITE",
+      "header": "SAP C/4HANA webinars",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://webinars.sap.com/sap-user-groups-k4u/en/c4hana"
+    },
+      {
+      "id": 5,
+      "type": "mid",
+      "title": "SAP C/4HANA SUITE",
+      "header": "SAP C/4HANA Book - Explore the world of SAP C/4HANA",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://www.sap-press.com/sap-c4hana_4852/"
+      },
+      {
+      "id": 6,
+      "type": "mid",
+      "title": "SAP C/4HANA SUITE",
+      "header": "SAP Customer Experience Enablement Video Portal",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://enable.cx.sap.com/ "
+      },
+      {
+      "id": 7,
+      "type": "mid",
+      "title": "SAP C/4HANA SUITE",
+      "header": "CX Works portal - Overview of SAP C/4HANA Integration and Extension Options",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://www.sap.com/cxworks/article/435953782/Overview_of_SAP_C4HANA_Integration_and_Extension_Options"
+      },
+      {
+      "id": 8,
+      "type": "mid",
+      "title": "SAP C/4HANA SUITE",
+      "header": "Strategic Guidance on SAP C/4HANA",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://www.sap.com/cxworks/strategic-guidance"
+      },
+      {
+      "id": 8,
+      "type": "mid",
+      "title": "SAP C/4HANA SUITE",
+      "header": "Strategic Guidance on SAP C/4HANA",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://www.sap.com/cxworks/strategic-guidance"
+      },
+      {
+      "id": 9,
+      "type": "mid",
+      "title": "SAP C/4HANA SUITE",
+      "header": "SAP C/4HANA Project Framework",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://www.sap.com/cxworks/article/435028123/Overall_SAP_C4HANA_Project_Framework"
       }
+
     ],
     "timelineTitle": "Release Highlights",
     "timeline": [
