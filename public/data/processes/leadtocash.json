@@ -12,82 +12,11 @@
     {
     "id": 1,
     "type": "start",
-    "title": "SAP C/4HANA",
-    "header": "Retail Omnichannel integration with SAP Commerce Cloud",
-    "body" : "Integrates SAP Retail article master data and omnichannel innovations with SAP Commerce Cloud.",
+    "title": "SAP C/4HANA Suite",
+    "header": "SAP C/4HANA Business Processes: Lead-to-Cash – free online training",
+    "body" : "",
     "buttonText" : "Learn More",
-    "buttonLink" : "c4hana"
-    },
-    {
-    "id": 2,
-    "type": "mid",
-    "title": "EVENT",
-    "header": "SAP Customer Experience Live LONDON, UK on Oct 3, 2019",
-    "body": "Please join us for this event.",
-    "buttonText": "Learn More",
-    "buttonLink": "https://events.sap.com/gb/cx-live-2019-london/en/home"
-    },{
-      "id": 3,
-      "type": "mid",
-      "title": "EVENT",
-      "header": "SAP Customer Experience Live DUBAI, UAE on Oct 6, 2019",
-      "body": "Please join us for this event.",
-      "buttonText": "Learn More",
-      "buttonLink": "https://events.sap.com/ae/cx-live-2019-dubai/en/home"
-    },
-    {
-    "id": 4,
-    "type": "mid",
-    "title": "EVENT",
-    "header": "SAP Customer Experience Live MUNICH, Germany on Nov 5, 2019",
-    "body" : "Please join us for this event.",
-    "buttonText" : "Learn More",
-    "buttonLink" : "https://events.sap.com/de/cx-live-2019-munich/en/home"
-    },
-    {
-      "id": 5,
-      "type": "mid",
-      "title": "Sales cloud",
-      "header": "Administrator Workspaces & Capabilities",
-      "body": "New and enhanced workspaces and features supporting compensation admins.",
-      "buttonText": "Learn More",
-      "buttonLink": "c4hana"
-    },
-    {
-      "id": 6,
-      "type": "mid",
-      "title": "Sales cloud",
-      "header": "Globalization Requirements",
-      "body": "Delivery of key capabilities required by global organizations and international companies.",
-      "buttonText": "Learn More",
-      "buttonLink": "c4hana"
-    },
-    {
-      "id": 7,
-      "type": "mid",
-      "title": "Sales cloud",
-      "header": "Retail Execution - Perfect Store Execution Enhancements",
-      "body": "Perfect Store Execution allows to guide the sales representative during visit execution and to measure the ... ",
-      "buttonText": "Learn More",
-      "buttonLink": "c4hana"
-    },
-    {
-      "id": 8,
-      "type": "mid",
-      "title": "Sales cloud",
-      "header": "User Experience, UI Harmonization & Accessibility",
-      "body": "Improved experience for sales and administrative users",
-      "buttonText": "Learn More",
-      "buttonLink": "c4hana"
-    },
-    {
-      "id": 9,
-      "type": "mid",
-      "title": "Sales cloud",
-      "header": "Suite intelligence & Analytics",
-      "body": "Leverage deep analytics and intelligence to make data-driven decisions",
-      "buttonText": "Learn More",
-      "buttonLink": "c4hana"
+    "buttonLink" : "https://open.sap.com/courses/cx1 "
     }
   ],
   "roadmapTitle": "Lead to Cash",
