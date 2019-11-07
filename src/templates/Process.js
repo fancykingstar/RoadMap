@@ -97,6 +97,7 @@ class Process extends Component {
 
 
   render() {
+    console.log(this.state.timeline, "=======================");
     const { title, description, whatsnew, tabValue, roadmap, timeline, releases, template, process, subprocess } = this.state;
     return (
       <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
@@ -112,7 +113,7 @@ class Process extends Component {
               {}
             </Tabs>
             <div className="tab-content">
-              {this.state.tabValue === 0 ? (timeline.length > 4 || this.state.windowWidth < 1200 ?
+              {this.state.tabValue === 0 ? (timeline.length > 4 || this.state.windowWidth < 1125 ?
                 <TimelineVertical timeline={timeline} smallWindow={this.state.smallWindow} /> :
                 <TimelineCurve timeline={timeline} pageType={"process"} title={title} />) : undefined}
 

@@ -324,7 +324,7 @@ class Header extends Component {
       return null;
     }
     return (
-      <div className="header-divided-container">
+      <div className="header-divided-container" style={{ overflow: 'hidden' }}>
         <div className={"header-left-container process-header" + (this.props.smallWindow ? " hidden" : "")}>
           {compact ? <img src={headerimage} alt={title} /> : null}
         </div>
@@ -348,18 +348,8 @@ class Header extends Component {
             />
           </div>
           <div className="header-roadmap-container">
-
             {
-              roadmap && roadmap.length > 0 ? this.props.windowWidth < 1240 ? <RoadmapVertical roadmap={roadmap} /> : <MultiRoadmap roadmap={roadmap} hideArrows={this.state.process === "twm"} /> : null
-            }
-
-            {
-              roadmap && roadmap.length > 0 ? 
-              this.props.windowWidth > 1300 ?
-              <MultiRoadmap roadmap={roadmap} hideArrows={this.state.process === "twm"} /> :
-              
-              <RoadmapVertical roadmap={roadmap} /> : 
-              null
+              roadmap && roadmap.length > 0 ? <MultiRoadmap roadmap={roadmap} hideArrows={this.state.process === "twm"} /> : null
             }
           </div>
         </div>
