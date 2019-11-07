@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding-left: 120px;
-  padding-right: 120px;
+  /*padding-left: 120px;
+  padding-right: 120px;*/
+  margin: 0px auto;
   width: 100%;
   margin-top: 0px;
   
@@ -42,9 +43,15 @@
 }
 
 .search-page-container {
-  margin-top: 156px;
   width: 80%;
   display: flex;
   flex-direction: row;
-  padding-left: 130px;
+  margin: 50px auto;
+  margin-top: 156px;
+}
+
+.content-container-small .search-page-container {
+  width: 100%;
+  margin: 0;
+  margin-top: 156px;
 }

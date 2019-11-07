@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 
 //import material ui components
 import { CarouselCards } from '../components/CarouselCards';
@@ -6,6 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
 //import css
+import '../css/Process.css';
 import '../css/Page.css';
 import '../css/Content.css';
 
@@ -17,6 +18,7 @@ import Footer from '../components/Footer';
 import FooterMobile from '../components/FooterMobile';
 import { TimelineVertical } from '../components/TimelineVertical';
 import { TimelineCurve } from '../components/TimelineCurve';
+
 
 import { productlabels } from '../utils/processutils';
 
@@ -109,14 +111,14 @@ class Products extends Component {
     const { title, description, whatsnew, releases, template, product, subproduct, timeline, tabValue, windowWidth } = this.state;
     return (
       <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
-        <Header title={title} description={description} image={this.renderImage(product)} compact={true} smallWindow={this.state.smallWindow} type="sub-page" pageType={"product"} windowWidth={this.state.windowWidth} product={this.state.product}/>
+        <Header title={title} description={description} image={this.renderImage(product)} compact={true} smallWindow={this.state.smallWindow} type="sub-page" pageType={"product"} windowWidth={this.state.windowWidth} product={this.state.product} />
         <Feedback />
         <div className="right-side-bg"></div>
         <div className={"content-container" + (this.state.smallWindow ? " content-container-small" : "")}>
           <div className="process-content">
             <Tabs className="roadmap-process-tabs roadmap-process-tab-titles" value={tabValue} onChange={this.handleTabChange} aria-label="Process flow and release highlights" orientation="vertical">
-              <Tab label="Release Highlights" disabled={timeline ? false : true} icon={<div className={"tab-icon" + (tabValue === 0 ? " tab-icon-highlights-active" : " tab-icon-highlights-inactive")}>{<img src={(tabValue === 0 ? ProductIcons[0]["highlightsOnstate"] : ProductIcons[0]["highlightsOffstate"])} alt="Release Highlights"/>}</div>} />
-              <Tab label="What's Happening" disabled={whatsnew ? false : true} icon={<div className={"tab-icon" + (tabValue === 1 ? " tab-icon-happening-active" : " tab-icon-happening-inactive")}>{<img src={(tabValue === 1 ? ProductIcons[0]["happeningOnstate"] : ProductIcons[0]["happeningOffstate"])} alt="What's Happening"/>}</div>} />
+              <Tab label="Release Highlights" disabled={timeline ? false : true} icon={<div className={"tab-icon" + (tabValue === 0 ? " tab-icon-highlights-active" : " tab-icon-highlights-inactive")}>{<img src={(tabValue === 0 ? ProductIcons[0]["highlightsOnstate"] : ProductIcons[0]["highlightsOffstate"])} alt="Release Highlights" />}</div>} />
+              <Tab label="What's Happening" disabled={whatsnew ? false : true} icon={<div className={"tab-icon" + (tabValue === 1 ? " tab-icon-happening-active" : " tab-icon-happening-inactive")}>{<img src={(tabValue === 1 ? ProductIcons[0]["happeningOnstate"] : ProductIcons[0]["happeningOffstate"])} alt="What's Happening" />}</div>} />
             </Tabs>
             <div className="tab-content">
               {timeline && timeline.length > 0 && tabValue === 0 ?
@@ -128,7 +130,7 @@ class Products extends Component {
               </div> : null}
             </div>
           </div>
-          <PlannedReleases releases={releases} type={template} cardfilter={product} subfilter={subproduct} placeholder="Travel Expenses" smallWindow={this.state.smallWindow} endpoint={product}/>
+            <PlannedReleases releases={releases} type={template} cardfilter={product} subfilter={subproduct} placeholder="Travel Expenses" smallWindow={this.state.smallWindow} endpoint={product} />
         </div>
 
         {/* {timeline && timeline.length > 0 ? <SectionHeaderTitle title={timelineTitle} smallWindow={this.state.smallWindow} leftAligned={false} /> : null} */}
