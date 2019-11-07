@@ -76,22 +76,31 @@ export const onKeyDown = (e, state, ref) => {
 
 
 export const selectSearch = (ref, inputvalue) => {
-   var retvalue = "";
-   if (inputvalue.trend) {
-    retvalue = inputvalue.trend;
-   }
-   if (inputvalue.suggestion) {
-     retvalue = inputvalue.suggestion;
-   } 
-  if (ref.state.resulthandler) {
-      ref.state.resulthandler(retvalue);
-  } else {
-    window.location.href = "/search/" + retvalue;
+  var retvalue = "";
+
+  ref.setState({
+   showSuggestions: false,
+ }, () => {ref.setState({
+   showSuggestions: false,
+ })
+  if (inputvalue.trend) {
+   retvalue = inputvalue.trend;
   }
-  ref.setState(prevState => ({
-    ...prevState,
-      userInput: "start"
-  }))
+  if (inputvalue.suggestion) {
+    retvalue = inputvalue.suggestion;
+  } 
+ if (ref.state.resulthandler) {
+     ref.state.resulthandler(retvalue);
+ } else {
+   window.location.href = "/search/" + retvalue;
+ }
+ ref.setState(prevState =>
+ ({
+   ...prevState,
+     userInput: "start",
+     showSuggestions: !prevState.showSuggestions
+ }))
+});
 }
 
 export const trendSearch = (ref, inputvalue) => {

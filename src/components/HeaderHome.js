@@ -27,6 +27,8 @@ import info from '../assets/images/info.svg';
 import logo from '../assets/images/sap-logo.svg';
 import accountIcon from '../assets/images/home-account.svg';
 import compactAccountIcon from '../assets/images/compact-account.svg';
+import favIcon from '../assets/images/home-favorites.svg';
+import compactFavIcon from '../assets/images/compact-favorites.svg';
 import clipMask from '../assets/images/clippingMask.svg';
 import Fuse from 'fuse.js';
 
@@ -439,9 +441,9 @@ class Header extends Component {
                 {/*
                   // TODO: Notification Bell
                 <img className="header-notification-bell" alt="bell" src={compact ? notificationBell : null } /> */}
-                <img className="header-user-account" alt="account" src={compact ? compactAccountIcon : accountIcon}
-                  onMouseOver={e => (e.currentTarget.src = compact ? accountIcon : compactAccountIcon)}
-                  onMouseOut={e => (e.currentTarget.src = compact ? compactAccountIcon : accountIcon)}
+                <img className="header-user-account" alt="account" src={compact ? compactFavIcon : favIcon}
+                  onMouseOver={e => (e.currentTarget.src = compact ? favIcon : compactFavIcon)}
+                  onMouseOut={e => (e.currentTarget.src = compact ? compactFavIcon : favIcon)}
                   onClick={this.handleAccountClick} />
                 <Snackbar
                   anchorOrigin={{
@@ -452,7 +454,7 @@ class Header extends Component {
                   open={this.state.showToast}
                   onClose={this.handleAccountClick}
                   autoHideDuration={6000}
-                  message={<span className="toast-messages" id="message-id">User Account Feature Coming Soon</span>}
+                  message={<span className="toast-messages" id="message-id">My Favorites Feature Coming Soon</span>}
                 />
               </div>
             }

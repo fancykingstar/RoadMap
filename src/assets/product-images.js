@@ -9,6 +9,7 @@ import customerdatacloud from './images/products/customerdatacloud-header.svg';
 import commercecloud from './images/products/commercecloud-header.svg';
 import salescloud from './images/products/salescloud-header.svg';
 import marketingcloud from './images/products/marketingcloud-header.svg';
+import search from './images/products/search-header.svg';
 
 export const ProductImages = [{
     "concur": concur,
@@ -21,5 +22,6 @@ export const ProductImages = [{
     'customerdatacloud': customerdatacloud,
     'commercecloud': commercecloud,
     'salescloud': salescloud,
-    'marketingcloud': marketingcloud
+    'marketingcloud': marketingcloud,
+    'search': search
 }];

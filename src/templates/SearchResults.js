@@ -14,6 +14,9 @@ import '../css/Card.css';
 import '../css/Content.css';
 import '../css/SearchResults.css';
 
+//import product svg
+import { ProductImages } from '../assets/product-images';
+
 import { SiteSearch } from '../components/Search';
 
 //import custom components
@@ -27,6 +30,7 @@ import FooterMobile from '../components/FooterMobile';
 import ReleaseForm from '../components/ReleaseForm';
 
 import { suggestions, trends } from '../utils/searchutils';
+import { finished } from 'stream';
 
 function isString (value) {
     return typeof value === 'string' || value instanceof String;
@@ -40,6 +44,7 @@ class SearchResults extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            title: '',
             result: props.match.params.result,
             sorting: 'relevance',
             results: [],
@@ -69,25 +74,92 @@ class SearchResults extends Component {
     }
 
     componentDidMount() {
-        document.title = "SAP Product Roadmap - Search Results";
-        // fetch("https://roadmap-api.cfapps.us10.hana.ondemand.com/api/releases")
-        //fetch("https://roadmap-ui-dev.internal.cfapps.sap.hana.ondemand.com/srv_api/odata/v4/roadmap/Roadmap")
-        //fetch("./data.json")
-        fetch('/data/Roadmap.json')
-        .then(res => res.json())
+        let queryURL = '';
+        let searchType = ''
+
+        const baseURL = 'https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com'
+        queryURL = `${baseURL}/odata/v4/roadmap/Roadmap?ProductSearch&$skip=0&$orderby=date asc&$expand=products,futureplans`;
+
+        //fetch('https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com/odata/v4/roadmap/Roadmap?ProductSearch&$skip=0&$orderby=date%20asc&$expand=products,futureplans')
+        fetch(queryURL)
+        .then(res =>{
+            let response =  res.json()
+            return response
+        })
             .then(
-                (result) => {
+                ({value}) => {
+                    let results = value.filter((result) => result.date.length > 1);
+                    console.log(results)
                     var uniqueTitles = new Set()
                     var uniqueResult = new Array()
-                    result.value.forEach(item =>{
+                    results.forEach(item =>{
                         if(!uniqueTitles.has(item.title)){
                             uniqueTitles.add(item.title)
                             uniqueResult.push(item)
                         }
                     })
-                  
+                    
+                    for (var i = 0; i < results.length; i++) {
+                        let result = results[i], chips = [], tags = [];
+                        // set tags
+                        if (result.process && result.process.length > 1 && !chips.includes(result.process)) {
+                          const processKey = result.process.toLowerCase().replace(/\s/g, "");
+                          /* Exception Keys */
+                          if (processKey === "designtooperate") {
+                            processKey = "d2o";
+                          }
+                          tags.push(processKey);
+                          chips.push({
+                            category: 'process',
+                            key: processKey,
+                            label: result.process.trim()
+                          })
+                        }
+              
+                        if (result.integration && result.integration.length > 1 && !chips.includes(result.integration)) {
+                          const integrationKey = result.integration.toLowerCase().replace(/\s/g, "");
+                          tags.push(integrationKey);
+                          chips.push({
+                            category: 'integration',
+                            key: integrationKey,
+                            label: result.integration.trim()
+                          })
+                        }
+              
+                        if (result.industry && result.industry.length > 1 && !chips.includes(result.industry)) {
+                          const industryKey = result.industry.toLowerCase().replace(/\s/g, "");
+                          if (industryKey === "retail/hospitality") {
+                            industryKey = "retail";
+                          } else if (industryKey === "publicsector/government") {
+                            industryKey = "publicsector"
+                          }
+              
+                          tags.push(industryKey);
+                          chips.push({
+                            category: 'industry',
+                            key: industryKey,
+                            label: result.industry.trim()
+                          })
+                        }
+                        if (result.products && result.products.length) {
+                          result.products.forEach(({ product }) => {
+                            const productKey = product.toLowerCase().replace(/(sap)|\s/g, "")
+                            if (!chips.includes(product) && product.length > 1) {
+                              tags.push(productKey);
+                              chips.push({
+                                category: "product",
+                                key: productKey,
+                                label: product.trim()
+                              })
+                            }
+                          })
+                        }
+                        result.chips = chips;
+                        result.tags = tags;
+                      }
                     this.setState({
                         results: uniqueResult
+
                     }, () => fetch("/data/rform.json")
                         .then(res => res.json())
                         .then(
@@ -139,6 +211,7 @@ class SearchResults extends Component {
         let forms = this.state.forms;
         let subfilter = this.state.subfilter;
         let releasetags = [];
+
         //get tags from release data
         releases.forEach(release => {
             if (release.tags.includes(cardfilter)) {
@@ -146,10 +219,8 @@ class SearchResults extends Component {
                 release.tags.map(tags =>{
                     releasetags.concat(tags.tag)
                 })
-                //releasetags = releasetags.concat(release.tags);
             }
             //console.log(release)
-        //console.log(releasetags)
         })
 
         forms.forEach(form => {
@@ -215,7 +286,6 @@ class SearchResults extends Component {
         this.setState({searchhandler: fuse});
         var searchresults = fuse.search(this.state.result);
         searchresults.forEach(result => {
-
             if (result.date) {
                 let datevalue = new Date(result.date);
                 result.numericdate = datevalue.getTime() / 1000.0;
@@ -250,6 +320,7 @@ class SearchResults extends Component {
             filterall += 1;
             filteredresults.push(result);
         })
+
         const prodset = new Set();
         const procset = new Set();
 
@@ -401,7 +472,6 @@ class SearchResults extends Component {
     }
 
     multiPropsFilter = (releases, tags) => {
-
         let currentags = tags && tags.length > 0 ? tags : [""];
 
         const filters = {
@@ -581,7 +651,7 @@ class SearchResults extends Component {
                                                     date={result.displaydate}
                                                     description={result.description}
                                                     likes={result.likes}
-                                                    //chips={result.chips}
+                                                    chips={result.chips}
                                                     values={result.businessvalues}
                                                     details={result.featuredetails}
                                                     futureplans={result.futureplans}
