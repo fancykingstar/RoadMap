@@ -8,7 +8,10 @@
   margin-left: 0px;
 }
 
-.header-mobile .search-icon,
+.header-mobile .search-icon {
+  width: 36px !important;
+}
+
 .page-container-small .search-icon {
   width: 150px;
 }
@@ -39,6 +42,7 @@
 
 .header-mobile .search-box {
   width: 150px;
+  right: 0px;
 }
 
 .search-box {

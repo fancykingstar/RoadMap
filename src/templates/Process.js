@@ -14,6 +14,8 @@ import Footer from '../components/Footer';
 import FooterMobile from '../components/FooterMobile';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import withWidth from '@material-ui/core/withWidth';
+
 
 //import svg assets
 import { TimelineVertical } from '../components/TimelineVertical';
@@ -141,10 +143,11 @@ class Process extends Component {
             <CarouselCards slides={whatsnew} windowWidth={this.state.windowWidth} smallWindow={this.state.smallWindow} />
           </div> */}
         </div>
+
         {this.state.smallWindow ? <FooterMobile /> : <Footer />}
       </div>
     )
   }
 }
 
-export default Process;
+export default withWidth()(Process)
