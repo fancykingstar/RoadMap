@@ -59,7 +59,8 @@ class Header extends Component {
     this.renderProcessHeaderContainers = this.renderProcessHeaderContainers.bind(this);
     this.renderProductHeaderContainers = this.renderProductHeaderContainers.bind(this);
     this.renderInfoModal = this.renderInfoModal.bind(this);
-    this.handleInfoClick = this.handleInfoClick.bind(this);
+    this.handleInfoEnter = this.handleInfoEnter.bind(this);
+    this.handleInfoLeave = this.handleInfoLeave.bind(this);
   }
 
   componentDidMount() {
@@ -254,8 +255,12 @@ class Header extends Component {
     this.setState({ showToast: showToast });
   }
 
-  handleInfoClick = (e) => {
-    this.setState({ isInfoOpen: !this.state.isInfoOpen })
+  handleInfoEnter = (e) => {
+    this.setState({ isInfoOpen: true })
+  }
+
+  handleInfoLeave = (e) => {
+    this.setState({ isInfoOpen: false })
   }
 
   renderInfoModal = () => {
@@ -326,8 +331,21 @@ class Header extends Component {
         <div className="header-right-container process-header">
           <div className={"title title-" + (compact ? "compact" : "default")
             + (this.props.smallWindow ? " title-small" : "")
-            + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")}>{title}
-            <img src={info} alt="info" style={{ position: this.props.windowWidth < 816 ? "relative" : "absolute", paddingLeft: 13 + "px", paddingTop: 21 + "px" }} onClick={this.handleInfoClick} ref={this.anchorEl} />
+            + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")} 
+            >{title}
+            <img src={info} alt="info" 
+              style={{ 
+                position: this.props.windowWidth < 816 ? "relative" : "absolute", 
+                paddingLeft: 13 + "px", 
+                paddingTop: 21 + "px",
+              }} 
+              ref={this.anchorEl} 
+              onMouseEnter={this.handleInfoEnter} 
+              onMouseLeave={this.handleInfoLeave} 
+
+              aria-owns={this.state.isInfoOpen ? "simple-popover" : undefined} 
+              aria-haspopup="true"
+            />
           </div>
           <div className="header-roadmap-container">
 
@@ -400,6 +418,7 @@ class Header extends Component {
   }
   render() {
     const { processes, products, compact, type, resultspage, resulthandler, pageType, searchhandler } = this.state;
+    
     return (
       <div className={"page-header-default"
         + (type === "regular" ? " page-header-minheight" : "")
@@ -469,8 +488,9 @@ class Header extends Component {
         </div>
         {/* Temporary className -- staged for fix process=multi product=single*/}
         <Popover
-          className={"roadmap-stepper-popover info-" + (this.state.productTitles && this.state.innovationTopics ? "multi" : "single")}
-          id={this.state.isInfoOpen ? "simple-popover" : undefined}
+          style={{ pointerEvents: 'none', }}
+          className={`roadmap-stepper-popover info-` + (this.state.productTitles && this.state.innovationTopics ? "multi" : "single")}
+          id={"simple-popover"}
           open={this.state.isInfoOpen}
           anchorEl={this.anchorEl.current}
           onClose={this.handleInfoClick}
