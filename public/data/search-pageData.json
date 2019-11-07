@@ -54,11 +54,51 @@
       "title": "SAP Commerce Cloud",
       "type": "product",
       "icon": "commercecloud",
-      "body": "SAP Fieldglass provides solutions to find, engage, and manage your external workforce and services procurement resources, including temporary staff, consultants, freelancers, contractors, and more.",
+      "body": "SAP Commerce Cloud is a comprehensive, market-leading commerce platform that includes product content management, experience management, personalization, and order management. SAP Commerce Cloud will help B2B, B2C and B2B2C businesses to thrive in today's digital economy.",
       "tags": [
-        "sapfieldglass", "fieldglass"
+        "sapcommercecloud", "commercecloud"
       ],
-      "key": "fieldglass"
+      "key": "commercecloud"
+    },
+    {
+      "title": "SAP Customer Data Cloud",
+      "type": "product",
+      "icon": "customerdatacloud",
+      "body": "The SAP Customer Data Cloud provides a flexible, cloud-native platform for turning unknown users into known customers by supporting comprehensive, secure customer identity and access management (CIAM) activities for your B2C and B2B customers.",
+      "tags": [
+        "sapcustomerdatacloud", "customerdatacloud"
+      ],
+      "key": "customerdatacloud"
+    },
+    {
+      "title": "SAP Marketing Cloud",
+      "type": "product",
+      "icon": "marketingcloud",
+      "body": "SAP Marketing Cloud solutions enable your organization to orchestrate personalized customer engagements, gain visibility and control of the entire closed-loop marketing process, and make data-driven decisions to increase marketing ROI.",
+      "tags": [
+        "sapmarketingcloud", "marketingcloud"
+      ],
+      "key": "marketingcloud"
+    },
+    {
+      "title": "SAP Sales Cloud",
+      "type": "product",
+      "icon": "salescloud",
+      "body": "The SAP Sales Cloud solution helps organizations connect and guide customers throughout their buying journey. Transform your lead-to-cash process and accelerate sales performance with incentive optimization, sales coaching, and learning recommendations – helping sales teams to spend their time on the best deals.",
+      "tags": [
+        "sapsalescloud", "salescloud"
+      ],
+      "key": "salescloud"
+    },
+    {
+      "title": "SAP Service Cloud",
+      "type": "product",
+      "icon": "servicecloud",
+      "body": "The SAP Service Cloud is a robust omnichannel customer service and field service solution. It provides a smooth service experience to your customers throughout their entire journey, bridging the gap between front-office engagements and back-office processes.",
+      "tags": [
+        "sapservicecloud", "servicecloud"
+      ],
+      "key": "servicecloud"
     }
   ],
   "process": [
