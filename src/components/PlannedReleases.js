@@ -88,6 +88,7 @@ class PlannedReleases extends Component {
       })
       .then(({ value }) => {
         let results = value.filter((result) => result.date.length > 1);
+        console.log(results);
         for (var i = 0; i < results.length; i++) {
           let result = results[i], chips = [], tags = [];
           // parseData
@@ -99,7 +100,8 @@ class PlannedReleases extends Component {
           result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
           result.futureplans = this.manageDates(result.futureplans);
           // set tags
-          if (result.process.length > 1 && !chips.includes(result.process)) {
+          console.log('result.process:', result.process);
+          if (result.process && result.process.length > 1 && !chips.includes(result.process)) {
             const processKey = result.process.toLowerCase().replace(/\s/g, "");
             /* Exception Keys */
             if (processKey === "designtooperate") {
@@ -113,7 +115,7 @@ class PlannedReleases extends Component {
             })
           }
 
-          if (result.integration.length > 1 && !chips.includes(result.integration)) {
+          if (result.integration && result.integration.length > 1 && !chips.includes(result.integration)) {
             const integrationKey = result.integration.toLowerCase().replace(/\s/g, "");
             tags.push(integrationKey);
             chips.push({
@@ -123,7 +125,17 @@ class PlannedReleases extends Component {
             })
           }
 
-          if (result.industry.length > 1 && !chips.includes(result.industry)) {
+          if (result.subProcess && result.subProcess.length > 1 && !chips.includes(result.subProcess)) {
+            const subProcessKey = result.subProcess.toLowerCase().replace(/\s/g, "");
+            tags.push(subProcessKey);
+            chips.push({
+              category: 'subprocess',
+              key: subProcessKey,
+              label: result.subProcess.trim()
+            })
+          }
+
+          if (result.industry && result.industry.length > 1 && !chips.includes(result.industry)) {
             const industryKey = result.industry.toLowerCase().replace(/\s/g, "");
             if (industryKey === "retail/hospitality") {
               industryKey = "retail";
@@ -141,7 +153,7 @@ class PlannedReleases extends Component {
           if (result.products.length) {
             result.products.forEach(({ product }) => {
               const productKey = product.toLowerCase().replace(/(sap)|\s/g, "")
-              if (!chips.includes(product) && product.length > 1) {
+              if (!chips.includes(product) && product && product.length > 1) {
                 tags.push(productKey);
                 chips.push({
                   category: "product",
