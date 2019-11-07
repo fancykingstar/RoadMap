@@ -233,7 +233,7 @@ class PlannedReleases extends Component {
   getOccurrence = (array, value) => {
     var count = 0;
     array.forEach((v) => {
-      (v.includes(value) && count++)
+      (v === value && count++)
     });
     return count;
   }
