@@ -14,6 +14,9 @@ import '../css/Card.css';
 import '../css/Content.css';
 import '../css/SearchResults.css';
 
+//import product svg
+import { ProductImages } from '../assets/product-images';
+
 import { SiteSearch } from '../components/Search';
 
 //import custom components
@@ -41,6 +44,7 @@ class SearchResults extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            title: '',
             result: props.match.params.result,
             sorting: 'relevance',
             results: [],
