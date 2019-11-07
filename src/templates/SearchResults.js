@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button';
 import MinIcon from '@material-ui/icons/Minimize';
 import { datamonths } from '../utils/searchutils';
 //import css
+import '../css/PR-Container.css'
+import '../css/Card.css';
 import '../css/Content.css';
 import '../css/SearchResults.css';
 

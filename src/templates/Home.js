@@ -11,9 +11,7 @@ import CardContent from '@material-ui/core/CardContent';
 import '../css/Page.css';
 import '../css/Content.css';
 import '../css/Home.css';
-import '../css/Chip.css';
 import '../css/Card.css';
-import '../css/Process.css';
 
 //import custom components
 import Header from '../components/HeaderHome';

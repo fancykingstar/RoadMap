@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 
 //import material UI components
 import SearchIcon from '@material-ui/icons/SearchOutlined';
@@ -19,8 +19,9 @@ import SectionHeaderTitle from '../components/SectionHeaderTitle';
 import Pagination from '../components/Pagination';
 
 import { datamonths } from '../utils/searchutils';
-
 import DeleteTag from '../assets/images/close-x.svg'
+
+
 const staging = false;
 class PlannedReleases extends Component {
 
@@ -487,21 +488,6 @@ class PlannedReleases extends Component {
             </div>
             <div className="pr-card-container">
               <div className="pr-sort-container">
-                {/* <img src={sort} alt="sort" />
-                <div className="pr-sort-label">SORT BY: </div>
-                <Select native className="pr-sort-select" value={sorting} onChange={e => this.onSortingChange(e.target.value)}>
-                  <option value="date">DATE</option>
-                  <option value="title">TITLE</option>
-                </Select> */}
-                {/* <div>
-                  <Chip onClick={this.handleDateChipClick} className="pr-selected-filter-chip" variant="outlined" clickable="true" label="All"></Chip>
-                  {dateTags.sort((a, b) => {
-                    return a.numericDate - b.numericDate;
-                  }).map(dateTag => (
-                    <Chip onClick={this.handleDateChipClick} variant="outlined" clickable="true" label={dateTag.displayDate} tabindex={tabIndex++}></Chip>
-                  ))}
-                </div> */}
-                {/* Conditional for if a filtered option exists, then render Clear All Filters button*/}
                 <div className="pr-filter-tag-container">
                   {tags.length > 0 ?
                     tags.map(filterTag => (

@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { CarouselCards } from '../components/CarouselCards';
 
 //import css
+import '../css/Process.css';
 import '../css/Page.css';
 import '../css/Content.css';
 
