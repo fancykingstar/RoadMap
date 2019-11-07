@@ -23,6 +23,48 @@
   background-position: right;
 }
 
+@media screen and (max-width: 1440px) {
+  .search-icon {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 1336px) {
+  .search-icon {
+    width: 350px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .search-icon {
+    width: 280px;
+  }
+}
+
+@media screen and (max-width: 1208px) {
+  .search-icon {
+    width: 220px;
+  }
+}
+
+@media screen and (max-width: 1130px) {
+  .search-icon {
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 1010px) {
+  .search-icon {
+    width: 36px;
+  }
+}
+
+@media screen and (max-width: 1010px) {
+  .header-user-account {
+    display: none;
+  }
+}
+
 .header-mobile .search-icon:hover,
 .page-container-small .search-icon:hover{
   background-image: url(../assets/images/search-over-small.svg);

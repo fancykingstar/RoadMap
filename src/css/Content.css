@@ -37,7 +37,7 @@
   top: 1336px;
   z-index: -1;
   background-image: url(../assets/images/@1x-bg-path1.png);
-  width: 362px;
+  /*width: 362px;*/
   height: 630px;
 }
 
