@@ -99,7 +99,8 @@ class SearchResults extends Component {
                         let result = results[i], chips = [], tags = [];
                         console.log(result)
                         // set tags
-                        if (result.process && result.process.length > 1 && !chips.includes(result.process)) {
+                        if (result.process != null){
+                        if (result.process.length > 1 && !chips.includes(result.process)) {
                           const processKey = result.process.toLowerCase().replace(/\s/g, "");
                           /* Exception Keys */
                           if (processKey === "designtooperate") {
@@ -111,9 +112,10 @@ class SearchResults extends Component {
                             key: processKey,
                             label: result.process.trim()
                           })
-                        }
-              
-                        if (result.integration && result.integration.length > 1 && !chips.includes(result.integration)) {
+                        }}
+                        
+                        if (result.integration != null){
+                        if (result.integration.length > 1 && !chips.includes(result.integration)) {
                           const integrationKey = result.integration.toLowerCase().replace(/\s/g, "");
                           tags.push(integrationKey);
                           chips.push({
@@ -121,9 +123,10 @@ class SearchResults extends Component {
                             key: integrationKey,
                             label: result.integration.trim()
                           })
-                        }
-              
-                        if (result.industry && result.industry.length > 1 && !chips.includes(result.industry)) {
+                        }}
+                        
+                        if (result.industry != null){
+                        if (result.industry.length > 1 && !chips.includes(result.industry)) {
                           const industryKey = result.industry.toLowerCase().replace(/\s/g, "");
                           if (industryKey === "retail/hospitality") {
                             industryKey = "retail";
@@ -138,7 +141,7 @@ class SearchResults extends Component {
                             label: result.industry.trim()
                           })
                         }
-                        if (result.products && result.products.length) {
+                        if (result.products.length) {
                           result.products.forEach(({ product }) => {
                             const productKey = product.toLowerCase().replace(/(sap)|\s/g, "")
                             if (!chips.includes(product) && product.length > 1) {
@@ -660,7 +663,7 @@ class SearchResults extends Component {
                                         .slice(initialitem, lastitem)
                                         .map(result => {
                                             if (!result.type) {
-                                                return <ReleaseCard key={result.title + result._    }
+                                                return <ReleaseCard key={result.title + result._id}
                                                     _id={result._id}
                                                     title={result.title}
                                                     relevance={result.relevance}
