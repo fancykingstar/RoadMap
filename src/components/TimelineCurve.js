@@ -38,7 +38,7 @@ function renderIcon(icon) {
 class TimelineCurve extends Component {
     render() {
         return (
-            <div className={"timeline-curve" + (this.props.pageType && this.props.pageType === "product" ? " product-curve" : " process-curve") + (this.props.title &&this.props.title.length < 16 ? " offset-top" : "")}>
+            <div className={"timeline-curve" + (this.props.type && this.props.type === "product" ? " product-curve" : " process-curve") + (this.props.title &&this.props.title.length < 16 ? " offset-top" : "")}>
                 <ReactSVG src={renderIcon("timelineCurve")} />
                 <div className={"timeline-curve-steps-container timeline-curve-steps-container-" + this.props.timeline.length}>
                     {this.props.timeline.map(item => (

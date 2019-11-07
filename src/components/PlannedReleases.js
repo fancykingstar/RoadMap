@@ -1,4 +1,4 @@
-import React, { Component, lazy, Suspense } from 'react';
+import React, { Component } from 'react';
 
 //import material UI components
 import SearchIcon from '@material-ui/icons/SearchOutlined';
@@ -61,7 +61,6 @@ class PlannedReleases extends Component {
 
 
   componentDidMount() {
-
     let querySubstr = (this.state.type && this.state.type === 'product' ?
       this.state.cardfilter === 'c4hana' ? 'C/4HANA' :
         this.state.cardfilter === 'successfactors' ? 'SuccessFactors' :
@@ -80,7 +79,7 @@ class PlannedReleases extends Component {
         : this.state.type === 'process' ?
           `/odata/v4/roadmap/Roadmap?$filter=contains%28process%2C%27${querySubstr}%27%29&$skip=0&$orderby=date%20asc&$expand=products%2Cfutureplans`
           : null)
-  
+
     console.log('query:', queryURL, 'pageType:', this.state.type, 'cardfilter:', this.state.cardfilter);
     fetch(queryURL)
       .then(res => {
@@ -185,12 +184,19 @@ class PlannedReleases extends Component {
             .then(
               (result) => {
                 let keyLabelMap = {};
+                let releaseDatesTemplate = {
+                  "id": 0, "expandable": true, "state": false, "title": "Release Dates",
+                  "fields": []
+                }
+                result.forms.unshift(releaseDatesTemplate);
                 result.forms.forEach(({ fields }) => {
-                  fields.forEach(({ key, label }) => {
-                    if (!keyLabelMap[key]) {
-                      keyLabelMap[key] = label;
-                    }
-                  })
+                  if (fields) {
+                    fields.forEach(({ key, label }) => {
+                      if (!keyLabelMap[key]) {
+                        keyLabelMap[key] = label;
+                      }
+                    })
+                  }
                 })
                 this.setState({
                   forms: result.forms.filter(form => (this.props.type !== 'process' ?
@@ -222,7 +228,7 @@ class PlannedReleases extends Component {
   getOccurrence = (array, value) => {
     var count = 0;
     array.forEach((v) => {
-      (v.includes(value) && count++)
+      (v === value && count++)
     });
     return count;
   }
@@ -236,11 +242,9 @@ class PlannedReleases extends Component {
 
     //get tags from release data
     releases.forEach(release => {
-      // console.log(release.tags, 'cf:', cardfilter);
+      // console.log(release.tags);
       if (release.tags.includes(cardfilter)) {
         releasetags = releasetags.concat(release.tags);
-        // console.log('endpoint:', cardfilter, release.tags.indexOf(cardfilter));
-        // console.log('releasetaggerinos:', releasetags);
       }
     })
 
@@ -459,7 +463,7 @@ class PlannedReleases extends Component {
   }
 
   scrollToTop = () => {
-    window.scrollTo(0, this.paginationRef.current.offsetTop - 66.521);
+    window.scrollTo({ top: this.paginationRef.current.offsetTop - 66.521, behavior: 'smooth' });
   }
 
   render() {
