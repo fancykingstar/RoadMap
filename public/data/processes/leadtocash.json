@@ -17,7 +17,43 @@
     "body" : "",
     "buttonText" : "Learn More",
     "buttonLink" : "https://open.sap.com/courses/cx1 "
-    }
+    },
+      {
+      "id": 2,
+      "type": "mid",
+      "title": "SAP C/4HANA SUITE",
+      "header": "SAP C/4HANA webinars",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://webinars.sap.com/sap-user-groups-k4u/en/c4hana "
+      },
+      {
+      "id": 3,
+      "type": "mid",
+      "title": "SAP C/4HANA SUITE",
+      "header": "SAP C/4HANA Book - Explore the world of SAP C/4HANA",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://www.sap-press.com/sap-c4hana_4852/ "
+      },
+      {
+      "id": 4,
+      "type": "mid",
+      "title": "SAP C/4HANA SUITE",
+      "header": "SAP Customer Experience Enablement Video Portal",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://enable.cx.sap.com/ "
+      },
+      {
+      "id": 5,
+      "type": "mid",
+      "title": "SAP C/4HANA SUITE",
+      "header": "Customer Experience at SAP",
+      "body": "",
+      "buttonText": "Read More",
+      "buttonLink": "https://www.sap.com/products/crm.html"
+      }
   ],
   "roadmapTitle": "Lead to Cash",
   "roadmap": [
