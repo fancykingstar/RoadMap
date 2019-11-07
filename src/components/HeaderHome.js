@@ -87,9 +87,20 @@ class Header extends Component {
       .then(res => res.json())
           .then(
               (result) => {
-                  this.setState({results: result.value})
+                var uniqueTitles = new Set()
+                    var uniqueResult = new Array()
+                    result.value.forEach(item =>{
+                        if(!uniqueTitles.has(item.title)){
+                            uniqueTitles.add(item.title)
+                            uniqueResult.push(item)
+                        }
+                    })
+                  
+                    this.setState({
+                        results: uniqueResult
+                    })
                   //this.cleanData(result.value)
-                  this.filterResultData(result.value);
+                  this.filterResultData(uniqueResult);
               },
               (error) => {
                   console.log(error);
@@ -304,6 +315,9 @@ class Header extends Component {
 
   renderProcessHeaderContainers = () => {
     const { title, compact, headerimage, roadmap } = this.state;
+    if (!title) {
+      return null;
+    }
     return (
       <div className="header-divided-container">
         <div className={"header-left-container process-header" + (this.props.smallWindow ? " hidden" : "")}>
@@ -326,6 +340,9 @@ class Header extends Component {
 
   renderProductHeaderContainers = () => {
     const { title, description, compact, type, headerimage, searchhandler } = this.state;
+    if (!title) {
+      return null;
+    }
     return (
       <div className={"header-divided-container" + (title === "product roadmaps" ? " home-header" : " product-header"
       )}>

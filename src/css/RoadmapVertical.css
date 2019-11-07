@@ -24,6 +24,11 @@
     width: 40px;
 }
 
+
+.vertical-roadmap-step svg:hover {
+    cursor: pointer;
+}
+
 .MuiStep-vertical:last-child .roadmap-vertical-line{
     min-height: 0px;
     height: 0px;
