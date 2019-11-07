@@ -107,6 +107,7 @@ class StepContainer extends Component {
         steps: this.props.steps
       })
     }
+  }
 
   render() {
     const { title, steps, businessvalues, featuredetails } = this.state;
