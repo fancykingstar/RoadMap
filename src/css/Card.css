@@ -37,7 +37,8 @@
 }
 
 .release-card {
-  width: 966px;
+  width: 100%;
+  /*width: 966px;*/
   min-height: 192px;
   height: auto;
   margin-left: 0px;
