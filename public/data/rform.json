@@ -1,49 +1,6 @@
 {
   "forms": [
     {
-      "id": 0,
-      "expandable": true,
-      "state": false,
-      "title": "Release Dates",
-      "fields": [
-        {
-          "label": "Q3 2019",
-          "checked": false,
-          "key": "Q3 2019",
-          "status": false,
-          "children": []
-        },
-        {
-          "label": "Q4 2019",
-          "checked": false,
-          "key": "Q4 2019",
-          "status": false,
-          "children": []
-        },
-        {
-          "label": "Q1 2020",
-          "checked": false,
-          "key": "Q1 2020",
-          "status": false,
-          "children": []
-        },
-        {
-          "label": "Q2 2020",
-          "checked": false,
-          "key": "Q2 2020",
-          "status": false,
-          "children": []
-        },
-        {
-          "label": "Q4 2020",
-          "checked": false,
-          "key": "Q4 2020",
-          "status": false,
-          "children": []
-        }
-      ]
-    },
-    {
       "id": 1,
       "expandable": true,
       "state": false,
@@ -322,6 +279,63 @@
     },
     {
       "id": 6,
+      "expandable": true,
+      "state": false,
+      "title": "Integrations",
+      "fields": [
+        {
+          "label": "Functional Enhancements",
+          "checked": false,
+          "key": "functionalenhancements",
+          "status": false,
+          "children": []
+        },
+        {
+          "label": "Identity & Access Management",
+          "checked": false,
+          "key": "identity&accessmanagement",
+          "status": false,
+          "children": []
+        },
+        {
+          "label": "Integration Excellence",
+          "checked": false,
+          "key": "integrationexcellence",
+          "status": false,
+          "children": []
+        },
+        {
+          "label": "Intelligence & Analytics",
+          "checked": false,
+          "key": "intelligence&analytics",
+          "status": false,
+          "children": []
+        },
+        {
+          "label": "One Master Data",
+          "checked": false,
+          "key": "onemasterdata",
+          "status": false,
+          "children": []
+        },
+        {
+          "label": "Seamless UX",
+          "checked": false,
+          "key": "seamlessux",
+          "status": false,
+          "children": []
+        },
+        {
+          "label": "Application Lifecycle Management",
+          "checked": false,
+          "key": "alm",
+          "status": false,
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 7,
       "expandable": true,
       "state": false,
       "title": "Industries",

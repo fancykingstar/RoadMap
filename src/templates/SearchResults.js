@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button';
 import MinIcon from '@material-ui/icons/Minimize';
 import { datamonths } from '../utils/searchutils';
 //import css
+import '../css/PR-Container.css'
+import '../css/Card.css';
 import '../css/Content.css';
 import '../css/SearchResults.css';
 
@@ -61,6 +63,7 @@ class SearchResults extends Component {
             pages: 0,
             pagination: false
         };
+        this.scrollToTop = this.scrollToTop.bind(this);
         this.handleUserResult = this.handleUserResult.bind(this);
         this.paginate = this.paginate.bind(this);
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
@@ -192,6 +195,10 @@ class SearchResults extends Component {
 
     updateWindowDimensions() {
         this.setState({ windowWidth: window.innerWidth, windowHeight: window.innerHeight, smallWindow: window.innerWidth < 770 });
+    }
+
+    scrollToTop = () => {
+        window.scrollTo({top: 200, behavior: 'smooth'});
     }
 
     filterFormResults = () => {
@@ -661,7 +668,7 @@ class SearchResults extends Component {
                             </div>
                             {
                                 pagination
-                                    ? <Pagination pages={this.state.pages} paginate={this.paginate} />
+                                    ? <Pagination pages={this.state.pages} paginate={this.paginate} scrollToTop={this.scrollToTop} />
                                     : null
                             }
                         </div>

@@ -1,0 +1,100 @@
+{
+  "products": [
+    {
+      "title": "SAP SuccessFactors",
+      "type": "product",
+      "icon": "successfactors",
+      "body": "SAP SuccessFactors is a complete human capital management (HCM) suite that helps you attract, develop, motivate, and engage a diverse, global workforce.",
+      "tags": [
+        "successfactors", "successfactors"
+      ],
+      "key": "successfactors"
+    },
+    {
+      "title": "SAP Ariba Solutions",
+      "type": "product",
+      "icon": "ariba",
+      "body": "SAP Ariba provides market-leading applications for executing source-to-pay processes with integration to suppliers over the world’s largest business network.",
+      "tags": [
+        "sapariba", "ariba"
+      ],
+      "key": "ariba"
+    },
+    {
+      "title": "SAP Concur Solutions",
+      "type": "product",
+      "icon": "concur",
+      "body": "SAP Concur provides innovative and actionable tools to help businesses efficiently transact, control, and maximize the value of employee discretionary spend.",
+      "tags": [
+        "sapconcur", "concur"
+      ],
+      "key": "concur"
+    },
+    {
+      "title": "SAP C/4HANA Suite",
+      "type": "product",
+      "icon": "c4hana",
+      "body": "SAP C/4HANA is the customer experience suite of five cloud solutions: Commerce Cloud, Marketing Cloud, Customer Data Cloud, Service Cloud, and Sales Cloud.",
+      "tags": [
+        "sapc4hana", "c4hana"
+      ],
+      "key": "c4hana"
+    },
+    {
+      "title": "SAP Fieldglass Solutions",
+      "type": "product",
+      "icon": "fieldglass",
+      "body": "SAP Fieldglass provides solutions to find, engage, and manage your external workforce and services procurement resources, including temporary staff, consultants, freelancers, contractors, and more.",
+      "tags": [
+        "sapfieldglass", "fieldglass"
+      ],
+      "key": "fieldglass"
+    },
+    {
+      "title": "SAP Commerce Cloud",
+      "type": "product",
+      "icon": "commercecloud",
+      "body": "SAP Fieldglass provides solutions to find, engage, and manage your external workforce and services procurement resources, including temporary staff, consultants, freelancers, contractors, and more.",
+      "tags": [
+        "sapfieldglass", "fieldglass"
+      ],
+      "key": "fieldglass"
+    }
+  ],
+  "process": [
+    {
+      "title": "Lead to Cash",
+      "type": "process",
+      "icon": "leadtocash",
+      "body": "Lead-to-Cash process connects a customer’s interest to buy to a company’s realization of revenue, bringing the front office together with back office.",
+      "tags": [
+        "customer",
+        "finance"
+      ],
+      "key": "leadtocash"
+    },
+    {
+      "title": "Total Workforce Management",
+      "type": "process",
+      "icon": "twm",
+      "body": "The process includes all the activities needed to maintain a productive workforce, such as the Core HR management, performance and training management, but also recruiting, forecasting, etc.",
+      "tags": [
+        "hr",
+        "finance",
+        "people"
+      ],
+      "key": "twm"
+    },
+    {
+      "title": "Source to Pay",
+      "type": "process",
+      "icon": "sourcetopay",
+      "body": "It’s the entire end-to-end process involved in procurement. It spans every process, from spend management, strategic sourcing, vendor management to purchasing, and performance management.",
+      "tags": [
+        "spending",
+        "core"
+      ],
+      "key": "sourcetopay"
+    }
+  ]
+}

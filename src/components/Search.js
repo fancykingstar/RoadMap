@@ -126,21 +126,21 @@ class SearchBar extends Component {
       <div className="search-container" ref={node => { this.node = node; }}>
           <div className={"search-icon " + (compact ? "compactsearch" : "defaultsearch")} onClick={() => this.openSearch()}></div>
           {searchOpen && <div className="search-box">
-              <div className="search-content">
-                <div className="searchArea">
-                    <input type="text" onChange={(e) => onChange(e, this.props, this)} onKeyDown={(e) => onKeyDown(e, this.state, this)} value={userInput} className="search-input"></input>
-                    <img className="magnifying-glass" alt="Search" src={SearchIcon} />
-                 </div>
-                 {suggestionsListComponent}
-                 <div className="trending-content">
-                  <div className="trending-title">TRENDING NOW</div>
-                  {trends.map(trend => (
-                    <div className="trend" key={trend} onClick={() => trendSearch(this, {trend})}>
-                        <img src={Trend} alt="trend"></img><span className="label">{trend}</span>
-                    </div>
-                  ))}
-                 </div>
-              </div>
+            <div className="search-content">
+              <div className="searchArea">
+                <input type="text" onChange={(e) => onChange(e, this.props, this)} onKeyDown={(e) => onKeyDown(e, this.state, this)} value={userInput} className="search-input"></input>
+                <img className="magnifying-glass" alt="Search" src={SearchIcon} />
+               </div>
+              {suggestionsListComponent}
+              <div className="trending-content">
+                <div className="trending-title">TRENDING NOW</div>
+                {trends.map(trend => (
+                  <div className="trend" key={trend} onClick={() => trendSearch(this, {trend})}>
+                    <img src={Trend} alt="trend"></img><span className="label">{trend}</span>
+                  </div>
+                ))}
+               </div>
+            </div>
           </div>
           }
       </div>

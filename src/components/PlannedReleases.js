@@ -19,8 +19,9 @@ import SectionHeaderTitle from '../components/SectionHeaderTitle';
 import Pagination from '../components/Pagination';
 
 import { datamonths } from '../utils/searchutils';
-
 import DeleteTag from '../assets/images/close-x.svg'
+
+
 const staging = false;
 class PlannedReleases extends Component {
 
@@ -98,6 +99,7 @@ class PlannedReleases extends Component {
       })
       .then(({ value }) => {
         let results = value.filter((result) => result.date.length > 1);
+        console.log(results);
         for (var i = 0; i < results.length; i++) {
           let result = results[i], chips = [], tags = [];
           // parseData
@@ -109,7 +111,8 @@ class PlannedReleases extends Component {
           result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
           result.futureplans = this.manageDates(result.futureplans);
           // set tags
-          if (result.process.length > 1 && !chips.includes(result.process)) {
+          console.log('result.process:', result.process);
+          if (result.process && result.process.length > 1 && !chips.includes(result.process)) {
             const processKey = result.process.toLowerCase().replace(/\s/g, "");
             /* Exception Keys */
             if (processKey === "designtooperate") {
@@ -123,7 +126,7 @@ class PlannedReleases extends Component {
             })
           }
 
-          if (result.integration.length > 1 && !chips.includes(result.integration)) {
+          if (result.integration && result.integration.length > 1 && !chips.includes(result.integration)) {
             const integrationKey = result.integration.toLowerCase().replace(/\s/g, "");
             tags.push(integrationKey);
             chips.push({
@@ -133,7 +136,17 @@ class PlannedReleases extends Component {
             })
           }
 
-          if (result.industry.length > 1 && !chips.includes(result.industry)) {
+          if (result.subProcess && result.subProcess.length > 1 && !chips.includes(result.subProcess)) {
+            const subProcessKey = result.subProcess.toLowerCase().replace(/\s/g, "");
+            tags.push(subProcessKey);
+            chips.push({
+              category: 'subprocess',
+              key: subProcessKey,
+              label: result.subProcess.trim()
+            })
+          }
+
+          if (result.industry && result.industry.length > 1 && !chips.includes(result.industry)) {
             const industryKey = result.industry.toLowerCase().replace(/\s/g, "");
             if (industryKey === "retail/hospitality") {
               industryKey = "retail";
@@ -151,7 +164,7 @@ class PlannedReleases extends Component {
           if (result.products.length) {
             result.products.forEach(({ product }) => {
               const productKey = product.toLowerCase().replace(/(sap)|\s/g, "")
-              if (!chips.includes(product) && product.length > 1) {
+              if (!chips.includes(product) && product && product.length > 1) {
                 tags.push(productKey);
                 chips.push({
                   category: "product",
@@ -194,12 +207,19 @@ class PlannedReleases extends Component {
             .then(
               (result) => {
                 let keyLabelMap = {};
+                let releaseDatesTemplate = {
+                  "id": 0, "expandable": true, "state": false, "title": "Release Dates",
+                  "fields": []
+                }
+                result.forms.unshift(releaseDatesTemplate);
                 result.forms.forEach(({ fields }) => {
-                  fields.forEach(({ key, label }) => {
-                    if (!keyLabelMap[key]) {
-                      keyLabelMap[key] = label;
-                    }
-                  })
+                  if (fields) {
+                    fields.forEach(({ key, label }) => {
+                      if (!keyLabelMap[key]) {
+                        keyLabelMap[key] = label;
+                      }
+                    })
+                  }
                 })
                 this.setState({
                   forms: result.forms.filter(form => (this.props.type !== 'process' ?
@@ -233,7 +253,7 @@ class PlannedReleases extends Component {
   getOccurrence = (array, value) => {
     var count = 0;
     array.forEach((v) => {
-      (v.includes(value) && count++)
+      (v === value && count++)
     });
     return count;
   }
@@ -247,11 +267,9 @@ class PlannedReleases extends Component {
 
     //get tags from release data
     releases.forEach(release => {
-      // console.log(release.tags, 'cf:', cardfilter);
+      // console.log(release.tags);
       if (release.tags.includes(cardfilter)) {
         releasetags = releasetags.concat(release.tags);
-        // console.log('endpoint:', cardfilter, release.tags.indexOf(cardfilter));
-        // console.log('releasetaggerinos:', releasetags);
       }
     })
 
@@ -477,7 +495,7 @@ class PlannedReleases extends Component {
   }
 
   scrollToTop = () => {
-    window.scrollTo(0, this.paginationRef.current.offsetTop - 66.521);
+    window.scrollTo({ top: this.paginationRef.current.offsetTop - 66.521, behavior: 'smooth' });
   }
 
   render() {
@@ -506,21 +524,6 @@ class PlannedReleases extends Component {
             </div>
             <div className="pr-card-container">
               <div className="pr-sort-container">
-                {/* <img src={sort} alt="sort" />
-                <div className="pr-sort-label">SORT BY: </div>
-                <Select native className="pr-sort-select" value={sorting} onChange={e => this.onSortingChange(e.target.value)}>
-                  <option value="date">DATE</option>
-                  <option value="title">TITLE</option>
-                </Select> */}
-                {/* <div>
-                  <Chip onClick={this.handleDateChipClick} className="pr-selected-filter-chip" variant="outlined" clickable="true" label="All"></Chip>
-                  {dateTags.sort((a, b) => {
-                    return a.numericDate - b.numericDate;
-                  }).map(dateTag => (
-                    <Chip onClick={this.handleDateChipClick} variant="outlined" clickable="true" label={dateTag.displayDate} tabindex={tabIndex++}></Chip>
-                  ))}
-                </div> */}
-                {/* Conditional for if a filtered option exists, then render Clear All Filters button*/}
                 <div className="pr-filter-tag-container">
                   {tags.length > 0 ?
                     tags.map(filterTag => (
