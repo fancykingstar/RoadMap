@@ -522,89 +522,93 @@ class PlannedReleases extends Component {
   render() {
     const { forms, placeholder, sorting, tags, keyLabelMap, searchKey, filterreleases } = this.state;
     let tabIndex = 1;
+    
 
     return (
       <div className="pr-section" ref={this.paginationRef}>
         <SectionHeaderTitle title={"Planned Releases"} smallWindow={this.props.smallWindow} leftAligned={false} />
-
-        <div className={"pr-body" + (this.props.smallWindow ? " pr-body-small" : "")}>
-          <div className="pr-navigation">
-            {forms.map(form => {
-              if (typeof form.count == "number") {
-                return <ReleaseForm key={form.id} title={form.title} expandable={form.expandable} status={form.state} data={form.fields} count={form.count} manageTagArray={this.manageTagArray} icon={form.icon} iconclass={form.iconclass} />
-              }
-              return null;
-            })}
-            <Button className="clearButton" onClick={this.clearForms} disableFocusRipple={true} disableRipple={true}>CLEAR ALL FILTERS</Button>
-          </div>
-          <div className={"pr-results" + (this.props.smallWindow ? " pr-results-small" : "")}>
-            <div className={"pr-search-container" + (this.props.smallWindow ? " pr-search-container-small" : "")}>
-              <div className="pr-search-icon">
-                <SearchIcon fontSize="large" />
-              </div>
-              <input className="search-input" type="text" placeholder={placeholder} onChange={this.onSearchInputChanged} value={searchKey} />
+        <Grid container spacing={1} className="pr-body">
+          <Grid item xs={3}>
+            <div className="pr-navigation">
+              {forms.map(form => {
+                if (typeof form.count == "number") {
+                  return <ReleaseForm key={form.id} title={form.title} expandable={form.expandable} status={form.state} data={form.fields} count={form.count} manageTagArray={this.manageTagArray} icon={form.icon} iconclass={form.iconclass} />
+                }
+                return null;
+              })}
+              <Button className="clearButton" onClick={this.clearForms} disableFocusRipple={true} disableRipple={true}>CLEAR ALL FILTERS</Button>
             </div>
-            <div className="pr-card-container">
-              <div className="pr-sort-container">
-                <div className="pr-filter-tag-container">
-                  {tags.length > 0 ?
-                    tags.map(filterTag => (
-                      <Chip variant="outlined" clickable="false" label={keyLabelMap[filterTag]} lkey={filterTag} deleteIcon={<img src={DeleteTag} alt={filterTag} />} onDelete={this.handleDeleteTagClick} tabIndex={tabIndex++} />
-                    ))
-                    : null}
+          </Grid>
+          <Grid item xs={9}>
+            <div className={"pr-results" + (this.props.smallWindow ? " pr-results-small" : "")}>
+              <div className={"pr-search-container" + (this.props.smallWindow ? " pr-search-container-small" : "")}>
+                <div className="pr-search-icon">
+                  <SearchIcon fontSize="large" />
                 </div>
-                {tags.length > 0 ? <Chip className="clear-all-filters" variant="outlined" clickable="false" onClick={this.clearForms} label="Clear All Filters" /> : null}
-                <CustomButton handleClick={this.handleExportClick} label="Export" />
-                <Snackbar
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'center',
-                  }}
-                  className="toast-window"
-                  open={this.state.showToast}
-                  onClose={this.handleExportClick}
-                  autoHideDuration={6000}
-                  message={<span className="toast-messages" id="message-id">Export Feature Coming Soon</span>}
-                />
-
+                <input className="search-input" type="text" placeholder={placeholder} onChange={this.onSearchInputChanged} value={searchKey} />
               </div>
+              <div className="pr-card-container">
+                <div className="pr-sort-container">
+                  <div className="pr-filter-tag-container">
+                    {tags.length > 0 ?
+                      tags.map(filterTag => (
+                        <Chip variant="outlined" clickable="false" label={keyLabelMap[filterTag]} lkey={filterTag} deleteIcon={<img src={DeleteTag} alt={filterTag} />} onDelete={this.handleDeleteTagClick} tabIndex={tabIndex++} />
+                      ))
+                      : null}
+                  </div>
+                  {tags.length > 0 ? <Chip className="clear-all-filters" variant="outlined" clickable="false" onClick={this.clearForms} label="Clear All Filters" /> : null}
+                  <CustomButton handleClick={this.handleExportClick} label="Export" />
+                  <Snackbar
+                    anchorOrigin={{
+                      vertical: 'bottom',
+                      horizontal: 'center',
+                    }}
+                    className="toast-window"
+                    open={this.state.showToast}
+                    onClose={this.handleExportClick}
+                    autoHideDuration={6000}
+                    message={<span className="toast-messages" id="message-id">Export Feature Coming Soon</span>}
+                  />
+
+                </div>
+              </div>
+              {
+                filterreleases
+                  .sort((a, b) => {
+                    if (sorting === "title") {
+                      return a.title > b.title ? 1 : a.title < b.title ? -1 : 0;
+                    }
+
+                    return a.numericdate - b.numericdate;
+                  })
+                  .slice(this.state.initialitem, this.state.lastitem)
+                  .map(release => (
+                    <ReleaseCard
+                      key={release.id}
+                      _id={release.id}
+                      title={release.title}
+                      date={release.displaydate}
+                      description={release.description}
+                      likes={release.likes}
+                      chips={release.chips}
+                      values={release.businessvalues}
+                      details={release.featuredetails}
+                      futureplans={release.futureplans}
+                      smallWindow={this.props.smallWindow}
+                      staging={staging} />
+                  ))
+              }
+              {
+                this.state.pagination
+                  ? <Pagination pages={this.state.pages} paginate={this.paginate} scrollToTop={this.scrollToTop} />
+                  : null
+              }
+              <div className="disclaimer">
+                The information above is for informational purposes and delivery timelines may change and projected functionality may not be released see SAP <a href="https://www.sap.com/about/legal/impressum.html">Legal Disclaimer</a>.
+                </div>
             </div>
-            {
-              filterreleases
-                .sort((a, b) => {
-                  if (sorting === "title") {
-                    return a.title > b.title ? 1 : a.title < b.title ? -1 : 0;
-                  }
-
-                  return a.numericdate - b.numericdate;
-                })
-                .slice(this.state.initialitem, this.state.lastitem)
-                .map(release => (
-                  <ReleaseCard
-                    key={release.id}
-                    _id={release.id}
-                    title={release.title}
-                    date={release.displaydate}
-                    description={release.description}
-                    likes={release.likes}
-                    chips={release.chips}
-                    values={release.businessvalues}
-                    details={release.featuredetails}
-                    futureplans={release.futureplans}
-                    smallWindow={this.props.smallWindow}
-                    staging={staging} />
-                ))
-            }
-            {
-              this.state.pagination
-                ? <Pagination pages={this.state.pages} paginate={this.paginate} scrollToTop={this.scrollToTop} />
-                : null
-            }
-            <div className="disclaimer">
-              The information above is for informational purposes and delivery timelines may change and projected functionality may not be released see SAP <a href="https://www.sap.com/about/legal/impressum.html">Legal Disclaimer</a>.
-              </div>
-          </div>
-        </div>
+          </Grid>
+        </Grid>
       </div>
     )
   }

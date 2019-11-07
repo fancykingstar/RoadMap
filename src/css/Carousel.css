@@ -46,7 +46,8 @@
     padding-bottom: 4rem;
     height: 300px;
     /* max-width: 900px; */
-    min-width: 975px;
+    /*min-width: 975px;*/
+    width: 100%;
   }
   
   .roadmap-slide-dimensions-small {
@@ -56,7 +57,7 @@
 
   .roadmap-carousel-next-button:enabled ~ .roadmap-carousel-fade-next {
     position: absolute;
-    right: -50px;
+    right: -17px;
     top: 56px;
     width: 280px;
     height: 250px;
