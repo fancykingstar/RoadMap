@@ -97,9 +97,7 @@ class SearchResults extends Component {
                     
                     for (var i = 0; i < results.length; i++) {
                         let result = results[i], chips = [], tags = [];
-                        console.log(result)
                         // set tags
-                        if (result.process != null){
                         if (result.process.length > 1 && !chips.includes(result.process)) {
                           const processKey = result.process.toLowerCase().replace(/\s/g, "");
                           /* Exception Keys */
@@ -112,9 +110,8 @@ class SearchResults extends Component {
                             key: processKey,
                             label: result.process.trim()
                           })
-                        }}
-                        
-                        if (result.integration != null){
+                        }
+              
                         if (result.integration.length > 1 && !chips.includes(result.integration)) {
                           const integrationKey = result.integration.toLowerCase().replace(/\s/g, "");
                           tags.push(integrationKey);
@@ -123,9 +120,8 @@ class SearchResults extends Component {
                             key: integrationKey,
                             label: result.integration.trim()
                           })
-                        }}
-                        
-                        if (result.industry != null){
+                        }
+              
                         if (result.industry.length > 1 && !chips.includes(result.industry)) {
                           const industryKey = result.industry.toLowerCase().replace(/\s/g, "");
                           if (industryKey === "retail/hospitality") {
@@ -156,7 +152,7 @@ class SearchResults extends Component {
                         }
                         result.chips = chips;
                         result.tags = tags;
-                      }}
+                      }
                     this.setState({
                         results: uniqueResult
 
@@ -188,25 +184,6 @@ class SearchResults extends Component {
                     console.log(error);
                 }
             );
-        
-        // fetch("./data/search-pageData.json")
-        // .then(a => a.json())
-        // .then(
-        //     (b) => {
-        //     console.log(b);
-        //     // this.setState({
-        //     //     title: result.title,
-        //     //     description: result.description,
-        //     //     whatsnew: result.whatsnew,
-        //     //     chips: result.chips,
-        //     //     solutions: result.solutions,
-        //     //     products: result.products
-        //     // })
-        //     },
-        //     (error) => {
-        //     console.log(error);
-        //     }
-        // );
 
         this.updateWindowDimensions();
         window.addEventListener('resize', this.updateWindowDimensions);
