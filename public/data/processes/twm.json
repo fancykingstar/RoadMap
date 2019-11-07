@@ -2,8 +2,8 @@
   "title": "Total Workforce Management",
   "description": [{"title": "Products", "items":
                   [{"label": "SAP SuccessFactors", "key": "successfactors", "link": ""},
-                  {"label": "SAP Fieldglass", "key": "fieldglass", "link": ""},
-                  {"label": "SAP Concur", "key": "concur", "link": ""},
+                  {"label": "SAP Fieldglass solutions", "key": "fieldglass", "link": ""},
+                  {"label": "SAP Concur solutions", "key": "concur", "link": ""},
                   {"label": "SAP S/4HANA", "key": "s4hana", "link": ""},
                   {"label": "Qualtrics", "key": "qualtrics", "link": ""}]},
                   {"title": "Innovation topics", "items":
@@ -48,13 +48,13 @@
         "title": "Key Capabilities",
         "content": [
           {
-            "item": "Plan Workforce Demand"
+            "item": "Plan workforce demand"
           },
           {
-            "item": "Plan Travel"
+            "item": "Plan travel"
           },
           {
-            "item": "Plan Project"
+            "item": "Plan project"
           }
         ]
       }
@@ -66,13 +66,13 @@
         "title": "Key Capabilities",
         "content": [
           {
-            "item": "Identify Internal Talent"
+            "item": "Identify internal talent"
           },
           {
-            "item": "Recruit New Hires"
+            "item": "Recruit new hires"
           },
           {
-            "item": "Source Contingent Workers"
+            "item": "Source contingent workers"
           }
         ]
       }
@@ -84,7 +84,7 @@
         "title": "Key Capabilities",
         "content": [
           {
-            "item": "Onboard Total Workforce"
+            "item": "Onboard total workforce"
           }
         ]
       }
@@ -96,19 +96,19 @@
         "title": "Key Capabilities",
         "content": [
           {
-            "item": "Manage Travel and Expenses"
+            "item": "Manage travel and expenses"
           },
           {
-            "item": "Submit Timesheets"
+            "item": "Submit timesheets"
           },
           {
-            "item": "Assess Skills and Provide Feedback"
+            "item": "Assess skills and provide feedback"
           },
           {
-            "item": "Deliver Training and Development"
+            "item": "Deliver training and development"
           },
           {
-            "item": "Monitor Deliverables and Financials"
+            "item": "Monitor deliverables and financials"
           }
         ]
       }
@@ -120,13 +120,13 @@
         "title": "Key Capabilities",
         "content": [
           {
-            "item": "Run Payroll"
+            "item": "Run payroll"
           },
           {
-            "item": "Process Invoices from Contingent Workers"
+            "item": "Process invoices from contingent workers"
           },
           {
-            "item": "Process Invoices from Travel Agencies"
+            "item": "Process invoices from travel agencies"
           }
         ]
       }

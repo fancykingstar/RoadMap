@@ -42,15 +42,15 @@
       "id": "nov2019",
       "bullets": [
         {
-          "text": "Continue look and feel harmonization with SAP Fiori 3 ",
+          "text": "Central Order Service for SAP C/4HANA:  integrated with SAP S/4HANA, SAP Customer Order Sourcing and SAP Omnichannel Promotion Pricing service",
           "id": "nov2019-0"
         },
         {
-          "text": "One identity authentication",
+          "text": "SAP Customer Order Sourcing: integration with SAP ECC 6.0 EhP8 and with SAP Commerce Cloud",
           "id": "nov2019-1"
         },
         {
-          "text": "Central Order Service for SAP C/4HANA:  integrated with SAP S/4HANA, SAP Customer Order Sourcing and SAP Omnichannel Promotion Pricing service",
+          "text": "Continue look and feel harmonization with SAP Fiori 3 ",
           "id": "nov2019-2"
         }
       ]

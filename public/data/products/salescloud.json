@@ -2,7 +2,12 @@
     "title": "SAP Sales Cloud",
     "description": [{"title": "About", "descriptions":"The SAP Sales Cloud solution helps organizations connect and guide customers throughout their buying journey. Transform your lead-to-cash process and accelerate sales performance with incentive optimization, sales coaching, and learning recommendations – helping sales teams to spend their time on the best deals."},
                   {"title": "Innovation topics", "items":
-                  []}],
+                  [{"label": "C/4HANA suite integraton improvements for complex work flows", "key": "innovation1", "link": ""},
+                   {"label": "Retail execution enhancements", "key": "innovation2", "link": ""},
+                   {"label": "Enhanced offline capabilities ", "key": "innovation3", "link": ""},
+                   {"label": "Quote-to-Cash enhancements in variant configuration integration", "key": "innovation4", "link": ""},
+                   {"label": "Sales performance management enhancements ", "key": "innovation5", "link": ""},
+                  {"label": "Harmonized user experience for visual designs", "key": "innovation6", "link": ""}]}],
     "whatsnew" : [
       {
       "id": 1,
@@ -38,20 +43,16 @@
       "id": "nov2019",
       "bullets": [
         {
-          "text": "Quote-to-Cash: variant configuration integration improvements",
+          "text": "Quote-to-Cash enhancements in variant configuration integration, subscription capabilities and quote enhancements for bulk action",
           "id": "nov2019-0"
         },
         {
-          "text": "Quote 2.0 enhancements for bulk action",
+          "text": "Sales Performance Management enhancements in SAP Commissions, Territory scenario creation with enhanced account segmentation",
           "id": "nov2019-1"
         },
         {
-          "text": "Subscription capabilities to support recurring and consumption based charges",
+          "text": "Harmonized User Experience for visual designs",
           "id": "nov2019-2"
-        },
-        {
-          "text": "GDPR and privacy enhancements in SAP Commissions",
-          "id": "nov2019-3"
         }
       ]
     },
@@ -61,24 +62,16 @@
       "id": "feb2020",
       "bullets": [
         {
-          "text": "Commerce self service ",
+          "text": "CPQ integration enhancements with SAP Variant Configuration, Contract Lifecycle Management, and Subscription Billing",
           "id": "feb2020-0"
         },
         {
-          "text": "VC integration improvements ",
+          "text": "Quote-to-Cash enhancements Commerce",
           "id": "feb2020-1"
         },
         {
-          "text": "SOX compliance Audit Trail Enhancements",
+          "text": "Enhanced integration with SAP Marketing Cloud",
           "id": "feb2020-2"
-        },
-        {
-          "text": "Administrator messaging and dashboards",
-          "id": "feb2020-3"
-        },
-        {
-          "text": "T&Q embedded analytics and AI improvements",
-          "id": "feb2020-3"
         }
       ]
     },
@@ -87,15 +80,15 @@
       "id": "may2020",
       "bullets": [
         {
-          "text": "Embedded analytics and AI improvements to automate insights",
+          "text": "Quote-to-Cash enhancements like Embedded analytics and AI improvements to automate insights",
           "id": "may2020-0"
         },
         {
-          "text": "Quote 2.0 enhancements with business partner overhaul, product versions, bulk deletions and e-signatures",
+          "text": "AI expansion and enhancements in Sales Performance Management",
           "id": "may2020-1"
         },
         {
-          "text": "AI expansion and enhancements: Commissions AI Scorecard, Territory and Quota Recommendations, error detection and prevention",
+          "text": "AI sales order product recommendations and dynamic visit prioritization in Sales Automation",
           "id": "may2020-2"
         }
       ]

@@ -74,9 +74,17 @@ class SearchResults extends Component {
         .then(res => res.json())
             .then(
                 (result) => {
+                    var uniqueTitles = new Set()
+                    var uniqueResult = new Array()
+                    result.value.forEach(item =>{
+                        if(!uniqueTitles.has(item.title)){
+                            uniqueTitles.add(item.title)
+                            uniqueResult.push(item)
+                        }
+                    })
+                  
                     this.setState({
-
-                        results: result.value
+                        results: uniqueResult
                     }, () => fetch("/data/rform.json")
                         .then(res => res.json())
                         .then(
@@ -99,7 +107,7 @@ class SearchResults extends Component {
                         )
                     )
                     //this.cleanData(result.value)
-                    this.filterResultData(result.value);
+                    this.filterResultData(uniqueResult);
                 },
                 (error) => {
                     console.log(error);
@@ -124,12 +132,17 @@ class SearchResults extends Component {
         let forms = this.state.forms;
         let subfilter = this.state.subfilter;
         let releasetags = [];
-
         //get tags from release data
         releases.forEach(release => {
             if (release.tags.includes(cardfilter)) {
-                releasetags = releasetags.concat(release.tags);
+                console.log(release.tags)
+                release.tags.map(tags =>{
+                    releasetags.concat(tags.tag)
+                })
+                //releasetags = releasetags.concat(release.tags);
             }
+            //console.log(release)
+        //console.log(releasetags)
         })
 
         forms.forEach(form => {
@@ -266,15 +279,15 @@ class SearchResults extends Component {
 
                 //console.log(form)
                 if(isString(form.businessvalues)){
-                    form.businessvalues = form.businessvalues.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").split("\r\n")
+                    form.businessvalues = form.businessvalues.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").replace(/\r\n/gi,"")
                 }
                 if(isString(form.featuredetails)){
-                    form.featuredetails = form.featuredetails.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").split("\r\n")
+                    form.featuredetails = form.featuredetails.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").replace(/\r\n/gi,"")
                 }
                 
                 form.futureplans.map(detail =>{
                     if(isString(detail.detail)){
-                        detail.detail = detail.detail.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").split("\r\n")
+                        detail.detail = detail.detail.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").replace(/\r\n/gi,"")
                     }
                     if(detail.detail.length == 1){
                         if(detail.detail[0] == ""){
@@ -328,7 +341,7 @@ class SearchResults extends Component {
     manageTagArray = (state, key) => {
         let tags, pagination = false, pages = 0;
         tags = this.state.tags;
-
+        console.log(tags)
         if (state) {
             tags.push(key);
         } else if (key) {
@@ -507,6 +520,8 @@ class SearchResults extends Component {
 
     render() {
         const { result, sorting, filteredresults, filterall, filterprocesses, filterproducts, filterfeatures, initialitem, lastitem, pagination, focus, searchhandler } = this.state;
+        //console.log(filteredresults)
+        //console.log(this.state.forms)
         return (
             <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
                 

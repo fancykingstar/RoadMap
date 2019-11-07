@@ -12,6 +12,7 @@ import Feedback from '../components/Feedback';
 import PlannedReleases from '../components/PlannedReleases';
 import Footer from '../components/Footer';
 import FooterMobile from '../components/FooterMobile';
+import FooterTablet from '../components/FooterTablet';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import withWidth from '@material-ui/core/withWidth';
@@ -144,7 +145,9 @@ class Process extends Component {
           </div> */}
         </div>
 
-        {this.state.smallWindow ? <FooterMobile /> : <Footer />}
+        {
+          this.state.windowWidth > 850 ? <Footer /> : this.state.windowWidth > 550 ? <FooterTablet /> : <FooterMobile />
+        }
       </div>
     )
   }

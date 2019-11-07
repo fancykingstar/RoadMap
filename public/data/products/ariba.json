@@ -9,45 +9,45 @@
     {
       "id": 1,
       "type": "start",
-      "title": "Nov.18, 2019, 11:00 am ET",
+      "title": "North America Webinars",
       "header": "Supplier Performance Management Configuration and Template Administration",
-      "body": "This Webinar will walk through how to configure supplier performance management (SPM) project templates, with a focus on building surveys and scorecards to collect qualitative feedback from internal and external contacts. Other topics include creating a KPI library, setting up recurrences, and using the template upgrade feature.",
+      "body": "Nov.18, 2019, 11:00 am ET",
       "buttonText": "Register Now",
       "buttonLink": "https://sap-se.webex.com/sap-se/j.php?RGID=r312495b14268420d1171e8cbeb0b8408"
     },
     {
       "id": 2,
       "type": "mid",
-      "title": "Nov. 25, 2019, 11:00 am ET",
+      "title": "North America Webinars",
       "header": "Advanced Supplier Performance Management Concepts and Functionality",
-      "body": "Get the most out of supplier performance management (SPM) with advanced features and configuration techniques. This Webinar will cover loading external performance data via custom fact tables, report-based KPIs, formula-derived scoring, and building SPM dashboards.",
+      "body": "Nov. 25, 2019, 11:00 am ET",
       "buttonText": "Register Now",
       "buttonLink": "https://sap-se.webex.com/sap-se/j.php?RGID=r8c0dd6d4758222d0ac35a6be8cc71e62"
     },
     {
       "id": 3,
       "type": "mid",
-      "title": "Nov. 20, 2019, 11:00 am ET",
+      "title": "North America Webinars",
       "header": "Source to Contract",
-      "body": "When running sourcing events in SAP Ariba solutions, do you consider the end buying process? In this Webinar, users will learn how a sourcing event can support compliance in buying.",
+      "body": "Nov. 20, 2019, 11:00 am ET",
       "buttonText": "Register Now",
       "buttonLink": "https://sap-se.webex.com/sap-se/j.php?RGID=r89b04d559803d441fd7ccf429f05ad6d"
     },
     {
       "id": 4,
       "type": "mid",
-      "title": "Nov. 26, 2019, 8:00 am ET / 1:00 pm GMT",
+      "title": "EMEA Webinar",
       "header": "Managing Approval Processes",
-      "body": "During this Webinar, we’ll explore the types of approvables in the SAP Ariba Buying and Invoicing solution, how conditions are used, and why filter rules and edit rules can help you to simplify approvals to promote adoption of your buying solutions.",
+      "body": "Nov. 26, 2019, 8:00 am ET / 1:00 pm GMT",
       "buttonText": "Register Now",
       "buttonLink": "https://sap-se.webex.com/sap-se/j.php?RGID=rb9acae3138b71192f35c3e7636ba6b92"
     },
     {
       "id": 5,
       "type": "mid",
-      "title": "Nov. 21, 2019, 11:00 am ET",
+      "title": "LAC Webinar",
       "header": "Proyectos de tipo Solicitud: Sourcing, Contracts, Procurement ( Request Projects: Sourcing, Contracts, Procurement , Delivered in Spanish)",
-      "body": "En las soluciones de SAP Ariba, los proyectos de tipo Solicitud, como Solicitud de Sourcing, Solicitud de Contrato, y Solicitud de área de trabajo de Compras, otorgan muchos beneficios. En este webinar, analizaremos los tipos de solicitud, la configuración de la plantilla y el proceso desde la solicitud hasta el proyecto actual. También mostraremos el Gestor de Datos Maestros y cómo los datos de los sistemas ERP externos, tal como SAP ECC, se pueden configurar y usar fácilmente.",
+      "body": "Nov. 21, 2019, 11:00 am ET",
       "buttonText": "Register Now",
       "buttonLink": "https://sap-se.webex.com/sap-se/j.php?RGID=r7719d8bb6aba810d613192402d689844"
     }

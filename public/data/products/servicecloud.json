@@ -1,23 +1,26 @@
 {
-    "title": "SAP Service Cloud Solution",
-    "description": [{"title": "About", "descriptions":"The SAP Service Cloud solution offers robust omnichannel customer service and field service support. It helps provide a smooth service experience to your customers throughout their entire journey, bridging the gap between front-office engagements and back-office processes."},
+    "title": "SAP Service Cloud",
+    "description": [{"title": "About", "descriptions":"The SAP Service Cloud is a robust omnichannel customer service and field service solution. It provides a smooth service experience to your customers throughout their entire journey, bridging the gap between front-office engagements and back-office processes."},
                   {"title": "Innovation topics", "items":
-                  []}],
+                  [{"label": "Best matching technician with custom AI framework", "key": "innovation1", "link": ""},
+                   {"label": "Enhanced interaction handling with embedded images", "key": "innovation2", "link": ""},
+                   {"label": "360 agent experience", "key": "innovation3", "link": ""},
+                   {"label": "Ticket intelligence: email template and similar tickets", "key": "innovation4", "link": ""}]}],
     "whatsnew" : [
       {
       "id": 1,
       "type": "start",
       "title": "SAP C/4HANA SUITE",
-      "header": "SAP Customer Experience LIVE event in Munich, Germany, on November 5, 2019",
-      "body" : "",
+      "header": "SAP Customer Experience LIVE event in Munich, Germany",
+      "body" : "November 5, 2019",
       "buttonText" : "Register Now",
       "buttonLink" : "https://events.sap.com/de/cx-live-2019-munich/en/home"
       },{
       "id": 2,
       "type": "mid",
       "title": "SAP C/4HANA SUITE",
-      "header": "SAP Customer Experience LIVE event in London, UK, on October 3, 2019",
-      "body": "",
+      "header": "SAP Customer Experience LIVE event in London, UK",
+      "body": "October 3, 2019",
       "buttonText": "Register Now",
       "buttonLink": "https://events.sap.com/gb/cx-live-2019-london/en/home"
       },
@@ -25,8 +28,8 @@
       "id": 3,
       "type": "mid",
       "title": "SAP C/4HANA SUITE",
-      "header": "SAP Customer Experience LIVE in Dubai, UAE, on October 6, 2019",
-      "body": "",
+      "header": "SAP Customer Experience LIVE in Dubai, UAE",
+      "body": "October 6, 2019",
       "buttonText": "Register Now",
       "buttonLink": "https://events.sap.com/ae/cx-live-2019-dubai/en/home"
       }

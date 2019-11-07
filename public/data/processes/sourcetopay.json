@@ -1,11 +1,11 @@
 {
   "title": "Source to Pay",
   "description": [{"title": "Products", "items":
-                  [{"label": "SAP Ariba", "key": "ariba", "link": ""},
-                  {"label": "SAP Fieldglass", "key": "fieldglass", "link": ""},
+                  [{"label": "SAP Ariba solutions", "key": "ariba", "link": ""},
+                  {"label": "SAP Fieldglass solutions", "key": "fieldglass", "link": ""},
                   {"label": "SAP S/4HANA", "key": "s4hana", "link": ""}]},
                   {"title": "Innovation topics", "items":
-                  [{"label": "Deliver the most robust and complete source to pay collaborative platform and applications", "key": "innovation1", "link": ""}]}],
+                  [{"label": "Deliver the most robust and complete source-to-pay collaborative platform and applications", "key": "innovation1", "link": ""}]}],
   "whatsnew": [
     {
       "id": 1,
@@ -43,10 +43,10 @@
         "title": "Key Capabilities",
         "content": [
           {
-            "item": "Category Strategy"
+            "item": "Category strategy"
           },
           {
-            "item": "Source Material and Services"
+            "item": "Source material and services"
           },
           {
             "item": "Contract"
@@ -89,7 +89,7 @@
             "item": "Order"
           },
           {
-            "item": "Deliver and Receive"
+            "item": "Deliver and receive"
           }
         ]
       }
@@ -122,13 +122,13 @@
         "title": "Key Capabilities",
         "content": [
           {
-            "item": "Manage Trade Relationships"
+            "item": "Manage trade relationships"
           },
           {
-            "item": "Minimize Risks"
+            "item": "Minimize risks"
           },
           {
-            "item": "Adapt to Change"
+            "item": "Adapt to change"
           }
         ]
       }
@@ -140,10 +140,10 @@
         "title": "Key Capabilities",
         "content": [
           {
-            "item": "Network Integration"
+            "item": "Network integration"
           },
           {
-            "item": "Source to Pay Collaboration"
+            "item": "Source-to-pay collaboration"
           }
         ]
       }
