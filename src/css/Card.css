@@ -202,7 +202,7 @@
 }
 
 .static-card .content .body {
-  /overflow: hidden;
+  overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   height: 33%;
