@@ -69,10 +69,16 @@
 }
 
 .footer-content .subscribe-container .title {
+/*
   font-size: 3.3333333333333335rem;
    font-weight: 300;
   color: #fff;
   line-height: 46px;
+*/
+  color: #fff;
+  font-size: 2rem;
+  line-height: 23px;
+  font-weight: 400;
 }
 
 .footer-content .subscribe-container {

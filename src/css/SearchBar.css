@@ -106,7 +106,6 @@
   align-items: flex-start;
   justify-content: flex-start;
   margin-top: 4px;
-  margin-right: 10px;
 }
 
 .searchArea {
@@ -119,6 +118,10 @@
 
 .searchArea input {
   padding-left: 15px;
+}
+
+.searchArea img{
+  padding-right: 10px;
 }
 
 .header-mobile .search-input {
@@ -141,7 +144,7 @@
   font-size: 1.6666666666666667rem;
   color: #CCCCCC;
   padding-left: 0;
-/*  width: calc(380px + 1rem);*/
+  width: 100%;
   margin-block-end: 0em;
   margin-block-start: 0em;
   margin-top: 20px;
@@ -163,11 +166,13 @@
 .suggestions li:hover {
   color:#0A6ED1;
   cursor: pointer;
+  background-color: #E2EEF9;
 }
 
 .trending-content {
   margin-top: 20px;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 
@@ -188,7 +193,7 @@
 
 .trend:hover {
 /*Add in hover state if keyword highlight is implemented*/
-/*  background-color: #E2EEF9;*/
+  background-color: #E2EEF9;
 }
 
 .trend .label {
@@ -324,5 +329,5 @@ input:focus, textarea:focus {
   color: #0A6ED1;
   cursor: pointer;
 /*Add in hover state if keyword highlight is implemented*/
-/*  background-color: #E2EEF9;*/
+  background-color: #E2EEF9;
 }
