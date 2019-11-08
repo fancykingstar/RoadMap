@@ -49,7 +49,7 @@ class Products extends Component {
   }
 
   componentDidMount() {
-    fetch("/data/products/" + ((this.state.subproduct && this.state.subproduct!='c4hanasuitecross') || this.state.product )+ ".json")
+    fetch("/data/products/" + ((this.state.subproduct && this.state.subproduct!='c4hanasuitecross')? this.state.subproduct : this.state.product )+ ".json")
       .then(res => res.json())
       .then(
         (result) => {
