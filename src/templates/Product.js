@@ -114,12 +114,17 @@ class Products extends Component {
         <Header title={title} description={description} image={this.renderImage(product)} compact={true} smallWindow={this.state.smallWindow} type="sub-page" pageType={"product"} windowWidth={this.state.windowWidth} product={this.state.subproduct || this.state.product} />
         <Feedback />
         <div className="right-side-bg"></div>
+
         <div className={"content-container" + (this.state.smallWindow ? " content-container-small" : "")}>
+          { ((whatsnew && whatsnew.length>0) || (timeline && timeline.length>0)) ?
           <div className="process-content">
-            <Tabs className="roadmap-process-tabs roadmap-process-tab-titles" value={tabValue} onChange={this.handleTabChange} aria-label="Process flow and release highlights" orientation="vertical">
-              <Tab label="Release Highlights" disabled={timeline ? false : true} icon={<div className={"tab-icon" + (tabValue === 0 ? " tab-icon-highlights-active" : " tab-icon-highlights-inactive")}>{<img src={(tabValue === 0 ? ProductIcons[0]["highlightsOnstate"] : ProductIcons[0]["highlightsOffstate"])} alt="Release Highlights" />}</div>} />
-              <Tab label="What's Happening" disabled={whatsnew ? false : true} icon={<div className={"tab-icon" + (tabValue === 1 ? " tab-icon-happening-active" : " tab-icon-happening-inactive")}>{<img src={(tabValue === 1 ? ProductIcons[0]["happeningOnstate"] : ProductIcons[0]["happeningOffstate"])} alt="What's Happening" />}</div>} />
-            </Tabs>
+
+              <Tabs className="roadmap-process-tabs roadmap-process-tab-titles" value={tabValue} onChange={this.handleTabChange} aria-label="Process flow and release highlights" orientation="vertical">
+                <Tab label="Release Highlights" disabled={timeline ? false : true} icon={<div className={"tab-icon" + (tabValue === 0 ? " tab-icon-highlights-active" : " tab-icon-highlights-inactive")}>{<img src={(tabValue === 0 ? ProductIcons[0]["highlightsOnstate"] : ProductIcons[0]["highlightsOffstate"])} alt="Release Highlights" />}</div>} />
+                <Tab label="What's Happening" disabled={whatsnew ? false : true} icon={<div className={"tab-icon" + (tabValue === 1 ? " tab-icon-happening-active" : " tab-icon-happening-inactive")}>{<img src={(tabValue === 1 ? ProductIcons[0]["happeningOnstate"] : ProductIcons[0]["happeningOffstate"])} alt="What's Happening" />}</div>} />
+              </Tabs>
+
+
             <div className="tab-content">
               {timeline && timeline.length > 0 && tabValue === 0 ?
                 timeline.length > 4 || windowWidth < 1200 ? <TimelineVertical timeline={timeline} smallWindow={this.state.smallWindow} /> :
@@ -130,6 +135,10 @@ class Products extends Component {
               </div> : null}
             </div>
           </div>
+          :
+          null
+
+        }
             <PlannedReleases releases={releases} type={template} cardfilter={product} subfilter={subproduct} placeholder="Travel Expenses" smallWindow={this.state.smallWindow} />
         </div>
 
