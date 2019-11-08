@@ -550,7 +550,8 @@ class PlannedReleases extends Component {
       pages: 0,
       pagination: false,
       initialitem: 0,
-      lastitem: 10
+      lastitem: 10,
+      selectedDates: []
     }, () => {
       this.setState({
         forms: forms,
