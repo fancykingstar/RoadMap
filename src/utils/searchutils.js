@@ -1,3 +1,7 @@
+function isString (value) {
+  return typeof value === 'string' || value instanceof String;
+}
+
 export const onChange = (e, props, ref) => {
   const { suggestions, searchhandler } = props;
   const userInput = e.currentTarget.value;
@@ -94,6 +98,9 @@ export const selectSearch = (ref, inputvalue) => {
   if (inputvalue.suggestion) {
     retvalue = inputvalue.suggestion;
   } 
+  if(isString(inputvalue.inputvalue)){
+    retvalue = inputvalue.inputvalue;
+  }
  if (ref.state.resulthandler) {
      ref.state.resulthandler(retvalue);
  } else {
