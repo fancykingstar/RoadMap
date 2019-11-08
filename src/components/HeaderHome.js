@@ -88,9 +88,11 @@ class Header extends Component {
           console.log(error);
         }
       )
+      /*
       fetch(queryURL)
       .then(res => res.json())
           .then(
+
               (result) => {
                 let cleanedProdProc = []
                 fetch("/data/search-pageData.json")
@@ -99,6 +101,7 @@ class Header extends Component {
                         for (var item of result.products.concat(result.process)){
                             item.description = item.body
                             cleanedProdProc.push(item)
+                            console.log("fetching")
                         }
                     },
                     (error) => {
