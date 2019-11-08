@@ -300,7 +300,7 @@
         {
           "label": "Identity & Access Management",
           "checked": false,
-          "key": "identity&accessmanagement",
+          "key": "identityandaccessmanagement",
           "status": false,
           "children": []
         },
@@ -314,7 +314,7 @@
         {
           "label": "Intelligence & Analytics",
           "checked": false,
-          "key": "intelligence&analytics",
+          "key": "intelligenceandanalytics",
           "status": false,
           "children": []
         },

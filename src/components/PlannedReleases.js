@@ -247,11 +247,11 @@ class PlannedReleases extends Component {
         }, function () {
           fetch("/data/rform.json")
             .then(res => res.json())
-            .then(
-              (result) => {
+            .then((result) => {
                 let releaseDatesTemplate = this.getReleaseDateFormFields(results);
 
                 result.forms.unshift(releaseDatesTemplate);
+                releaseDatesTemplate.fields.forEach(date => keyLabelMap[date.label] = date.label);
                 // result.forms.forEach(({ fields }) => {
                 //   if (fields) {
                 //     fields.forEach(({ key, label }) => {
@@ -261,6 +261,8 @@ class PlannedReleases extends Component {
                 //     })
                 //   }
                 // })
+
+
                 this.setState({
                   // Filters forms -- current ternary operator will not allow for both Processes and Subprocesses to show.
                   forms: result.forms // initial setstate of forms.  forms needs to be refactored
@@ -281,6 +283,7 @@ class PlannedReleases extends Component {
         console.log(error);
       })
   }
+
   getReleaseDateFormFields = (results) => {
 
     // Establish quarterDates
@@ -303,9 +306,10 @@ class PlannedReleases extends Component {
 
       tempDates = {};
       sortDates.forEach(date => tempDates[date.displayDate] = date.displayDate);
+
       this.setState({
         quarterDateTags: tempDates,
-        sortQuarterDates: sortDates
+        sortQuarterDates: sortDates,
       })
     }
 
@@ -434,6 +438,7 @@ class PlannedReleases extends Component {
       })
       return;
     }
+
     // if state and key are passed in
     if (state && !tags.includes(key)) {
       tags.push(key);
@@ -636,9 +641,11 @@ class PlannedReleases extends Component {
   }
 
   render() {
-    const { forms, placeholder, sorting, tags, keyLabelMap, searchKey, filterreleases } = this.state;
+    const { forms, placeholder, sorting, tags, selectedDates, keyLabelMap, searchKey, filterreleases } = this.state;
     let tabIndex = 1;
 
+    const allSelectedTags = selectedDates.concat(tags);
+    console.log(keyLabelMap, keyLabelMap['Q1 1911']);
 
     return (
       <div className="pr-section" ref={this.paginationRef}>
@@ -666,13 +673,13 @@ class PlannedReleases extends Component {
               <div className="pr-card-container">
                 <div className="pr-sort-container">
                   <div className="pr-filter-tag-container">
-                    {tags.length > 0 ?
-                      tags.map(filterTag => (
+                    {allSelectedTags.length > 0 ?
+                      allSelectedTags.map(filterTag => (
                         <Chip variant="outlined" clickable="false" label={keyLabelMap[filterTag] ? keyLabelMap[filterTag].replace("SAP", "").trim(): keyLabelMap[filterTag]} lkey={filterTag} deleteIcon={<img src={DeleteTag} alt={filterTag} />} onDelete={this.handleDeleteTagClick} tabIndex={tabIndex++} />
                       ))
                       : null}
                   </div>
-                  {tags.length > 0 ? <Chip className="clear-all-filters" variant="outlined" clickable="false" onClick={this.clearForms} label="Clear All Filters" /> : null}
+                  {allSelectedTags.length > 0 ? <Chip className="clear-all-filters" variant="outlined" clickable="false" onClick={this.clearForms} label="Clear All Filters" /> : null}
                   <CustomButton handleClick={this.handleExportClick} label="Export" />
                   <Snackbar
                     anchorOrigin={{
