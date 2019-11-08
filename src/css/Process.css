@@ -30,7 +30,7 @@
   min-width: 347px;
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 768px) {
   .MuiTabs-root.roadmap-process-tabs.roadmap-process-tab-titles.MuiTabs-vertical {
     min-width: 405px;
     align-self: center;
