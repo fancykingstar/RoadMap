@@ -13,6 +13,7 @@ import { CustomButton } from '../components/Button';
 import DeleteTag from '../assets/images/close-x.svg'
 
 import { datamonths } from '../utils/searchutils';
+import { baseURL } from '../utils/links';
 //import css
 import '../css/PR-Container.css'
 import '../css/Card.css';
@@ -95,14 +96,10 @@ class SearchResults extends Component {
   }
 
   componentDidMount() {
-    let queryURL = '';
-    let searchType = '';
     document.title = 'Search Results';
+    let searchType = '';
+    let queryURL = `${baseURL}?ProductSearch&$skip=0&$orderby=date asc&$expand=products,futureplans,toIntegration,toProcess,toSubProcess`;
 
-    const baseURL = 'https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com'
-    queryURL = `${baseURL}/odata/v4/roadmap/Roadmap?ProductSearch&$skip=0&$orderby=date asc&$expand=products,futureplans,toIntegration,toProcess,toSubProcess`;
-
-    //fetch('https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com/odata/v4/roadmap/Roadmap?ProductSearch&$skip=0&$orderby=date%20asc&$expand=products,futureplans')
     fetch(queryURL)
     .then(res =>{
       let response =  res.json()
