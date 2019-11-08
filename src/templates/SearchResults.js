@@ -781,18 +781,7 @@ class SearchResults extends Component {
                             : null}
                         </div>
                         {tags.length > 0 ? <Chip className="clear-all-filters" variant="outlined" clickable="false" onClick={this.clearForms} label="Clear All Filters" /> : null}
-                        <CustomButton handleClick={this.handleExportClick} label="Export" />
-                        <Snackbar
-                          anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'center',
-                          }}
-                          className="toast-window"
-                          open={this.state.showToast}
-                          onClose={this.handleExportClick}
-                          autoHideDuration={6000}
-                          message={<span className="toast-messages" id="message-id">Export Feature Coming Soon</span>}
-                        />
+                      
 
                       </div>
                         <div className="search-content-container results">

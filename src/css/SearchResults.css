@@ -15,6 +15,7 @@
 }
 .search-list-container .pr-sort-container{
   display: flex;
+  padding-left: 14px;
 }
 .page-container-small .search-content-container {
     padding-left: 0px;
