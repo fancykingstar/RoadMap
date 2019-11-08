@@ -102,7 +102,7 @@ class PlannedReleases extends Component {
         return response;
       })
       .then(({ value }) => {
-        let results = value.filter((result) => result.date.length > 1), keyLabelMap = {};
+        let results = value.filter((result) => result.date.length > 1), keyLabelMap = {}, productParentKey;
         console.log(results);
         for (var i = 0; i < results.length; i++) {
           let result = results[i], chips = [], tags = [];
@@ -176,9 +176,24 @@ class PlannedReleases extends Component {
           }
 
           if (result.products.length) {
-            result.products.forEach(({ product }) => {
+            console.log()
+            // const productKey = result.products[0].product.toLowerCase().replace(/\/|(sap)|\s/g, ""),
+            //     productLabel = result.products[0].product.trim();
+            //   if ((result.products[0].product && result.products[0].product > 1) && !chips.includes(productKey)) {
+            //     if (!keyLabelMap[productKey]) {
+            //       keyLabelMap[productKey] = productLabel
+            //     }
+            //     tags.push(productKey);
+            //     chips.push({
+            //       category: "product",
+            //       key: productKey,
+            //       label: productLabel
+            //     })
+            //   }
+            result.products.forEach(({ product }, i) => {
               const productKey = product.toLowerCase().replace(/\/|(sap)|\s/g, ""),
                 productLabel = product.trim();
+                if (i === 0) productParentKey = productKey;
               if (!chips.includes(product) && product && product.length > 1) {
                 if (!keyLabelMap[productKey]) {
                   keyLabelMap[productKey] = productLabel
@@ -205,10 +220,14 @@ class PlannedReleases extends Component {
                 }
                 tags.push(subProductKey);
                 // console.log('tags.push:', tags)
+
+                // filter out dupes
+                chips = chips.filter( ({key, label}) => key !== subProductKey && label !== subProductLabel)
                 chips.push({
                   category: "subproduct",
                   key: subProductKey,
                   label: subProductLabel,
+                  parentKey: productParentKey
                 })
               }
             })
@@ -250,18 +269,18 @@ class PlannedReleases extends Component {
                   "fields": []
                 }
                 result.forms.unshift(releaseDatesTemplate);
-                result.forms.forEach(({ fields }) => {
-                  if (fields) {
-                    fields.forEach(({ key, label }) => {
-                      if (!keyLabelMap[key]) {
-                        keyLabelMap[key] = label;
-                      }
-                    })
-                  }
-                })
+                // result.forms.forEach(({ fields }) => {
+                //   if (fields) {
+                //     fields.forEach(({ key, label }) => {
+                //       if (!keyLabelMap[key]) {
+                //         keyLabelMap[key] = label;
+                //       }
+                //     })
+                //   }
+                // })
                 this.setState({
                   // Filters forms -- current ternary operator will not allow for both Processes and Subprocesses to show. 
-                  forms: result.forms
+                  forms: result.forms // initial setstate of forms.  forms needs to be refactored
                     .filter(form => (this.props.type !== 'process' ?
                       form.title !== 'Subprocesses'
                       : (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent === this.props.cardfilter

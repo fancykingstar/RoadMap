@@ -29,7 +29,7 @@ import accountIcon from '../assets/images/home-account.svg';
 import compactAccountIcon from '../assets/images/compact-account.svg';
 import clipMask from '../assets/images/clippingMask.svg';
 import Fuse from 'fuse.js';
-
+const staging = false;
 
 class Header extends Component {
 
@@ -67,6 +67,7 @@ class Header extends Component {
       .then(res => res.json())
       .then(
         (result) => {
+          console.log('menushort:', result);
           result.processes.forEach(process => {
             process.state = activeprocesses.includes(process.title) ? true : false;
           })
@@ -87,6 +88,7 @@ class Header extends Component {
       .then(res => res.json())
           .then(
               (result) => {
+                console.log('roadmapjson:', result);
                 var uniqueTitles = new Set()
                     var uniqueResult = new Array()
                     result.value.forEach(item =>{
@@ -108,7 +110,8 @@ class Header extends Component {
           );
         
     /* DEVELOPMENT ONLY */
-    if (this.props.pageType) {
+    if (this.props.pageType && (this.props.pageType === "process" || this.props.pageType === "products")) {
+      console.log('pageType:', this.props.pageType);
       const pathString = this.props.pageType === "process" ? `processes/${this.props.process}` : `products/${this.props.product}`;
       fetch(`/data/${pathString}.json`)
         .then(res => res.json())
@@ -315,80 +318,79 @@ class Header extends Component {
 
   renderProcessHeaderContainers = () => {
     const { title, compact, headerimage, roadmap } = this.state;
-    if (!title) {
-      return null;
+    if (title) {
+      return (
+        <div className="header-divided-container">
+          <div className={"header-left-container process-header" + (this.props.smallWindow ? " hidden" : "")}>
+            {compact ? <img src={headerimage} alt={title} /> : null}
+          </div>
+          <div className="header-right-container process-header">
+            <div className={"title title-" + (compact ? "compact" : "default")
+              + (this.props.smallWindow ? " title-small" : "")
+              + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")}>{title}
+              <img src={info} alt="info" style={{ position: this.props.windowWidth < 816 ? "relative" : "absolute", paddingLeft: 13 + "px", paddingTop: 21 + "px" }} onClick={this.handleInfoClick} ref={this.anchorEl} />
+            </div>
+            <div className="header-roadmap-container">
+  
+              {roadmap && roadmap.length > 0 ? this.props.windowWidth < 1240 ? <RoadmapVertical roadmap={roadmap} /> : <MultiRoadmap roadmap={roadmap} hideArrows={this.state.process === "twm"} /> : null}
+            </div>
+          </div>
+        </div>
+      )
     }
-    return (
-      <div className="header-divided-container">
-        <div className={"header-left-container process-header" + (this.props.smallWindow ? " hidden" : "")}>
-          {compact ? <img src={headerimage} alt={title} /> : null}
-        </div>
-        <div className="header-right-container process-header">
-          <div className={"title title-" + (compact ? "compact" : "default")
-            + (this.props.smallWindow ? " title-small" : "")
-            + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")}>{title}
-            <img src={info} alt="info" style={{ position: this.props.windowWidth < 816 ? "relative" : "absolute", paddingLeft: 13 + "px", paddingTop: 21 + "px" }} onClick={this.handleInfoClick} ref={this.anchorEl} />
-          </div>
-          <div className="header-roadmap-container">
-
-            {roadmap && roadmap.length > 0 ? this.props.windowWidth < 1240 ? <RoadmapVertical roadmap={roadmap} /> : <MultiRoadmap roadmap={roadmap} hideArrows={this.state.process === "twm"} /> : null}
-          </div>
-        </div>
-      </div>
-    )
   }
 
   renderProductHeaderContainers = () => {
     const { title, description, compact, type, headerimage, searchhandler } = this.state;
-    if (!title) {
-      return null;
-    }
-    return (
-      <div className={"header-divided-container" + (title === "product roadmaps" ? " home-header" : " product-header"
-      )}>
-        <div className={"header-left-container" + (title === "product roadmaps" ? " home-header" : " product-header"
+    if (title) {
+      console.log('title:', title, 'type:', type, 'desc:', description);
+      return (
+        <div className={"header-divided-container" + (title && title === "product roadmaps" ? " home-header" : " product-header"
         )}>
-          <div className={"title title-" + (compact ? "compact" : "default") + (title === "product roadmaps" ? " home-title" : " product-header")
-            + (this.props.smallWindow ? " title-small" : "")
-            + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")}>{title}
-            {
-              title && title !== "product roadmaps" && (this.state.description[1]["items"].length > 0) ? <img src={info} alt="info" style={{
-                position: this.props.windowWidth < 816 ? "relative" : "absolute",
-                paddingLeft: 13 + "px",
-                paddingTop: this.props.windowWidth < 816 ? 5 + "px" : 21 + "px"
-              }}
-                onClick={this.handleInfoClick}
-                ref={this.anchorEl} /> : null
-            }
-
-          </div>
-          <div className={"description-" + (compact ? "compact" : "default")
-            + (this.props.smallWindow ? " description-small" : " description")
-            + (title === "product roadmaps" ? " home-header-description" : "")
-          }>
-            <div className="header-bullet-description-container">
+          <div className={"header-left-container" + (title && title === "product roadmaps" ? " home-header" : " product-header"
+          )}>
+            <div className={"title title-" + (compact ? "compact" : "default") + (title && title === "product roadmaps" ? " home-title" : " product-header")
+              + (this.props.smallWindow ? " title-small" : "")
+              + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")}>{title ? title : ""}
+              {
+                title && title !== "product roadmaps" && (this.state.description && this.state.description[1]["items"].length > 0) ? <img src={info} alt="info" style={{
+                  position: this.props.windowWidth < 816 ? "relative" : "absolute",
+                  paddingLeft: 13 + "px",
+                  paddingTop: this.props.windowWidth < 816 ? 5 + "px" : 21 + "px"
+                }}
+                  onClick={this.handleInfoClick}
+                  ref={this.anchorEl} /> : null
+              }
+  
             </div>
-
-            {
-              type === 'sub-page' ? (description ? ReactHtmlParser(description[0]["descriptions"]) : null) :
-                <ProductSearch placeholder="Search for topics, products, or industries" suggestions={suggestions} trends={trends} searchhandler={searchhandler} isHomePage={title && title === "product roadmaps"} />
-            }
-
+            <div className={"description-" + (compact ? "compact" : "default")
+              + (this.props.smallWindow ? " description-small" : " description")
+              + (title === "product roadmaps" ? " home-header-description" : "")
+            }>
+              <div className="header-bullet-description-container">
+              </div>
+  
+              {
+                type === 'sub-page' ? (description ? ReactHtmlParser(description[0]["descriptions"]) : null) :
+                  <ProductSearch placeholder="Search for topics, products, or industries" suggestions={suggestions} trends={trends} searchhandler={searchhandler} isHomePage={title && title === "product roadmaps"} />
+              }
+  
+            </div>
+            {compact ? null : <div className="button-container">
+  
+            </div>}
           </div>
-          {compact ? null : <div className="button-container">
-
+          {this.props.smallWindow ? null : <div className="header-right-container product-header">
+            {compact ? <img src={headerimage} alt={title} /> : null}
           </div>}
+          {this.props.smallWindow || compact ? null : <img src={clipMask} alt="mask" />}
         </div>
-        {this.props.smallWindow ? null : <div className="header-right-container product-header">
-          {compact ? <img src={headerimage} alt={title} /> : null}
-        </div>}
-        {this.props.smallWindow || compact ? null : <img src={clipMask} alt="mask" />}
-      </div>
-
-    )
+  
+      )
+    }
   }
   render() {
-    const { processes, products, compact, type, resultspage, resulthandler, pageType, searchhandler } = this.state;
+    const { processes, products, compact, type, resultspage, resulthandler, pageType, searchhandler, title } = this.state;
     return (
       <div className={"page-header-default"
         + (type === "regular" ? " page-header-minheight" : "")
@@ -450,7 +452,7 @@ class Header extends Component {
         <div className={"header-content" + (compact ? " header-content-compact" : "")
           + (this.props.smallWindow ? " header-content-small" : "")
           + (type === "search" ? " header-content-none" : "")} >
-          {pageType === "process" ?
+          {title && pageType === "process" ?
             this.renderProcessHeaderContainers() // Process Header
             :
             this.renderProductHeaderContainers() // Product Header
@@ -476,7 +478,7 @@ class Header extends Component {
 
           {
             // TODO:
-            pageType === undefined ? null : this.renderInfoModal()
+            title && pageType ? this.renderInfoModal() : null
           }
         </Popover>
       </div>
