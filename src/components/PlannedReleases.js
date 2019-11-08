@@ -248,7 +248,8 @@ class PlannedReleases extends Component {
             .then((result) => {
                 let releaseDatesTemplate = this.getReleaseDateFormFields(results);
 
-                result.forms.unshift(releaseDatesTemplate);
+                if (releaseDatesTemplate.count > 0)
+                  result.forms.unshift(releaseDatesTemplate);
                 releaseDatesTemplate.fields.forEach(date => keyLabelMap[date.label] = date.label);
                 // result.forms.forEach(({ fields }) => {
                 //   if (fields) {
@@ -290,6 +291,9 @@ class PlannedReleases extends Component {
       let tempDates = {};
       results.forEach(release => {
         const quarterDate = this.getQuarter(new Date(release.date));
+        if (!quarterDate) {
+          return ;
+        }
         if (!tempDates.hasOwnProperty(quarterDate)) {
           sortDates.push({ numericDate: release.date, displayDate: quarterDate, count: 1});
           tempDates[quarterDate] = quarterDate;
@@ -511,6 +515,9 @@ class PlannedReleases extends Component {
   }
 
   getQuarter = (date) => {
+    if (!date || Number.isNaN(date.getTime())) {
+      return null;
+    }
     const month = date.getMonth() + 1;
     const quarter = (Math.ceil(month / 3));
     const year = date.getFullYear();
@@ -613,7 +620,6 @@ class PlannedReleases extends Component {
     let tabIndex = 1;
 
     const allSelectedTags = selectedDates.concat(tags);
-    console.log(keyLabelMap, keyLabelMap['Q1 1911']);
 
     return (
       <div className="pr-section" ref={this.paginationRef}>

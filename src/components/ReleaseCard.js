@@ -153,7 +153,7 @@ export default function ReleaseCard(props) {
                   }
 
                 </div>
-                {state.futureplans.length > 0
+                { (state.futureplans && state.futureplans.length > 0)
                 ?   <div className="details-right">
                       <StepContainer title="future planned capabilities" steps={state.futureplans} businessvalues={state.businessvalues} featuredetails={state.featuredetails} />
                     </div>

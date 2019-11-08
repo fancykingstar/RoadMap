@@ -7,6 +7,11 @@ import Fuse from 'fuse.js';
 import Button from '@material-ui/core/Button';
 import MinIcon from '@material-ui/icons/Minimize';
 import Grid from '@material-ui/core/Grid';
+import Chip from '@material-ui/core/Chip';
+import Snackbar from '@material-ui/core/Snackbar';
+import { CustomButton } from '../components/Button';
+import DeleteTag from '../assets/images/close-x.svg'
+
 import { datamonths } from '../utils/searchutils';
 //import css
 import '../css/PR-Container.css'
@@ -67,13 +72,17 @@ class SearchResults extends Component {
       maxperpage: 10,
       pages: 0,
       pagination: false,
-
-      selectedDates: []
+      keyLabelMap: {},
+      selectedDates: [],
+      quarterDateTags: {},
+      tagfilteredresults: []
     };
     this.scrollToTop = this.scrollToTop.bind(this);
     this.handleUserResult = this.handleUserResult.bind(this);
     this.paginate = this.paginate.bind(this);
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+    this.handleExportClick = this.handleExportClick.bind(this);
+    this.handleDeleteTagClick = this.handleDeleteTagClick.bind(this);
   }
   manageDates = (array) => {
     array.forEach(item => {
@@ -100,7 +109,7 @@ class SearchResults extends Component {
     })
       .then(
         ({value}) => {
-          let results = value.filter((result) => (result.date && result.date.length > 1));
+          let results = value.filter((result) => (result.date && result.date.length > 1)),keyLabelMap = {},productParentKey;
 
 
           for (var i = 0; i < results.length; i++) {
@@ -110,35 +119,45 @@ class SearchResults extends Component {
             result.numericdate = datevalue.getTime() / 1000.0;
             result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
             result.futureplans = this.manageDates(result.futureplans);
+            
+            
+
             // set tags
             if (result.process && result.process.length > 1 && !chips.includes(result.process)) {;
               /* Exception Keys */
               if (result.process === "designtooperate") {
-              result.process = "d2o";
+                result.process = "d2o";
               }
+              if (!keyLabelMap[result.toProcess.lkey]) {
+                keyLabelMap[result.toProcess.lkey] = result.toProcess.label
+              }
+
               tags.push(result.process);
               chips.push({
-              category: 'process',
-              key: result.toProcess.lkey,
-              label: result.toProcess.label
+                category: 'process',
+                key: result.toProcess.lkey,
+                label: result.toProcess.label
               })
             }
 
             if (result.toIntegration && result.integration.length > 1 && !chips.includes(result.integration)) {
+              if (!keyLabelMap[result.toIntegration.lkey]) {
+                keyLabelMap[result.toIntegration.lkey] = result.toIntegration.label
+              }
               tags.push(result.integration);
               chips.push({
-              category: 'integration',
-              key: result.toIntegration.lkey,
-              label: result.toIntegration.label
+                category: 'integration',
+                key: result.toIntegration.lkey,
+                label: result.toIntegration.label
               })
             }
 
             if (result.toSubProcess && result.subProcess.length > 1 && !chips.includes(result.subProcess)) {
               tags.push(result.subProcess);
               chips.push({
-              category: 'subprocess',
-              key: result.toSubProcess.lkey,
-              label: result.toSubProcess.label
+                category: 'subprocess',
+                key: result.toSubProcess.lkey,
+                label: result.toSubProcess.label
               })
             }
 
@@ -147,34 +166,39 @@ class SearchResults extends Component {
               /* */
               const industryKey = result.industry.toLowerCase().replace(/\s/g, "");
               if (industryKey === "retail/hospitality") {
-              industryKey = "retail";
+                industryKey = "retail";
               } else if (industryKey === "publicsector/government") {
-              industryKey = "publicsector"
+                industryKey = "publicsector"
               }
 
               tags.push(industryKey);
-              chips.push({
-              category: 'industry',
-              key: industryKey,
-              label: result.industry.trim()
+                chips.push({
+                category: 'industry',
+                key: industryKey,
+                label: result.industry.trim()
               })
             }
 
             if (result.products.length) {
               result.products.forEach(({ product }) => {
-              const productKey = product.toLowerCase().replace(/(sap)|\s/g, "")
-              if (!chips.includes(product) && product && product.length > 1) {
-                tags.push(productKey);
-                chips.push({
-                category: "product",
-                key: productKey,
-                label: product.trim()
+              const productKey = product.toLowerCase().replace(/\/|(sap)|\s/g, ""),
+                productLabel = product.trim();
+                if (i === 0) productParentKey = productKey;
+                if (!chips.includes(product) && product && product.length > 1) {
+                  if (!keyLabelMap[productKey]) {
+                    keyLabelMap[productKey] = productLabel
+                  }
+                  tags.push(productKey);
+                    chips.push({
+                      category: "product",
+                      key: productKey,
+                      label: product.trim()
+                    })
+                  }
                 })
               }
-              })
-            }
-            result.chips = chips;
-            result.tags = tags;
+              result.chips = chips;
+              result.tags = tags;
             }
 
           let cleanedProdProc = []
@@ -200,38 +224,49 @@ class SearchResults extends Component {
               uniqueResult.push(item)
             }
           })
+
+
+          //this.cleanData(result.value)
+          this.filterResultData(uniqueResult, cleanedProdProc);
+
           this.setState({
             results: uniqueResult,
             prodProc: cleanedProdProc
 
           }, () => fetch("/data/rform.json")
             .then(res => res.json())
-            .then(
-              (result) => {
+            .then((result) => {
+              let releaseDatesTemplate = this.getReleaseDateFormFields(this.state.filteredresults);
 
-                let releaseDatesTemplate = this.getReleaseDateFormFields(results);
-
+              if (releaseDatesTemplate.count > 0)
                 result.forms.unshift(releaseDatesTemplate);
-                // releaseDatesTemplate.fields.forEach(date => keyLabelMap[date.label] = date.label);
-
-                this.setState({
-                  forms: result.forms.filter(form => (this.props.type !== 'process' ?
+              
+              releaseDatesTemplate.fields.forEach(date => keyLabelMap[date.label] = date.label);
+              // result.forms.forEach(({ fields }) => {
+              //   if (fields) {
+              //     fields.forEach(({ key, label }) => {
+              //       if (!keyLabelMap[key]) {
+              //         keyLabelMap[key] = label;
+              //       }
+              //     })
+              //   }
+              // })
+              this.setState({
+                // Filters forms -- current ternary operator will not allow for both Processes and Subprocesses to show.
+                forms: result.forms // initial setstate of forms.  forms needs to be refactored
+                  .filter(form => (this.props.type !== 'process' ?
                   form.title !== 'Subprocesses'
-                  :
-                  (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent === this.props.cardfilter
-                )
-                ),
+                  : (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent === this.props.cardfilter
+                  ))
+                ,keyLabelMap: keyLabelMap
               }, function () {
-                  this.filterFormResults();
-                })
-              },
-              (error) => {
-                console.log(error);
-              }
+                console.log('result.forms(pre-filter):', result.forms);
+                console.log('keyLabelMap:', this.state.keyLabelMap)
+                this.filterFormResults();
+              })
+            }, (error) => { console.log(error); }
             )
           )
-          //this.cleanData(result.value)
-          this.filterResultData(uniqueResult, cleanedProdProc);
         },
         (error) => {
           console.log(error);
@@ -246,6 +281,70 @@ class SearchResults extends Component {
     window.removeEventListener('resize', this.updateWindowDimensions);
   }
 
+  getReleaseDateFormFields = (results) => {
+
+    // Establish quarterDates
+    let sortDates = [];
+    if (results && Array.isArray(results)) {
+      let tempDates = {};
+      results.forEach(release => {
+        const quarterDate = this.getQuarter(new Date(release.date));
+        if (!quarterDate) {
+          return ;
+        }
+        if (!tempDates.hasOwnProperty(quarterDate)) {
+          sortDates.push({ numericDate: release.date, displayDate: quarterDate, count: 1});
+          tempDates[quarterDate] = quarterDate;
+        } else {
+          const sortDateTagIndex = sortDates.findIndex(date => date.displayDate == quarterDate);
+          if (sortDateTagIndex !== -1) {
+            sortDates[sortDateTagIndex].count ++;
+          }
+        }
+      });
+      sortDates.sort((s1, s2) => s1.numericDate - s2.numericdate);
+
+      tempDates = {};
+      sortDates.forEach(date => tempDates[date.displayDate] = date.displayDate);
+
+      this.setState({
+        quarterDateTags: tempDates,
+        sortQuarterDates: sortDates,
+      })
+    }
+
+
+    let fields = sortDates.map(qDateTag => {
+      return {
+        "label": qDateTag.displayDate,
+        "checked": false,
+        "key": qDateTag.displayDate,
+        "status": false,
+        "children": [],
+        count: qDateTag.count
+      }
+    });
+
+    return {
+      "id": 0, "expandable": true, "state": false, "title": "Release Dates",
+      "fields": fields,
+      count: sortDates.reduce((q1, q2) => q1 += q2.count, 0)
+    };
+
+  }
+
+  getQuarter = (date) => {
+    if (!date || Number.isNaN(date.getTime())) {
+      return null;
+    }
+    const month = date.getMonth() + 1;
+    const quarter = (Math.ceil(month / 3));
+    const year = date.getFullYear();
+
+    
+    return "Q" + quarter.toString() + " " + year.toString();
+  }
+
   updateWindowDimensions() {
     this.setState({ windowWidth: window.innerWidth, windowHeight: window.innerHeight, smallWindow: window.innerWidth < 770 });
   }
@@ -254,35 +353,30 @@ class SearchResults extends Component {
     window.scrollTo({top: 200, behavior: 'smooth'});
   }
 
-  
-
   filterFormResults = () => {
     let cardfilter = this.state.cardfilter;
-    let releases = this.state.results;
+    let releases = this.state.filteredresults;
+
     let forms = this.state.forms;
     let subfilter = this.state.subfilter;
     let releasetags = [];
 
     //get tags from release data
     releases.forEach(release => {
-      if (release.tags.includes(cardfilter)) {
-        //console.log(release.tags)
-        release.tags.map(tags =>{
-          releasetags.concat(tags.tag)
-        })
-      }
-      //console.log(release)
+      //  if (release.tags.includes(cardfilter)) {
+        releasetags = releasetags.concat(release.tags);
+      //  }
+
     })
-
+    console.log(releases.length);
     forms.forEach(form => {
-
       if (form.title === 'Release Dates') {
         // This was handled in getReleaseDateFormFields
         return;
       }
-
       form.icon = null;
       form.iconclass = null;
+      form.count = 0;
       for (let i = form.fields.length; i--;) {
         form.fields[i].indeterminate = false;
         form.fields[i].icon = null;
@@ -292,7 +386,10 @@ class SearchResults extends Component {
           form.fields[i].status = true;
         }
         form.fields[i].count = 0;
-        form.fields[i].count = this.getOccurrence(releases, form.fields[i].key);
+        let occurences = this.getOccurrence(releasetags, form.fields[i].key);
+        form.fields[i].count = occurences;
+        form.count += occurences;
+        //  form.fields[i].count = this.getOccurrence(releases, form.fields[i].key);
         form.fields[i].count = form.fields[i].count === null ? 0 : form.fields[i].count;
         for (let v = form.fields[i].children.length; v--;) {
           form.fields[i].children[v].count = 0;
@@ -318,79 +415,12 @@ class SearchResults extends Component {
 
   getOccurrence = (array, value) => {
     var count = 0;
-    array.forEach((item) => {
-      item.tags.forEach((v) => (v === value && count++));
-    });
+    array.forEach((v) => {
+    (v === value && count++);
 
+    });
     return count;
   }
-
-  getReleaseDateFormFields = (results) => {
-
-    // Establish quarterDates
-    let sortDates = [];
-    if (results && Array.isArray(results)) {
-      let tempDates = {};
-      results.forEach(release => {
-        const quarterDate = this.getQuarter(new Date(release.date));
-        if (!tempDates.hasOwnProperty(quarterDate)) {
-          sortDates.push({ numericDate: release.date, displayDate: quarterDate, count: 1});
-          tempDates[quarterDate] = quarterDate;
-        } else {
-          const sortDateTagIndex = sortDates.findIndex(date => date.displayDate == quarterDate);
-          if (sortDateTagIndex !== -1) {
-            sortDates[sortDateTagIndex].count ++;
-          }
-        }
-      });
-      sortDates.sort((s1, s2) => s1.numericDate - s2.numericdate);
-
-      tempDates = {};
-      sortDates.forEach(date => tempDates[date.displayDate] = date.displayDate);
-
-      this.setState({
-        quarterDateTags: tempDates,
-        sortQuarterDates: sortDates,
-      })
-    }
-
-    
-    let fields = sortDates.map(qDateTag => {
-      return {
-        "label": qDateTag.displayDate, 
-        "checked": false,
-        "key": qDateTag.displayDate,
-        "status": false,
-        "children": [],
-        count: qDateTag.count
-      }
-    });
-
-    return {  
-      "id": 0, "expandable": true, "state": false, "title": "Release Dates",
-      "fields": fields,
-      count: sortDates.reduce((q1, q2) => q1 += q2.count, 0)
-    };
-
-  }
-
-
-  getQuarter = (date) => {
-    const month = date.getMonth() + 1;
-    const quarter = (Math.ceil(month / 3));
-    const year = date.getFullYear();
-    return "Q" + quarter.toString() + " " + year.toString();
-  }
-  
-
-  quarterDateChipFilter = (releases) => {
-    return releases.filter(release => {
-      const date = this.getQuarter(new Date(release.date));
-      return this.state.selectedDates.includes(date)
-      // return date === this.state.selectedDate;
-    })
-  }
-
 
   async filterResultData(results, prodProc) {
     let filterall = 0, filterprocess = 0, filterproducts = 0, filterfeatures = 0, filteredresults = [], productresults = [], processresults = [], pagination = false, pages = 0;
@@ -564,6 +594,7 @@ class SearchResults extends Component {
     //console.log(filteredresults)
     this.setState({
       filteredresults: filteredresults,
+      tagfilteredresults: filteredresults,
       productresults: productresults,
       processresults: processresults,
       pages: 0,
@@ -588,9 +619,39 @@ class SearchResults extends Component {
       });
     });
   }
+  handleExportClick = () => {
+    const showToast = !this.state.showToast;
+    this.setState({ showToast: showToast });
+  }
+
+  handleDeleteTagClick = (event) => {
+    // console.log("delete", event.currentTarget.alt, this.state.tags)
+
+    let tag = event.currentTarget.alt;
+    let forms = this.state.forms.map(form => {
+    form.fields.map(field => {
+      if (field.key === tag) {
+      field.checked = false;
+      }
+      return field;
+    })
+    return form;
+    })
+    this.setState({
+      forms: forms
+    }, () => this.manageTagArray(false, tag))
+  }
+
+  quarterDateChipFilter = (releases) => {
+    return releases.filter(release => {
+      const date = this.getQuarter(new Date(release.date));
+      return this.state.selectedDates.includes(date)
+      // return date === this.state.selectedDate;
+    })
+  }
 
   manageTagArray = (state, key) => {
-    let tags, pagination = false, pages = 0, { quarterDateTags, selectedDates, searchKey } = this.state;;
+    let tags, pagination = false, pages = 0, { quarterDateTags, selectedDates, searchKey } = this.state;
     tags = this.state.tags;
 
     // console.log('tagkey:', key)
@@ -619,7 +680,7 @@ class SearchResults extends Component {
     }
     this.setState({ tags: tags });
 
-    let filterReleases = this.state.results;
+    let filterReleases = this.state.filteredresults;
 
     this.state.forms.forEach(form => {
       let tagCollection = [];
@@ -642,11 +703,9 @@ class SearchResults extends Component {
       }
     });
 
-
     if (this.state.selectedDates.length !== 0) {
       filterReleases = this.quarterDateChipFilter(filterReleases);
     }
-
 
     if (filterReleases.length > 10) {
       pagination = true;
@@ -654,14 +713,14 @@ class SearchResults extends Component {
     }
 
     this.setState({
-      filteredresults: filterReleases,
+      tagfilteredresults: filterReleases,
       pages: 0,
       pagination: false,
       initialitem: 0,
       lastitem: 10
     }, () => {
       this.setState({
-        filteredresults: filterReleases,
+        tagfilteredresults: filterReleases,
         pages: pages,
         pagination: pagination
       });
@@ -775,7 +834,7 @@ class SearchResults extends Component {
     });
 
     this.setState({
-      filteredresults: this.state.results,
+      tagfilteredresults: this.state.filteredresults,
       pages: 0,
       pagination: false,
       initialitem: 0,
@@ -787,7 +846,6 @@ class SearchResults extends Component {
         selectedDates: [],
         pages: Math.ceil(this.state.results.length / this.state.maxperpage),
         pagination: this.state.results.length > 10,
-        filteredresults: this.state.results,
         initialitem: 0,
         lastitem: 10,
       });
@@ -795,9 +853,13 @@ class SearchResults extends Component {
   }
 
   render() {
-    const { result, forms, sorting, filteredresults, filterall, filterprocesses, filterproducts, filterfeatures, initialitem, lastitem, pagination, focus, searchhandler } = this.state;
+    const { result, forms, sorting, filteredresults, filterall, filterprocesses, filterproducts, filterfeatures, initialitem, lastitem, pagination, focus, searchhandler,tags, keyLabelMap, selectedDates, tagfilteredresults} = this.state;
     //console.log(filteredresults)
     //console.log(this.state.forms)
+
+    const allSelectedTags = selectedDates.concat(tags);
+    let tabIndex = 1;
+    console.log(filteredresults);
     return (
       <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
 
@@ -815,18 +877,31 @@ class SearchResults extends Component {
             <Grid item xs={3}>
             <div className="pr-navigation">
               {forms.map(form => {
-                if (typeof form.count == "number") {
-                  return <ReleaseForm key={form.id} title={form.title} expandable={form.expandable} status={form.state} data={form.fields} count={form.count} manageTagArray={this.manageTagArray} icon={form.icon} iconclass={form.iconclass} />
-                }
-                return null;
+              if (typeof form.count == "number") {
+                return <ReleaseForm key={form.id} title={form.title} expandable={form.expandable} status={form.state} data={form.fields} count={form.count} manageTagArray={this.manageTagArray} icon={form.icon} iconclass={form.iconclass} />
+              }
+              return null;
               })}
               <Button className="clearButton" onClick={this.clearForms} disableFocusRipple={true} disableRipple={true}>CLEAR ALL FILTERS</Button>
             </div>
             </Grid>
-            <Grid item xs={9}>
+            <Grid item xs={9} className="search-list-container">
+            <div className="pr-sort-container">
+            <div className="pr-filter-tag-container">
+              {allSelectedTags.length > 0 ?
+                allSelectedTags.map(filterTag => (
+                  <Chip variant="outlined" clickable="false" label={keyLabelMap[filterTag] ? keyLabelMap[filterTag].replace("SAP", "").trim(): keyLabelMap[filterTag]} lkey={filterTag} deleteIcon={<img src={DeleteTag} alt={filterTag} />} onDelete={this.handleDeleteTagClick} tabIndex={tabIndex++} />
+                ))
+                : null
+              }
+            </div>
+            {allSelectedTags.length > 0 ? <Chip className="clear-all-filters" variant="outlined" clickable="false" onClick={this.clearForms} label="Clear All Filters" /> : null}
+
+
+            </div>
             <div className="search-content-container results">
               {
-                filteredresults
+                tagfilteredresults
                   .sort((a, b) => {
                     if (sorting === "relevance") {
                       return a.relevance - b.relevance;
@@ -883,7 +958,7 @@ class SearchResults extends Component {
                 </Select>
               </div> */}
 
-{/*
+          {/*
           <div className="search-results-filter-container">
             <div className="search-results-filtering">
               {this.state.forms.map(form => (
