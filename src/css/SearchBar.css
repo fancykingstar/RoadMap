@@ -167,6 +167,10 @@
   margin-left: 15px;
 }
 
+.suggestions li .highlight {
+  margin-left: 15px;
+}
+
 .suggestion-active,
 .suggestions li:hover {
   color:#0A6ED1;
@@ -207,7 +211,11 @@
   font-size: 1.6666666666666667rem;
 }
 
-
+.trend .highlight {
+  margin-left: 14px;
+  color: #0A6ED1;
+  font-size: 1.6666666666666667rem;
+}
 .product-body {
   display: flex;
   padding: 0;
@@ -329,10 +337,14 @@ input:focus, textarea:focus {
   padding-left: 15px;
 }
 
-.product-suggestion-active,
+.product-suggestions li .highlight {
+  margin-left: 15px;
+}
+
 .product-suggestions li:hover {
-  color: #0A6ED1;
+   color: #0A6ED1;
   cursor: pointer;
+<<<<<<< Updated upstream
 /*Add in hover state if keyword highlight is implemented*/
 <<<<<<< HEAD
   background-color: #E2EEF9;
@@ -341,3 +353,14 @@ input:focus, textarea:focus {
 /*  background-color: #E2EEF9;*/
 }
 >>>>>>> 8cc475e91cde20a351d0ee5967f74c8d0ecc36fc
+=======
+  background-color:#DAF0FB;
+}
+
+
+.product-suggestion-active{
+  color: #0A6ED1;
+  cursor: pointer;
+
+}
+>>>>>>> Stashed changes

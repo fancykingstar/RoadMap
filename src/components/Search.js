@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import ProdSearchIcon from '@material-ui/icons/SearchOutlined';
+import Highlighter from "react-highlight-words";
 
 //import css
 import '../css/SearchBar.css';
@@ -15,6 +16,8 @@ import { IconButton } from '../components/Button';
 
 //import utilities
 import { onChange, onKeyDown, selectSearch, trendSearch, suggestionSearch } from '../utils/searchutils';
+import { finished } from 'stream';
+import { yieldExpression } from '@babel/types';
 
 
 class SearchBar extends Component {
@@ -235,18 +238,30 @@ class SiteSearch extends Component {
                 <ul className="product-suggestions">
                   {filteredSuggestions.map((suggestion, index) => {
                     let className;
-
-                    // Flag the active suggestion with a class
-                    if (index === activeSuggestion) {
-                      className = "product-suggestion-active";
+                    let flag = 0;
+                    if (suggestion.toLowerCase().indexOf(userInput) >=0 ){
+                       var parts = suggestion.split(new RegExp(`(${userInput})`, 'gi'));
+                        flag = 1
                     }
+                    // Flag the active suggestion with a class
+                    // if (index === activeSuggestion) {
+                    //   className = "product-suggestion-active";
+                    // }
+                    if(flag==0){
+                    return (
+                         <li className={className} key={suggestion} onClick={() => suggestionSearch(this, {suggestion})} >
+                         <img src={Result} alt="result"></img><span className='label'>{suggestion}</span>
+                          </li>
+                          );
+                      }
+                    else{ // Highlight the word
+                     return(
+                         <li className={className} key={suggestion} onClick={() => suggestionSearch(this, {suggestion})} >
+                          <img src={Result} alt="result"></img><span className='highlight'>{parts.map(part => part.toLowerCase() === userInput.toLowerCase() ? <span className="product-suggestion-active">{part}</span> : part)}</span>
+                          </li>
+                           )};
+                     })}
 
-                    return (
-                      <li className={className} key={suggestion} onClick={() => selectSearch(this, {suggestion})}>
-                        <img src={Result} alt="result"></img><span className="label">{suggestion}</span>
-                      </li>
-                    );
-                  })}
                 </ul>
                 < div className = "product-trending trending-content" >
                   <div className="trending-title">TRENDING NOW</div>
@@ -341,8 +356,7 @@ class ProductSearch extends Component {
       this.openSearch();
     }
 
-
-
+    
  render() {
        const { activeSuggestion, filteredSuggestions, showSuggestions, userInput, trends, placeholder, inputvalue} = this.state;
 
@@ -356,18 +370,30 @@ class ProductSearch extends Component {
                <ul className="product-suggestions">
                  {filteredSuggestions.map((suggestion, index) => {
                    let className;
-
+                   let flag = 0
                    // Flag the active suggestion with a class
-                   if (index === activeSuggestion) {
-                     className = "product-suggestion-active";
+                   if (suggestion.toLowerCase().indexOf(userInput) >=0 ){
+                    var parts = suggestion.split(new RegExp(`(${userInput})`, 'gi'));
+                    flag = 1
                    }
-
+                  //  if (index === activeSuggestion) {
+                  //    className = "product-suggestion-active";
+                  //  }
+                   if(flag==0){
                    return (
-                     <li className={className} key={suggestion} onClick={() => suggestionSearch(this, {suggestion})}>
-                       <img src={Result} alt="result"></img><span className="label">{suggestion}</span>
+                     <li className={className} key={suggestion} onClick={() => suggestionSearch(this, {suggestion})} >
+                       <img src={Result} alt="result"></img><span className='label'>{suggestion}</span>
                      </li>
                    );
-                 })}
+                 }
+                  else{ // Highlight the word
+                    return(
+                    <li className={className} key={suggestion} onClick={() => suggestionSearch(this, {suggestion})} >
+                    <img src={Result} alt="result"></img><span className='highlight'>{parts.map(part => part.toLowerCase() === userInput.toLowerCase() ? <span className="product-suggestion-active">{part}</span> : part)}</span>
+                      {/* <img src={Result} alt="result"></img><span className='highlight'>{parts.map(part => part.toLowerCase() === userInput.toLowerCase() ? <b>{part}</b> : part)}</span> */}
+                     </li>
+                    )};
+                    })}
                </ul>
                < div className = "product-trending trending-content" >
                  <div className="trending-title">TRENDING NOW</div>
