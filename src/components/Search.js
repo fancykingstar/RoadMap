@@ -227,7 +227,7 @@ class SiteSearch extends Component {
 
          let prodsuggestionsListComponent;
          let input = userInput === "" ? inputvalue : userInput;
-
+         document.title = 'Search Results for "' + input + '"';
       if (showSuggestions) {
             if (filteredSuggestions.length && userInput) {
               prodsuggestionsListComponent = (
@@ -396,7 +396,7 @@ class ProductSearch extends Component {
    }
 
    return (
-     
+
      <div className={"product-search-container" + (this.props.isHomePage ? " home-page" : "")} ref={node => { this.node = node; }}>
        <div className="product-body product-search">
            <input className={ showSuggestions ? "product-search-input-show" : "product-search-input" } type="text" placeholder={placeholder}  onFocus={() => this.openSearch()} onChange={(e) => onChange(e, this.props, this)} onKeyDown={(e) => onKeyDown(e, this.state, this)} value={input} />

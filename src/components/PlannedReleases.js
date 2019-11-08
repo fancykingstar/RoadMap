@@ -26,6 +26,7 @@ import SectionHeaderTitle from '../components/SectionHeaderTitle';
 import Pagination from '../components/Pagination';
 import { productlabels } from '../utils/processutils';
 import { datamonths } from '../utils/searchutils';
+import { baseURL } from '../utils/links';
 import DeleteTag from '../assets/images/close-x.svg'
 
 
@@ -80,10 +81,7 @@ class PlannedReleases extends Component {
 
   componentDidMount() {
     const { type, cardfilter } = this.state;
-    const baseURL = staging ? window.location.origin :
-      // 'https://roadmap-ui-dev.cfapps.sap.hana.ondemand.com/srv_api/' // app-router route
-      'https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com'
-
+  
     let querySubstr = '';
     if (type && type === 'product') {
       // if (cardfilter === 'c4hana') {
@@ -99,18 +97,12 @@ class PlannedReleases extends Component {
       querySubstr = this.state.cardfilter || '';
     }
 
-
-    let queryURL = '';
     // TODO: differentiate product/subProduct for subProduct query
     let searchType = type === 'product' ?
       'productSearch'
       : (type === 'process' ? 'process' : type === 'integration' ? 'integration' : '');
+    let queryURL = `${baseURL}?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans,subProducts,toIntegration,toProcess,toSubProcess`;
 
-    if (staging) {
-      queryURL = `${baseURL}/srv_api/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans,subProducts,toIntegration,toProcess,toSubProcess`;
-    } else {
-      queryURL = `${baseURL}/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans,subProducts,toIntegration,toProcess,toSubProcess`;
-    }
 
     console.log('query:', queryURL, 'pageType:', this.state.type, 'cardfilter:', this.state.cardfilter);
     fetch(queryURL)
@@ -144,7 +136,7 @@ class PlannedReleases extends Component {
               label: result.toProcess.label
             })
           }
-          
+
           if (result.integration && result.integration.length > 1 && !chips.includes(result.integration)) {
             if (!keyLabelMap[result.toIntegration.lkey]) {
               keyLabelMap[result.toIntegration.lkey] = result.toIntegration.label
@@ -265,7 +257,7 @@ class PlannedReleases extends Component {
 
 
                 this.setState({
-                  // Filters forms -- current ternary operator will not allow for both Processes and Subprocesses to show. 
+                  // Filters forms -- current ternary operator will not allow for both Processes and Subprocesses to show.
                   forms: result.forms // initial setstate of forms.  forms needs to be refactored
                     .filter(form => (this.props.type !== 'process' ?
                       form.title !== 'Subprocesses'
@@ -317,10 +309,10 @@ class PlannedReleases extends Component {
       })
     }
 
-    
+
     let fields = sortDates.map(qDateTag => {
       return {
-        "label": qDateTag.displayDate, 
+        "label": qDateTag.displayDate,
         "checked": false,
         "key": qDateTag.displayDate,
         "status": false,
@@ -329,7 +321,7 @@ class PlannedReleases extends Component {
       }
     });
 
-    return {  
+    return {
       "id": 0, "expandable": true, "state": false, "title": "Release Dates",
       "fields": fields,
       count: sortDates.reduce((q1, q2) => q1 += q2.count, 0)
@@ -416,7 +408,7 @@ class PlannedReleases extends Component {
     this.setState(prevstate => ({
       ...prevstate,
       forms: forms
-    }), 
+    }),
     ()=> console.log("result.forms(post-filter)",this.state.forms)
     )
   }
@@ -450,7 +442,7 @@ class PlannedReleases extends Component {
       let index = tags.indexOf(key);
       tags.splice(index, 1);
     }
-    this.setState({ tags: tags }, 
+    this.setState({ tags: tags },
       () => console.log(this.state.tags)
       );
 
@@ -536,7 +528,7 @@ class PlannedReleases extends Component {
     let filterArray = [];
     filterArray = releases.filter(({ tags }) => {
       const rtags = tags.join(' ')
-      return currentTags.every((tag) => rtags.indexOf(tag) !== -1)
+      return currentTags.some((tag) => rtags.indexOf(tag) !== -1)
     })
     return filterArray;
   };

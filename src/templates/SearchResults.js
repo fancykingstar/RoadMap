@@ -13,6 +13,7 @@ import { CustomButton } from '../components/Button';
 import DeleteTag from '../assets/images/close-x.svg'
 
 import { datamonths } from '../utils/searchutils';
+import { baseURL } from '../utils/links';
 //import css
 import '../css/PR-Container.css'
 import '../css/Card.css';
@@ -95,13 +96,10 @@ class SearchResults extends Component {
   }
 
   componentDidMount() {
-    let queryURL = '';
-    let searchType = ''
+    document.title = 'Search Results';
+    let searchType = '';
+    let queryURL = `${baseURL}?ProductSearch&$skip=0&$orderby=date asc&$expand=products,futureplans,toIntegration,toProcess,toSubProcess`;
 
-    const baseURL = 'https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com'
-    queryURL = `${baseURL}/odata/v4/roadmap/Roadmap?ProductSearch&$skip=0&$orderby=date asc&$expand=products,futureplans,toIntegration,toProcess,toSubProcess`;
-
-    //fetch('https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com/odata/v4/roadmap/Roadmap?ProductSearch&$skip=0&$orderby=date%20asc&$expand=products,futureplans')
     fetch(queryURL)
     .then(res =>{
       let response =  res.json()
@@ -118,8 +116,8 @@ class SearchResults extends Component {
           result.numericdate = datevalue.getTime() / 1000.0;
           result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
           result.futureplans = this.manageDates(result.futureplans);
-          
-          
+
+
 
           // set tags
           if (result.process && result.process.length > 1 && !chips.includes(result.process)) {;
@@ -199,7 +197,7 @@ class SearchResults extends Component {
                 }
               })
             }
-          
+
            if (result.subProducts && result.subProducts.length) {
             result.subProducts.forEach(({ subproduct }) => {
               const subProductKey = subproduct.toLowerCase().replace(/\/|(sap)|\s/g, ""),
@@ -264,7 +262,7 @@ class SearchResults extends Component {
 
             if (releaseDatesTemplate.count > 0)
               result.forms.unshift(releaseDatesTemplate);
-            
+
             releaseDatesTemplate.fields.forEach(date => keyLabelMap[date.label] = date.label);
             this.setState({
               // Filters forms -- current ternary operator will not allow for both Processes and Subprocesses to show.
@@ -356,7 +354,7 @@ class SearchResults extends Component {
     const quarter = (Math.ceil(month / 3));
     const year = date.getFullYear();
 
-    
+
     return "Q" + quarter.toString() + " " + year.toString();
   }
 
@@ -634,7 +632,7 @@ class SearchResults extends Component {
       focus: 'all',
     });
   }
-  
+
   handleExportClick = () => {
     const showToast = !this.state.showToast;
     this.setState({ showToast: showToast });

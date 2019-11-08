@@ -1,6 +1,6 @@
 {
     "title": "SAP C/4HANA SUITE",
-    "description": [{"title": "About", "descriptions":"Improve your customer experience management with SAP C/4HANA. Build a connected customer journey based on empathy and trust with SAP C/4HANA, a suite of five industry-leading cloud solution portfolios: <a href='./commercecloud'>Commerce Cloud</a>, <a href='./marketingcloud'>Marketing Cloud</a>, <a href='./customerdatacloud'>Customer Data Cloud</a>, <a href='./servicecloud'>Service Cloud</a>, and <a href='./salescloud'>Sales Cloud</a>."},
+    "description": [{"title": "About", "descriptions":"Improve your customer experience management with SAP C/4HANA. Build a connected customer journey based on empathy and trust with SAP C/4HANA, a suite of five industry-leading cloud solution portfolios: <a href='./c4hana/commercecloud'>Commerce Cloud</a>, <a href='./c4hana/marketingcloud'>Marketing Cloud</a>, <a href='./c4hana/customerdatacloud'>Customer Data Cloud</a>, <a href='./c4hana/servicecloud'>Service Cloud</a>, and <a href='./salescloud'>Sales Cloud</a>."},
                   {"title": "Innovation topics", "items":
                   [{"label": "Integrated comprehensive processes for lead to cash across SAP business applications", "key": "innovation1", "link": ""},
                   {"label": "Intelligence capabilities (for example, artificial intelligence and machine learning) and analytics", "key": "innovation2", "link": ""},

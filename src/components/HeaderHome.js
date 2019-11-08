@@ -13,6 +13,7 @@ import { ProductIcons } from '../assets/prod-icons';
 import { ProductSearch } from '../components/Search';
 import { suggestions, trends } from '../utils/searchutils';
 import { activeprocesses } from '../utils/processutils';
+import { baseURL } from '../utils/links';
 import { MultiRoadmap } from '../components/MultiRoadmap';
 import { RoadmapVertical } from '../components/RoadmapVertical';
 import Popover from '@material-ui/core/Popover';
@@ -67,8 +68,7 @@ class Header extends Component {
   }
 
   componentDidMount() {
-    const baseURL = 'https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com'
-    const queryURL = `${baseURL}/odata/v4/roadmap/Roadmap?ProductSearch&$skip=0&$orderby=date asc&$expand=products,futureplans`
+    const queryURL = `${baseURL}?ProductSearch&$skip=0&$orderby=date asc&$expand=products,futureplans`
     fetch("/data/menushort.json")
       .then(res => res.json())
       .then(
@@ -114,7 +114,7 @@ class Header extends Component {
                         uniqueResult.push(item)
                     }
                 })
-              
+
                 this.setState({
                     results: uniqueResult,
                     prodProc: cleanedProdProc
@@ -127,7 +127,7 @@ class Header extends Component {
                   console.log(error);
               }
           );
-        
+
     /* DEVELOPMENT ONLY */
     if (this.props.pageType && (this.props.pageType === "process" || this.props.pageType === "products")) {
       console.log('pageType:', this.props.pageType);
@@ -169,7 +169,7 @@ class Header extends Component {
         shouldSort: true,
         keys : [{
             name: "title",
-            weight : 0.9    
+            weight : 0.9
         },
         {
             name: "description",
@@ -202,7 +202,7 @@ class Header extends Component {
             shouldSort: true,
             keys : [{
                 name: "title",
-                weight : 0.5    
+                weight : 0.5
             },
             {
                 name: "key",
@@ -214,7 +214,7 @@ class Header extends Component {
             }]
         }
         console.log(searchParams)
-    }        
+    }
     else{
         var searchParams = results
     }
@@ -446,7 +446,7 @@ class Header extends Component {
                 aria-owns={this.state.isInfoOpen ? "simple-popover" : undefined}
                 aria-haspopup="true" /> : null
               }
-  
+
             </div>
             <div className={"description-" + (compact ? "compact" : "default")
               + (this.props.smallWindow ? " description-small" : " description")
@@ -454,15 +454,15 @@ class Header extends Component {
             }>
               <div className="header-bullet-description-container">
               </div>
-  
+
               {
                 type === 'sub-page' ? (description ? ReactHtmlParser(description[0]["descriptions"]) : null) :
                   <ProductSearch placeholder="Search for topics, products, or industries" suggestions={suggestions} trends={trends} searchhandler={searchhandler} isHomePage={title && title === "product roadmaps"} />
               }
-  
+
             </div>
             {compact ? null : <div className="button-container">
-  
+
             </div>}
           </div>
           {this.props.smallWindow ? null : <div className="header-right-container product-header">
@@ -470,7 +470,7 @@ class Header extends Component {
           </div>}
           {this.props.smallWindow || compact ? null : <img src={clipMask} alt="mask" />}
         </div>
-  
+
       )
     }
   }
