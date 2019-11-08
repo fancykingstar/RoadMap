@@ -58,7 +58,10 @@ export const onKeyDown = (e, state, ref) => {
       searchOpen: false
     });
 
-    let inputvalue = e.target.value;
+    var inputvalue = e.target.value;
+    if(inputvalue.trim() === ""){
+      inputvalue = "sap"
+    }
     if (state.resulthandler) {
       state.resulthandler(inputvalue);
     } else {

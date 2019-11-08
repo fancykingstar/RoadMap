@@ -402,7 +402,7 @@ class ProductSearch extends Component {
            <input className={ showSuggestions ? "product-search-input-show" : "product-search-input" } type="text" placeholder={placeholder}  onFocus={() => this.openSearch()} onChange={(e) => onChange(e, this.props, this)} onKeyDown={(e) => onKeyDown(e, this.state, this)} value={input} />
          <IconButton icon={ProdSearchIcon} show={showSuggestions} handleClick={() => {
               var inp = input
-              if (inp=="")
+              if (inp.trim()=="")
               {
                 inp = "sap"
               }
