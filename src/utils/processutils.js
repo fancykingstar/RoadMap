@@ -23,10 +23,15 @@ export const productlabels = [{
 
 export const processlabels = [{
     // Main Processes
-
-
+    "sourcetopay": "Source to Pay",
+    "leadtocash": "Lead to Cash",
+    "totalworkforcemanagement": "Total Workforce Management",
 
     //SubProcesses
+    "buyanddeliver": "Buy and Deliver",
+    "sourceandcontact": "Source and Contact",
+    "tradingpartnerandriskmanagement": "Trading Partner and Risk Management",
+    "tradingpartnerandcollaboration": "Trading Partner and Collaboration",
     "onemasterdata" : "One Master Data",
     "applicationlifecyclemanagement" : "Application Lifecycle Management",
     "intelligence&analytics" : "Intelligence & Analytics",
