@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import axios from 'axios';
+import download from 'downloadjs'
 //import material UI components
 import SearchIcon from '@material-ui/icons/SearchOutlined';
 import Button from '@material-ui/core/Button';
@@ -105,7 +107,7 @@ class PlannedReleases extends Component {
       : (type === 'process' ? 'process' : type === 'integration' ? 'integration' : '');
 
     if (staging) {
-      queryURL = `${baseURL}/srv_api/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,subProducts,toIntegration,toProcess,toSubProcess`;
+      queryURL = `${baseURL}/srv_api/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans,subProducts,toIntegration,toProcess,toSubProcess`;
     } else {
       queryURL = `${baseURL}/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans,subProducts,toIntegration,toProcess,toSubProcess`;
     }
@@ -210,7 +212,7 @@ class PlannedReleases extends Component {
             })
           }
 
-          if (result.subProducts.length) {
+          if (result.subProducts && result.subProducts.length) {
             result.subProducts.forEach(({ subproduct }) => {
               // console.log('subProduct:', subproduct);
               const subProductKey = subproduct.toLowerCase().replace(/\/|(sap)|\s/g, ""),
@@ -338,12 +340,14 @@ class PlannedReleases extends Component {
   onSearchInputChanged = (e) => this.setState({ searchKey: e.target.value }, this.manageTagArray)
 
   manageDates = (array) => {
-    array.forEach(item => {
-      let itemvalue = new Date(item.date);
-      itemvalue.setDate(itemvalue.getDate() + 1);
-      item.numericdate = itemvalue.getTime() / 1000.0;
-      item.displaydate = datamonths[0][itemvalue.getMonth()] + " " + itemvalue.getFullYear();
-    })
+    if (array) {
+      array.forEach(item => {
+        let itemvalue = new Date(item.date);
+        itemvalue.setDate(itemvalue.getDate() + 1);
+        item.numericdate = itemvalue.getTime() / 1000.0;
+        item.displaydate = datamonths[0][itemvalue.getMonth()] + " " + itemvalue.getFullYear();
+      })
+    }
     return array;
   }
 
@@ -589,8 +593,37 @@ class PlannedReleases extends Component {
 
 
   handleExportClick = () => {
+    let releaseIds = [];
+    let params = []
+
+    this.state.releases.map(release => (
+      params = params.concat('{\"id\":\"' + release.id + '\"}')
+
+      //releaseIds = releaseIds.concat(release.id)
+
+    ));
+
+  //  params+=']';
+  //  console.log(params);
+  //  console.log(this.state.filterreleases);
+    /*
     const showToast = !this.state.showToast;
     this.setState({ showToast: showToast });
+    */
+    const id = '[' + params.join(',') +']';
+    console.log(id);
+    axios.post(`../srv_api/excel/exportList/`,id, {
+      headers: {'Content-Type': 'application/json'},
+      responseType: 'blob',
+    })
+      .then(response => {
+        const content = response.headers['content-type'];
+      download(response.data, "Export.xlsx", content)
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
   }
 
   handleDeleteTagClick = (event) => {
