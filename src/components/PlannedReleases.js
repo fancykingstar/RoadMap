@@ -528,7 +528,7 @@ class PlannedReleases extends Component {
     let filterArray = [];
     filterArray = releases.filter(({ tags }) => {
       const rtags = tags.join(' ')
-      return currentTags.every((tag) => rtags.indexOf(tag) !== -1)
+      return currentTags.some((tag) => rtags.indexOf(tag) !== -1)
     })
     return filterArray;
   };
