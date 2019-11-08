@@ -118,7 +118,7 @@ class PlannedReleases extends Component {
         return response;
       })
       .then(({ value }) => {
-        let results = value.filter((result) => result.date.length > 1), keyLabelMap = {}, productParentKey;
+        let results = value.filter((result) => result.date && result.date.length > 1), keyLabelMap = {}, productParentKey;
         console.log(results);
         for (var i = 0; i < results.length; i++) {
           let result = results[i], chips = [], tags = [];
