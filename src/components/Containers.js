@@ -38,11 +38,11 @@ class DetailContainer extends Component {
     let { title, details, fullwidth } = this.state, level1, lineitems;
     if (typeof details === "string") {
       details = details.split('\n')
-      level1 = details.filter(detail => detail.substr(0, 1) === '*').length;
+      level1 = details.filter(detail => detail.substr(0, 1) === '-').length;
       //console.log('level1', level1);
       lineitems = details.map((detail, index) => {
       if (!detail.length) { return; }
-      return <p className={'contentpoint ' + ((details.length>1) ? ( (level1 === 0) ? 'addBullet bullet' : ((detail.substr(0,1) === '-') ? 'bullet' : '') ) : '') + (detail.substr(0,1)==='*' ? ' secondBullet addBullet' : '')} key={index}>{(detail.substr(0,1)==='*' )? detail.replace(/\*/gi, "") : detail}</p>});
+      return <p className={'contentpoint ' + ((details.length>1) ? ( (level1 === 0) ? 'addBullet bullet' : ((detail.substr(0,1) === '-') ? 'bullet' : '') ) : '') + (detail.substr(0,1)==='>' ? ' secondBullet addBullet' : '')} key={index}>{(detail.substr(0,1)==='*' )? detail.replace(/\*/gi, "") : detail}</p>});
     }
 
     return (
