@@ -124,6 +124,7 @@
   text-transform: capitalize;
 }
 
+
 .page-container-small .release-card .release-title {
   font-size: 20px;
 }
@@ -300,6 +301,7 @@
   background-position: -6px 0px;
 }
 
+
 .product-active .icon.icon-products {
   background: url(../assets/images/prod-icons/icon-offstate-pr.png) !important;
   background-repeat: no-repeat !important;
@@ -373,4 +375,37 @@ font-size: 16px;
 line-height: 18px;
 color: #0A6ED1;
 text-transform: uppercase;
+}
+
+/*Result card css*/
+.result-icon-products {
+  background: url(../assets/images/prod-icons/icon-offstate-pr.png) !important;
+  background-repeat: no-repeat !important;
+  background-position: 0% 33% !important;
+  width: 54px;
+  height: 54px;
+}
+
+.result-icon-process {
+  background: url(../assets/images/prod-icons/icon-offstate.png);
+  width: 54px;
+  height: 54px;
+  background-position: -6px 0px;
+}
+
+.page-result-title {
+  margin-top: 10px;
+  font-size: 2rem;
+  color: #000;
+  text-transform: capitalize;
+}
+
+.result-icon-process img {
+    margin-left: 12px;
+    margin-top: 12px;
+}
+
+.result-icon-products img {
+    margin-left: 12px;
+    margin-top: 12px;
 }

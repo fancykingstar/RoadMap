@@ -212,11 +212,11 @@ class SiteSearch extends Component {
 
     handleOutsideClick(e) {
       // ignore clicks on the component itself
-      console.log(this.node)
-      if (this.node.contains(e.target)) {
-        return;
+      if(this.node != null && this.node !== undefined){
+        if (this.node.contains(e.target)) {
+          return;
+        }
       }
-
       this.openSearch();
     }
 
@@ -302,7 +302,7 @@ class ProductSearch extends Component {
        // Whether or not the suggestion list is shown
        showSuggestions: false,
        // What the user has entered
-       userInput: "sap",
+       userInput: "",
        inputvalue: this.props.value || "",
        placeholder: this.props.placeholder,
        resultspage: this.props.resultspage || false,
