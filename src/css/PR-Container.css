@@ -99,6 +99,16 @@
   align-content: flex-start;
 }
 
+@media screen and (max-width: 600px) {
+  .pr-results .pr-card-container .pr-sort-container {
+    flex-direction: column;
+  }
+
+  .MuiButtonBase-root.MuiChip-root.clear-all-filters.MuiChip-outlined.MuiChip-clickable {
+    justify-content: flex-start;
+  }
+}
+
 .pr-sort-container .pr-sort-label {
   margin-left: 7px;
   font-size: 1.6666666666666667rem;

@@ -133,6 +133,16 @@
   justify-content: space-around;
 }
 
+@media screen and (max-width: 767px) {
+  .header-divided-container {
+    justify-content: center;
+  }
+
+  .header-content .title-compact {
+    padding-left: 0 !important;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .header-divided-container.product-header {
     padding-left: 100px;

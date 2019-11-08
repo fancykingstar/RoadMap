@@ -63,6 +63,10 @@
   background: none;
 }
 
+.MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.Mui-selected.MuiTab-labelIcon, .MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.MuiTab-labelIcon {
+  margin-left: auto;
+}
+
 @media screen and (max-width: 768px) {
   .page-container .content-container .process-content {
     flex-direction: column;
