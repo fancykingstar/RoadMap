@@ -89,7 +89,6 @@ class FooterMobile extends Component {
                     <li><a href="https://www.sap.com/products/intelligent-enterprise.html">Intelligent Enterprise</a></li>
                     <li><a href="https://www.sap.com/products/sme-business-software.html">Small and Midsize Enterprises</a></li>
                     <li><a href="https://www.sap.com/products/financial-management.html">Finance</a></li>
-                    <li><a href="https://www.sap.com/products/roadmaps.html">Product Roadmaps</a></li>
                     <li><a href="https://developers.sap.com/">Developer</a></li>
                     <li><a href="https://support.sap.com/en/index.html">Support Portal</a></li>
                   </ul>
