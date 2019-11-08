@@ -146,6 +146,7 @@ export function Roadmap(props) {
           horizontal: 'center',
         }}
         style={testStyles}
+        disableRestoreFocus
       >
         <div className="popover-arrow-container">
         <div className="popover-style-arrow"></div>
