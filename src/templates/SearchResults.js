@@ -97,7 +97,7 @@ class SearchResults extends Component {
         })
             .then(
                 ({value}) => {
-                    let results = value.filter((result) => result.date.length > 1);
+                    let results = value.filter((result) => (result.date && result.date.length > 1));
 
 
                     for (var i = 0; i < results.length; i++) {
@@ -453,20 +453,20 @@ class SearchResults extends Component {
                         if(isString(detail.detail)){
                             detail.detail = detail.detail.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").replace(/\r\n/gi,"")
                         }
-                        if(detail.detail.length == 1){
+                        if(detail.detail && detail.detail.length == 1){
                             if(detail.detail[0] == ""){
                                 detail.detail = []
                             }
                         }
                     })
 
-                    if (form.businessvalues.length == 1) {
+                    if (form.businessvalues && form.businessvalues.length == 1) {
                         if (form.businessvalues[0] == ""){
                             form.businessvalues = []
                         }
                     }
 
-                    if (form.featuredetails.length == 1) {
+                    if (form.featuredetails && form.featuredetails.length == 1) {
                         if (form.featuredetails[0] == ""){
                             form.featuredetails = []
                         }
@@ -755,6 +755,11 @@ class SearchResults extends Component {
                                     })
                             }
                         </div>
+                        <div className="disclaimer">
+                            The information above is
+                            for informational purposes and delivery timelines may change and projected functionality may not be released see SAP <a href="/">Legal Disclaimer</a>).
+
+                        </div>
                       </Grid>
                     </Grid>
 
@@ -829,11 +834,7 @@ class SearchResults extends Component {
 
                     </div>
                     */}
-                    <div className="disclaimer">
-                        The information above is
-                        for informational purposes and delivery timelines may change and projected functionality may not be released see SAP <a href="/">Legal Disclaimer</a>).
 
-                        </div>
                 </div>
                 {this.state.smallWindow ? <FooterMobile /> : <Footer />}
             </div>
