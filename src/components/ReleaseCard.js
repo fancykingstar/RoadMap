@@ -6,7 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
 import Collapse from '@material-ui/core/Collapse';
-
+import Snackbar from '@material-ui/core/Snackbar';
 //import svg icons
 import edit from '../assets/images/edit.svg';
 // import download from '../assets/images/download.svg';
@@ -61,6 +61,7 @@ export default function ReleaseCard(props) {
     featuredetails: props.details,
     futureplans: props.futureplans,
     status: false,
+    showToast: false,
     likes: props.likes,
     icon: downarrow,
     staging: props.staging
@@ -83,12 +84,11 @@ export default function ReleaseCard(props) {
     e.stopPropagation();
   }
 
-  const increaseLikeCount = e => {
+  const handleBookmarkClick = e => {
     setState(prev => ({
       ...prev,
-      likes : prev.likes + 1
+      showToast: !prev.showToast
     }))
-    fetch("https://roadmap-api.cfapps.us10.hana.ondemand.com/api/like?id=" + props._id);
     e.stopPropagation();
   }
 
@@ -117,8 +117,18 @@ export default function ReleaseCard(props) {
 
 
             <div className="action-container">
-              <Button className="actionButton" disableFocusRipple={true} disableRipple={true} onClick={increaseLikeCount}><img src={star} alt="add to favorite" /></Button>
-
+              <Button className="actionButton" disableFocusRipple={true} disableRipple={true} onClick={handleBookmarkClick}><img src={star} alt="add to favorite" /></Button>
+              <Snackbar
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                }}
+                className="toast-window"
+                open={state.showToast}
+                onClose={handleBookmarkClick}
+                autoHideDuration={6000}
+                message={<span className="toast-messages" id="message-id">My Favorites Feature Coming Soon</span>}
+              />
             </div>
 
           </div>
@@ -144,7 +154,7 @@ export default function ReleaseCard(props) {
               <div className={"collapse-container" + (props.smallWindow ? " collapse-container-small" : "")} onClick={handleContentSection}>
                 <div className={"details-left" +  (props.smallWindow ? " details-left-small" : "") + ((state.futureplans && state.futureplans.length > 0) ? "" : " single-column")}>
                   { (state.businessvalues && state.businessvalues.length > 0)
-                  ? <DetailContainer fullwidth={(state.futureplans && state.futureplans.length > 0) ? false : true} title="business values" details={state.businessvalues} />
+                  ? <DetailContainer fullwidth={(state.futureplans && state.futureplans.length > 0) ? false : true} title="business value" details={state.businessvalues} />
                   : null
                   }
                   {(state.featuredetails && state.featuredetails.length > 0)
@@ -153,9 +163,9 @@ export default function ReleaseCard(props) {
                   }
 
                 </div>
-                {state.futureplans.length > 0
+                { (state.futureplans && state.futureplans.length > 0)
                 ?   <div className="details-right">
-                      <StepContainer title="future planned capabilities" steps={state.futureplans} businessvalues={state.businessvalues} featuredetails={state.featuredetails} />
+                      <StepContainer title="feature updates" steps={state.futureplans} businessvalues={state.businessvalues} featuredetails={state.featuredetails} />
                     </div>
                  : null
                 }

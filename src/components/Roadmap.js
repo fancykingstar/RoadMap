@@ -38,6 +38,7 @@ const ConnectorStyleNoDash = withStyles({
 const useStyles = makeStyles(theme => ({
   popover: {
     pointerEvents: 'none',
+    paddingRight: 30
   },
   paper: {
     padding: theme.spacing(1),
@@ -135,7 +136,7 @@ export function Roadmap(props) {
         id={id}
         open={open}
         anchorEl={anchorEl}
-        onClose={handleClose}
+        // onClose={handleClose}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'right',
@@ -145,6 +146,7 @@ export function Roadmap(props) {
           horizontal: 'center',
         }}
         style={testStyles}
+        disableRestoreFocus
       >
         <div className="popover-arrow-container">
         <div className="popover-style-arrow"></div>

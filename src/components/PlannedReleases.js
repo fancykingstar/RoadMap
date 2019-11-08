@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import axios from 'axios';
+import download from 'downloadjs'
 //import material UI components
 import SearchIcon from '@material-ui/icons/SearchOutlined';
 import Button from '@material-ui/core/Button';
@@ -60,7 +62,6 @@ class PlannedReleases extends Component {
       pages: 0,
       pagination: false,
       selectedDates: [],
-      dateTags: [],
       quarterDateTags: {},
       keyLabelMap: {},
       showToast: false,
@@ -118,7 +119,7 @@ class PlannedReleases extends Component {
       : (type === 'process' ? 'process' : type === 'integration' ? 'integration' : '');
 
     if (staging) {
-      queryURL = `${baseURL}/srv_api/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,subProducts,toIntegration,toProcess,toSubProcess`;
+      queryURL = `${baseURL}/srv_api/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans,subProducts,toIntegration,toProcess,toSubProcess`;
     } else {
       queryURL = `${baseURL}/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans,subProducts,toIntegration,toProcess,toSubProcess`;
     }
@@ -223,7 +224,7 @@ class PlannedReleases extends Component {
             })
           }
 
-          if (result.subProducts.length) {
+          if (result.subProducts && result.subProducts.length) {
             result.subProducts.forEach(({ subproduct }) => {
               // console.log('subProduct:', subproduct);
               const subProductKey = subproduct.toLowerCase().replace(/\/|(sap)|\s/g, ""),
@@ -249,39 +250,21 @@ class PlannedReleases extends Component {
           result.tags = tags;
         }
 
-//         console.log('keylabelmap(pre-setState):', keyLabelMap)
-        // Establish quarterDates
-        let sortDates = [];
-        if (results && results.releases) {
-          let tempDates = {};
-          results.forEach(release => {
-            const quarterDate = this.getQuarter(new Date(release.date));
-            if (!tempDates.hasOwnProperty(quarterDate)) {
-              sortDates.push({ numericDate: release.date, displayDate: quarterDate });
-              tempDates[quarterDate] = quarterDate;
-            }
-          });
-          this.setState({
-            quarterDateTags: tempDates
-          })
-        }
-
+        // console.log('keylabelmap(pre-setState):', keyLabelMap)
         this.setState({
           releases: results,
           filterreleases: results,
           pages: results.length > 10 ? Math.ceil(value.length / this.state.maxperpage) : 0,
           pagination: results.length > 10 ? true : false,
-          dateTags: sortDates
         }, function () {
           fetch("/data/rform.json")
             .then(res => res.json())
-            .then(
-              (result) => {
-                let releaseDatesTemplate = {
-                  "id": 0, "expandable": true, "state": false, "title": "Release Dates",
-                  "fields": []
-                }
-                result.forms.unshift(releaseDatesTemplate);
+            .then((result) => {
+                let releaseDatesTemplate = this.getReleaseDateFormFields(results);
+
+                if (releaseDatesTemplate.count > 0)
+                  result.forms.unshift(releaseDatesTemplate);
+                releaseDatesTemplate.fields.forEach(date => keyLabelMap[date.label] = date.label);
                 // result.forms.forEach(({ fields }) => {
                 //   if (fields) {
                 //     fields.forEach(({ key, label }) => {
@@ -291,6 +274,8 @@ class PlannedReleases extends Component {
                 //     })
                 //   }
                 // })
+
+
                 this.setState({
                   // Filters forms -- current ternary operator will not allow for both Processes and Subprocesses to show. 
                   forms: result.forms // initial setstate of forms.  forms needs to be refactored
@@ -312,15 +297,69 @@ class PlannedReleases extends Component {
       })
   }
 
+  getReleaseDateFormFields = (results) => {
+
+    // Establish quarterDates
+    let sortDates = [];
+    if (results && Array.isArray(results)) {
+      let tempDates = {};
+      results.forEach(release => {
+        const quarterDate = this.getQuarter(new Date(release.date));
+        if (!quarterDate) {
+          return ;
+        }
+        if (!tempDates.hasOwnProperty(quarterDate)) {
+          sortDates.push({ numericDate: release.date, displayDate: quarterDate, count: 1});
+          tempDates[quarterDate] = quarterDate;
+        } else {
+          const sortDateTagIndex = sortDates.findIndex(date => date.displayDate == quarterDate);
+          if (sortDateTagIndex !== -1) {
+            sortDates[sortDateTagIndex].count ++;
+          }
+        }
+      });
+      sortDates.sort((s1, s2) => s1.numericDate - s2.numericdate);
+
+      tempDates = {};
+      sortDates.forEach(date => tempDates[date.displayDate] = date.displayDate);
+
+      this.setState({
+        quarterDateTags: tempDates,
+        sortQuarterDates: sortDates,
+      })
+    }
+
+    
+    let fields = sortDates.map(qDateTag => {
+      return {
+        "label": qDateTag.displayDate, 
+        "checked": false,
+        "key": qDateTag.displayDate,
+        "status": false,
+        "children": [],
+        count: qDateTag.count
+      }
+    });
+
+    return {  
+      "id": 0, "expandable": true, "state": false, "title": "Release Dates",
+      "fields": fields,
+      count: sortDates.reduce((q1, q2) => q1 += q2.count, 0)
+    };
+
+  }
+
   onSearchInputChanged = (e) => this.setState({ searchKey: e.target.value }, this.manageTagArray)
 
   manageDates = (array) => {
-    array.forEach(item => {
-      let itemvalue = new Date(item.date);
-      itemvalue.setDate(itemvalue.getDate() + 1);
-      item.numericdate = itemvalue.getTime() / 1000.0;
-      item.displaydate = datamonths[0][itemvalue.getMonth()] + " " + itemvalue.getFullYear();
-    })
+    if (array) {
+      array.forEach(item => {
+        let itemvalue = new Date(item.date);
+        itemvalue.setDate(itemvalue.getDate() + 1);
+        item.numericdate = itemvalue.getTime() / 1000.0;
+        item.displaydate = datamonths[0][itemvalue.getMonth()] + " " + itemvalue.getFullYear();
+      })
+    }
     return array;
   }
 
@@ -348,6 +387,10 @@ class PlannedReleases extends Component {
     console.log(releasetags);
 
     forms.forEach(form => {
+      if (form.title === 'Release Dates') {
+        // This was handled in getReleaseDateFormFields
+        return;
+      }
       form.icon = null;
       form.iconclass = null;
       form.count = 0;
@@ -411,6 +454,7 @@ class PlannedReleases extends Component {
       })
       return;
     }
+
     // if state and key are passed in
     if (state && !tags.includes(key)) {
       tags.push(key);
@@ -487,6 +531,9 @@ class PlannedReleases extends Component {
   }
 
   getQuarter = (date) => {
+    if (!date || Number.isNaN(date.getTime())) {
+      return null;
+    }
     const month = date.getMonth() + 1;
     const quarter = (Math.ceil(month / 3));
     const year = date.getFullYear();
@@ -526,7 +573,8 @@ class PlannedReleases extends Component {
       pages: 0,
       pagination: false,
       initialitem: 0,
-      lastitem: 10
+      lastitem: 10,
+      selectedDates: []
     }, () => {
       this.setState({
         forms: forms,
@@ -557,8 +605,37 @@ class PlannedReleases extends Component {
 
 
   handleExportClick = () => {
+    let releaseIds = [];
+    let params = []
+
+    this.state.releases.map(release => (
+      params = params.concat('{\"id\":\"' + release.id + '\"}')
+
+      //releaseIds = releaseIds.concat(release.id)
+
+    ));
+
+  //  params+=']';
+  //  console.log(params);
+  //  console.log(this.state.filterreleases);
+    /*
     const showToast = !this.state.showToast;
     this.setState({ showToast: showToast });
+    */
+    const id = '[' + params.join(',') +']';
+    console.log(id);
+    axios.post(`../srv_api/excel/exportList/`,id, {
+      headers: {'Content-Type': 'application/json'},
+      responseType: 'blob',
+    })
+      .then(response => {
+        const content = response.headers['content-type'];
+      download(response.data, "Export.xlsx", content)
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
   }
 
   handleDeleteTagClick = (event) => {
@@ -584,10 +661,11 @@ class PlannedReleases extends Component {
   }
 
   render() {
-    const { forms, placeholder, sorting, tags, keyLabelMap, searchKey, filterreleases } = this.state;
+    const { forms, placeholder, sorting, tags, selectedDates, keyLabelMap, searchKey, filterreleases } = this.state;
     let tabIndex = 1;
 
     const windowWidth = this.state.width;
+    const allSelectedTags = selectedDates.concat(tags);
     return (
       <div className="pr-section" ref={this.paginationRef}>
         <SectionHeaderTitle title={"Planned Releases"} smallWindow={this.props.smallWindow} leftAligned={false} />
@@ -627,14 +705,16 @@ class PlannedReleases extends Component {
               <div className="pr-card-container">
                 <div className="pr-sort-container">
                   <div className="pr-filter-tag-container">
-                    {tags.length > 0 ?
-                      tags.map(filterTag => (
+                    {allSelectedTags.length > 0 ?
+                      allSelectedTags.map(filterTag => (
                         <Chip variant="outlined" clickable="false" label={keyLabelMap[filterTag] ? keyLabelMap[filterTag].replace("SAP", "").trim(): keyLabelMap[filterTag]} lkey={filterTag} deleteIcon={<img src={DeleteTag} alt={filterTag} />} onDelete={this.handleDeleteTagClick} tabIndex={tabIndex++} />
                       ))
                       : null}
                   </div>
-                  {tags.length > 0 ? <Chip className="clear-all-filters" variant="outlined" clickable="false" onClick={this.clearForms} label="Clear All Filters" /> : null}
+                  
+                  {allSelectedTags.length > 0 ? <Chip className="clear-all-filters" variant="outlined" clickable="false" onClick={this.clearForms} label="Clear All Filters" /> : null}
                   { windowWidth >= 960 ? <CustomButton handleClick={this.handleExportClick} label="Export" /> : "" }
+
                   <Snackbar
                     anchorOrigin={{
                       vertical: 'bottom',

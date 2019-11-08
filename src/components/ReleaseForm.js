@@ -91,6 +91,7 @@ class ReleaseForm extends Component {
   render() {
     const { title, expandable, status, data, btnclass, count } = this.state;
     const BtnIcon = this.state.icon;
+
     return (
       <div className={"pr-form-container" 
       + ((title !== "Release Dates" && count > 0 || title === "Release Dates") ? "" : ` pr-container-hidden`)

@@ -250,33 +250,6 @@
     }
 }
 
-.pr-section .MuiChip-clickable.MuiChip-outlined {
-  height: 35px;
-  border: 1px solid #0A6ED1;
-  box-sizing: border-box;
-  border-radius: 47px;
-  padding-left: 12px;
-  padding-right: 11px; /* padding on buttons as listed in Figma */
-  font-family: "72";
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 18px;
-  text-align: center;
-  text-transform: capitalize;
-  margin-right: 8px;
-  margin-bottom: 8px;
-  color: #0A6ED1;
-}
-
-.pr-section .MuiChip-clickable.MuiChip-outlined.pr-selected-filter-chip,
-.pr-section .MuiChip-clickable.MuiChip-outlined:hover {
-  background-color: #0A6ED1;
-  height: 35px;
-  border-radius: 75px;
-  color: #FFFFFF;
-}
-
 .pr-section .roadmap-custom-button {
   height: 43px;
 }

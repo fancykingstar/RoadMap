@@ -19,6 +19,7 @@ export const productlabels = [{
 
     // ambiguous
     "analyticscloud" : "SAP Analytics Cloud",
+    "erp" : "SAP ERP"
 }];
 
 export const processlabels = [{
@@ -30,9 +31,9 @@ export const processlabels = [{
     //SubProcesses
     "onemasterdata" : "One Master Data",
     "applicationlifecyclemanagement" : "Application Lifecycle Management",
-    "intelligence&analytics" : "Intelligence & Analytics",
+    "intelligenceandanalytics" : "Intelligence & Analytics",
     "seamlessux" : "Seamless UX",
-    "identity&accessmanagement" : "Identity & Access Management",
+    "identityandaccessmanagement" : "Identity & Access Management",
     "functionalenhancements" : "Functional Enhancements",
     "integrationexcellence" : "Integration Excellence"
 }];
