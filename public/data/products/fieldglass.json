@@ -8,6 +8,33 @@
     "whatsnew" : [
       {
       "id": 1,
+      "type": "mid",
+      "title": "Event",
+      "header": "SIA Contingent Workforce Summit",
+      "body" : "London, UK, April 21-22, 2020",
+      "buttonText" : "Register Now",
+      "buttonLink" : "https://www2.staffingindustry.com/eng/Events/Calendar-of-Events"
+      },
+      {
+      "id": 2,
+      "type": "mid",
+      "title": "Event",
+      "header": "The MOM Project: Why Your Diversity and Inclusion Strategy Should Consider Contingent Labor",
+      "body" : "Thursday, November 14, 2019",
+      "buttonText" : "Register Now",
+      "buttonLink" : "https://event.on24.com/eventRegistration/EventLobbyServlet?target=reg20.jsp&partnerref=CRM-FG19-PKN-0BE9_59A2&eventid=2119613&sessionid=1&key=3DC37B246812B26DCA762B46A8900757&regTag=&sourcepage=register"
+      },
+      {
+      "id": 3,
+      "type": "mid",
+      "title": "Event",
+      "header": "SAP Ariba Live with SAP Fieldglass",
+      "body" : "Las Vegas, NV, March 16-18 2020",
+      "buttonText" : "Register Now",
+      "buttonLink" : "https://events.sap.com/aribalive/en/home "
+      },
+      {
+      "id": 4,
       "type": "start",
       "title": "SAP Fieldglass Solutions",
       "header": "",
