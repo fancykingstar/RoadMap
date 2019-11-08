@@ -223,9 +223,13 @@
 
 .pr-section .roadmap-custom-button {
   height: 43px;
+  padding-right: 24px;
 }
 
-
+.pr-section .roadmap-custom-button:focus {
+  outline-offset: 0px;
+  outline: transparent auto 0px;
+}
 .pr-clear-all-selected-filters {
   /* Clear All Filters */
 width: 113px;
