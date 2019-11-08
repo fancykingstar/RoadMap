@@ -6,6 +6,11 @@
   margin-top: 0px;
 }
 
+.pr-subform-container .pr-form-header {
+  margin-bottom: 20px;
+  border: none !important;
+}
+
 .pr-container-hidden {
   display: none;
 }

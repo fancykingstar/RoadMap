@@ -34,7 +34,7 @@
     margin: auto;
     width: calc(100% - 30px);
     top: -20px;
-    left: -50px;
+    /*left: -50px;*/
 }
 
 @media screen and (max-width: 767px) {

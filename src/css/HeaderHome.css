@@ -329,8 +329,8 @@
   font-family: "72";
   font-style: normal;
   font-weight: 200;
-  font-size: 16px;
-  line-height: 18px;
+  font-size: 20px;
+  line-height: 30px;
   max-width: 520px;
   text-align: center;
 }
@@ -343,7 +343,7 @@
   color: #000000;
 }
 
-.description a {
+.description a, .description-small a {
   color: #0a6ed1;
   font-weight: 400;
   text-decoration: none;
