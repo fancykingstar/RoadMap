@@ -163,18 +163,21 @@ class SearchResults extends Component {
           // industry parsing needs refactoring -- data shape for industry field is ambiguous
           if (result.industry && result.industry.length > 1 && !chips.includes(result.industry)) {
             /* */
-            const industryKey = result.industry.toLowerCase().replace(/\s/g, "");
+            const industryKey = result.industry.toLowerCase().replace(/\s/g, ""),
+                  industryLabel = result.industry.trim();
             if (industryKey === "retail/hospitality") {
               industryKey = "retail";
             } else if (industryKey === "publicsector/government") {
               industryKey = "publicsector"
             }
-
+            if (!keyLabelMap[industryKey]) {
+              keyLabelMap[industryKey] = industryLabel
+            }
             tags.push(industryKey);
               chips.push({
               category: 'industry',
               key: industryKey,
-              label: result.industry.trim()
+              label: industryLabel
             })
           }
 
@@ -191,11 +194,33 @@ class SearchResults extends Component {
                   chips.push({
                     category: "product",
                     key: productKey,
-                    label: product.trim()
+                    label: productLabel
                   })
                 }
               })
             }
+          
+           if (result.subProducts && result.subProducts.length) {
+            result.subProducts.forEach(({ subproduct }) => {
+              const subProductKey = subproduct.toLowerCase().replace(/\/|(sap)|\s/g, ""),
+                subProductLabel = subproduct.trim()
+              if (!chips.includes(subproduct) && subproduct && subproduct.length > 1) {
+                if (!keyLabelMap[subProductKey]) {
+                  keyLabelMap[subProductKey] = subProductLabel
+                }
+                tags.push(subProductKey);
+
+                // filter out dupes
+                chips = chips.filter( ({key, label}) => key !== subProductKey && label !== subProductLabel)
+                chips.push({
+                  category: "subproduct",
+                  key: subProductKey,
+                  label: subProductLabel,
+                  parentKey: productParentKey
+                })
+              }
+            })
+          }
             result.chips = chips;
             result.tags = tags;
           }
@@ -241,15 +266,6 @@ class SearchResults extends Component {
               result.forms.unshift(releaseDatesTemplate);
             
             releaseDatesTemplate.fields.forEach(date => keyLabelMap[date.label] = date.label);
-            // result.forms.forEach(({ fields }) => {
-            //   if (fields) {
-            //     fields.forEach(({ key, label }) => {
-            //       if (!keyLabelMap[key]) {
-            //         keyLabelMap[key] = label;
-            //       }
-            //     })
-            //   }
-            // })
             this.setState({
               // Filters forms -- current ternary operator will not allow for both Processes and Subprocesses to show.
               forms: result.forms // initial setstate of forms.  forms needs to be refactored
