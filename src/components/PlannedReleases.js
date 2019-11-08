@@ -588,7 +588,7 @@ class PlannedReleases extends Component {
     let releaseIds = [];
     let params = []
 
-    this.state.filterreleases.map(release => (
+    this.state.releases.map(release => (
       params = params.concat('{\"id\":\"' + release.id + '\"}')
 
       //releaseIds = releaseIds.concat(release.id)
