@@ -106,7 +106,7 @@ class PlannedReleases extends Component {
       : (type === 'process' ? 'process' : type === 'integration' ? 'integration' : '');
 
     if (staging) {
-      queryURL = `${baseURL}/srv_api/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,subProducts,toIntegration,toProcess,toSubProcess`;
+      queryURL = `${baseURL}/srv_api/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,toIntegration,toProcess,toSubProcess`;
     } else {
       queryURL = `${baseURL}/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans,subProducts,toIntegration,toProcess,toSubProcess`;
     }
@@ -143,7 +143,7 @@ class PlannedReleases extends Component {
               label: result.toProcess.label
             })
           }
-          
+
           if (result.integration && result.integration.length > 1 && !chips.includes(result.integration)) {
             if (!keyLabelMap[result.toIntegration.lkey]) {
               keyLabelMap[result.toIntegration.lkey] = result.toIntegration.label
@@ -211,7 +211,7 @@ class PlannedReleases extends Component {
             })
           }
 
-          if (result.subProducts.length) {
+          if (result.subProducts && result.subProducts.length) {
             result.subProducts.forEach(({ subproduct }) => {
               // console.log('subProduct:', subproduct);
               const subProductKey = subproduct.toLowerCase().replace(/\/|(sap)|\s/g, ""),
@@ -280,7 +280,7 @@ class PlannedReleases extends Component {
                 //   }
                 // })
                 this.setState({
-                  // Filters forms -- current ternary operator will not allow for both Processes and Subprocesses to show. 
+                  // Filters forms -- current ternary operator will not allow for both Processes and Subprocesses to show.
                   forms: result.forms // initial setstate of forms.  forms needs to be refactored
                     .filter(form => (this.props.type !== 'process' ?
                       form.title !== 'Subprocesses'
@@ -303,12 +303,14 @@ class PlannedReleases extends Component {
   onSearchInputChanged = (e) => this.setState({ searchKey: e.target.value }, this.manageTagArray)
 
   manageDates = (array) => {
-    array.forEach(item => {
-      let itemvalue = new Date(item.date);
-      itemvalue.setDate(itemvalue.getDate() + 1);
-      item.numericdate = itemvalue.getTime() / 1000.0;
-      item.displaydate = datamonths[0][itemvalue.getMonth()] + " " + itemvalue.getFullYear();
-    })
+    if (array) {
+      array.forEach(item => {
+        let itemvalue = new Date(item.date);
+        itemvalue.setDate(itemvalue.getDate() + 1);
+        item.numericdate = itemvalue.getTime() / 1000.0;
+        item.displaydate = datamonths[0][itemvalue.getMonth()] + " " + itemvalue.getFullYear();
+      })
+    }
     return array;
   }
 
@@ -373,7 +375,7 @@ class PlannedReleases extends Component {
     this.setState(prevstate => ({
       ...prevstate,
       forms: forms
-    }), 
+    }),
     ()=> console.log("result.forms(post-filter)",this.state.forms)
     )
   }
@@ -406,7 +408,7 @@ class PlannedReleases extends Component {
       let index = tags.indexOf(key);
       tags.splice(index, 1);
     }
-    this.setState({ tags: tags }, 
+    this.setState({ tags: tags },
       () => console.log(this.state.tags)
       );
 
