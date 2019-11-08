@@ -88,7 +88,7 @@ class PlannedReleases extends Component {
       // } else if (cardfilter === 'successfactors') {
       //   querySubstr = 'SuccessFactors';
       // } else {
-      //   querySubstr = this.state.cardfilter.charAt(0).toUpperCase() + this.state.cardfilter.slice(1); 
+      //   querySubstr = this.state.cardfilter.charAt(0).toUpperCase() + this.state.cardfilter.slice(1);
       // }
       querySubstr = productlabels[0][this.state.cardfilter]
       .split(' ')[1] || ''
@@ -99,14 +99,14 @@ class PlannedReleases extends Component {
 
     let queryURL = '';
     // TODO: differentiate product/subProduct for subProduct query
-    let searchType = type === 'product' ? 
-      'productSearch' 
+    let searchType = type === 'product' ?
+      'productSearch'
       : (type === 'process' ? 'process' : type === 'integration' ? 'integration' : '');
 
     if (staging) {
-      queryURL = `${baseURL}/srv_api/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,subProducts`;
+      queryURL = `${baseURL}/srv_api/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,subProducts,toIntegration,toProcess,toSubProcess`;
     } else {
-      queryURL = `${baseURL}/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans,subProducts`;
+      queryURL = `${baseURL}/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans,subProducts,toIntegration,toProcess,toSubProcess`;
     }
 
     console.log('query:', queryURL, 'pageType:', this.state.type, 'cardfilter:', this.state.cardfilter);
@@ -137,8 +137,8 @@ class PlannedReleases extends Component {
             tags.push(result.process);
             chips.push({
               category: 'process',
-              key: result.process,
-              label: processlabels[0][result.process]
+              key: result.toProcess.lkey,
+              label: result.toProcess.label
             })
           }
 
@@ -146,8 +146,8 @@ class PlannedReleases extends Component {
             tags.push(result.integration);
             chips.push({
               category: 'integration',
-              key: result.integration,
-              label: processlabels[0][result.integration]
+              key: result.toIntegration.lkey,
+              label: result.toIntegration.label
             })
           }
 
@@ -155,8 +155,8 @@ class PlannedReleases extends Component {
             tags.push(result.subProcess);
             chips.push({
               category: 'subprocess',
-              key: result.subProcess,
-              label: processlabels[0][result.subProcess]
+              key: result.toSubProcess.lkey,
+              label: result.toSubProcess.label
             })
           }
 
@@ -194,7 +194,7 @@ class PlannedReleases extends Component {
 
           // needs looking into
           // if (result.subProducts.length) {
-          //   result.subProducts.forEach(( {product} ) =>{ 
+          //   result.subProducts.forEach(( {product} ) =>{
           //     const subProductKey = product.toLowerCase().replace(/(sap)|\s/g, "")
           //     if (!chips.includes(product) && product && product.length > 1) {
           //       tags.push(subProductKey);
@@ -401,7 +401,7 @@ class PlannedReleases extends Component {
 
     if (searchKey) {
       filterReleases = filterReleases.filter(release => {
-        
+
         const includedInChips = release.chips.filter(chip => chip.label.toLowerCase().indexOf(searchKey.toLowerCase()) != -1).length > 0;
         const includedInTitle = release.title.toLowerCase().indexOf(searchKey.toLowerCase()) != -1;
         const includedInDesc = release.description.toLowerCase().indexOf(searchKey.toLowerCase()) != -1;
@@ -409,7 +409,7 @@ class PlannedReleases extends Component {
         return includedInChips || includedInTitle || includedInDesc;
       })
     }
-    
+
     if (filterReleases.length > 10) {
       pagination = true;
       pages = Math.ceil(filterReleases.length / this.state.maxperpage);
@@ -539,7 +539,7 @@ class PlannedReleases extends Component {
   render() {
     const { forms, placeholder, sorting, tags, keyLabelMap, searchKey, filterreleases } = this.state;
     let tabIndex = 1;
-    
+
 
     return (
       <div className="pr-section" ref={this.paginationRef}>
