@@ -30,6 +30,13 @@
   min-width: 347px;
 }
 
+@media screen and (max-width: 760px) {
+  .MuiTabs-root.roadmap-process-tabs.roadmap-process-tab-titles.MuiTabs-vertical {
+    min-width: 405px;
+    align-self: center;
+  }
+}
+
 .roadmap-process-tabs .MuiTabs-flexContainer {
   margin-top: 4.8px;
   /*width: 273px;*/
