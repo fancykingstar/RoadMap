@@ -303,6 +303,7 @@ class PlannedReleases extends Component {
         }
         form.fields[i].count = 0;
         let occurences = this.getOccurrence(releasetags, form.fields[i].key);
+        console.log('formfieldkey:', form.fields[i].key)
         form.fields[i].count = occurences;
         form.count += occurences;
         form.fields[i].count = form.fields[i].count === null ? 0 : form.fields[i].count;
