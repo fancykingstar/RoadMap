@@ -54,9 +54,10 @@ export const onKeyDown = (e, state, ref) => {
     ref.setState({
       activeSuggestion: 0,
       showSuggestions: false,
-      userInput: "start",
+      userInput: "",
       searchOpen: false
     });
+
     let inputvalue = e.target.value;
     if (state.resulthandler) {
       state.resulthandler(inputvalue);
@@ -87,6 +88,7 @@ export const onKeyDown = (e, state, ref) => {
 export const selectSearch = (ref, inputvalue) => {
   var retvalue = "";
 
+
   ref.setState({
    showSuggestions: false,
  }, () => {ref.setState({
@@ -98,8 +100,8 @@ export const selectSearch = (ref, inputvalue) => {
   if (inputvalue.suggestion) {
     retvalue = inputvalue.suggestion;
   } 
-  if(isString(inputvalue.inputvalue)){
-    retvalue = inputvalue.inputvalue;
+  if(isString(inputvalue.inp)){
+    retvalue = inputvalue.inp;
   }
  if (ref.state.resulthandler) {
      ref.state.resulthandler(retvalue);
@@ -109,7 +111,7 @@ export const selectSearch = (ref, inputvalue) => {
  ref.setState(prevState =>
  ({
    ...prevState,
-     userInput: "start",
+     userInput: "",
      showSuggestions: !prevState.showSuggestions
  }))
 });

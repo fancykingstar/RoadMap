@@ -162,7 +162,7 @@ class SiteSearch extends Component {
         // Whether or not the suggestion list is shown
         showSuggestions: false,
         // What the user has entered
-        userInput: "start",
+        userInput: "",
         inputvalue: this.props.value || "",
         placeholder: this.props.placeholder,
         resultspage: this.props.resultspage || false,
@@ -226,7 +226,7 @@ class SiteSearch extends Component {
         const { activeSuggestion, filteredSuggestions, showSuggestions, userInput, trends, placeholder, inputvalue, } = this.state;
 
          let prodsuggestionsListComponent;
-         let input = userInput === "start" ? inputvalue : userInput;
+         let input = userInput === "" ? inputvalue : userInput;
 
       if (showSuggestions) {
             if (filteredSuggestions.length && userInput) {
@@ -279,7 +279,8 @@ class SiteSearch extends Component {
         <div className="product-body product-search">
             <input className={ showSuggestions ? "product-search-input-show" : "product-search-input" } type="text" placeholder={placeholder}  onFocus={() => this.openSearch()} onChange={(e) => onChange(e, this.props, this)} onKeyDown={(e) => onKeyDown(e, this.state, this)} value={input} />
           <IconButton icon={ProdSearchIcon} show={showSuggestions} handleClick={() => {
-              selectSearch(this, {inputvalue})
+              var inp = input
+              selectSearch(this, {inp})
             }} />
         </div>
         {prodsuggestionsListComponent}
@@ -400,7 +401,12 @@ class ProductSearch extends Component {
        <div className="product-body product-search">
            <input className={ showSuggestions ? "product-search-input-show" : "product-search-input" } type="text" placeholder={placeholder}  onFocus={() => this.openSearch()} onChange={(e) => onChange(e, this.props, this)} onKeyDown={(e) => onKeyDown(e, this.state, this)} value={input} />
          <IconButton icon={ProdSearchIcon} show={showSuggestions} handleClick={() => {
-              selectSearch(this, {"inputvalue": input})
+              var inp = input
+              if (inp=="")
+              {
+                inp = "sap"
+              }
+              selectSearch(this, {"inp": inp})
               }} />
        </div>
        {prodsuggestionsListComponent}
