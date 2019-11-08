@@ -17,7 +17,7 @@ import ReleaseForm from './ReleaseForm';
 import ReleaseCard from './ReleaseCard';
 import SectionHeaderTitle from '../components/SectionHeaderTitle';
 import Pagination from '../components/Pagination';
-import { productlabels, processlabels } from '../utils/processutils';
+import { productlabels } from '../utils/processutils';
 import { datamonths } from '../utils/searchutils';
 import DeleteTag from '../assets/images/close-x.svg'
 
@@ -63,7 +63,9 @@ class PlannedReleases extends Component {
 
   componentDidMount() {
     const { type, cardfilter } = this.state;
-    const baseURL = staging ? window.location.origin : 'https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com'
+    const baseURL = staging ? window.location.origin :
+      // 'https://roadmap-ui-dev.cfapps.sap.hana.ondemand.com/srv_api/' // app-router route
+      'https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com'
 
     let querySubstr = '';
     if (type && type === 'product') {
@@ -75,7 +77,7 @@ class PlannedReleases extends Component {
       //   querySubstr = this.state.cardfilter.charAt(0).toUpperCase() + this.state.cardfilter.slice(1); 
       // }
       querySubstr = productlabels[0][this.state.cardfilter]
-      .split(' ')[1] || ''
+        .split(' ')[1] || ''
     } else {
       querySubstr = this.state.cardfilter || '';
     }
@@ -83,14 +85,14 @@ class PlannedReleases extends Component {
 
     let queryURL = '';
     // TODO: differentiate product/subProduct for subProduct query
-    let searchType = type === 'product' ? 
-      'productSearch' 
+    let searchType = type === 'product' ?
+      'productSearch'
       : (type === 'process' ? 'process' : type === 'integration' ? 'integration' : '');
 
     if (staging) {
-      queryURL = `${baseURL}/srv_api/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,subProducts`;
+      queryURL = `${baseURL}/srv_api/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans,subProducts,toProcess,toIntegration,toSubProcess`;
     } else {
-      queryURL = `${baseURL}/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans,subProducts`;
+      queryURL = `${baseURL}/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans,subProducts,toProcess,toIntegration,toSubProcess`;
     }
 
     console.log('query:', queryURL, 'pageType:', this.state.type, 'cardfilter:', this.state.cardfilter);
@@ -100,7 +102,7 @@ class PlannedReleases extends Component {
         return response;
       })
       .then(({ value }) => {
-        let results = value.filter((result) => result.date.length > 1);
+        let results = value.filter((result) => result.date.length > 1), keyLabelMap = {};
         console.log(results);
         for (var i = 0; i < results.length; i++) {
           let result = results[i], chips = [], tags = [];
@@ -113,88 +115,109 @@ class PlannedReleases extends Component {
           result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
           result.futureplans = this.manageDates(result.futureplans);
           // set tags
-          if (result.process && result.process.length > 1 && !chips.includes(result.process)) {;
-            /* Exception Keys */
-            if (result.process === "designtooperate") {
-              result.process = "d2o";
+          if (result.process && result.toProcess && result.process.length > 1 && !chips.includes(result.process)) {
+            if (!keyLabelMap[result.toProcess.lkey]) {
+              keyLabelMap[result.toProcess.lkey] = result.toProcess.label
             }
+
             tags.push(result.process);
             chips.push({
               category: 'process',
-              key: result.process,
-              label: processlabels[0][result.process]
+              key: result.toProcess.lkey,
+              label: result.toProcess.label
             })
           }
 
-          if (result.integration && result.integration.length > 1 && !chips.includes(result.integration)) {
+          if (result.integration && result.toSubIntegration && result.integration.length > 1 && !chips.includes(result.integration)) {
+            if (!keyLabelMap[result.toIntegration.lkey]) {
+              keyLabelMap[result.toIntegration.lkey] = result.toIntegration.label
+            }
             tags.push(result.integration);
             chips.push({
               category: 'integration',
-              key: result.integration,
-              label: processlabels[0][result.integration]
+              key: result.toIntegration.lkey,
+              label: result.toIntegration.label
             })
           }
 
-          if (result.subProcess && result.subProcess.length > 1 && !chips.includes(result.subProcess)) {
+          if (result.subProcess && result.toSubProcess && result.subProcess.length > 1 && !chips.includes(result.subProcess) && (result.subProcess.substr(0, result.subProcess.indexOf(' ') !== "ERROR"))) {
+            if (!keyLabelMap[result.toSubProcess.lkey]) {
+              keyLabelMap[result.toSubProcess.lkey] = result.toSubProcess.label
+            }
             tags.push(result.subProcess);
+            // console.log('subProcess', result.subProcess, result.toSubProcess);
             chips.push({
               category: 'subprocess',
-              key: result.subProcess,
-              label: processlabels[0][result.subProcess]
+              key: result.toSubProcess.lkey,
+              label: result.toSubProcess.label,
+              parentKey: result.toSubProcess.process_lkey
             })
           }
 
           // industry parsing needs refactoring -- data shape for industry field is ambiguous
           if (result.industry && result.industry.length > 1 && !chips.includes(result.industry)) {
             /* */
-            const industryKey = result.industry.toLowerCase().replace(/\s/g, "");
+            const industryKey = result.industry.toLowerCase().replace(/\s/g, ""),
+              industryLabel = result.industry.trim();
             if (industryKey === "retail/hospitality") {
               industryKey = "retail";
             } else if (industryKey === "publicsector/government") {
               industryKey = "publicsector"
             }
-
+            if (!keyLabelMap[industryKey]) {
+              keyLabelMap[industryKey] = industryLabel
+            }
             tags.push(industryKey);
             chips.push({
               category: 'industry',
               key: industryKey,
-              label: result.industry.trim()
+              label: industryLabel
             })
           }
 
           if (result.products.length) {
             result.products.forEach(({ product }) => {
-              const productKey = product.toLowerCase().replace(/(sap)|\s/g, "")
+              const productKey = product.toLowerCase().replace(/\/|(sap)|\s/g, ""),
+                productLabel = product.trim();
               if (!chips.includes(product) && product && product.length > 1) {
+                if (!keyLabelMap[productKey]) {
+                  keyLabelMap[productKey] = productLabel
+                }
                 tags.push(productKey);
                 chips.push({
                   category: "product",
                   key: productKey,
-                  label: product.trim()
+                  label: productLabel
                 })
               }
             })
           }
 
           // needs looking into
-          // if (result.subProducts.length) {
-          //   result.subProducts.forEach(( {product} ) =>{ 
-          //     const subProductKey = product.toLowerCase().replace(/(sap)|\s/g, "")
-          //     if (!chips.includes(product) && product && product.length > 1) {
-          //       tags.push(subProductKey);
-          //       chips.push({
-          //         category: "subproduct",
-          //         key: subProductKey,
-          //         label: product.trim()
-          //       })
-          //     }
-          //   })
-          // }
+          if (result.subProducts.length) {
+            result.subProducts.forEach(({ subproduct }) => {
+              // console.log('subProduct:', subproduct);
+              const subProductKey = subproduct.toLowerCase().replace(/\/|(sap)|\s/g, ""),
+                subProductLabel = subproduct.trim()
+              if (!chips.includes(subproduct) && subproduct && subproduct.length > 1) {
+                if (!keyLabelMap[subProductKey]) {
+                  keyLabelMap[subProductKey] = subProductLabel
+                }
+                tags.push(subProductKey);
+                // console.log('tags.push:', tags)
+                chips.push({
+                  category: "subproduct",
+                  key: subProductKey,
+                  label: subProductLabel,
+                })
+              }
+            })
+          }
           result.chips = chips;
           result.tags = tags;
         }
 
-
+        console.log('keylabelmap(pre-setState):', keyLabelMap)
         // Establish quarterDates
         let sortDates = [];
         if (results && results.releases) {
@@ -222,7 +245,6 @@ class PlannedReleases extends Component {
             .then(res => res.json())
             .then(
               (result) => {
-                let keyLabelMap = {};
                 let releaseDatesTemplate = {
                   "id": 0, "expandable": true, "state": false, "title": "Release Dates",
                   "fields": []
@@ -238,12 +260,16 @@ class PlannedReleases extends Component {
                   }
                 })
                 this.setState({
-                  forms: result.forms.filter(form => (this.props.type !== 'process' ?
-                    form.title !== 'Subprocesses'
-                    : (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent === this.props.cardfilter
-                  )),
-                  keyLabelMap: keyLabelMap
+                  // Filters forms -- current ternary operator will not allow for both Processes and Subprocesses to show. 
+                  forms: result.forms
+                    .filter(form => (this.props.type !== 'process' ?
+                      form.title !== 'Subprocesses'
+                      : (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent === this.props.cardfilter
+                    ))
+                  ,keyLabelMap: keyLabelMap
                 }, function () {
+                  console.log('result.forms:', result.forms);
+                  console.log('keyLabelMap:', this.state.keyLabelMap)
                   this.filterFormResults();
                 })
               }, (error) => { console.log(error); }
@@ -286,7 +312,7 @@ class PlannedReleases extends Component {
       if (release.tags.includes(cardfilter)) {
         releasetags = releasetags.concat(release.tags);
       }
-      console.log(releasetags);
+      // console.log(releasetags);
     })
 
     forms.forEach(form => {
@@ -303,7 +329,7 @@ class PlannedReleases extends Component {
         }
         form.fields[i].count = 0;
         let occurences = this.getOccurrence(releasetags, form.fields[i].key);
-        console.log('formfieldkey:', form.fields[i].key)
+        // console.log('form title:', form.title, '| field key:', form.fields[i].key, '\n')
         form.fields[i].count = occurences;
         form.count += occurences;
         form.fields[i].count = form.fields[i].count === null ? 0 : form.fields[i].count;
@@ -334,7 +360,7 @@ class PlannedReleases extends Component {
     let tags, pagination = false, pages = 0, { quarterDateTags, selectedDates, searchKey } = this.state;
     tags = this.state.tags;
 
-    console.log('tagkey:', key)
+    // console.log('tagkey:', key)
     if (quarterDateTags[key]) {
       let index = selectedDates.indexOf(key);
       if (index === -1) {
@@ -357,7 +383,9 @@ class PlannedReleases extends Component {
       let index = tags.indexOf(key);
       tags.splice(index, 1);
     }
-    this.setState({ tags: tags }, () => console.log(this.state.tags));
+    this.setState({ tags: tags }, 
+      // () => console.log(this.state.tags)
+      );
 
     let filterReleases = this.state.releases;
     this.state.forms.forEach(form => {
@@ -388,7 +416,7 @@ class PlannedReleases extends Component {
         return release.chips.filter(chip => chip.label.toLowerCase().indexOf(searchKey.toLowerCase()) != -1).length > 0;
       })
     }
-    
+
     if (filterReleases.length > 10) {
       pagination = true;
       pages = Math.ceil(filterReleases.length / this.state.maxperpage);
@@ -544,7 +572,7 @@ class PlannedReleases extends Component {
                 <div className="pr-filter-tag-container">
                   {tags.length > 0 ?
                     tags.map(filterTag => (
-                      <Chip variant="outlined" clickable="false" label={keyLabelMap[filterTag]} lkey={filterTag} deleteIcon={<img src={DeleteTag} alt={filterTag} />} onDelete={this.handleDeleteTagClick} tabIndex={tabIndex++} />
+                      <Chip variant="outlined" clickable="false" label={keyLabelMap[filterTag].replace("SAP", "").trim()} lkey={filterTag} deleteIcon={<img src={DeleteTag} alt={filterTag} />} onDelete={this.handleDeleteTagClick} tabIndex={tabIndex++} />
                     ))
                     : null}
                 </div>
