@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import axios from 'axios';
+import download from 'downloadjs'
 //import material UI components
 import SearchIcon from '@material-ui/icons/SearchOutlined';
 import Button from '@material-ui/core/Button';
@@ -105,7 +107,7 @@ class PlannedReleases extends Component {
       : (type === 'process' ? 'process' : type === 'integration' ? 'integration' : '');
 
     if (staging) {
-      queryURL = `${baseURL}/srv_api/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,toIntegration,toProcess,toSubProcess`;
+      queryURL = `${baseURL}/srv_api/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans,subProducts,toIntegration,toProcess,toSubProcess`;
     } else {
       queryURL = `${baseURL}/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans,subProducts,toIntegration,toProcess,toSubProcess`;
     }
@@ -307,10 +309,10 @@ class PlannedReleases extends Component {
       })
     }
 
-    
+
     let fields = sortDates.map(qDateTag => {
       return {
-        "label": qDateTag.displayDate, 
+        "label": qDateTag.displayDate,
         "checked": false,
         "key": qDateTag.displayDate,
         "status": false,
@@ -319,7 +321,7 @@ class PlannedReleases extends Component {
       }
     });
 
-    return {  
+    return {
       "id": 0, "expandable": true, "state": false, "title": "Release Dates",
       "fields": fields,
       count: sortDates.reduce((q1, q2) => q1 += q2.count, 0)
@@ -578,8 +580,37 @@ class PlannedReleases extends Component {
 
 
   handleExportClick = () => {
+    let releaseIds = [];
+    let params = []
+
+    this.state.filterreleases.map(release => (
+      params = params.concat('{\"id\":\"' + release.id + '\"}')
+
+      //releaseIds = releaseIds.concat(release.id)
+
+    ));
+
+  //  params+=']';
+  //  console.log(params);
+  //  console.log(this.state.filterreleases);
+    /*
     const showToast = !this.state.showToast;
     this.setState({ showToast: showToast });
+    */
+    const id = '[' + params.join(',') +']';
+    console.log(id);
+    axios.post(`../srv_api/excel/exportList/`,id, {
+      headers: {'Content-Type': 'application/json'},
+      responseType: 'blob',
+    })
+      .then(response => {
+        const content = response.headers['content-type'];
+      download(response.data, "Export.xlsx", content)
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
   }
 
   handleDeleteTagClick = (event) => {
