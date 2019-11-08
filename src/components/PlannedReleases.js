@@ -74,7 +74,6 @@ class PlannedReleases extends Component {
       // } else {
       //   querySubstr = this.state.cardfilter.charAt(0).toUpperCase() + this.state.cardfilter.slice(1); 
       // }
-      console.log('x:', productlabels[0])
       querySubstr = productlabels[0][this.state.cardfilter]
       .split(' ')[1] || ''
     } else {
@@ -83,14 +82,15 @@ class PlannedReleases extends Component {
 
 
     let queryURL = '';
+    // TODO: differentiate product/subProduct for subProduct query
     let searchType = type === 'product' ? 
       'productSearch' 
       : (type === 'process' ? 'process' : type === 'integration' ? 'integration' : '');
 
     if (staging) {
-      queryURL = `${baseURL}/srv_api/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans`;
+      queryURL = `${baseURL}/srv_api/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,subProducts`;
     } else {
-      queryURL = `${baseURL}/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans`;
+      queryURL = `${baseURL}/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans,subProducts`;
     }
 
     console.log('query:', queryURL, 'pageType:', this.state.type, 'cardfilter:', this.state.cardfilter);
@@ -144,6 +144,7 @@ class PlannedReleases extends Component {
             })
           }
 
+          // industry parsing needs refactoring -- data shape for industry field is ambiguous
           if (result.industry && result.industry.length > 1 && !chips.includes(result.industry)) {
             /* */
             const industryKey = result.industry.toLowerCase().replace(/\s/g, "");
@@ -160,6 +161,7 @@ class PlannedReleases extends Component {
               label: result.industry.trim()
             })
           }
+
           if (result.products.length) {
             result.products.forEach(({ product }) => {
               const productKey = product.toLowerCase().replace(/(sap)|\s/g, "")
@@ -173,6 +175,21 @@ class PlannedReleases extends Component {
               }
             })
           }
+
+          // needs looking into
+          // if (result.subProducts.length) {
+          //   result.subProducts.forEach(( {product} ) =>{ 
+          //     const subProductKey = product.toLowerCase().replace(/(sap)|\s/g, "")
+          //     if (!chips.includes(product) && product && product.length > 1) {
+          //       tags.push(subProductKey);
+          //       chips.push({
+          //         category: "subproduct",
+          //         key: subProductKey,
+          //         label: product.trim()
+          //       })
+          //     }
+          //   })
+          // }
           result.chips = chips;
           result.tags = tags;
         }
@@ -258,7 +275,7 @@ class PlannedReleases extends Component {
   }
 
   filterFormResults = () => {
-    let cardfilter = this.state.endpoint;
+    let cardfilter = this.state.cardfilter;
     let releases = this.state.releases;
     let forms = this.state.forms;
     let subfilter = this.state.subfilter;
@@ -266,10 +283,10 @@ class PlannedReleases extends Component {
 
     //get tags from release data
     releases.forEach(release => {
-      // console.log(release.tags);
       if (release.tags.includes(cardfilter)) {
         releasetags = releasetags.concat(release.tags);
       }
+      console.log(releasetags);
     })
 
     forms.forEach(form => {

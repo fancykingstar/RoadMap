@@ -35,7 +35,7 @@
 .roadmap-stepper-popover .MuiPopover-paper {
   border-radius: 18px;
   margin-top: 22px;
-/*  max-width: 350px;*/
+  overflow-y: hidden;
 }
 
 .MuiCard-root.roadmap-stepper-popover-card {
