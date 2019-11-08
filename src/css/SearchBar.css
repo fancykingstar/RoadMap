@@ -204,7 +204,7 @@
   border: 1px;
   border-style: solid;
   display: flex;
-  position: relative;
+  position: absolute;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -215,6 +215,7 @@
 }
 
 .product-search-container.home-page {
+  position: relative;
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
   border: 0px;
 }

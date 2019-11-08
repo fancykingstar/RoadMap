@@ -6,6 +6,7 @@ import Fuse from 'fuse.js';
 // import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import MinIcon from '@material-ui/icons/Minimize';
+import Grid from '@material-ui/core/Grid';
 import { datamonths } from '../utils/searchutils';
 //import css
 import '../css/PR-Container.css'
@@ -72,13 +73,21 @@ class SearchResults extends Component {
         this.paginate = this.paginate.bind(this);
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     }
-
+    manageDates = (array) => {
+      array.forEach(item => {
+        let itemvalue = new Date(item.date);
+        itemvalue.setDate(itemvalue.getDate() + 1);
+        item.numericdate = itemvalue.getTime() / 1000.0;
+        item.displaydate = datamonths[0][itemvalue.getMonth()] + " " + itemvalue.getFullYear();
+      })
+      return array;
+    }
     componentDidMount() {
         let queryURL = '';
         let searchType = ''
 
         const baseURL = 'https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com'
-        queryURL = `${baseURL}/odata/v4/roadmap/Roadmap?ProductSearch&$skip=0&$orderby=date asc&$expand=products,futureplans`;
+        queryURL = `${baseURL}/odata/v4/roadmap/Roadmap?ProductSearch&$skip=0&$orderby=date asc&$expand=products,futureplans,toIntegration,toProcess,toSubProcess`;
 
         //fetch('https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com/odata/v4/roadmap/Roadmap?ProductSearch&$skip=0&$orderby=date%20asc&$expand=products,futureplans')
         fetch(queryURL)
@@ -89,43 +98,57 @@ class SearchResults extends Component {
             .then(
                 ({value}) => {
                     let results = value.filter((result) => result.date.length > 1);
-                    
-                    
+
+
                     for (var i = 0; i < results.length; i++) {
                         let result = results[i], chips = [], tags = [];
+                        let datevalue = new Date(result.date);
+                        result.date = datevalue.setDate(datevalue.getDate() + 1); // fallback for misformatted date-data
+                        result.numericdate = datevalue.getTime() / 1000.0;
+                        result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
+                        result.futureplans = this.manageDates(result.futureplans);
                         // set tags
-                        if (result.process && result.process.length > 1 && !chips.includes(result.process)) {
-                          const processKey = result.process.toLowerCase().replace(/\s/g, "");
+                        if (result.process && result.process.length > 1 && !chips.includes(result.process)) {;
                           /* Exception Keys */
-                          if (processKey === "designtooperate") {
-                            processKey = "d2o";
+                          if (result.process === "designtooperate") {
+                            result.process = "d2o";
                           }
-                          tags.push(processKey);
+                          tags.push(result.process);
                           chips.push({
                             category: 'process',
-                            key: processKey,
-                            label: result.process.trim()
+                            key: result.toProcess.lkey,
+                            label: result.toProcess.label
                           })
                         }
-              
-                        if (result.integration && result.integration.length > 1 && !chips.includes(result.integration)) {
-                          const integrationKey = result.integration.toLowerCase().replace(/\s/g, "");
-                          tags.push(integrationKey);
+
+                        if (result.toIntegration && result.integration.length > 1 && !chips.includes(result.integration)) {
+                          tags.push(result.integration);
                           chips.push({
                             category: 'integration',
-                            key: integrationKey,
-                            label: result.integration.trim()
+                            key: result.toIntegration.lkey,
+                            label: result.toIntegration.label
                           })
                         }
-              
+
+                        if (result.toSubProcess && result.subProcess.length > 1 && !chips.includes(result.subProcess)) {
+                          tags.push(result.subProcess);
+                          chips.push({
+                            category: 'subprocess',
+                            key: result.toSubProcess.lkey,
+                            label: result.toSubProcess.label
+                          })
+                        }
+
+                        // industry parsing needs refactoring -- data shape for industry field is ambiguous
                         if (result.industry && result.industry.length > 1 && !chips.includes(result.industry)) {
+                          /* */
                           const industryKey = result.industry.toLowerCase().replace(/\s/g, "");
                           if (industryKey === "retail/hospitality") {
                             industryKey = "retail";
                           } else if (industryKey === "publicsector/government") {
                             industryKey = "publicsector"
                           }
-              
+
                           tags.push(industryKey);
                           chips.push({
                             category: 'industry',
@@ -133,10 +156,11 @@ class SearchResults extends Component {
                             label: result.industry.trim()
                           })
                         }
-                        if (result.products && result.products.length) {
+
+                        if (result.products.length) {
                           result.products.forEach(({ product }) => {
                             const productKey = product.toLowerCase().replace(/(sap)|\s/g, "")
-                            if (!chips.includes(product) && product.length > 1) {
+                            if (!chips.includes(product) && product && product.length > 1) {
                               tags.push(productKey);
                               chips.push({
                                 category: "product",
@@ -157,7 +181,7 @@ class SearchResults extends Component {
                             for (var item of result.products.concat(result.process)){
                                 item.description = item.body
                                 cleanedProdProc.push(item)
-            
+
                             }
                         },
                         (error) => {
@@ -291,14 +315,14 @@ class SearchResults extends Component {
             shouldSort: true,
             keys : [{
                 name: "title",
-                weight : 0.9    
+                weight : 0.9
             },
             {
                 name: "description",
                 weight: 0.1
             }]
         }
-        
+
 
         function DIFF(a,b){
             return new Set([...a].filter(x => !b.has(x)))
@@ -325,7 +349,7 @@ class SearchResults extends Component {
                 shouldSort: true,
                 keys : [{
                     name: "title",
-                    weight : 0.5    
+                    weight : 0.5
                 },
                 {
                     name: "key",
@@ -336,7 +360,7 @@ class SearchResults extends Component {
                     weight: 0.1
                 }]
             }
-        }        
+        }
         else{
             var searchParams = results
         }
@@ -424,7 +448,7 @@ class SearchResults extends Component {
                     if(isString(form.featuredetails)){
                         form.featuredetails = form.featuredetails.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").replace(/\r\n/gi,"")
                     }
-                    
+
                     form.futureplans.map(detail =>{
                         if(isString(detail.detail)){
                             detail.detail = detail.detail.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").replace(/\r\n/gi,"")
@@ -660,21 +684,80 @@ class SearchResults extends Component {
     }
 
     render() {
-        const { result, sorting, filteredresults, filterall, filterprocesses, filterproducts, filterfeatures, initialitem, lastitem, pagination, focus, searchhandler } = this.state;
+        const { result, forms, sorting, filteredresults, filterall, filterprocesses, filterproducts, filterfeatures, initialitem, lastitem, pagination, focus, searchhandler } = this.state;
         //console.log(filteredresults)
         //console.log(this.state.forms)
         return (
             <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
-                
+
                 <Header compact={true} type="search" smallWindow={this.state.smallWindow} resultspage={true} resulthandler={this.handleUserResult} />
                 <Feedback />
                 <div className={"content-container" + (this.state.smallWindow ? " content-container-small" : "")}>
                     <div className="search-page-container">
                         <SiteSearch resultspage={true} resulthandler={this.handleUserResult} value={result} suggestions={suggestions} trends={trends} searchhandler={searchhandler}/>
                     </div>
+
                     <div className="search-content-container-topics util-container">
                         <div className={"filterlink" + (focus === "all" ? " filterselection" : "")} onClick={(e) => this.handleSelectFilter(e, "all")}></div>
                     </div>
+                    <Grid container spacing={1} className="pr-body">
+                      <Grid item xs={3}>
+                        <div className="pr-navigation">
+                          {forms.map(form => {
+                            if (typeof form.count == "number") {
+                              return <ReleaseForm key={form.id} title={form.title} expandable={form.expandable} status={form.state} data={form.fields} count={form.count} manageTagArray={this.manageTagArray} icon={form.icon} iconclass={form.iconclass} />
+                            }
+                            return null;
+                          })}
+                          <Button className="clearButton" onClick={this.clearForms} disableFocusRipple={true} disableRipple={true}>CLEAR ALL FILTERS</Button>
+                        </div>
+                      </Grid>
+                      <Grid item xs={9}>
+                        <div className="search-content-container results">
+                            {
+                                filteredresults
+                                    .sort((a, b) => {
+                                        if (sorting === "relevance") {
+                                            return a.relevance - b.relevance;
+                                        }
+                                        if (sorting === "title") {
+                                            return a.title > b.title ? 1 : a.title < b.title ? -1 : 0;
+                                        }
+
+                                        return a.numericdate - b.numericdate;
+                                    })
+                                    .slice(initialitem, lastitem)
+                                    .map(result => {
+                                        if (!result.type) {
+                                            return <ReleaseCard key={result.title + result._id}
+                                                _id={result._id}
+                                                title={result.title}
+                                                relevance={result.relevance}
+                                                date={result.displaydate}
+                                                description={result.description}
+                                                likes={result.likes}
+                                                chips={result.chips}
+                                                values={result.businessvalues}
+                                                details={result.featuredetails}
+                                                futureplans={result.futureplans}
+                                                smallWindow={this.props.smallWindow} />
+
+                                        }
+                                        else if (result.type === "product" || result.type === "process") {
+                                            return <ResultCard key={result.title}
+                                                title={result.title}
+                                                relevance={result.relevance}
+                                                icon={result.icon}
+                                                type={result.type}
+                                                description={result.description} />
+                                        }
+                                        return null;
+                                    })
+                            }
+                        </div>
+                      </Grid>
+                    </Grid>
+
                     {/* <div className="search-content-container util-container pr-sort-container">
                                 <img src={sort} alt="sort" />
                                 <span className="pr-sort-label">SORT BY: </span>
@@ -683,6 +766,8 @@ class SearchResults extends Component {
                                     <option value="title">TITLE</option>
                                 </Select>
                             </div> */}
+
+{/*
                     <div className="search-results-filter-container">
                         <div className="search-results-filtering">
                             {this.state.forms.map(form => (
@@ -690,6 +775,7 @@ class SearchResults extends Component {
                             ))}
                             <Button className="clearButton" onClick={this.clearForms} disableFocusRipple={true} disableRipple={true}>CLEAR ALL FILTERS</Button>
                         </div>
+
                         <div className="search-results-container-right-side">
 
                             <div className="search-content-container results">
@@ -740,7 +826,9 @@ class SearchResults extends Component {
                                     : null
                             }
                         </div>
+
                     </div>
+                    */}
                     <div className="disclaimer">
                         The information above is
                         for informational purposes and delivery timelines may change and projected functionality may not be released see SAP <a href="/">Legal Disclaimer</a>).
@@ -754,4 +842,3 @@ class SearchResults extends Component {
 }
 
 export default SearchResults
-
