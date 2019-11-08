@@ -232,7 +232,7 @@
   border-color: transparent;
   background-color: transparent;
   text-indent: 16px;
-  color: rgba(0, 0, 0, 0.34);
+  color: #0A6ED1;
   font: 400 1.6666666666666667rem '72';
 }
 
@@ -247,7 +247,7 @@
   background-color:transparent;
   /* border-color: rgba (0, 0, 0, 0.36); */
   text-indent: 16px;
-  color: rgba(0, 0, 0, 0.34);
+  color: #0A6ED1;
   font: 400 1.6666666666666667rem '72';
   margin-top: -1px;
   margin-left: -1px;
