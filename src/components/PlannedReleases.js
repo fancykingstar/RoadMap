@@ -119,7 +119,7 @@ class PlannedReleases extends Component {
       })
       .then(({ value }) => {
         let results = value.filter((result) => result.date && result.date.length > 1), keyLabelMap = {}, productParentKey;
-        console.log(results);
+        console.log('Results:', results);
         for (var i = 0; i < results.length; i++) {
           let result = results[i], chips = [], tags = [];
           // parseData
@@ -143,8 +143,8 @@ class PlannedReleases extends Component {
               label: result.toProcess.label
             })
           }
-
-          if (result.integration && result.toSubIntegration && result.integration.length > 1 && !chips.includes(result.integration)) {
+          
+          if (result.integration && result.integration.length > 1 && !chips.includes(result.integration)) {
             if (!keyLabelMap[result.toIntegration.lkey]) {
               keyLabelMap[result.toIntegration.lkey] = result.toIntegration.label
             }
@@ -171,7 +171,7 @@ class PlannedReleases extends Component {
             })
           }
 
-          // industry parsing needs refactoring -- data shape for industry field is ambiguous
+          // data shape for industry field is ambiguous -- most data for industry field is null
           if (result.industry && result.industry.length > 1 && !chips.includes(result.industry)) {
             /* */
             const industryKey = result.industry.toLowerCase().replace(/\s/g, ""),
@@ -193,20 +193,6 @@ class PlannedReleases extends Component {
           }
 
           if (result.products.length) {
-            console.log()
-            // const productKey = result.products[0].product.toLowerCase().replace(/\/|(sap)|\s/g, ""),
-            //     productLabel = result.products[0].product.trim();
-            //   if ((result.products[0].product && result.products[0].product > 1) && !chips.includes(productKey)) {
-            //     if (!keyLabelMap[productKey]) {
-            //       keyLabelMap[productKey] = productLabel
-            //     }
-            //     tags.push(productKey);
-            //     chips.push({
-            //       category: "product",
-            //       key: productKey,
-            //       label: productLabel
-            //     })
-            //   }
             result.products.forEach(({ product }, i) => {
               const productKey = product.toLowerCase().replace(/\/|(sap)|\s/g, ""),
                 productLabel = product.trim();
@@ -302,8 +288,8 @@ class PlannedReleases extends Component {
                     ))
                   ,keyLabelMap: keyLabelMap
                 }, function () {
-                  // console.log('result.forms:', result.forms);
-                  // console.log('keyLabelMap:', this.state.keyLabelMap)
+                  console.log('result.forms(pre-filter):', result.forms);
+                  console.log('keyLabelMap:', this.state.keyLabelMap)
                   this.filterFormResults();
                 })
               }, (error) => { console.log(error); }
@@ -346,8 +332,8 @@ class PlannedReleases extends Component {
       if (release.tags.includes(cardfilter)) {
         releasetags = releasetags.concat(release.tags);
       }
-      // console.log(releasetags);
     })
+    console.log(releasetags);
 
     forms.forEach(form => {
       form.icon = null;
@@ -363,7 +349,8 @@ class PlannedReleases extends Component {
         }
         form.fields[i].count = 0;
         let occurences = this.getOccurrence(releasetags, form.fields[i].key);
-        // console.log('form title:', form.title, '| field key:', form.fields[i].key, '\n')
+        console.log('form title:', form.title, '| field key:', form.fields[i].key, '\n')
+        console.log('subfilter:', subfilter, '| cardfilter:', cardfilter, '\n', ' | equal: ', cardfilter === subfilter)
         form.fields[i].count = occurences;
         form.count += occurences;
         form.fields[i].count = form.fields[i].count === null ? 0 : form.fields[i].count;
@@ -386,7 +373,9 @@ class PlannedReleases extends Component {
     this.setState(prevstate => ({
       ...prevstate,
       forms: forms
-    }))
+    }), 
+    ()=> console.log("result.forms(post-filter)",this.state.forms)
+    )
   }
 
 
@@ -418,7 +407,7 @@ class PlannedReleases extends Component {
       tags.splice(index, 1);
     }
     this.setState({ tags: tags }, 
-      // () => console.log(this.state.tags)
+      () => console.log(this.state.tags)
       );
 
     let filterReleases = this.state.releases;
