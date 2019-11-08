@@ -136,7 +136,7 @@ export function Roadmap(props) {
         id={id}
         open={open}
         anchorEl={anchorEl}
-        onClose={handleClose}
+        // onClose={handleClose}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'right',

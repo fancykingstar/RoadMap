@@ -60,7 +60,6 @@ class PlannedReleases extends Component {
       pages: 0,
       pagination: false,
       selectedDates: [],
-      dateTags: [],
       quarterDateTags: {},
       keyLabelMap: {},
       showToast: false,
@@ -237,38 +236,19 @@ class PlannedReleases extends Component {
           result.tags = tags;
         }
 
-//         console.log('keylabelmap(pre-setState):', keyLabelMap)
-        // Establish quarterDates
-        let sortDates = [];
-        if (results && results.releases) {
-          let tempDates = {};
-          results.forEach(release => {
-            const quarterDate = this.getQuarter(new Date(release.date));
-            if (!tempDates.hasOwnProperty(quarterDate)) {
-              sortDates.push({ numericDate: release.date, displayDate: quarterDate });
-              tempDates[quarterDate] = quarterDate;
-            }
-          });
-          this.setState({
-            quarterDateTags: tempDates
-          })
-        }
-
+        // console.log('keylabelmap(pre-setState):', keyLabelMap)
         this.setState({
           releases: results,
           filterreleases: results,
           pages: results.length > 10 ? Math.ceil(value.length / this.state.maxperpage) : 0,
           pagination: results.length > 10 ? true : false,
-          dateTags: sortDates
         }, function () {
           fetch("/data/rform.json")
             .then(res => res.json())
             .then(
               (result) => {
-                let releaseDatesTemplate = {
-                  "id": 0, "expandable": true, "state": false, "title": "Release Dates",
-                  "fields": []
-                }
+                let releaseDatesTemplate = this.getReleaseDateFormFields(results);
+
                 result.forms.unshift(releaseDatesTemplate);
                 // result.forms.forEach(({ fields }) => {
                 //   if (fields) {
@@ -298,6 +278,53 @@ class PlannedReleases extends Component {
       }, (error) => {
         console.log(error);
       })
+  }
+  getReleaseDateFormFields = (results) => {
+
+    // Establish quarterDates
+    let sortDates = [];
+    if (results && Array.isArray(results)) {
+      let tempDates = {};
+      results.forEach(release => {
+        const quarterDate = this.getQuarter(new Date(release.date));
+        if (!tempDates.hasOwnProperty(quarterDate)) {
+          sortDates.push({ numericDate: release.date, displayDate: quarterDate, count: 1});
+          tempDates[quarterDate] = quarterDate;
+        } else {
+          const sortDateTagIndex = sortDates.findIndex(date => date.displayDate == quarterDate);
+          if (sortDateTagIndex !== -1) {
+            sortDates[sortDateTagIndex].count ++;
+          }
+        }
+      });
+      sortDates.sort((s1, s2) => s1.numericDate - s2.numericdate);
+
+      tempDates = {};
+      sortDates.forEach(date => tempDates[date.displayDate] = date.displayDate);
+      this.setState({
+        quarterDateTags: tempDates,
+        sortQuarterDates: sortDates
+      })
+    }
+
+    
+    let fields = sortDates.map(qDateTag => {
+      return {
+        "label": qDateTag.displayDate, 
+        "checked": false,
+        "key": qDateTag.displayDate,
+        "status": false,
+        "children": [],
+        count: qDateTag.count
+      }
+    });
+
+    return {  
+      "id": 0, "expandable": true, "state": false, "title": "Release Dates",
+      "fields": fields,
+      count: sortDates.reduce((q1, q2) => q1 += q2.count, 0)
+    };
+
   }
 
   onSearchInputChanged = (e) => this.setState({ searchKey: e.target.value }, this.manageTagArray)
@@ -336,6 +363,10 @@ class PlannedReleases extends Component {
     console.log(releasetags);
 
     forms.forEach(form => {
+      if (form.title === 'Release Dates') {
+        // This was handled in getReleaseDateFormFields
+        return;
+      }
       form.icon = null;
       form.iconclass = null;
       form.count = 0;
