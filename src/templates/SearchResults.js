@@ -7,6 +7,11 @@ import Fuse from 'fuse.js';
 import Button from '@material-ui/core/Button';
 import MinIcon from '@material-ui/icons/Minimize';
 import Grid from '@material-ui/core/Grid';
+import Chip from '@material-ui/core/Chip';
+import Snackbar from '@material-ui/core/Snackbar';
+import { CustomButton } from '../components/Button';
+import DeleteTag from '../assets/images/close-x.svg'
+
 import { datamonths } from '../utils/searchutils';
 //import css
 import '../css/PR-Container.css'
@@ -66,12 +71,15 @@ class SearchResults extends Component {
             lastitem: 10,
             maxperpage: 10,
             pages: 0,
-            pagination: false
+            pagination: false,
+            keyLabelMap: {}
         };
         this.scrollToTop = this.scrollToTop.bind(this);
         this.handleUserResult = this.handleUserResult.bind(this);
         this.paginate = this.paginate.bind(this);
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+        this.handleExportClick = this.handleExportClick.bind(this);
+        this.handleDeleteTagClick = this.handleDeleteTagClick.bind(this);
     }
     manageDates = (array) => {
       array.forEach(item => {
@@ -97,7 +105,7 @@ class SearchResults extends Component {
         })
             .then(
                 ({value}) => {
-                    let results = value.filter((result) => (result.date && result.date.length > 1));
+                    let results = value.filter((result) => (result.date && result.date.length > 1)),keyLabelMap = {},productParentKey;
 
 
                     for (var i = 0; i < results.length; i++) {
@@ -113,6 +121,10 @@ class SearchResults extends Component {
                           if (result.process === "designtooperate") {
                             result.process = "d2o";
                           }
+                          if (!keyLabelMap[result.toProcess.lkey]) {
+                            keyLabelMap[result.toProcess.lkey] = result.toProcess.label
+                          }
+
                           tags.push(result.process);
                           chips.push({
                             category: 'process',
@@ -122,6 +134,9 @@ class SearchResults extends Component {
                         }
 
                         if (result.toIntegration && result.integration.length > 1 && !chips.includes(result.integration)) {
+                          if (!keyLabelMap[result.toIntegration.lkey]) {
+                            keyLabelMap[result.toIntegration.lkey] = result.toIntegration.label
+                          }
                           tags.push(result.integration);
                           chips.push({
                             category: 'integration',
@@ -159,8 +174,13 @@ class SearchResults extends Component {
 
                         if (result.products.length) {
                           result.products.forEach(({ product }) => {
-                            const productKey = product.toLowerCase().replace(/(sap)|\s/g, "")
+                            const productKey = product.toLowerCase().replace(/\/|(sap)|\s/g, ""),
+                              productLabel = product.trim();
+                              if (i === 0) productParentKey = productKey;
                             if (!chips.includes(product) && product && product.length > 1) {
+                              if (!keyLabelMap[productKey]) {
+                                keyLabelMap[productKey] = productLabel
+                              }
                               tags.push(productKey);
                               chips.push({
                                 category: "product",
@@ -202,24 +222,38 @@ class SearchResults extends Component {
                         prodProc: cleanedProdProc
 
                     }, () => fetch("/data/rform.json")
-                        .then(res => res.json())
-                        .then(
-                            (result) => {
-                              this.setState({
-                                  forms: result.forms.filter(form => (this.props.type !== 'process' ?
-                                    form.title !== 'Subprocesses'
-                                  :
-                                    (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent === this.props.cardfilter
-                                )
-                              ),
-                            }, function () {
-                                    this.filterFormResults();
-                                })
-                            },
-                            (error) => {
-                                console.log(error);
-                            }
-                        )
+                      .then(res => res.json())
+                      .then(
+                        (result) => {
+                          let releaseDatesTemplate = {
+                            "id": 0, "expandable": true, "state": false, "title": "Release Dates",
+                            "fields": []
+                          }
+                          result.forms.unshift(releaseDatesTemplate);
+                          // result.forms.forEach(({ fields }) => {
+                          //   if (fields) {
+                          //     fields.forEach(({ key, label }) => {
+                          //       if (!keyLabelMap[key]) {
+                          //         keyLabelMap[key] = label;
+                          //       }
+                          //     })
+                          //   }
+                          // })
+                          this.setState({
+                            // Filters forms -- current ternary operator will not allow for both Processes and Subprocesses to show.
+                            forms: result.forms // initial setstate of forms.  forms needs to be refactored
+                              .filter(form => (this.props.type !== 'process' ?
+                                form.title !== 'Subprocesses'
+                                : (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent === this.props.cardfilter
+                              ))
+                            ,keyLabelMap: keyLabelMap
+                          }, function () {
+                            console.log('result.forms(pre-filter):', result.forms);
+                            console.log('keyLabelMap:', this.state.keyLabelMap)
+                            this.filterFormResults();
+                          })
+                        }, (error) => { console.log(error); }
+                      )
                     )
                     //this.cleanData(result.value)
                     this.filterResultData(uniqueResult, cleanedProdProc);
@@ -254,18 +288,16 @@ class SearchResults extends Component {
 
         //get tags from release data
         releases.forEach(release => {
-            if (release.tags.includes(cardfilter)) {
-                //console.log(release.tags)
-                release.tags.map(tags =>{
-                    releasetags.concat(tags.tag)
-                })
-            }
+          //  if (release.tags.includes(cardfilter)) {
+                releasetags = releasetags.concat(release.tags);
+          //  }
             //console.log(release)
         })
 
         forms.forEach(form => {
             form.icon = null;
             form.iconclass = null;
+            form.count = 0;
             for (let i = form.fields.length; i--;) {
                 form.fields[i].indeterminate = false;
                 form.fields[i].icon = null;
@@ -275,7 +307,10 @@ class SearchResults extends Component {
                     form.fields[i].status = true;
                 }
                 form.fields[i].count = 0;
-                form.fields[i].count = this.getOccurrence(releases, form.fields[i].key);
+                let occurences = this.getOccurrence(releasetags, form.fields[i].key);
+                form.fields[i].count = occurences;
+                form.count += occurences;
+              //  form.fields[i].count = this.getOccurrence(releases, form.fields[i].key);
                 form.fields[i].count = form.fields[i].count === null ? 0 : form.fields[i].count;
                 for (let v = form.fields[i].children.length; v--;) {
                     form.fields[i].children[v].count = 0;
@@ -300,12 +335,12 @@ class SearchResults extends Component {
     }
 
     getOccurrence = (array, value) => {
-        var count = 0;
-        array.forEach((item) => {
-            item.tags.forEach((v) => (v === value && count++));
-        });
+      var count = 0;
+      array.forEach((v) => {
+        (v === value && count++);
 
-        return count;
+      });
+      return count;
     }
 
     async filterResultData(results, prodProc) {
@@ -504,7 +539,28 @@ class SearchResults extends Component {
             });
         });
     }
+    handleExportClick = () => {
+      const showToast = !this.state.showToast;
+      this.setState({ showToast: showToast });
+    }
 
+    handleDeleteTagClick = (event) => {
+      // console.log("delete", event.currentTarget.alt, this.state.tags)
+
+      let tag = event.currentTarget.alt;
+      let forms = this.state.forms.map(form => {
+        form.fields.map(field => {
+          if (field.key === tag) {
+            field.checked = false;
+          }
+          return field;
+        })
+        return form;
+      })
+      this.setState({
+        forms: forms
+      }, () => this.manageTagArray(false, tag))
+    }
     manageTagArray = (state, key) => {
         let tags, pagination = false, pages = 0;
         tags = this.state.tags;
@@ -686,9 +742,10 @@ class SearchResults extends Component {
     }
 
     render() {
-        const { result, forms, sorting, filteredresults, filterall, filterprocesses, filterproducts, filterfeatures, initialitem, lastitem, pagination, focus, searchhandler } = this.state;
+        const { result, forms, sorting, filteredresults, filterall, filterprocesses, filterproducts, filterfeatures, initialitem, lastitem, pagination, focus, searchhandler,tags, keyLabelMap} = this.state;
         //console.log(filteredresults)
         //console.log(this.state.forms)
+        let tabIndex = 1;
         return (
             <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
 
@@ -714,7 +771,30 @@ class SearchResults extends Component {
                           <Button className="clearButton" onClick={this.clearForms} disableFocusRipple={true} disableRipple={true}>CLEAR ALL FILTERS</Button>
                         </div>
                       </Grid>
-                      <Grid item xs={9}>
+                      <Grid item xs={9} className="search-list-container">
+                      <div className="pr-sort-container">
+                        <div className="pr-filter-tag-container">
+                          {tags.length > 0 ?
+                            tags.map(filterTag => (
+                              <Chip variant="outlined" clickable="false" label={keyLabelMap[filterTag] ? keyLabelMap[filterTag].replace("SAP", "").trim(): keyLabelMap[filterTag]} lkey={filterTag} deleteIcon={<img src={DeleteTag} alt={filterTag} />} onDelete={this.handleDeleteTagClick} tabIndex={tabIndex++} />
+                            ))
+                            : null}
+                        </div>
+                        {tags.length > 0 ? <Chip className="clear-all-filters" variant="outlined" clickable="false" onClick={this.clearForms} label="Clear All Filters" /> : null}
+                        <CustomButton handleClick={this.handleExportClick} label="Export" />
+                        <Snackbar
+                          anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'center',
+                          }}
+                          className="toast-window"
+                          open={this.state.showToast}
+                          onClose={this.handleExportClick}
+                          autoHideDuration={6000}
+                          message={<span className="toast-messages" id="message-id">Export Feature Coming Soon</span>}
+                        />
+
+                      </div>
                         <div className="search-content-container results">
                             {
                                 filteredresults

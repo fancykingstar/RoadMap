@@ -13,7 +13,9 @@
     padding-left: 130px;
     width: 100%;
 }
-
+.search-list-container .pr-sort-container{
+  display: flex;
+}
 .page-container-small .search-content-container {
     padding-left: 0px;
 }
