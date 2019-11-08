@@ -32,10 +32,16 @@
 .roadmap-carousel-content-container {
     position: relative;
     margin: auto;
-    width: calc(108% - 30px);
+    width: calc(100% - 30px);
     top: -20px;
-    left: -50px;
+    /*left: -50px;*/
+}
 
+@media screen and (max-width: 767px) {
+    .roadmap-carousel-content-container {
+        top: 0;
+        left: 0;
+    }
 }
 
 .roadmap-carousel-content-container .slideInner___2mfX9 {

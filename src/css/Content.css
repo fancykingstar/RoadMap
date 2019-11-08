@@ -7,6 +7,13 @@
   margin: 0px auto;
   width: 100%;
   margin-top: 0px;
+}
+
+@media screen and (max-width: 996px) {
+  .content-container {
+    padding-right: 28px;
+    padding-left: 28px;
+  }
 
 }
 
