@@ -22,7 +22,7 @@ import ReleaseForm from './ReleaseForm';
 import ReleaseCard from './ReleaseCard';
 import SectionHeaderTitle from '../components/SectionHeaderTitle';
 import Pagination from '../components/Pagination';
-
+import { productlabels, processlabels } from '../utils/processutils';
 import { datamonths } from '../utils/searchutils';
 import DeleteTag from '../assets/images/close-x.svg'
 
@@ -50,10 +50,9 @@ class PlannedReleases extends Component {
       statustags: [],
       tags: [],
       type: this.props.type,
-      cardfilter: this.props.cardfilter,
+      cardfilter: this.props.cardfilter === 'twm' ? 'totalworkforcemanagement' : this.props.cardfilter,
       subfilter: this.props.subfilter,
       placeholder: this.props.placeholder,
-      endpoint: this.props.endpoint === 'twm' ? 'totalworkforcemanagement' : this.props.endpoint,
       sorting: 'date',
       initialitem: 0,
       lastitem: 10,
@@ -84,22 +83,25 @@ class PlannedReleases extends Component {
 
     let querySubstr = '';
     if (type && type === 'product') {
-      if (cardfilter === 'c4hana') {
-        querySubstr = 'C/4HANA';
-      } else if (cardfilter === 'successfactors') {
-        querySubstr = 'SuccessFactors';
-      } else {
-        querySubstr = this.state.cardfilter.charAt(0).toUpperCase() + this.state.cardfilter.slice(1); 
-      }
+      // if (cardfilter === 'c4hana') {
+      //   querySubstr = 'C/4HANA';
+      // } else if (cardfilter === 'successfactors') {
+      //   querySubstr = 'SuccessFactors';
+      // } else {
+      //   querySubstr = this.state.cardfilter.charAt(0).toUpperCase() + this.state.cardfilter.slice(1); 
+      // }
+      console.log('x:', productlabels[0])
+      querySubstr = productlabels[0][this.state.cardfilter]
+      .split(' ')[1] || ''
     } else {
-      querySubstr = this.state.cardfilter.replace(/\s/g, "%20");
+      querySubstr = this.state.cardfilter || '';
     }
 
 
     let queryURL = '';
-    let searchType = type === 'product' 
-      ? 'productSearch' 
-      : (type === 'process' ? 'process' : '');
+    let searchType = type === 'product' ? 
+      'productSearch' 
+      : (type === 'process' ? 'process' : type === 'integration' ? 'integration' : '');
 
     if (staging) {
       queryURL = `${baseURL}/srv_api/odata/v4/roadmap/Roadmap?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans`;
@@ -127,42 +129,39 @@ class PlannedReleases extends Component {
           result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
           result.futureplans = this.manageDates(result.futureplans);
           // set tags
-          console.log('result.process:', result.process);
-          if (result.process && result.process.length > 1 && !chips.includes(result.process)) {
-            const processKey = result.process.toLowerCase().replace(/\s/g, "");
+          if (result.process && result.process.length > 1 && !chips.includes(result.process)) {;
             /* Exception Keys */
-            if (processKey === "designtooperate") {
-              processKey = "d2o";
+            if (result.process === "designtooperate") {
+              result.process = "d2o";
             }
-            tags.push(processKey);
+            tags.push(result.process);
             chips.push({
               category: 'process',
-              key: processKey,
-              label: result.process.trim()
+              key: result.process,
+              label: processlabels[0][result.process]
             })
           }
 
           if (result.integration && result.integration.length > 1 && !chips.includes(result.integration)) {
-            const integrationKey = result.integration.toLowerCase().replace(/\s/g, "");
-            tags.push(integrationKey);
+            tags.push(result.integration);
             chips.push({
               category: 'integration',
-              key: integrationKey,
-              label: result.integration.trim()
+              key: result.integration,
+              label: processlabels[0][result.integration]
             })
           }
 
           if (result.subProcess && result.subProcess.length > 1 && !chips.includes(result.subProcess)) {
-            const subProcessKey = result.subProcess.toLowerCase().replace(/\s/g, "");
-            tags.push(subProcessKey);
+            tags.push(result.subProcess);
             chips.push({
               category: 'subprocess',
-              key: subProcessKey,
-              label: result.subProcess.trim()
+              key: result.subProcess,
+              label: processlabels[0][result.subProcess]
             })
           }
 
           if (result.industry && result.industry.length > 1 && !chips.includes(result.industry)) {
+            /* */
             const industryKey = result.industry.toLowerCase().replace(/\s/g, "");
             if (industryKey === "retail/hospitality") {
               industryKey = "retail";
