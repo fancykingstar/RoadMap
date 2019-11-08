@@ -559,6 +559,7 @@ class Header extends Component {
             vertical: 'top',
             horizontal: 'center',
           }}
+          disableRestoreFocus
         >
 
 
