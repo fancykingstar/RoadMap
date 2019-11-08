@@ -135,7 +135,7 @@
     {
       "title": "Lead to Cash",
       "icon": "leadtocash",
-      "body": "The lead-to-cash process is for managing all aspects of the customer experience, from the initial customer interaction to order fulfillment and service delivery. It focuses on driving and realizing revenue along the customer journey.",
+      "body": "Manage all aspects of the customer experience, from the initial interaction to order fulfillment and service delivery. Drive and realize revenue along the customer journey.",
       "tags": [
         "customer",
         "finance"
@@ -144,7 +144,7 @@
     {
       "title": "Total Workforce Management",
       "icon": "twm",
-      "body": "SAP has streamlined processes, enabled by the SAP Intelligent Enterprise Framework, to manage all aspects of your workforce (employees and external workers) in line with business objectives and with clear financial impact.",
+      "body": "Understand, manage and optimize all aspects of your workforce (employees and external workers) in line with business objectives and with clear financial impact.",
       "tags": [
         "hr",
         "finance",
@@ -171,7 +171,7 @@
     {
       "title": "Source to Pay",
       "icon": "sourcetopay",
-      "body": "From strategically selecting the right suppliers or external workforce personnel to assuring compliance demands related to operational procurement processes, SAP brings together core business software to drive success in managing source-to-pay processes.",
+      "body": "Manage all purchasing processes from strategic supplier selection to assuring compliance demands in operational procurement. Analyze and manage spend across business units and drive business value.",
       "tags": [
         "spending",
         "core"
