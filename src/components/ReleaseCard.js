@@ -30,6 +30,7 @@ const tagKeyMatchTable = [{
 }];
 
 function handleTagClick(tag) {
+  console.log("**TAG: ",tag, "\n");
   if (tag.category === "process" || tag.category === "product" || tag.category === "integration") {
     let tagKey = tag.key;
     tagKeyMatchTable.forEach(row => tagKey = row.from === tagKey ? row.to : tagKey);
@@ -37,7 +38,7 @@ function handleTagClick(tag) {
     window.location.href = `/${tag.category}/${tagKey}`;
   }
   if (tag.category === "subprocess" || tag.category === "subproduct") {
-    window.location.href = "/" + tag.category.substring(3) + "/" + (tag["parent-key"] === "totalworkforcemanagement" ? "twm" : tag["parent-key"]) + "/" + tag.key;
+    window.location.href = "/" + tag.category.substring(3) + "/" + (tag["parentKey"] === "totalworkforcemanagement" ? "twm" : tag["parentKey"]) + "/" + tag.key;
   }
 }
 
@@ -134,7 +135,7 @@ export default function ReleaseCard(props) {
             {state.chips && state.chips.length ? state.chips.map(chip => (
               <Chip
                 key={chip.key}
-                label={chip.label}
+                label={chip.label.replace("SAP", "")}
                 className={"release-chip " + (props.smallWindow ? " release-chip-small" : "")}
                 onClick={() => handleTagClick(chip)}
               />
