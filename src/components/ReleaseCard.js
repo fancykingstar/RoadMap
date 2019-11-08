@@ -116,7 +116,7 @@ export default function ReleaseCard(props) {
                 <div className="date">{state.date}</div>
             </div>
 
-            
+
             <div className="action-container">
               <Button className="actionButton" disableFocusRipple={true} disableRipple={true} onClick={increaseLikeCount}><img src={star} alt="add to favorite" /></Button>
 
@@ -143,13 +143,13 @@ export default function ReleaseCard(props) {
             </div>
             <Collapse in={state.status} timeout="auto" unmountOnExit>
               <div className={"collapse-container" + (props.smallWindow ? " collapse-container-small" : "")} onClick={handleContentSection}>
-                <div className={"details-left" +  (props.smallWindow ? " details-left-small" : "") + (state.futureplans.length === 0 ? " single-column" : "") + ((state.businessvalues.length === 0 && state.featuredetails.length === 0) ? " hide-details" : "")}>
-                  {state.businessvalues.length > 0
-                  ? <DetailContainer fullwidth={state.futureplans.length === 0 ? true : false} title="business values" details={state.businessvalues} />
+                <div className={"details-left" +  (props.smallWindow ? " details-left-small" : "") + ((state.futureplans && state.futureplans.length > 0) ? "" : " single-column")}>
+                  { (state.businessvalues && state.businessvalues.length > 0)
+                  ? <DetailContainer fullwidth={(state.futureplans && state.futureplans.length > 0) ? false : true} title="business values" details={state.businessvalues} />
                   : null
                   }
-                  {state.featuredetails.length > 0
-                  ? <DetailContainer fullwidth={state.futureplans.length === 0 ? true : false} title="feature details" details={state.featuredetails} />
+                  {(state.featuredetails && state.featuredetails.length > 0)
+                  ? <DetailContainer fullwidth={(state.futureplans && state.futureplans.length > 0) ? false : true} title="feature details" details={state.featuredetails} />
                   : null
                   }
 

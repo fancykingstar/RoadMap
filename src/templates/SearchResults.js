@@ -448,17 +448,19 @@ class SearchResults extends Component {
                     if(isString(form.featuredetails)){
                         form.featuredetails = form.featuredetails.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").replace(/\r\n/gi,"")
                     }
+                    if (form.futureplans && form.futureplans.length>0) {
+                      form.futureplans.map(detail =>{
+                          if(isString(detail.detail)){
+                              detail.detail = detail.detail.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").replace(/\r\n/gi,"")
+                          }
+                          if(detail.detail && detail.detail.length == 1){
+                              if(detail.detail[0] == ""){
+                                  detail.detail = []
+                              }
+                          }
+                      })
+                    }
 
-                    form.futureplans.map(detail =>{
-                        if(isString(detail.detail)){
-                            detail.detail = detail.detail.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").replace(/\r\n/gi,"")
-                        }
-                        if(detail.detail && detail.detail.length == 1){
-                            if(detail.detail[0] == ""){
-                                detail.detail = []
-                            }
-                        }
-                    })
 
                     if (form.businessvalues && form.businessvalues.length == 1) {
                         if (form.businessvalues[0] == ""){

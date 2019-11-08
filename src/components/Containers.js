@@ -97,7 +97,7 @@ class StepContainer extends Component {
 
   componentDidMount() {
     if (!this.state.businessvalues.length) {
-      let businessvalues = Array.isArray(this.props.businessvalues) ? this.props.businessvalues : this.props.businessvalues.replace(/\*/g, "").split('\n')
+      let businessvalues = Array.isArray(this.props.businessvalues) ? this.props.businessvalues : (this.props.businessvalues ? this.props.businessvalues.replace(/\*/g, "").split('\n'): "");
 
       this.setState({
         title: this.props.title,
