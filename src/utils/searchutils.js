@@ -1,15 +1,24 @@
+function isString (value) {
+  return typeof value === 'string' || value instanceof String;
+}
+
 export const onChange = (e, props, ref) => {
   const { suggestions, searchhandler } = props;
   const userInput = e.currentTarget.value;
 
+  var filteredSuggestions = []
+
   //console.log(ref)
   //var fuse = new Fuse(results, options);
-  var searchresults = searchhandler.search(userInput);
-  //console.log(searchhandler)
-  function extractTitle(result) {
-    return result.title;
+
+  if(searchhandler != null && searchhandler !== undefined)
+  {
+    var searchresults = searchhandler.search(userInput);
+    function extractTitle(result) {
+      return result.title;
   }
-  const filteredSuggestions = searchresults.map(extractTitle).slice(0,5)
+    filteredSuggestions = searchresults.map(extractTitle).slice(0,5)
+  }
 
   // // Filter our suggestions that don't contain the user's input
   // const filteredSuggestions = suggestions.filter(
@@ -89,6 +98,9 @@ export const selectSearch = (ref, inputvalue) => {
   if (inputvalue.suggestion) {
     retvalue = inputvalue.suggestion;
   } 
+  if(isString(inputvalue.inputvalue)){
+    retvalue = inputvalue.inputvalue;
+  }
  if (ref.state.resulthandler) {
      ref.state.resulthandler(retvalue);
  } else {
