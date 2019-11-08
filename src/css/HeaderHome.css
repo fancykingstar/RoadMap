@@ -148,6 +148,19 @@
 .header-left-container.process-header {
   padding-left: 7px;
   padding-top: 30px;
+  display: inline-block;
+}
+
+@media screen and (max-width: 996px) {
+  .header-left-container.process-header {
+    display: none;
+  }
+
+  .header-content .title.title-long, .header-content .title-compact {
+    text-align: center;
+    padding-left: 0;
+    margin: 0 auto;
+  }
 }
 
 .header-left-container.hidden {
@@ -176,6 +189,12 @@
 .header-roadmap-container {
   width: 100%;
 }
+
+@media screen and (max-width: 996px) {
+  
+}
+
+
 .hidden.header-right-container {
   display: none;
 }
@@ -239,9 +258,24 @@
 .header-content .title-compact {
   color: #0a6ed1;
   padding-left: 45px;
-  /* Design concern for less than long titles */
-  /* min-height: 134px; */
 }
+
+@media and screen (min-width: 997px) {
+  .header-content .title-compact {
+    color: #0a6ed1;
+    padding-left: 45px;
+  }
+}
+
+@media and screen (max-width: 996px) {
+  .header-content .title-compact {
+    padding-left: 0;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+
+
 .header-content .title.title-long {
   max-width: 768px;
 }

@@ -12,31 +12,59 @@
                   {"label": "User experience harmonization", "key": "innovation3", "link": ""},
                   {"label": "People analytics across applications", "key": "innovation4", "link": ""}]}],
   "whatsnew": [
-    {
-    "id": 1,
-    "type": "start",
-    "title": "SAP Fieldglass",
-    "header": "Multi-Channel Workforce",
-    "body" : "Are you making the most of your external workforce? Our solution helps you answer these critical questions and many more.",
-    "buttonText" : "Learn More",
-    "buttonLink" : "http://sap.to/6046EAYV0"
-    },{
-    "id": 2,
-    "type": "mid",
-    "title": "SAP Fieldglass",
-    "header": "Services Procurement Insights",
-    "body": "Non-payroll workers and services providers account for 42% of total workforce spend. How well do you manage them? Check out our research in partnership with Oxford Economics.",
-    "buttonText": "Learn More",
-    "buttonLink": "http://sap.to/6043EAWxV"
-    },{
-    "id": 3,
-    "type": "mid",
-    "title": "SAP SuccessFactors",
-    "header": "Managing Talent Effectively as You Grow",
-    "body": "Find out how you can entice the right talent by converting digital investments into meaningful employee experiences...",
-    "buttonText": "Read Blog",
-    "buttonLink": "https://www.digitalistmag.com/future-of-work/2018/09/04/growing-companys-guide-to-talent-management-leadership-06185111"
-    }
+      {
+      "id": 1,
+      "type": "start",
+      "title": "SAP SuccessFactors",
+      "header": "Transform Workforce Experiences with SAP SuccessFactors HXM Suite",
+      "body" : "As announced at our SuccessConnect Las Vegas event in September, we are pleased to share our new strategic intent to help organizations reinvent human experiences in ways that accelerate business growth.",
+      "buttonText" : "Learn More",
+      "buttonLink" : "https://events.sap.com/successconnect/en/session/48305"
+      },{
+        "id": 2,
+        "type": "mid",
+        "title": "SAP SuccessFactors",
+        "header": "Q4 2019 Release Webinars",
+        "body": "The Q4 2019 release includes the following release materials to help you learn about and adopt innovations faster than ever",
+        "buttonText": "Learn More",
+        "buttonLink": "https://community.successfactors.com/t5/custom/page/page-id/Release?blogid=ProductUpdates"
+      },
+      {
+        "id": 3,
+        "type": "mid",
+        "title": "SAP SuccessFactors",
+        "header": "Q4 2019 Release",
+        "body": "For details and information on other enhancements in the Q4 2019 release, please see the full “Release Information Document” in our customer community.",
+        "buttonText": "Learn More",
+        "buttonLink": "https://community.successfactors.com/ "
+      },
+      {
+        "id": 4,
+        "type": "mid",
+        "title": "SAP Concur",
+        "header": "Fusion Exchange – Toronto, October 15, 2019",
+        "body": "",
+        "buttonText": "Read More",
+        "buttonLink": "https://www.concur.ca/fusion-exchange/toronto"
+      },
+      {
+          "id": 5,
+          "type": "mid",
+          "title": "SAP Concur",
+          "header": "Fusion Exchange – Shanghai, November 19, 2019",
+          "body": "Please join us for this event.",
+          "buttonText": "Register Now",
+          "buttonLink": "https://www.concur.cn/fusion-exchange/shanghai"
+      },
+      {
+      "id": 6,
+      "type": "start",
+      "title": "SAP Fieldglass Solutions",
+      "header": "",
+      "body" : "Are you making the most of your external workforce? Our solutions help you answer this critical question and many more.",
+      "buttonText" : "Learn More",
+      "buttonLink" : "https://www.linkedin.com/company/sapfieldglass/"
+      }
   ],
   "roadmapTitle": "Total Workforce Management",
   "roadmap": [

@@ -1,15 +1,24 @@
+function isString (value) {
+  return typeof value === 'string' || value instanceof String;
+}
+
 export const onChange = (e, props, ref) => {
   const { suggestions, searchhandler } = props;
   const userInput = e.currentTarget.value;
 
+  var filteredSuggestions = []
+
   //console.log(ref)
   //var fuse = new Fuse(results, options);
-  var searchresults = searchhandler.search(userInput);
-  //console.log(searchhandler)
-  function extractTitle(result) {
-    return result.title;
+
+  if(searchhandler != null && searchhandler !== undefined)
+  {
+    var searchresults = searchhandler.search(userInput);
+    function extractTitle(result) {
+      return result.title;
   }
-  const filteredSuggestions = searchresults.map(extractTitle).slice(0,5)
+    filteredSuggestions = searchresults.map(extractTitle).slice(0,5)
+  }
 
   // // Filter our suggestions that don't contain the user's input
   // const filteredSuggestions = suggestions.filter(
@@ -45,9 +54,10 @@ export const onKeyDown = (e, state, ref) => {
     ref.setState({
       activeSuggestion: 0,
       showSuggestions: false,
-      userInput: "start",
+      userInput: "",
       searchOpen: false
     });
+
     let inputvalue = e.target.value;
     if (state.resulthandler) {
       state.resulthandler(inputvalue);
@@ -76,22 +86,35 @@ export const onKeyDown = (e, state, ref) => {
 
 
 export const selectSearch = (ref, inputvalue) => {
-   var retvalue = "";
-   if (inputvalue.trend) {
-    retvalue = inputvalue.trend;
-   }
-   if (inputvalue.suggestion) {
-     retvalue = inputvalue.suggestion;
-   } 
-  if (ref.state.resulthandler) {
-      ref.state.resulthandler(retvalue);
-  } else {
-    window.location.href = "/search/" + retvalue;
+  var retvalue = "";
+
+
+  ref.setState({
+   showSuggestions: false,
+ }, () => {ref.setState({
+   showSuggestions: false,
+ })
+  if (inputvalue.trend) {
+   retvalue = inputvalue.trend;
   }
-  ref.setState(prevState => ({
-    ...prevState,
-      userInput: "start"
-  }))
+  if (inputvalue.suggestion) {
+    retvalue = inputvalue.suggestion;
+  } 
+  if(isString(inputvalue.inp)){
+    retvalue = inputvalue.inp;
+  }
+ if (ref.state.resulthandler) {
+     ref.state.resulthandler(retvalue);
+ } else {
+   window.location.href = "/search/" + retvalue;
+ }
+ ref.setState(prevState =>
+ ({
+   ...prevState,
+     userInput: "",
+     showSuggestions: !prevState.showSuggestions
+ }))
+});
 }
 
 export const trendSearch = (ref, inputvalue) => {

@@ -38,11 +38,11 @@ class DetailContainer extends Component {
     let { title, details, fullwidth } = this.state, level1, lineitems;
     if (typeof details === "string") {
       details = details.split('\n')
-      level1 = details.filter(detail => detail.substr(0, 1) === '*').length;
+      level1 = details.filter(detail => detail.substr(0, 2) === '- ').length;
       //console.log('level1', level1);
       lineitems = details.map((detail, index) => {
       if (!detail.length) { return; }
-      return <p className={'contentpoint ' + ((details.length>1) ? ( (level1 === 0) ? 'addBullet bullet' : ((detail.substr(0,1) === '-') ? 'bullet' : '') ) : '') + (detail.substr(0,1)==='*' ? ' secondBullet addBullet' : '')} key={index}>{(detail.substr(0,1)==='*' )? detail.replace(/\*/gi, "") : detail}</p>});
+      return <p className={'contentpoint ' + ((details.length>1) ? ( (level1 === 0) ? 'addBullet bullet' : ((detail.substr(0,2) === '- ') ? 'bullet' : '') ) : '') + (detail.substr(0,2)==='> ' ? ' secondBullet addBullet' : '')} key={index}>{(detail.substr(0,2)==='> ' )? detail.replace("> ", "") : detail}</p>});
     }
 
     return (
@@ -96,9 +96,9 @@ class StepContainer extends Component {
   }
 
   componentDidMount() {
-    // if (!this.state.businessvalues.length) {
-    //   let businessvalues = this.state.businessvalues.replace(/\*/g, "").split('\n')
-    //   console.log(this.props)
+    if (!this.state.businessvalues.length) {
+      let businessvalues = Array.isArray(this.props.businessvalues) ? this.props.businessvalues : this.props.businessvalues.replace(/\*/g, "").split('\n')
+
       this.setState({
         title: this.props.title,
         details: this.props.details,
@@ -107,6 +107,7 @@ class StepContainer extends Component {
         steps: this.props.steps
       })
     }
+  }
 
   render() {
     const { title, steps, businessvalues, featuredetails } = this.state;
@@ -140,12 +141,12 @@ class StepContainer extends Component {
                             console.log(str);
                             console.log(item)
                             return (
-                              <p className={'contentpoint' + ((str.length > 1 && (str[0] !== '-' && str[0] !== '*') ? ' addBullet bullet' :
-                               str[0] === '-' ? ' bullet' : '' + str[0] === '*' ? ' secondBullet addBullet' : ''
+                              <p className={'contentpoint' + ((str.length > 1 && (str[0] !== '-' && str[0] !== '>') ? ' addBullet bullet' :
+                               str[0] === '-' ? ' secondBullet' : '' + str[0] === '>' ? ' thirdBullet addBullet' : ''
                                ))} key={i}>
                                  {
                                   //  str.replace(/\*/gi, "")
-                                  str.replace("*", "")
+                                  str.replace(">", "")
                                    }
                               </p>
                             )

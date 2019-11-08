@@ -2,7 +2,10 @@
   margin-top: 48px;
   max-width: 415px;
 }
+.details-right {
 
+  max-width: 415px;
+}
 .detail-container.single-column {
    max-width: 100%;
 }
@@ -41,6 +44,10 @@
 
 .detail-container .detail-body .secondBullet, .step-container .secondBullet{
   margin-left: 24px;
+  text-indent: -12px;
+}
+.step-container .thirdBullet{
+  margin-left: 36px;
   text-indent: -12px;
 }
 .detail-container .detail-body .addBullet:before, .step-container .addBullet:before {

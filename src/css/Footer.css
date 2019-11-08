@@ -1,8 +1,6 @@
 .page-footer {
-
   left: 0;
   margin-top:-100px;
-  height: 756px;;
   width: 100%;
   background-image: url(../assets/images/footer-x2.png);
   background-repeat: no-repeat;
@@ -17,6 +15,7 @@
   margin-left: auto;
   margin-right: auto;
   max-width: 1599px;
+  margin-bottom: 50px;
 }
 
 .footer-content {
@@ -24,6 +23,13 @@
   margin-left: 100px;
   margin-right: 100px;
   display: flex;
+}
+
+@media screen and (max-width: 1097px) {
+  .footer-content {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
 }
 
 .footer-content .link-container {
@@ -89,6 +95,17 @@
   text-indent: 16px;
   color: rgba(0, 0, 0, 0.34);
   font: 400 1.6666666666666667rem '72';
+}
+
+@media screen and (max-width: 1097px) {
+  .footer-content .link-container-group, .footer-content .subscribe-container {
+    width: 50%;
+  }
+
+  .footer-content .subscribe-container .form-container .email-input {
+    width: 100%;
+    margin-right: 0;
+  }
 }
 
 .footer-content .subscribe-container .form-container .email-input::placeholder {

@@ -27,6 +27,8 @@ import info from '../assets/images/info.svg';
 import logo from '../assets/images/sap-logo.svg';
 import accountIcon from '../assets/images/home-account.svg';
 import compactAccountIcon from '../assets/images/compact-account.svg';
+import favIcon from '../assets/images/home-favorites.svg';
+import compactFavIcon from '../assets/images/compact-favorites.svg';
 import clipMask from '../assets/images/clippingMask.svg';
 import Fuse from 'fuse.js';
 const staging = false;
@@ -59,10 +61,13 @@ class Header extends Component {
     this.renderProcessHeaderContainers = this.renderProcessHeaderContainers.bind(this);
     this.renderProductHeaderContainers = this.renderProductHeaderContainers.bind(this);
     this.renderInfoModal = this.renderInfoModal.bind(this);
-    this.handleInfoClick = this.handleInfoClick.bind(this);
+    this.handleInfoEnter = this.handleInfoEnter.bind(this);
+    this.handleInfoLeave = this.handleInfoLeave.bind(this);
   }
 
   componentDidMount() {
+    const baseURL = 'https://roadmap-srv-dev.cfapps.sap.hana.ondemand.com'
+    const queryURL = `${baseURL}/odata/v4/roadmap/Roadmap?ProductSearch&$skip=0&$orderby=date asc&$expand=products,futureplans`
     fetch("/data/menushort.json")
       .then(res => res.json())
       .then(
@@ -83,26 +88,40 @@ class Header extends Component {
           console.log(error);
         }
       )
-    
-      fetch('/data/Roadmap.json')
+      fetch(queryURL)
       .then(res => res.json())
           .then(
               (result) => {
-                console.log('roadmapjson:', result);
-                var uniqueTitles = new Set()
-                    var uniqueResult = new Array()
-                    result.value.forEach(item =>{
-                        if(!uniqueTitles.has(item.title)){
-                            uniqueTitles.add(item.title)
-                            uniqueResult.push(item)
+                let cleanedProdProc = []
+                fetch("/data/search-pageData.json")
+                .then(function(response) {return response.json()})
+                .then(function(result){
+                        for (var item of result.products.concat(result.process)){
+                            item.description = item.body
+                            cleanedProdProc.push(item)
                         }
-                    })
-                  
-                    this.setState({
-                        results: uniqueResult
-                    })
-                  //this.cleanData(result.value)
-                  this.filterResultData(uniqueResult);
+                    },
+                    (error) => {
+                    console.log(error);
+                    }
+                )
+
+                var uniqueTitles = new Set()
+                var uniqueResult = new Array()
+                result.value.forEach(item =>{
+                    if(!uniqueTitles.has(item.title)){
+                        uniqueTitles.add(item.title)
+                        uniqueResult.push(item)
+                    }
+                })
+              
+                this.setState({
+                    results: uniqueResult,
+                    prodProc: cleanedProdProc
+
+                })
+              //this.cleanData(result.value)
+              this.filterResultData(uniqueResult, cleanedProdProc);
               },
               (error) => {
                   console.log(error);
@@ -143,7 +162,7 @@ class Header extends Component {
     })
   }
 
-  filterResultData(results) {
+  filterResultData(results, prodProc) {
     let productresults = [], processresults = []
     //Fuse should be abstarcted into a different function to prevent recreating it every time. Create Fuse object once and set in state
     var options = {
@@ -157,7 +176,51 @@ class Header extends Component {
             weight: 0.1
         }]
     }
-    const fuse = new Fuse(results, options);
+
+    function DIFF(a,b){
+      return new Set([...a].filter(x => !b.has(x)))
+  }
+
+    function ADD_KEYS(jsons, keys, default_value=null){
+        for (var key of keys){
+            for (var json of jsons){
+                json[key] = default_value
+            }
+        }
+    }
+
+    if(prodProc != null && prodProc !== undefined && prodProc.length > 0){
+        var road_keys = new Set(Object.keys(results[0]))
+        var prodProc_keys = new Set(Object.keys(prodProc[0]))
+        var prodProc_need = DIFF(road_keys, prodProc_keys)
+        var road_need = DIFF(prodProc_keys, road_keys)
+        ADD_KEYS(results, road_need)
+        ADD_KEYS(results, ["key"], "")
+        ADD_KEYS(prodProc, prodProc_need)
+        var searchParams = results.concat(prodProc)
+        var options = {
+            shouldSort: true,
+            keys : [{
+                name: "title",
+                weight : 0.5    
+            },
+            {
+                name: "key",
+                weight : 0.4
+            },
+            {
+                name: "description",
+                weight: 0.1
+            }]
+        }
+        console.log(searchParams)
+    }        
+    else{
+        var searchParams = results
+    }
+
+
+    const fuse = new Fuse(searchParams, options);
     this.setState({searchhandler: fuse});
     var searchresults = fuse.search(this.state.result);
     // searchresults.forEach(result => {
@@ -257,8 +320,12 @@ class Header extends Component {
     this.setState({ showToast: showToast });
   }
 
-  handleInfoClick = (e) => {
-    this.setState({ isInfoOpen: !this.state.isInfoOpen })
+  handleInfoEnter = (e) => {
+    this.setState({ isInfoOpen: true })
+  }
+
+  handleInfoLeave = (e) => {
+    this.setState({ isInfoOpen: false })
   }
 
   renderInfoModal = () => {
@@ -320,19 +387,33 @@ class Header extends Component {
     const { title, compact, headerimage, roadmap } = this.state;
     if (title) {
       return (
-        <div className="header-divided-container">
+        <div className="header-divided-container" style={{ overflow: 'hidden' }}>
           <div className={"header-left-container process-header" + (this.props.smallWindow ? " hidden" : "")}>
             {compact ? <img src={headerimage} alt={title} /> : null}
           </div>
           <div className="header-right-container process-header">
             <div className={"title title-" + (compact ? "compact" : "default")
               + (this.props.smallWindow ? " title-small" : "")
-              + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")}>{title}
-              <img src={info} alt="info" style={{ position: this.props.windowWidth < 816 ? "relative" : "absolute", paddingLeft: 13 + "px", paddingTop: 21 + "px" }} onClick={this.handleInfoClick} ref={this.anchorEl} />
+              + (!this.props.smallWindow && title.length > 20 ? " title-long" : "")}
+            >{title}
+              <img src={info} alt="info"
+                style={{
+                  position: this.props.windowWidth < 816 ? "relative" : "absolute",
+                  paddingLeft: 13 + "px",
+                  paddingTop: 21 + "px",
+                }}
+                ref={this.anchorEl}
+                onMouseEnter={this.handleInfoEnter}
+                onMouseLeave={this.handleInfoLeave}
+
+                aria-owns={this.state.isInfoOpen ? "simple-popover" : undefined}
+                aria-haspopup="true"
+              />
             </div>
             <div className="header-roadmap-container">
-  
-              {roadmap && roadmap.length > 0 ? this.props.windowWidth < 1240 ? <RoadmapVertical roadmap={roadmap} /> : <MultiRoadmap roadmap={roadmap} hideArrows={this.state.process === "twm"} /> : null}
+              {
+                roadmap && roadmap.length > 0 ? <MultiRoadmap roadmap={roadmap} hideArrows={this.state.process === "twm"} /> : null
+              }
             </div>
           </div>
         </div>
@@ -430,9 +511,9 @@ class Header extends Component {
                 {/*
                   // TODO: Notification Bell
                 <img className="header-notification-bell" alt="bell" src={compact ? notificationBell : null } /> */}
-                <img className="header-user-account" alt="account" src={compact ? compactAccountIcon : accountIcon}
-                  onMouseOver={e => (e.currentTarget.src = compact ? accountIcon : compactAccountIcon)}
-                  onMouseOut={e => (e.currentTarget.src = compact ? compactAccountIcon : accountIcon)}
+                <img className="header-user-account" alt="account" src={compact ? compactFavIcon : favIcon}
+                  onMouseOver={e => (e.currentTarget.src = compact ? favIcon : compactFavIcon)}
+                  onMouseOut={e => (e.currentTarget.src = compact ? compactFavIcon : favIcon)}
                   onClick={this.handleAccountClick} />
                 <Snackbar
                   anchorOrigin={{
@@ -443,7 +524,7 @@ class Header extends Component {
                   open={this.state.showToast}
                   onClose={this.handleAccountClick}
                   autoHideDuration={6000}
-                  message={<span className="toast-messages" id="message-id">User Account Feature Coming Soon</span>}
+                  message={<span className="toast-messages" id="message-id">My Favorites Feature Coming Soon</span>}
                 />
               </div>
             }
@@ -460,8 +541,9 @@ class Header extends Component {
         </div>
         {/* Temporary className -- staged for fix process=multi product=single*/}
         <Popover
-          className={"roadmap-stepper-popover info-" + (this.state.productTitles && this.state.innovationTopics ? "multi" : "single")}
-          id={this.state.isInfoOpen ? "simple-popover" : undefined}
+          style={{ pointerEvents: 'none', }}
+          className={`roadmap-stepper-popover info-` + (this.state.productTitles && this.state.innovationTopics ? "multi" : "single")}
+          id={"simple-popover"}
           open={this.state.isInfoOpen}
           anchorEl={this.anchorEl.current}
           onClose={this.handleInfoClick}

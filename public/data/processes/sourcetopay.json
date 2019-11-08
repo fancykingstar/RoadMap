@@ -10,28 +10,57 @@
     {
       "id": 1,
       "type": "start",
-      "title": "feature release",
-      "header": "Login once across SAP applications",
-      "body": "Provide single-sign-on processing for SAP Ariba applications",
-      "buttonText": "Learn More",
-      "buttonLink": "ariba"
-    },{
+      "title": "SAP Ariba Solutions",
+      "header": "Supplier Performance Management Configuration and Template Administration",
+      "body": "Nov.18, 2019, 11:00 am ET",
+      "buttonText": "Register Now",
+      "buttonLink": "https://sap-se.webex.com/sap-se/j.php?RGID=r312495b14268420d1171e8cbeb0b8408"
+    },
+    {
       "id": 2,
       "type": "mid",
-      "title": "Feature Release",
-      "header": "Improved User Experience",
-      "body": "Deliver a consistent user experience across IES related applications.",
-      "buttonText": "Learn More",
-      "buttonLink": "ariba"
-    },{
+      "title": "SAP Ariba Solutions",
+      "header": "Advanced Supplier Performance Management Concepts and Functionality",
+      "body": "Nov. 25, 2019, 11:00 am ET",
+      "buttonText": "Register Now",
+      "buttonLink": "https://sap-se.webex.com/sap-se/j.php?RGID=r8c0dd6d4758222d0ac35a6be8cc71e62"
+    },
+    {
       "id": 3,
       "type": "mid",
-      "title": "Partner",
-      "header": "Accenture",
-      "body": "Hear how Accenture enables contract compliance and savings",
-      "buttonText": "Watch Video",
-      "buttonLink": "https://www.ariba.com/resources/library/library-pages/accenture"
-    }
+      "title": "SAP Ariba Solutions",
+      "header": "Source to Contract",
+      "body": "Nov. 20, 2019, 11:00 am ET",
+      "buttonText": "Register Now",
+      "buttonLink": "https://sap-se.webex.com/sap-se/j.php?RGID=r89b04d559803d441fd7ccf429f05ad6d"
+    },
+    {
+      "id": 4,
+      "type": "mid",
+      "title": "SAP Ariba Solutions",
+      "header": "Managing Approval Processes",
+      "body": "Nov. 26, 2019, 8:00 am ET / 1:00 pm GMT",
+      "buttonText": "Register Now",
+      "buttonLink": "https://sap-se.webex.com/sap-se/j.php?RGID=rb9acae3138b71192f35c3e7636ba6b92"
+    },
+    {
+      "id": 5,
+      "type": "mid",
+      "title": "SAP Ariba Solutions",
+      "header": "Proyectos de tipo Solicitud: Sourcing, Contracts, Procurement ( Request Projects: Sourcing, Contracts, Procurement , Delivered in Spanish)",
+      "body": "Nov. 21, 2019, 11:00 am ET",
+      "buttonText": "Register Now",
+      "buttonLink": "https://sap-se.webex.com/sap-se/j.php?RGID=r7719d8bb6aba810d613192402d689844"
+    },  
+    {
+      "id": 6,
+      "type": "start",
+      "title": "SAP Fieldglass Solutions",
+      "header": "",
+      "body" : "Are you making the most of your external workforce? Our solutions help you answer this critical question and many more.",
+      "buttonText" : "Learn More",
+      "buttonLink" : "https://www.linkedin.com/company/sapfieldglass/"
+      }
   ],
   "roadmapTitle": "Source to Pay",
   "roadmap": [

@@ -38,13 +38,14 @@ export default function ResultCard(props) {
       <CardContent className="content">
           <div className="pr-toolbar">
             <div className="icon-container">
-                <div><img src={renderIcon(state.icon)} alt={state.title}></img></div>
+                <div className= {"icon " + (state.type==="product" ? "result-icon-products": "result-icon-process")}>
+                <img src={renderIcon(state.icon)} alt={state.title}></img></div>
             </div>
             <div className="action-container">
                 <div className="card-type">{state.type}</div>
             </div>
           </div>
-          
+          <div className="page-result-title">{state.title}</div>
           <div className="release-actionbar">
               <div className="release-description">{state.description}</div> 
           </div>

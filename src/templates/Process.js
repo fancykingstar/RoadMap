@@ -12,6 +12,7 @@ import Feedback from '../components/Feedback';
 import PlannedReleases from '../components/PlannedReleases';
 import Footer from '../components/Footer';
 import FooterMobile from '../components/FooterMobile';
+import FooterTablet from '../components/FooterTablet';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import withWidth from '@material-ui/core/withWidth';
@@ -96,6 +97,7 @@ class Process extends Component {
 
 
   render() {
+    console.log(this.state.timeline, "=======================");
     const { title, description, whatsnew, tabValue, roadmap, timeline, releases, template, process, subprocess } = this.state;
     return (
       <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
@@ -111,7 +113,7 @@ class Process extends Component {
               {}
             </Tabs>
             <div className="tab-content">
-              {this.state.tabValue === 0 ? (timeline.length > 4 || this.state.windowWidth < 1200 ?
+              {this.state.tabValue === 0 ? (timeline.length > 4 || this.state.windowWidth < 1125 ?
                 <TimelineVertical timeline={timeline} smallWindow={this.state.smallWindow} /> :
                 <TimelineCurve timeline={timeline} pageType={"process"} title={title} />) : undefined}
 
@@ -144,7 +146,9 @@ class Process extends Component {
           </div> */}
         </div>
 
-        {this.state.smallWindow ? <FooterMobile /> : <Footer />}
+        {
+          this.state.windowWidth > 850 ? <Footer /> : this.state.windowWidth > 550 ? <FooterTablet /> : <FooterMobile />
+        }
       </div>
     )
   }

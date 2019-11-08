@@ -20,6 +20,14 @@
   margin-top: 10px;
 }
 
+@media screen and (max-width: 350px) {
+  .page-container-small .default-card, .default-card.process-card, .default-card {
+      width: 300px;
+      min-width: 300px;
+      margin-right: 0;
+  }
+}
+
 .default-card.MuiPaper-rounded {
   border-radius: 18px;
 }
@@ -29,7 +37,8 @@
 }
 
 .release-card {
-  width: 966px;
+  width: 100%;
+  /*width: 966px;*/
   min-height: 192px;
   height: auto;
   margin-left: 0px;
@@ -115,6 +124,7 @@
   text-transform: capitalize;
 }
 
+
 .page-container-small .release-card .release-title {
   font-size: 20px;
 }
@@ -181,11 +191,11 @@
   margin-top: 14px;
   font-size: 2rem;
   color: #000;
-/*  overflow: hidden;
+  overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical; */
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 }
 
 .page-container-small .static-card .content .header {
@@ -202,7 +212,7 @@
 }
 
 .static-card .content .body {
-  /overflow: hidden;
+  overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   height: 33%;
@@ -291,6 +301,7 @@
   background-position: -6px 0px;
 }
 
+
 .product-active .icon.icon-products {
   background: url(../assets/images/prod-icons/icon-offstate-pr.png) !important;
   background-repeat: no-repeat !important;
@@ -364,4 +375,37 @@ font-size: 16px;
 line-height: 18px;
 color: #0A6ED1;
 text-transform: uppercase;
+}
+
+/*Result card css*/
+.result-icon-products {
+  background: url(../assets/images/prod-icons/icon-offstate-pr.png) !important;
+  background-repeat: no-repeat !important;
+  background-position: 0% 33% !important;
+  width: 54px;
+  height: 54px;
+}
+
+.result-icon-process {
+  background: url(../assets/images/prod-icons/icon-offstate.png);
+  width: 54px;
+  height: 54px;
+  background-position: -6px 0px;
+}
+
+.page-result-title {
+  margin-top: 10px;
+  font-size: 2rem;
+  color: #000;
+  text-transform: capitalize;
+}
+
+.result-icon-process img {
+    margin-left: 12px;
+    margin-top: 12px;
+}
+
+.result-icon-products img {
+    margin-left: 12px;
+    margin-top: 12px;
 }

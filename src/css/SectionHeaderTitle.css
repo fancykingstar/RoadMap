@@ -19,7 +19,7 @@
   align-self: flex-start;
   text-align: center;
   width: 768px;
-  white-space: nowrap;
+  /*white-space: nowrap;*/
   margin: 0 18px;
 }
 @media screen and (min-width: 1429px) {
@@ -37,12 +37,20 @@
   }
 }
 
+@media screen and (max-width: 400px) {
+  .section-title-container {
+    width: 300px;
+  }
+  .section-header-content {
+    width: 300px;
+  }
+}
+
 @media screen and (max-width: 769px) {
   .section-title-container {
     height: 28px;
   }
   .section-header-content {
-    width: 320px;
     margin: auto;
   }
 }

@@ -12,6 +12,11 @@ import ariba from './images/brand-logos/sapariba.svg';
 import concur from './images/brand-logos/sapconcur.svg';
 import c4hana from './images/brand-logos/sapc4hana.svg';
 import fieldglass from './images/brand-logos/sapfieldglass.svg';
+import commercecloud from './images/brand-logos/sapc4hana.svg';
+import marketingcloud from './images/brand-logos/sapc4hana.svg';
+import servicecloud from './images/brand-logos/sapc4hana.svg';
+import customerdatacloud from './images/brand-logos/sapc4hana.svg';
+import salescloud from './images/brand-logos/sapc4hana.svg';
 
 //TWM process icons
 //import benefits from './images/roadmap-icons/Benefits.svg';
@@ -97,6 +102,11 @@ export const ProductIcons = [{
     "concur": concur,
     "c4hana": c4hana,
     "fieldglass": fieldglass,
+    "commercecloud": commercecloud,
+    "marketingcloud": marketingcloud,
+    "customerdatacloud": customerdatacloud,
+    "salescloud": salescloud,
+    "servicecloud":servicecloud,
 //    "benefits": benefits,
 //    "benefitsArrow": benefitsArrow,
 //    "compensation": compensation,
