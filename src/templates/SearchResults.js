@@ -281,7 +281,8 @@ class SearchResults extends Component {
 
     filterFormResults = () => {
         let cardfilter = this.state.cardfilter;
-        let releases = this.state.results;
+        let releases = this.state.filteredresults;
+
         let forms = this.state.forms;
         let subfilter = this.state.subfilter;
         let releasetags = [];
@@ -291,9 +292,9 @@ class SearchResults extends Component {
           //  if (release.tags.includes(cardfilter)) {
                 releasetags = releasetags.concat(release.tags);
           //  }
-            //console.log(release)
-        })
 
+        })
+        console.log(releases.length);
         forms.forEach(form => {
             form.icon = null;
             form.iconclass = null;
@@ -781,7 +782,7 @@ class SearchResults extends Component {
                             : null}
                         </div>
                         {tags.length > 0 ? <Chip className="clear-all-filters" variant="outlined" clickable="false" onClick={this.clearForms} label="Clear All Filters" /> : null}
-                      
+
 
                       </div>
                         <div className="search-content-container results">
