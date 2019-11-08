@@ -20,6 +20,7 @@ import Popover from '@material-ui/core/Popover';
 //import css
 import '../css/HeaderHome.css';
 import '../css/Menu.css';
+import '../css/ReleaseForm.css';
 
 //import assets
 import info from '../assets/images/info.svg';
@@ -438,8 +439,12 @@ class Header extends Component {
                   paddingLeft: 13 + "px",
                   paddingTop: this.props.windowWidth < 816 ? 5 + "px" : 21 + "px"
                 }}
-                  onClick={this.handleInfoClick}
-                  ref={this.anchorEl} /> : null
+                ref={this.anchorEl}
+                onMouseEnter={this.handleInfoEnter}
+                onMouseLeave={this.handleInfoLeave}
+
+                aria-owns={this.state.isInfoOpen ? "simple-popover" : undefined}
+                aria-haspopup="true" /> : null
               }
   
             </div>
