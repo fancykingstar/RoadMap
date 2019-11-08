@@ -160,22 +160,23 @@
 }
 
 .trending-content {
-  margin-top: 23px;
+  margin-top: 20px;
 }
 
 .product-trending {
   margin-left: 15px;
+  margin-bottom: 5px;
 }
 
 .trending-content .trending-title {
-  color: #CCCCCC;
-  font-size: 1.6666666666666667rem;
-  margin-bottom: 16px;
+  color: #666666;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
 }
 
 .trend {
   display: flex;
-  margin-bottom: 17px;
+  margin-bottom: 15px;
   cursor: pointer;
 }
 
