@@ -21,6 +21,12 @@
     text-align: left;
 }
 
+@media screen and (max-width: 1280px) {
+    .roadmap-timeline-bullet-label, .roadmap-timeline-label {
+        width: 200px;
+    }
+}
+
 .roadmap-timeline-content {
     display: flex;
     justify-content: space-between;
