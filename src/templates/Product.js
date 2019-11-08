@@ -49,7 +49,7 @@ class Products extends Component {
   }
 
   componentDidMount() {
-    fetch("/data/products/" + this.state.product + ".json")
+    fetch("/data/products/" + (this.state.subproduct || this.state.product )+ ".json")
       .then(res => res.json())
       .then(
         (result) => {
@@ -82,7 +82,7 @@ class Products extends Component {
   }
 
   checkTitle = () => {
-    let title = this.state.title === "" ? productlabels[0][this.state.product] : this.state.title;
+    let title = this.state.title === "" ? productlabels[0][this.state.subproduct || this.state.product] : this.state.title;
     if (title !== this.state.title) {
 
       this.setState(prevState => ({
@@ -111,7 +111,7 @@ class Products extends Component {
     const { title, description, whatsnew, releases, template, product, subproduct, timeline, tabValue, windowWidth } = this.state;
     return (
       <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
-        <Header title={title} description={description} image={this.renderImage(product)} compact={true} smallWindow={this.state.smallWindow} type="sub-page" pageType={"product"} windowWidth={this.state.windowWidth} product={this.state.product} />
+        <Header title={title} description={description} image={this.renderImage(product)} compact={true} smallWindow={this.state.smallWindow} type="sub-page" pageType={"product"} windowWidth={this.state.windowWidth} product={this.state.subproduct || this.state.product} />
         <Feedback />
         <div className="right-side-bg"></div>
         <div className={"content-container" + (this.state.smallWindow ? " content-container-small" : "")}>
