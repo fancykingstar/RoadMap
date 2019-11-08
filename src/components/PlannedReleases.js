@@ -302,8 +302,8 @@ class PlannedReleases extends Component {
                     ))
                   ,keyLabelMap: keyLabelMap
                 }, function () {
-                  console.log('result.forms:', result.forms);
-                  console.log('keyLabelMap:', this.state.keyLabelMap)
+                  // console.log('result.forms:', result.forms);
+                  // console.log('keyLabelMap:', this.state.keyLabelMap)
                   this.filterFormResults();
                 })
               }, (error) => { console.log(error); }

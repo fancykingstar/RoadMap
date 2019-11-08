@@ -72,7 +72,6 @@ class Header extends Component {
       .then(res => res.json())
       .then(
         (result) => {
-          console.log('menushort:', result);
           result.processes.forEach(process => {
             process.state = activeprocesses.includes(process.title) ? true : false;
           })
@@ -424,7 +423,7 @@ class Header extends Component {
   renderProductHeaderContainers = () => {
     const { title, description, compact, type, headerimage, searchhandler } = this.state;
     if (title) {
-      console.log('title:', title, 'type:', type, 'desc:', description);
+      // console.log('title:', title, 'type:', type, 'desc:', description);
       return (
         <div className={"header-divided-container" + (title && title === "product roadmaps" ? " home-header" : " product-header"
         )}>
