@@ -30,7 +30,6 @@ const tagKeyMatchTable = [{
 }];
 
 function handleTagClick(tag) {
-  console.log("**TAG: ",tag, "\n");
   if (tag.category === "process" || tag.category === "product" || tag.category === "integration") {
     let tagKey = tag.key;
     tagKeyMatchTable.forEach(row => tagKey = row.from === tagKey ? row.to : tagKey);
