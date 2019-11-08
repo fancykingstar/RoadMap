@@ -1,5 +1,4 @@
 
-
 import React, { Component } from 'react';
 import Fuse from 'fuse.js';
 
@@ -50,6 +49,7 @@ class SearchResults extends Component {
             results: [],
             forms: [],
             tags: [],
+            prodProc: [],
             filteredresults: [],
             allfilteredresults: [],
             productresults: [],
@@ -89,15 +89,7 @@ class SearchResults extends Component {
             .then(
                 ({value}) => {
                     let results = value.filter((result) => result.date.length > 1);
-                    console.log(results)
-                    var uniqueTitles = new Set()
-                    var uniqueResult = new Array()
-                    results.forEach(item =>{
-                        if(!uniqueTitles.has(item.title)){
-                            uniqueTitles.add(item.title)
-                            uniqueResult.push(item)
-                        }
-                    })
+                    
                     
                     for (var i = 0; i < results.length; i++) {
                         let result = results[i], chips = [], tags = [];
@@ -157,8 +149,33 @@ class SearchResults extends Component {
                         result.chips = chips;
                         result.tags = tags;
                       }
+
+                    let cleanedProdProc = []
+                    fetch("/data/search-pageData.json")
+                    .then(function(response) {return response.json()})
+                    .then(function(result){
+                            for (var item of result.products.concat(result.process)){
+                                item.description = item.body
+                                cleanedProdProc.push(item)
+            
+                            }
+                        },
+                        (error) => {
+                        console.log(error);
+                        }
+                    )
+
+                    var uniqueTitles = new Set()
+                    let uniqueResult = new Array()
+                    results.forEach(item =>{
+                        if(!uniqueTitles.has(item.title)){
+                            uniqueTitles.add(item.title)
+                            uniqueResult.push(item)
+                        }
+                    })
                     this.setState({
-                        results: uniqueResult
+                        results: uniqueResult,
+                        prodProc: cleanedProdProc
 
                     }, () => fetch("/data/rform.json")
                         .then(res => res.json())
@@ -170,7 +187,6 @@ class SearchResults extends Component {
                                   :
                                     (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent === this.props.cardfilter
                                 )
-
                               ),
                             }, function () {
                                     this.filterFormResults();
@@ -182,7 +198,7 @@ class SearchResults extends Component {
                         )
                     )
                     //this.cleanData(result.value)
-                    this.filterResultData(uniqueResult);
+                    this.filterResultData(uniqueResult, cleanedProdProc);
                 },
                 (error) => {
                     console.log(error);
@@ -215,7 +231,7 @@ class SearchResults extends Component {
         //get tags from release data
         releases.forEach(release => {
             if (release.tags.includes(cardfilter)) {
-                console.log(release.tags)
+                //console.log(release.tags)
                 release.tags.map(tags =>{
                     releasetags.concat(tags.tag)
                 })
@@ -268,7 +284,7 @@ class SearchResults extends Component {
         return count;
     }
 
-    filterResultData(results) {
+    async filterResultData(results, prodProc) {
         let filterall = 0, filterprocess = 0, filterproducts = 0, filterfeatures = 0, filteredresults = [], productresults = [], processresults = [], pagination = false, pages = 0;
         //Fuse should be abstarcted into a different function to prevent recreating it every time. Create Fuse object once and set in state
         var options = {
@@ -282,9 +298,54 @@ class SearchResults extends Component {
                 weight: 0.1
             }]
         }
-        const fuse = new Fuse(results, options);
+        
+
+        function DIFF(a,b){
+            return new Set([...a].filter(x => !b.has(x)))
+        }
+
+        function ADD_KEYS(jsons, keys, default_value=null){
+            for (var key of keys){
+                for (var json of jsons){
+                    json[key] = default_value
+                }
+            }
+        }
+
+        if(prodProc != null && prodProc !== undefined && prodProc.length > 0){
+            var road_keys = new Set(Object.keys(results[0]))
+            var prodProc_keys = new Set(Object.keys(prodProc[0]))
+            var prodProc_need = DIFF(road_keys, prodProc_keys)
+            var road_need = DIFF(prodProc_keys, road_keys)
+            ADD_KEYS(results, road_need)
+            ADD_KEYS(results, ["key"], "")
+            ADD_KEYS(prodProc, prodProc_need)
+            var searchParams = results.concat(prodProc)
+            var options = {
+                shouldSort: true,
+                keys : [{
+                    name: "title",
+                    weight : 0.5    
+                },
+                {
+                    name: "key",
+                    weight : 0.4
+                },
+                {
+                    name: "description",
+                    weight: 0.1
+                }]
+            }
+        }        
+        else{
+            var searchParams = results
+        }
+
+        console.log(options)
+        const fuse = new Fuse(searchParams, options);
         this.setState({searchhandler: fuse});
         var searchresults = fuse.search(this.state.result);
+
         searchresults.forEach(result => {
             if (result.date) {
                 let datevalue = new Date(result.date);
@@ -356,35 +417,37 @@ class SearchResults extends Component {
                 //      All empty list items are removed from the release card and all items get a dash as the whole array doesnt have dashes as default behavior
 
                 //console.log(form)
-                if(isString(form.businessvalues)){
-                    form.businessvalues = form.businessvalues.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").replace(/\r\n/gi,"")
-                }
-                if(isString(form.featuredetails)){
-                    form.featuredetails = form.featuredetails.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").replace(/\r\n/gi,"")
-                }
-                
-                form.futureplans.map(detail =>{
-                    if(isString(detail.detail)){
-                        detail.detail = detail.detail.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").replace(/\r\n/gi,"")
+                if(form.type == null || form.type === undefined || form.type.length == 0){
+                    if(isString(form.businessvalues)){
+                        form.businessvalues = form.businessvalues.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").replace(/\r\n/gi,"")
                     }
-                    if(detail.detail.length == 1){
-                        if(detail.detail[0] == ""){
-                            detail.detail = []
+                    if(isString(form.featuredetails)){
+                        form.featuredetails = form.featuredetails.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").replace(/\r\n/gi,"")
+                    }
+                    
+                    form.futureplans.map(detail =>{
+                        if(isString(detail.detail)){
+                            detail.detail = detail.detail.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").replace(/\r\n/gi,"")
+                        }
+                        if(detail.detail.length == 1){
+                            if(detail.detail[0] == ""){
+                                detail.detail = []
+                            }
+                        }
+                    })
+
+                    if (form.businessvalues.length == 1) {
+                        if (form.businessvalues[0] == ""){
+                            form.businessvalues = []
                         }
                     }
-                })
 
-                if (form.businessvalues.length == 1) {
-                    if (form.businessvalues[0] == ""){
-                        form.businessvalues = []
+                    if (form.featuredetails.length == 1) {
+                        if (form.featuredetails[0] == ""){
+                            form.featuredetails = []
+                        }
                     }
-                }
-
-                if (form.featuredetails.length == 1) {
-                    if (form.featuredetails[0] == ""){
-                        form.featuredetails = []
-                    }
-                }
+            }
 
 
             });
@@ -419,7 +482,7 @@ class SearchResults extends Component {
     manageTagArray = (state, key) => {
         let tags, pagination = false, pages = 0;
         tags = this.state.tags;
-        console.log(tags)
+        //console.log(tags)
         if (state) {
             tags.push(key);
         } else if (key) {
@@ -514,7 +577,8 @@ class SearchResults extends Component {
         }),
             function () {
                 window.history.pushState(null, null, "/search/" + value);
-                this.filterResultData(this.state.results);
+                //console.log(this.state.prodProc)
+                this.filterResultData(this.state.results,this.state.prodProc);
             }
         )
     }
@@ -690,3 +754,4 @@ class SearchResults extends Component {
 }
 
 export default SearchResults
+

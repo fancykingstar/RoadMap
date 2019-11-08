@@ -91,20 +91,37 @@ class Header extends Component {
       .then(res => res.json())
           .then(
               (result) => {
-                var uniqueTitles = new Set()
-                    var uniqueResult = new Array()
-                    result.value.forEach(item =>{
-                        if(!uniqueTitles.has(item.title)){
-                            uniqueTitles.add(item.title)
-                            uniqueResult.push(item)
+                let cleanedProdProc = []
+                fetch("/data/search-pageData.json")
+                .then(function(response) {return response.json()})
+                .then(function(result){
+                        for (var item of result.products.concat(result.process)){
+                            item.description = item.body
+                            cleanedProdProc.push(item)
+        
                         }
-                    })
-                  
-                    this.setState({
-                        results: uniqueResult
-                    })
-                  //this.cleanData(result.value)
-                  this.filterResultData(uniqueResult);
+                    },
+                    (error) => {
+                    console.log(error);
+                    }
+                )
+
+                var uniqueTitles = new Set()
+                var uniqueResult = new Array()
+                result.value.forEach(item =>{
+                    if(!uniqueTitles.has(item.title)){
+                        uniqueTitles.add(item.title)
+                        uniqueResult.push(item)
+                    }
+                })
+              
+                this.setState({
+                    results: uniqueResult,
+                    prodProc: cleanedProdProc
+
+                })
+              //this.cleanData(result.value)
+              this.filterResultData(uniqueResult, cleanedProdProc);
               },
               (error) => {
                   console.log(error);
@@ -144,7 +161,7 @@ class Header extends Component {
     })
   }
 
-  filterResultData(results) {
+  filterResultData(results, prodProc) {
     let productresults = [], processresults = []
     //Fuse should be abstarcted into a different function to prevent recreating it every time. Create Fuse object once and set in state
     var options = {
@@ -158,7 +175,51 @@ class Header extends Component {
             weight: 0.1
         }]
     }
-    const fuse = new Fuse(results, options);
+
+    function DIFF(a,b){
+      return new Set([...a].filter(x => !b.has(x)))
+  }
+
+    function ADD_KEYS(jsons, keys, default_value=null){
+        for (var key of keys){
+            for (var json of jsons){
+                json[key] = default_value
+            }
+        }
+    }
+
+    if(prodProc != null && prodProc !== undefined && prodProc.length > 0){
+        var road_keys = new Set(Object.keys(results[0]))
+        var prodProc_keys = new Set(Object.keys(prodProc[0]))
+        var prodProc_need = DIFF(road_keys, prodProc_keys)
+        var road_need = DIFF(prodProc_keys, road_keys)
+        ADD_KEYS(results, road_need)
+        ADD_KEYS(results, ["key"], "")
+        ADD_KEYS(prodProc, prodProc_need)
+        var searchParams = results.concat(prodProc)
+        var options = {
+            shouldSort: true,
+            keys : [{
+                name: "title",
+                weight : 0.5    
+            },
+            {
+                name: "key",
+                weight : 0.4
+            },
+            {
+                name: "description",
+                weight: 0.1
+            }]
+        }
+        console.log(searchParams)
+    }        
+    else{
+        var searchParams = results
+    }
+
+
+    const fuse = new Fuse(searchParams, options);
     this.setState({searchhandler: fuse});
     var searchresults = fuse.search(this.state.result);
     // searchresults.forEach(result => {
