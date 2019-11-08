@@ -142,7 +142,7 @@ class PlannedReleases extends Component {
             })
           }
 
-          if (result.integration && result.integration.length > 1 && !chips.includes(result.integration)) {
+          if (result.toIntegration && result.integration.length > 1 && !chips.includes(result.integration)) {
             tags.push(result.integration);
             chips.push({
               category: 'integration',
@@ -151,7 +151,7 @@ class PlannedReleases extends Component {
             })
           }
 
-          if (result.subProcess && result.subProcess.length > 1 && !chips.includes(result.subProcess)) {
+          if (result.toSubProcess && result.subProcess.length > 1 && !chips.includes(result.subProcess)) {
             tags.push(result.subProcess);
             chips.push({
               category: 'subprocess',
