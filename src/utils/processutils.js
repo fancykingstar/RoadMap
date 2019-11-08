@@ -31,9 +31,9 @@ export const processlabels = [{
     //SubProcesses
     "onemasterdata" : "One Master Data",
     "applicationlifecyclemanagement" : "Application Lifecycle Management",
-    "intelligenceanalytics" : "Intelligence & Analytics",
+    "intelligenceandanalytics" : "Intelligence & Analytics",
     "seamlessux" : "Seamless UX",
-    "identityaccessmanagement" : "Identity & Access Management",
+    "identityandaccessmanagement" : "Identity & Access Management",
     "functionalenhancements" : "Functional Enhancements",
     "integrationexcellence" : "Integration Excellence"
 }];
