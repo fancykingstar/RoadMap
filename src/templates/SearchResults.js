@@ -341,7 +341,7 @@ class SearchResults extends Component {
             var searchParams = results
         }
 
-        console.log(options)
+        //console.log(options)
         const fuse = new Fuse(searchParams, options);
         this.setState({searchhandler: fuse});
         var searchresults = fuse.search(this.state.result);

@@ -277,7 +277,9 @@ class SiteSearch extends Component {
       <div className={"product-search-container"} ref={node => { this.node = node; }}>
         <div className="product-body product-search">
             <input className={ showSuggestions ? "product-search-input-show" : "product-search-input" } type="text" placeholder={placeholder}  onFocus={() => this.openSearch()} onChange={(e) => onChange(e, this.props, this)} onKeyDown={(e) => onKeyDown(e, this.state, this)} value={input} />
-          <IconButton icon={ProdSearchIcon} show={showSuggestions} />
+          <IconButton icon={ProdSearchIcon} show={showSuggestions} handleClick={() => {
+              selectSearch(this, {inputvalue})
+            }} />
         </div>
         {prodsuggestionsListComponent}
       </div>
@@ -396,7 +398,8 @@ class ProductSearch extends Component {
      <div className={"product-search-container" + (this.props.isHomePage ? " home-page" : "")} ref={node => { this.node = node; }}>
        <div className="product-body product-search">
            <input className={ showSuggestions ? "product-search-input-show" : "product-search-input" } type="text" placeholder={placeholder}  onFocus={() => this.openSearch()} onChange={(e) => onChange(e, this.props, this)} onKeyDown={(e) => onKeyDown(e, this.state, this)} value={input} />
-         <IconButton icon={ProdSearchIcon} show={showSuggestions} />
+         <IconButton icon={ProdSearchIcon} show={showSuggestions} handleClick={() => {
+              selectSearch(this, {inputvalue})}} />
        </div>
        {prodsuggestionsListComponent}
      </div>

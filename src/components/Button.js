@@ -6,7 +6,6 @@ import '../css/Button.css';
 //import asset
 import exportIcon from '../assets/images/export.svg';
 
-
 class Button extends Component {
   render() {
     return (
