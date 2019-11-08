@@ -246,6 +246,11 @@
   /* box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1); */
   border-color: rgba(0, 0, 0, 0.333);
 }
+@media screen and (min-width: 768px) {
+  .product-search-container{
+    min-width: 656px;
+  }
+}
 
 .product-search-container.home-page {
   position: relative;
