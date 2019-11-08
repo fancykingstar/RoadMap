@@ -615,7 +615,7 @@ class PlannedReleases extends Component {
                   <div className="pr-filter-tag-container">
                     {tags.length > 0 ?
                       tags.map(filterTag => (
-                        <Chip variant="outlined" clickable="false" label={keyLabelMap[filterTag].replace("SAP", "").trim()} lkey={filterTag} deleteIcon={<img src={DeleteTag} alt={filterTag} />} onDelete={this.handleDeleteTagClick} tabIndex={tabIndex++} />
+                        <Chip variant="outlined" clickable="false" label={keyLabelMap[filterTag] ? keyLabelMap[filterTag].replace("SAP", "").trim(): keyLabelMap[filterTag]} lkey={filterTag} deleteIcon={<img src={DeleteTag} alt={filterTag} />} onDelete={this.handleDeleteTagClick} tabIndex={tabIndex++} />
                       ))
                       : null}
                   </div>
