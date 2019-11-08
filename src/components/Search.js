@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import ProdSearchIcon from '@material-ui/icons/SearchOutlined';
-import Highlighter from "react-highlight-words";
 
 //import css
 import '../css/SearchBar.css';
