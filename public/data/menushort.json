@@ -114,6 +114,12 @@
               "title": "SAP Service Cloud",
               "selected": false,
               "key": "servicecloud"
+          },
+          {
+              "id": 14,
+              "title": "SAP C/4HANA Suite Cross",
+              "selected": false,
+              "key": "c4hanasuitecross"
           }
       ]
     },

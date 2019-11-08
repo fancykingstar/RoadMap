@@ -69,7 +69,14 @@
               "checked": false,
               "key": "servicecloud",
               "status": false
+            },
+            {
+              "label": "C/4HANA Suite Cross",
+              "checked": false,
+              "key": "c4hanasuitecross",
+              "status": false
             }
+
           ]
         },
         {
