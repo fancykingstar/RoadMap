@@ -88,7 +88,6 @@ class Header extends Component {
           console.log(error);
         }
       )
-      /*
       fetch(queryURL)
       .then(res => res.json())
           .then(
