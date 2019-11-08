@@ -131,7 +131,7 @@ export default function ReleaseCard(props) {
           </div>
           <div className="release-tag-container">
             <div className="TagTitle">TAGS:</div>
-            {state.chips && state.chips.length ? state.chips.filter(tag => (tag.category != 'subprocess' && tag.category != 'subproduct')).map(chip => (
+            {state.chips && state.chips.length ? state.chips.filter(tag => (tag.category == 'subprocess' || (tag.category == 'subproduct' && tag.parentKey !="c4hana" ))? false : true).map(chip => (
               <Chip
                 key={chip.key}
                 label={chip.label.replace("SAP", "")}
