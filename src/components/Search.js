@@ -212,6 +212,7 @@ class SiteSearch extends Component {
 
     handleOutsideClick(e) {
       // ignore clicks on the component itself
+      console.log(this.node)
       if (this.node.contains(e.target)) {
         return;
       }
@@ -301,7 +302,7 @@ class ProductSearch extends Component {
        // Whether or not the suggestion list is shown
        showSuggestions: false,
        // What the user has entered
-       userInput: "",
+       userInput: "sap",
        inputvalue: this.props.value || "",
        placeholder: this.props.placeholder,
        resultspage: this.props.resultspage || false,
@@ -342,7 +343,7 @@ class ProductSearch extends Component {
 
 
  render() {
-       const { activeSuggestion, filteredSuggestions, showSuggestions, userInput, trends, placeholder, inputvalue } = this.state;
+       const { activeSuggestion, filteredSuggestions, showSuggestions, userInput, trends, placeholder, inputvalue} = this.state;
 
         let prodsuggestionsListComponent;
         let input = inputvalue.length > 0 ? inputvalue : userInput;
@@ -399,7 +400,8 @@ class ProductSearch extends Component {
        <div className="product-body product-search">
            <input className={ showSuggestions ? "product-search-input-show" : "product-search-input" } type="text" placeholder={placeholder}  onFocus={() => this.openSearch()} onChange={(e) => onChange(e, this.props, this)} onKeyDown={(e) => onKeyDown(e, this.state, this)} value={input} />
          <IconButton icon={ProdSearchIcon} show={showSuggestions} handleClick={() => {
-              selectSearch(this, {inputvalue})}} />
+              selectSearch(this, {"inputvalue": input})
+              }} />
        </div>
        {prodsuggestionsListComponent}
      </div>
