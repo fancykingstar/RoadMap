@@ -107,171 +107,186 @@ class SearchResults extends Component {
       let response =  res.json()
       return response
     })
-      .then(
-        ({value}) => {
-          let results = value.filter((result) => (result.date && result.date.length > 1)),keyLabelMap = {},productParentKey;
+      .then(async ({value}) => {
+        let results = value.filter((result) => (result.date && result.date.length > 1)),keyLabelMap = {},productParentKey;
 
 
-          for (var i = 0; i < results.length; i++) {
-            let result = results[i], chips = [], tags = [];
-            let datevalue = new Date(result.date);
-            result.date = datevalue.setDate(datevalue.getDate() + 1); // fallback for misformatted date-data
-            result.numericdate = datevalue.getTime() / 1000.0;
-            result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
-            result.futureplans = this.manageDates(result.futureplans);
-            
-            
+        for (var i = 0; i < results.length; i++) {
+          let result = results[i], chips = [], tags = [];
+          let datevalue = new Date(result.date);
+          result.date = datevalue.setDate(datevalue.getDate() + 1); // fallback for misformatted date-data
+          result.numericdate = datevalue.getTime() / 1000.0;
+          result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
+          result.futureplans = this.manageDates(result.futureplans);
+          
+          
 
-            // set tags
-            if (result.process && result.process.length > 1 && !chips.includes(result.process)) {;
-              /* Exception Keys */
-              if (result.process === "designtooperate") {
-                result.process = "d2o";
-              }
-              if (!keyLabelMap[result.toProcess.lkey]) {
-                keyLabelMap[result.toProcess.lkey] = result.toProcess.label
-              }
-
-              tags.push(result.process);
-              chips.push({
-                category: 'process',
-                key: result.toProcess.lkey,
-                label: result.toProcess.label
-              })
+          // set tags
+          if (result.process && result.process.length > 1 && !chips.includes(result.process)) {;
+            /* Exception Keys */
+            if (result.process === "designtooperate") {
+              result.process = "d2o";
+            }
+            if (!keyLabelMap[result.toProcess.lkey]) {
+              keyLabelMap[result.toProcess.lkey] = result.toProcess.label
             }
 
-            if (result.toIntegration && result.integration.length > 1 && !chips.includes(result.integration)) {
-              if (!keyLabelMap[result.toIntegration.lkey]) {
-                keyLabelMap[result.toIntegration.lkey] = result.toIntegration.label
-              }
-              tags.push(result.integration);
+            tags.push(result.process);
+            chips.push({
+              category: 'process',
+              key: result.toProcess.lkey,
+              label: result.toProcess.label
+            })
+          }
+
+          if (result.toIntegration && result.integration.length > 1 && !chips.includes(result.integration)) {
+            if (!keyLabelMap[result.toIntegration.lkey]) {
+              keyLabelMap[result.toIntegration.lkey] = result.toIntegration.label
+            }
+            tags.push(result.integration);
+            chips.push({
+              category: 'integration',
+              key: result.toIntegration.lkey,
+              label: result.toIntegration.label
+            })
+          }
+
+          if (result.toSubProcess && result.subProcess.length > 1 && !chips.includes(result.subProcess)) {
+            tags.push(result.subProcess);
+            chips.push({
+              category: 'subprocess',
+              key: result.toSubProcess.lkey,
+              label: result.toSubProcess.label
+            })
+          }
+
+          // industry parsing needs refactoring -- data shape for industry field is ambiguous
+          if (result.industry && result.industry.length > 1 && !chips.includes(result.industry)) {
+            /* */
+            const industryKey = result.industry.toLowerCase().replace(/\s/g, ""),
+                  industryLabel = result.industry.trim();
+            if (industryKey === "retail/hospitality") {
+              industryKey = "retail";
+            } else if (industryKey === "publicsector/government") {
+              industryKey = "publicsector"
+            }
+            if (!keyLabelMap[industryKey]) {
+              keyLabelMap[industryKey] = industryLabel
+            }
+            tags.push(industryKey);
               chips.push({
-                category: 'integration',
-                key: result.toIntegration.lkey,
-                label: result.toIntegration.label
+              category: 'industry',
+              key: industryKey,
+              label: industryLabel
+            })
+          }
+
+          if (result.products.length) {
+            result.products.forEach(({ product }) => {
+            const productKey = product.toLowerCase().replace(/\/|(sap)|\s/g, ""),
+              productLabel = product.trim();
+              if (i === 0) productParentKey = productKey;
+              if (!chips.includes(product) && product && product.length > 1) {
+                if (!keyLabelMap[productKey]) {
+                  keyLabelMap[productKey] = productLabel
+                }
+                tags.push(productKey);
+                  chips.push({
+                    category: "product",
+                    key: productKey,
+                    label: productLabel
+                  })
+                }
               })
             }
+          
+           if (result.subProducts && result.subProducts.length) {
+            result.subProducts.forEach(({ subproduct }) => {
+              const subProductKey = subproduct.toLowerCase().replace(/\/|(sap)|\s/g, ""),
+                subProductLabel = subproduct.trim()
+              if (!chips.includes(subproduct) && subproduct && subproduct.length > 1) {
+                if (!keyLabelMap[subProductKey]) {
+                  keyLabelMap[subProductKey] = subProductLabel
+                }
+                tags.push(subProductKey);
 
-            if (result.toSubProcess && result.subProcess.length > 1 && !chips.includes(result.subProcess)) {
-              tags.push(result.subProcess);
-              chips.push({
-                category: 'subprocess',
-                key: result.toSubProcess.lkey,
-                label: result.toSubProcess.label
-              })
-            }
-
-            // industry parsing needs refactoring -- data shape for industry field is ambiguous
-            if (result.industry && result.industry.length > 1 && !chips.includes(result.industry)) {
-              /* */
-              const industryKey = result.industry.toLowerCase().replace(/\s/g, "");
-              if (industryKey === "retail/hospitality") {
-                industryKey = "retail";
-              } else if (industryKey === "publicsector/government") {
-                industryKey = "publicsector"
-              }
-
-              tags.push(industryKey);
+                // filter out dupes
+                chips = chips.filter( ({key, label}) => key !== subProductKey && label !== subProductLabel)
                 chips.push({
-                category: 'industry',
-                key: industryKey,
-                label: result.industry.trim()
-              })
-            }
-
-            if (result.products.length) {
-              result.products.forEach(({ product }) => {
-              const productKey = product.toLowerCase().replace(/\/|(sap)|\s/g, ""),
-                productLabel = product.trim();
-                if (i === 0) productParentKey = productKey;
-                if (!chips.includes(product) && product && product.length > 1) {
-                  if (!keyLabelMap[productKey]) {
-                    keyLabelMap[productKey] = productLabel
-                  }
-                  tags.push(productKey);
-                    chips.push({
-                      category: "product",
-                      key: productKey,
-                      label: product.trim()
-                    })
-                  }
+                  category: "subproduct",
+                  key: subProductKey,
+                  label: subProductLabel,
+                  parentKey: productParentKey
                 })
               }
-              result.chips = chips;
-              result.tags = tags;
+            })
+          }
+            result.chips = chips;
+            result.tags = tags;
+          }
+
+        let cleanedProdProc = []
+        fetch("/data/search-pageData.json")
+        .then(function(response) {return response.json()})
+        .then((result) => {
+            for (var item of result.products.concat(result.process)){
+              item.description = item.body
+              cleanedProdProc.push(item)
+
             }
-
-          let cleanedProdProc = []
-          fetch("/data/search-pageData.json")
-          .then(function(response) {return response.json()})
-          .then(function(result){
-              for (var item of result.products.concat(result.process)){
-                item.description = item.body
-                cleanedProdProc.push(item)
-
-              }
-            },
-            (error) => {
+          },
+          (error) => {
             console.log(error);
-            }
+          }
+        )
+
+        var uniqueTitles = new Set()
+        let uniqueResult = new Array()
+        results.forEach(item =>{
+          if(!uniqueTitles.has(item.title)){
+            uniqueTitles.add(item.title)
+            uniqueResult.push(item)
+          }
+        })
+
+
+        //this.cleanData(result.value)
+        await this.filterResultData(uniqueResult, cleanedProdProc);
+
+        this.setState({
+          results: uniqueResult,
+          prodProc: cleanedProdProc
+
+        }, () => fetch("/data/rform.json")
+          .then(res => res.json())
+          .then((result) => {
+            let releaseDatesTemplate = this.getReleaseDateFormFields(this.state.filteredresults);
+
+            if (releaseDatesTemplate.count > 0)
+              result.forms.unshift(releaseDatesTemplate);
+            
+            releaseDatesTemplate.fields.forEach(date => keyLabelMap[date.label] = date.label);
+            this.setState({
+              // Filters forms -- current ternary operator will not allow for both Processes and Subprocesses to show.
+              forms: result.forms // initial setstate of forms.  forms needs to be refactored
+                .filter(form => (this.props.type !== 'process' ?
+                form.title !== 'Subprocesses'
+                : (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent === this.props.cardfilter
+                ))
+              ,keyLabelMap: keyLabelMap
+            }, function () {
+              console.log('result.forms(pre-filter):', result.forms);
+              console.log('keyLabelMap:', this.state.keyLabelMap)
+              this.filterFormResults();
+            })
+          }, (error) => { console.log(error); }
           )
-
-          var uniqueTitles = new Set()
-          let uniqueResult = new Array()
-          results.forEach(item =>{
-            if(!uniqueTitles.has(item.title)){
-              uniqueTitles.add(item.title)
-              uniqueResult.push(item)
-            }
-          })
-
-
-          //this.cleanData(result.value)
-          this.filterResultData(uniqueResult, cleanedProdProc);
-
-          this.setState({
-            results: uniqueResult,
-            prodProc: cleanedProdProc
-
-          }, () => fetch("/data/rform.json")
-            .then(res => res.json())
-            .then((result) => {
-              let releaseDatesTemplate = this.getReleaseDateFormFields(this.state.filteredresults);
-
-              if (releaseDatesTemplate.count > 0)
-                result.forms.unshift(releaseDatesTemplate);
-              
-              releaseDatesTemplate.fields.forEach(date => keyLabelMap[date.label] = date.label);
-              // result.forms.forEach(({ fields }) => {
-              //   if (fields) {
-              //     fields.forEach(({ key, label }) => {
-              //       if (!keyLabelMap[key]) {
-              //         keyLabelMap[key] = label;
-              //       }
-              //     })
-              //   }
-              // })
-              this.setState({
-                // Filters forms -- current ternary operator will not allow for both Processes and Subprocesses to show.
-                forms: result.forms // initial setstate of forms.  forms needs to be refactored
-                  .filter(form => (this.props.type !== 'process' ?
-                  form.title !== 'Subprocesses'
-                  : (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent === this.props.cardfilter
-                  ))
-                ,keyLabelMap: keyLabelMap
-              }, function () {
-                console.log('result.forms(pre-filter):', result.forms);
-                console.log('keyLabelMap:', this.state.keyLabelMap)
-                this.filterFormResults();
-              })
-            }, (error) => { console.log(error); }
-            )
-          )
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+        )
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
 
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
@@ -592,7 +607,7 @@ class SearchResults extends Component {
 
       });
     //console.log(filteredresults)
-    this.setState({
+    await this.setState({
       filteredresults: filteredresults,
       tagfilteredresults: filteredresults,
       productresults: productresults,
@@ -601,24 +616,25 @@ class SearchResults extends Component {
       pagination: false,
       initialitem: 0,
       lastitem: 10
-    }, () => {
-      this.setState({
-        allfilteredresults: filteredresults,
-        filteredresults: filteredresults,
-        productresults: productresults,
-        processresults: processresults,
-        filterall: filterall,
-        filterprocesses: filterprocess,
-        filterproducts: filterproducts,
-        filterfeatures: filterfeatures,
-        pagination: pagination,
-        pages: pages,
-        initialitem: 0,
-        lastitem: 10,
-        focus: 'all',
-      });
+    });
+
+    await this.setState({
+      allfilteredresults: filteredresults,
+      filteredresults: filteredresults,
+      productresults: productresults,
+      processresults: processresults,
+      filterall: filterall,
+      filterprocesses: filterprocess,
+      filterproducts: filterproducts,
+      filterfeatures: filterfeatures,
+      pagination: pagination,
+      pages: pages,
+      initialitem: 0,
+      lastitem: 10,
+      focus: 'all',
     });
   }
+  
   handleExportClick = () => {
     const showToast = !this.state.showToast;
     this.setState({ showToast: showToast });
