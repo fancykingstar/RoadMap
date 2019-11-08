@@ -48,7 +48,7 @@ class Footer extends Component {
                     <li><a href="https://www.sap.com/about/customer-involvement/customer-stories.html">Customer Stories</a></li>
                     <li><a href="https://www.sap.com/registration/newsletter.html">Newsletter</a></li>
                   </ul>
-                </div> 
+                </div>
             </div>
              <div className="link-container">
               <div className="title">Site Information</div>
@@ -64,11 +64,6 @@ class Footer extends Component {
                 </div>
             </div>
             <div className="subscribe-container">
-              <div className="title">Stay tuned.</div>
-              <div className="form-container">
-                <input className="email-input" type="text" placeholder="Enter your email" />
-                <Button label="Subscribe" />
-              </div>
               
               <div className="social-container">
                 <a href="https://www.facebook.com/SAP" className="social-link" title="facebook">

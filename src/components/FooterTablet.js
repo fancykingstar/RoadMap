@@ -137,12 +137,9 @@ class FooterTablet extends Component {
               </div>
             </div>
             <div className="subscribe-container">
-              <div className="title">Stay tuned.</div>
-              <div className="form-container">
-                <input className="email-input" type="text" placeholder="Enter your email" />
-                <Button label="Subscribe" />
-              </div>
+              <div className="title">Get Social</div>
               
+
               <div className="social-container">
                 <a href="https://www.facebook.com/SAP" className="social-link" title="facebook">
                   <img src={facebook} alt="facebook"></img>

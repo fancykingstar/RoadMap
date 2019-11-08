@@ -138,15 +138,6 @@ class FooterMobile extends Component {
               </Collapse>
             </div>
             <div className="link-container mobile-footer-stay-tuned-container">
-              <div className="mobile-footer-section">
-                <div className="mobile-footer-stay-tuned">Stay tuned.</div>
-              </div>
-              
-              <div className="form-container mobile-footer-form-container">
-                <input className="email-input mobile-footer-email-input" type="text" placeholder="Enter your email" />
-                <Button className="mobile-footer-subscribe-btn" label="Subscribe" />
-              </div>
-
               <div className="social-container">
                 <a href="https://www.facebook.com/SAP" className="social-link social-link-mobile" title="facebook">
                   <img src={facebook} alt="facebook"></img>
