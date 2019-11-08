@@ -38,6 +38,7 @@ const ConnectorStyleNoDash = withStyles({
 const useStyles = makeStyles(theme => ({
   popover: {
     pointerEvents: 'none',
+    paddingRight: 30
   },
   paper: {
     padding: theme.spacing(1),

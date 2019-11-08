@@ -1,6 +1,7 @@
 html {
   font-size: 12px;
   scroll-behavior: smooth;
+  overflow-y: auto !important;
 }
 @font-face {
   font-family: "72";
@@ -21,8 +22,8 @@ html {
 }
 
 body {
-  margin: 0;
-  padding: 0;
+  margin: 0 !important;
+  padding: 0 !important;
   font-family: "72",Arial,Helvetica,sans-serif;
   background-color: #fff;
 }
