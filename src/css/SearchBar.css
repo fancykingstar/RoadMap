@@ -198,6 +198,9 @@
   justify-content: space-evenly;
   /* position:relative; */
 }
+.search-page-container{
+  position: relative;
+}
 .product-search-container {
   background-color: #FFF;
   border-radius: 35px;
