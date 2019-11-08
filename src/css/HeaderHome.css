@@ -188,8 +188,26 @@
 
 .header-roadmap-container {
   width: 100%;
+  overflow: auto;
 }
 
+.header-roadmap-container::-webkit-scrollbar {
+  height: 30px;
+  position: absolute;
+}
+
+.header-roadmap-container::-webkit-scrollbar * {
+  background: transparent;
+}
+
+/*.header-roadmap-container::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+.header-roadmap-container::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+*/
 @media screen and (max-width: 996px) {
   
 }

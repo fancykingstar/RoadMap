@@ -386,7 +386,7 @@ class Header extends Component {
     const { title, compact, headerimage, roadmap } = this.state;
     if (title) {
       return (
-        <div className="header-divided-container" style={{ overflow: 'hidden' }}>
+        <div className="header-divided-container">
           <div className={"header-left-container process-header" + (this.props.smallWindow ? " hidden" : "")}>
             {compact ? <img src={headerimage} alt={title} /> : null}
           </div>

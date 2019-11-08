@@ -19,15 +19,46 @@ class Button extends Component {
 };
 
 class CustomButton extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      width: 0,
+      height: 0
+    };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
   render() {
-    //    const ExportIcon = this.props.icon;
     return (
-      <button
-        className={"btn roadmap-custom-button custombtn btn-default " + this.props.className}
-        onClick={this.props.handleClick}>
-        <img src={exportIcon} alt="export" />
-        {this.props.label}
-      </button>
+      <>
+        {
+          this.state.width >= 960 ? <button
+            className={"btn roadmap-custom-button custombtn btn-default " + this.props.className}
+            onClick={this.props.handleClick}
+          >
+            <img src={exportIcon} alt="export" />
+            {this.props.label}
+          </button> : <button
+            className={"btn roadmap-custom-button custombtn btn-default " + this.props.className}
+            onClick={this.props.handleClick} style={{transform: "translateY(23px)", marginRight: '20px', padding: '10px 12px', borderRadius: '50px'}}>
+            <img src={exportIcon} alt="export" style={{padding: 0}}/>
+          </button>
+        }
+      </>
     );
   }
 };
