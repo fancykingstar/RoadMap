@@ -97,31 +97,25 @@
   }
 }
 
-<<<<<<< HEAD
 @media screen and (max-width: 500px) {
   .MuiTabs-root.roadmap-process-tabs.roadmap-process-tab-titles.MuiTabs-vertical {
     min-height: 100px;
   }
 
   .MuiTabs-flexContainerVertical {
-    flex-direction: column !important;
+    /* flex-direction: column !important; */
+    position: relative;
   }
 
   .MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.MuiTab-labelIcon .MuiTab-wrapper {
     border-right: none;
-  }
-
-  .roadmap-process-tabs .MuiTabs-flexContainer button:first-child {
-      border-bottom: 1px solid #0A6ED1;
-  }
+  }å
 
   .roadmap-process-tabs .MuiTabs-flexContainer {
     left: calc((100vw - 240px) /2);
   }
 }
 
-=======
->>>>>>> parent of 2aa1d98... Merge pull request #14 from iamchrispham/andy
 .page-container .content-container .process-content .tab-content {
   width: 100%;
 }
