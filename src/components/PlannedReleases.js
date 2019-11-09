@@ -530,7 +530,7 @@ class PlannedReleases extends Component {
   handleExportClick = () => {
     let params = []
     this.state.releases.map(release => (
-      params = params.concat('{"id":"' + release.id + '"}')
+      params = params.concat('{\"id\":\"' + release.id + '\"}')
 
     ));
     const id = '[' + params.join(',') +']';
