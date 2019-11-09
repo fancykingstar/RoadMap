@@ -98,7 +98,7 @@
 }
 
 .header-content.header-content-compact.header-content-small {
-  margin-top: 85px;
+  margin-top: 66px;
 }
 
 .header-content-none {
@@ -192,7 +192,7 @@
 }
 
 @media screen and (max-width: 996px) {
-  
+
 }
 
 
@@ -258,7 +258,7 @@
 
 .header-content .title-compact {
   color: #0a6ed1;
-  padding-left: 45px;
+
 }
 
 @media and screen (min-width: 997px) {
