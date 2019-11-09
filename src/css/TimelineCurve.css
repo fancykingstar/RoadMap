@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     margin-left: -180px;
+    transform: translateX(115px);
 }
 
 .timeline-curve.product-curve.offset-top,
@@ -83,9 +84,21 @@
     margin-left: 56px;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1414px) {
     .timeline-curve-step-label-3 {
-        margin-left: 0;
+        margin-left: 30;
+    }
+}
+
+@media screen and (max-width: 1336px) {
+    .timeline-curve-step-label-3 {
+        margin-left: 10px;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .timeline-curve-step-label-3 {
+        margin-left: 0px;
     }
 }
 

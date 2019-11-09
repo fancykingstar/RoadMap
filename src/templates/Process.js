@@ -83,7 +83,7 @@ class Process extends Component {
   }
 
   updateWindowDimensions() {
-    this.setState({ windowWidth: window.innerWidth, windowHeight: window.innerHeight, smallWindow: window.innerWidth < 770 });
+    this.setState({ windowWidth: window.innerWidth, windowHeight: window.innerHeight, smallWindow: window.innerWidth < 768 });
   }
 
   renderImage = image => {
@@ -113,7 +113,7 @@ class Process extends Component {
               {}
             </Tabs>
             <div className="tab-content">
-              {this.state.tabValue === 0 ? (timeline.length > 4 || this.state.windowWidth < 1125 ?
+              {this.state.tabValue === 0 ? (timeline.length > 4 || this.state.windowWidth < 1250 ?
                 <TimelineVertical timeline={timeline} smallWindow={this.state.smallWindow} /> :
                 <TimelineCurve timeline={timeline} pageType={"process"} title={title} />) : undefined}
 

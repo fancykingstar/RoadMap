@@ -13,6 +13,17 @@
   flex-direction: row;
 }
 
+@media screen and (max-width: 500px) {
+  .roadmap-process-tab-titles .MuiTab-wrapper {
+    min-width: 140px;
+    width: 140px;
+    font-size: 14px;
+  }
+
+  .MuiTabs-root.roadmap-process-tabs.roadmap-process-tab-titles.MuiTabs-vertical {
+
+  }
+}
 
 .roadmap-process-tab-titles .Mui-selected .MuiTab-wrapper {
   color: #0a6ed1;
@@ -23,11 +34,6 @@
   width: 4px;
   border-radius: 31px;
   height: 44px;
-}
-
-
-.MuiTabs-root.roadmap-process-tabs.roadmap-process-tab-titles.MuiTabs-vertical {
-  min-width: 347px;
 }
 
 @media screen and (max-width: 768px) {
@@ -47,6 +53,23 @@
   /*width: 273px;*/
   /* Established breakpoint window.length - width of container*/
   justify-content: center;
+}
+
+.MuiTab-wrapper .tab-icon.tab-icon-highlights-active {
+  background: url(../assets/images/icon-onstate.svg) no-repeat;
+  background-position: 0px 0px;
+}
+
+.MuiTab-wrapper .tab-icon.tab-icon-happening-active {
+  background: url(../assets/images/icon-onstate.svg) no-repeat;
+  background-position: 0px 0px;
+}
+.MuiTab-wrapper .tab-icon.tab-icon-happening-inactive {
+  background: none;
+}
+
+.MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.Mui-selected.MuiTab-labelIcon, .MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.MuiTab-labelIcon {
+  margin-left: auto;
 }
 
 .page-container .content-container {
@@ -78,11 +101,10 @@
     border-radius: 15px;
   }
 
-  .MuiTab-wrapper .tab-icon.tab-icon-highlights-active {
-    display: none;
-  }
-
-  .MuiTab-wrapper .tab-icon.tab-icon-happening-inactive {
+  .MuiTab-wrapper .tab-icon.tab-icon-highlights-active,
+  .MuiTab-wrapper .tab-icon.tab-icon-happening-inactive,
+  .MuiTab-wrapper .tab-icon.tab-icon-happening-active,
+  .MuiTab-wrapper .tab-icon.tab-icon-highlights-inactive {
     display: none;
   }
 
@@ -93,7 +115,7 @@
     min-height: 0;
   }
 
-  .MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.Mui-selected.MuiTab-labelIcon .MuiTab-wrapper {
+  .MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.MuiTab-labelIcon:first-child .MuiTab-wrapper {
     border-right: 1px solid #0A6ED1;
   }
 
@@ -103,21 +125,13 @@
 }
 
 @media screen and (max-width: 500px) {
-  .MuiTabs-root.roadmap-process-tabs.roadmap-process-tab-titles.MuiTabs-vertical {
-    min-height: 100px;
-  }
-
-  .MuiTabs-flexContainerVertical {
-    /* flex-direction: column !important; */
-    position: relative;
-  }
-
-  .MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.MuiTab-labelIcon .MuiTab-wrapper {
-    border-right: none;
-  }å
 
   .roadmap-process-tabs .MuiTabs-flexContainer {
-    left: calc((100vw - 240px) /2);
+    left: calc((50vh - 465px) /2);
+  }
+
+  .MuiTabs-root.roadmap-process-tabs.roadmap-process-tab-titles.MuiTabs-vertical {
+    min-width: 300px;
   }
 }
 
