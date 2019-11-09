@@ -217,7 +217,7 @@ class PlannedReleases extends Component {
                 if (releaseDatesTemplate.count > 0)
                   result.forms.unshift(releaseDatesTemplate);
                 releaseDatesTemplate.fields.forEach(date => keyLabelMap[date.label] = date.label);
-              
+
                 this.setState({
                   forms: result.forms
                     .filter(form => (this.props.type !== 'process' ?
@@ -530,11 +530,13 @@ class PlannedReleases extends Component {
   handleExportClick = () => {
     let params = []
     this.state.releases.map(release => (
-      params = params.concat('{\"id\":\"' + release.id + '\"}')
-
+      //params = params.concat('{\"id\":\"' + release.id + '\"}')
+      params = params.concat({id: release.id})
     ));
-    const id = '[' + params.join(',') +']';
-    axios.post(`../srv_api/excel/exportList/`,id, {
+
+  //  console.log(JSON.stringify(params));
+  //  const id = '[' + params.join(',') +']';
+    axios.post(`../srv_api/excel/exportList/`,JSON.stringify(params), {
       headers: {'Content-Type': 'application/json'},
       responseType: 'blob',
     })
@@ -582,7 +584,7 @@ class PlannedReleases extends Component {
               windowWidth < 960 ?
                 <div className="pr-results"><div className="pr-search-container">
                   <div className="pr-search-icon">
-                    <SearchIcon fontSize="large" /> 
+                    <SearchIcon fontSize="large" />
                   </div>
                   <input className="search-input" type="text" placeholder={placeholder} onChange={this.onSearchInputChanged} value={searchKey} />
                 </div></div> : ""
