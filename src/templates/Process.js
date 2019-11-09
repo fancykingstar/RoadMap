@@ -97,7 +97,6 @@ class Process extends Component {
 
 
   render() {
-    console.log(this.state.timeline, "=======================");
     const { title, description, whatsnew, tabValue, roadmap, timeline, releases, template, process, subprocess } = this.state;
     return (
       <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>

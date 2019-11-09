@@ -511,8 +511,8 @@ class SearchResults extends Component {
               if(isString(detail.detail)){
                 detail.detail = detail.detail.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").replace(/\r\n/gi,"")
               }
-              if(detail.detail && detail.detail.length == 1){
-                if(detail.detail[0] == ""){
+              if(detail.detail && detail.detail.length === 1){
+                if(detail.detail[0] === ""){
                   detail.detail = []
                 }
               }
@@ -520,14 +520,14 @@ class SearchResults extends Component {
           }
 
 
-          if (form.businessvalues && form.businessvalues.length == 1) {
-            if (form.businessvalues[0] == ""){
+          if (form.businessvalues && form.businessvalues.length === 1) {
+            if (form.businessvalues[0] === ""){
               form.businessvalues = []
             }
           }
 
-          if (form.featuredetails && form.featuredetails.length == 1) {
-            if (form.featuredetails[0] == ""){
+          if (form.featuredetails && form.featuredetails.length === 1) {
+            if (form.featuredetails[0] === ""){
               form.featuredetails = []
             }
           }
@@ -592,7 +592,7 @@ class SearchResults extends Component {
   }
 
   manageTagArray = (state, key) => {
-    let tags, pagination = false, pages = 0, { quarterDateTags, selectedDates, searchKey } = this.state;
+    let tags, pagination = false, pages = 0, { quarterDateTags, selectedDates } = this.state;
     tags = this.state.tags;
     if (quarterDateTags[key]) {
       let index = selectedDates.indexOf(key);
