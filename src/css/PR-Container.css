@@ -10,7 +10,10 @@
   border-top-style: solid;
   border-top-color: #CCC;
 }
-
+.pr-section-small {
+  padding-left: 0;
+  padding-right: 0
+}
 .pr-section > .pr-header {
   width: 100%;
   display: inline-block;
@@ -32,7 +35,7 @@
 
 .pr-section .pr-body-small {
   flex-direction: column;
-  margin-top: 0px;
+  margin-top: 20px;
 }
 
 .pr-navigation {
@@ -59,22 +62,28 @@
 }
 
 .pr-body .pr-results-small {
-  max-width: 350px;
+  max-width: 100%;
+  margin-right:20px
 }
-
+.pr-body .pr-results-container-small {
+  width: 100%;
+  max-width: 100%;
+}
 .pr-results .pr-search-container {
   /*width: 966px;*/
   display: flex;
 }
 
 .pr-results .pr-search-container-small {
-  width: 350px;
+  display: none;
 }
 
 .pr-results .pr-card-container {
   margin-top: 20px;
 }
-
+.pr-results .pr-card-container-small {
+  display: none;
+}
 .pr-results .pr-card-container .pr-sort-container {
   display: flex;
   align-content: flex-start;
@@ -211,7 +220,12 @@
         margin-right: 50px;
     }
 }
+@media (max-width: 996px) {
 
+    .MuiGrid-grid-xs-3 {
+        display: none;
+    }
+}
 
 @media (max-width: 767px) {
 

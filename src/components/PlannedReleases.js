@@ -81,7 +81,7 @@ class PlannedReleases extends Component {
 
   componentDidMount() {
     const { type, cardfilter } = this.state;
-  
+
     let querySubstr = '';
     if (type && type === 'product') {
       // if (cardfilter === 'c4hana') {
@@ -647,9 +647,9 @@ class PlannedReleases extends Component {
     const allSelectedTags = selectedDates.concat(tags);
 
     return (
-      <div className="pr-section" ref={this.paginationRef}>
+      <div className={"pr-section"+ (this.props.smallWindow ? " pr-section-small" : "")} ref={this.paginationRef}>
         <SectionHeaderTitle title={"Planned Releases"} smallWindow={this.props.smallWindow} leftAligned={false} />
-        <Grid container spacing={1} className="pr-body">
+        <Grid container spacing={1} className={"pr-body" + (this.props.smallWindow ? " pr-body-small" : "")}>
           <Grid item xs={3}>
             <div className="pr-navigation">
               {forms.map(form => {
@@ -661,7 +661,7 @@ class PlannedReleases extends Component {
               <Button className="clearButton" onClick={this.clearForms} disableFocusRipple={true} disableRipple={true}>CLEAR ALL FILTERS</Button>
             </div>
           </Grid>
-          <Grid item xs={9}>
+          <Grid item xs={9} className={"pr-results-container" + (this.props.smallWindow ? " pr-results-container-small" : "")}>
             <div className={"pr-results" + (this.props.smallWindow ? " pr-results-small" : "")}>
               <div className={"pr-search-container" + (this.props.smallWindow ? " pr-search-container-small" : "")}>
                 <div className="pr-search-icon">
@@ -669,7 +669,7 @@ class PlannedReleases extends Component {
                 </div>
                 <input className="search-input" type="text" placeholder={placeholder} onChange={this.onSearchInputChanged} value={searchKey} />
               </div>
-              <div className="pr-card-container">
+              <div className={"pr-card-container" + (this.props.smallWindow ? " pr-card-container-small" : "")}>
                 <div className="pr-sort-container">
                   <div className="pr-filter-tag-container">
                     {allSelectedTags.length > 0 ?

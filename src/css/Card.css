@@ -13,10 +13,8 @@
 }
 
 .page-container-small .default-card {
-  width: 350px;
-  min-width: 350px;
-  margin-right: 4px;
-  margin-left: 4px;
+  width: 100%;
+  min-width: 100%;
   margin-top: 10px;
 }
 
