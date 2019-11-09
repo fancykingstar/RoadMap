@@ -62,7 +62,8 @@
 
 .pr-body .pr-results-small {
   max-width: 100%;
-  margin-right: 20px;
+  margin-left: 0;
+  margin-right: 0;
 }
 .pr-body .pr-results-container-small {
   width: 100%;
