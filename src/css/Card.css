@@ -43,6 +43,10 @@
   margin: 25px auto;
 }
 
+.body .default-card.MuiPaper-elevation1.product-card {
+  margin: 16px;
+}
+
 @media screen and (max-width: 767px) {
   .roadmap-carousel-content-container .default-card.MuiPaper-elevation1 {
     margin: 0 auto;
