@@ -53,8 +53,8 @@ class CustomButton extends Component {
             <img src={exportIcon} alt="export" />
             {this.props.label}
           </button> : <button
-            className={"btn roadmap-custom-button custombtn btn-default " + this.props.className}
-            onClick={this.props.handleClick} style={{transform: "translateY(23px)", marginRight: '20px', padding: '10px 12px', borderRadius: '50px'}}>
+            className={"btn roadmap-custom-button roadmap-custom-button-small custombtn btn-default " + this.props.className}
+            onClick={this.props.handleClick}>
             <img src={exportIcon} alt="export" style={{padding: 0}}/>
           </button>
         }

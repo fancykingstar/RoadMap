@@ -138,12 +138,12 @@
     .custombtn {
       margin-left: 25px;
     }
-
+/*
     .pr-navigation::-webkit-scrollbar {
       height: 30px;
       position: absolute;
     }
-
+*/
     .pr-navigation::-webkit-scrollbar * {
       background: transparent;
     }

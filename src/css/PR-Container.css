@@ -290,6 +290,16 @@
   outline-offset: 0px;
   outline: transparent auto 0px;
 }
+.pr-section .roadmap-custom-button-small {
+    transform: translateY(28px);
+    margin-right: 20px;
+    padding: 0;
+    border-radius: 50px;
+    justify-content: center;
+    width: 50px;
+    min-width: 50px;
+    height: 50px;
+}
 .pr-clear-all-selected-filters {
   width: 113px;
   height: 19px;
