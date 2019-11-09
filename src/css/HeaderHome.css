@@ -29,7 +29,7 @@
   padding-left: 120px;
 }
 
-@media screen and (max-width: 668px) {
+@media screen and (max-width: 768px) {
   .header-divided-container.home-header {
     padding-left: 0;
     justify-content: center;
@@ -316,7 +316,7 @@
   color: #000000;
 }
 
-.description a {
+.description a, .description-compact a {
   color: #0a6ed1;
   font-weight: 400;
   text-decoration: none;

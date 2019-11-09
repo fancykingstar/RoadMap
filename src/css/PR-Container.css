@@ -213,25 +213,28 @@
 }
 
 @media (max-width: 996px) {
-  .disclaimer {
-    margin-left: 50px;
-    margin-right: 50px;
-  }
+    .disclaimer {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+    .MuiGrid-grid-xs-3 {
+        display: none;
+    }
+
 }
-@media (max-width: 996px) {
-  .pr-section .pr-body {
+@media (max-width : 1024px) {
+  .pr-section {
+    padding-left: 0;
+    padding-right: 0;
+  }  .pr-section .pr-body {
     justify-content: center;
   }
-
-  .pr-section .MuiGrid-grid-xs-3 {
-    display: none;
+  .pr-form-title {
+    font-size: 1.8em;
+    
   }
-
-  .pr-section .roadmap-custom-button.custombtn.btn-default {
-    margin-left: unset;
-  }
-
 }
+
 @media (max-width: 767px) {
   .pr-section {
     border-top-style: none;
@@ -253,15 +256,11 @@
   outline: transparent auto 0px;
 }
 .pr-clear-all-selected-filters {
-  /* Clear All Filters */
   width: 113px;
   height: 19px;
-
   font-family: 72;
   font-size: 16px;
   line-height: 18px;
-  /* identical to box height */
-
   text-align: center;
   text-transform: capitalize;
 

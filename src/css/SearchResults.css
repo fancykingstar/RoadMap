@@ -20,7 +20,12 @@
 .page-container-small .search-content-container {
     padding-left: 0px;
 }
-
+.page-container-small .search-list-container{
+  width: 100%;
+  flex-basis: 100%;
+  margin-top:30px;
+  max-width: 100%;
+}
 .results {
     display:flex;
     flex-direction: column;

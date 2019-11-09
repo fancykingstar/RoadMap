@@ -17,14 +17,11 @@
   min-width: 100%;
   margin-top: 10px;
 }
-
-@media screen and (max-width: 350px) {
-  .page-container-small .default-card, .default-card.process-card, .default-card {
-      width: 300px;
-      min-width: 300px;
-      margin-right: 0;
-  }
+.page-container-small .product-card {
+  width: calc(100% - 32px);
+  min-width: calc(100% - 32px);
 }
+
 
 .default-card.MuiPaper-rounded {
   border-radius: 18px;
