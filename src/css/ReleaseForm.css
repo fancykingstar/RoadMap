@@ -151,6 +151,6 @@
 
 @media screen and (max-width: 767px) {
   .pr-navigation {
-    overflow: scroll;
+    overflow: auto;
   }
 }
