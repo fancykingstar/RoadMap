@@ -119,7 +119,7 @@ class Home extends Component {
 
   render() {
     const { title, description, tags, products, solutions, compact} = this.state;
-    
+
     return (
       <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
         <Header title={title} description={description} compact={compact} smallWindow={this.state.smallWindow} />

@@ -30,7 +30,6 @@ class Footer extends Component {
                     <li><a href="https://www.sap.com/products/intelligent-enterprise.html">Intelligent Enterprise</a></li>
                     <li><a href="https://www.sap.com/products/sme-business-software.html">Small and Midsize Enterprises</a></li>
                     <li><a href="https://www.sap.com/products/financial-management.html">Finance</a></li>
-                    <li><a href="https://www.sap.com/products/roadmaps.html">Product Roadmaps</a></li>
                     <li><a href="https://developers.sap.com/">Developer</a></li>
                     <li><a href="https://support.sap.com/en/index.html">Support Portal</a></li>
                   </ul>
@@ -64,7 +63,7 @@ class Footer extends Component {
                 </div>
             </div>
             <div className="subscribe-container">
-              
+
               <div className="social-container">
                 <a href="https://www.facebook.com/SAP" className="social-link" title="facebook">
                   <img src={facebook} alt="facebook"></img>

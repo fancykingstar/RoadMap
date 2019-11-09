@@ -91,6 +91,7 @@ class Header extends Component {
       fetch(queryURL)
       .then(res => res.json())
           .then(
+
               (result) => {
                 let cleanedProdProc = []
                 fetch("/data/search-pageData.json")
@@ -99,6 +100,7 @@ class Header extends Component {
                         for (var item of result.products.concat(result.process)){
                             item.description = item.body
                             cleanedProdProc.push(item)
+                            console.log("fetching")
                         }
                     },
                     (error) => {
@@ -387,7 +389,7 @@ class Header extends Component {
     const { title, compact, headerimage, roadmap } = this.state;
     if (title) {
       return (
-        <div className="header-divided-container">
+        <div className="header-divided-container" style={{ overflow: 'hidden' }}>
           <div className={"header-left-container process-header" + (this.props.smallWindow ? " hidden" : "")}>
             {compact ? <img src={headerimage} alt={title} /> : null}
           </div>

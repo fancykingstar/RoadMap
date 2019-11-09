@@ -868,17 +868,14 @@ class SearchResults extends Component {
 
   render() {
     const { result, forms, sorting, filteredresults, filterall, filterprocesses, filterproducts, filterfeatures, initialitem, lastitem, pagination, focus, searchhandler,tags, keyLabelMap, selectedDates, tagfilteredresults} = this.state;
-
     console.log(this.state.smallWindow);
-
     const allSelectedTags = selectedDates.concat(tags);
     let tabIndex = 1;
     console.log(filteredresults);
     return (
       <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
 
-        <Header title="Search" compact={true} type="search" smallWindow={this.state.smallWindow} resultspage={true} resulthandler={this.handleUserResult} />
-
+        <Header compact={true} type="search" smallWindow={this.state.smallWindow} resultspage={true} resulthandler={this.handleUserResult} />
         <Feedback />
         <div className={"content-container" + (this.state.smallWindow ? " content-container-small" : "")}>
           <div className="search-page-container">
@@ -889,7 +886,7 @@ class SearchResults extends Component {
             <div className={"filterlink" + (focus === "all" ? " filterselection" : "")} onClick={(e) => this.handleSelectFilter(e, "all")}></div>
           </div>
           <Grid container spacing={1} className="pr-body">
-            <Grid item md={3} xs={12} >
+            <Grid item xs={3}>
             <div className="pr-navigation">
               {forms.map(form => {
               if (typeof form.count == "number") {
@@ -900,7 +897,7 @@ class SearchResults extends Component {
               <Button className="clearButton" onClick={this.clearForms} disableFocusRipple={true} disableRipple={true}>CLEAR ALL FILTERS</Button>
             </div>
             </Grid>
-            <Grid item md={9} xs={12} className="search-list-container">
+            <Grid item xs={9} className="search-list-container">
             <div className="pr-sort-container">
             <div className="pr-filter-tag-container">
               {allSelectedTags.length > 0 ?

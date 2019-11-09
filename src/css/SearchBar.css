@@ -106,7 +106,11 @@
   align-items: flex-start;
   justify-content: flex-start;
   margin-top: 4px;
+/*resolve conflicts holder*/
+/*
+  margin-left: 16px;
   margin-right: 10px;
+*/
 }
 
 .searchArea {
@@ -119,6 +123,10 @@
 
 .searchArea input {
   padding-left: 15px;
+}
+
+.searchArea img{
+  padding-right: 10px;
 }
 
 .header-mobile .search-input {
@@ -141,7 +149,7 @@
   font-size: 1.6666666666666667rem;
   color: #CCCCCC;
   padding-left: 0;
-/*  width: calc(380px + 1rem);*/
+  width: 100%;
   margin-block-end: 0em;
   margin-block-start: 0em;
   margin-top: 20px;
@@ -159,15 +167,21 @@
   margin-left: 15px;
 }
 
+.suggestions li .highlight {
+  margin-left: 15px;
+}
+
 .suggestion-active,
 .suggestions li:hover {
   color:#0A6ED1;
   cursor: pointer;
+  background-color: #E2EEF9;
 }
 
 .trending-content {
   margin-top: 20px;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 
@@ -188,7 +202,7 @@
 
 .trend:hover {
 /*Add in hover state if keyword highlight is implemented*/
-/*  background-color: #E2EEF9;*/
+  background-color: #E2EEF9;
 }
 
 .trend .label {
@@ -197,7 +211,11 @@
   font-size: 1.6666666666666667rem;
 }
 
-
+.trend .highlight {
+  margin-left: 14px;
+  color: #0A6ED1;
+  font-size: 1.6666666666666667rem;
+}
 .product-body {
   display: flex;
   padding: 0;
@@ -227,6 +245,11 @@
   width: 100%;
   /* box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1); */
   border-color: rgba(0, 0, 0, 0.333);
+}
+@media screen and (min-width: 769px) {
+  .product-search-container{
+    min-width: 656px;
+  }
 }
 
 .product-search-container.home-page {
@@ -319,10 +342,19 @@ input:focus, textarea:focus {
   padding-left: 15px;
 }
 
-.product-suggestion-active,
+.product-suggestions li .highlight {
+  margin-left: 15px;
+}
+
 .product-suggestions li:hover {
-  color: #0A6ED1;
   cursor: pointer;
 /*Add in hover state if keyword highlight is implemented*/
-/*  background-color: #E2EEF9;*/
+  background-color: #E2EEF9;
+}
+
+
+.product-suggestion-active{
+  color: #0A6ED1;
+  cursor: pointer;
+
 }

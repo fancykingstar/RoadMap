@@ -176,9 +176,15 @@ class HeaderBarMobile extends Component {
                             </IconButton>
                         </div>
                         <Collapse in={this.state.processStatusMenuOpen} timeout="auto" unmountOnExit>
-                            {processes.map((item) => (
-                                <MenuItem className="sub-menu-title" key={item.id} onClick={() => this.selectItem(item.key, "process")}>{item.title}</MenuItem>
-                            ))}
+                            {processes.map((item) => {
+                                if (item.state) {
+                                  return (
+                                    <MenuItem className="sub-menu-title" key={item.id} onClick={() => this.selectItem(item.key, "process")}>{item.title}</MenuItem>
+                                  )
+
+                                }
+                              })
+                            }
 
                         </Collapse>
                     </div>

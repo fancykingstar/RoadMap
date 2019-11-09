@@ -9,18 +9,18 @@
   }     
 }
 
-@media (max-width: 996px) and (min-width: 768px) {
+@media (max-width: 979px) and (min-width: 768px) {
 
   .header-container,
   .header-content,
   .content-container,
   .footer-container {
-    padding-left: 28px;
-    padding-right: 28px;
+    padding-left: 120px;
+    padding-right: 120px;
   }
 }
 
-@media (max-width: 1299px) and (min-width: 996px) {
+@media (max-width: 1299px) and (min-width: 980px) {
 
   .header-container,
   .header-content,
