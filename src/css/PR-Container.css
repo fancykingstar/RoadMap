@@ -231,15 +231,16 @@
   }
   .pr-form-title {
     font-size: 1.8em;
-    
+
   }
 }
 
 @media (max-width: 767px) {
   .pr-section {
     border-top-style: none;
+    padding-top:0;
   }
-  
+
   .disclaimer {
     margin-left: 10px;
     margin-right: 10px;
