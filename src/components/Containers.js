@@ -39,7 +39,6 @@ class DetailContainer extends Component {
     if (typeof details === "string") {
       details = details.split('\n')
       level1 = details.filter(detail => detail.substr(0, 2) === '- ').length;
-      //console.log('level1', level1);
       lineitems = details.map((detail, index) => {
       if (!detail.length) { return; }
       return <p className={'contentpoint ' + ((details.length>1) ? ( (level1 === 0) ? 'addBullet bullet' : ((detail.substr(0,2) === '- ') ? 'bullet' : '') ) : '') + (detail.substr(0,2)==='> ' ? ' secondBullet addBullet' : '')} key={index}>{(detail.substr(0,2)==='> ' )? detail.replace("> ", "") : detail}</p>});
@@ -102,7 +101,7 @@ class StepContainer extends Component {
       this.setState({
         title: this.props.title,
         details: this.props.details,
-        businessvalues: this.state.businessvalues,
+        businessvalues: businessvalues,
         featuredetails: this.props.featuredetails,
         steps: this.props.steps
       })
@@ -138,14 +137,11 @@ class StepContainer extends Component {
                         item.detail
                           .split('\n')
                           .map((str, i) => {
-                            console.log(str);
-                            console.log(item)
                             return (
                               <p className={'contentpoint' + ((str.length > 1 && (str[0] !== '-' && str[0] !== '>') ? ' addBullet bullet' :
                                str[0] === '-' ? ' secondBullet' : '' + str[0] === '>' ? ' thirdBullet addBullet' : ''
                                ))} key={i}>
                                  {
-                                  //  str.replace(/\*/gi, "")
                                   str.replace(">", "")
                                    }
                               </p>

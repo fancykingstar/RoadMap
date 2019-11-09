@@ -94,7 +94,7 @@ class ReleaseForm extends Component {
 
     return (
       <div className={"pr-form-container" 
-      + ((title !== "Release Dates" && count > 0 || title === "Release Dates") ? "" : ` pr-container-hidden`)
+      + (((title !== "Release Dates" && count > 0 )|| title === "Release Dates") ? "" : ` pr-container-hidden`)
       }>
         <div className="pr-form-header">
           {expandable ? <div className="pr-form-title title-expandable" onClick={this.handleExpandClick}>{title}</div> : <div className="pr-form-title">{title}</div>}

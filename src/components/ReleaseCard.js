@@ -1,24 +1,14 @@
 import React, { useState } from 'react';
-
-//import material ui components
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
 import Collapse from '@material-ui/core/Collapse';
 import Snackbar from '@material-ui/core/Snackbar';
-//import svg icons
-import edit from '../assets/images/edit.svg';
-// import download from '../assets/images/download.svg';
-// import like from '../assets/images/like.svg';
 import uparrow from '../assets/images/up-arrow.svg';
 import downarrow from '../assets/images/down-arrow.svg';
 import star from '../assets/images/star.svg';
-
-//import custom component
 import  { DetailContainer, StepContainer } from '../components/Containers';
-
-//import css
 import '../css/Chip.css';
 
 const tagKeyMatchTable = [{
@@ -92,11 +82,6 @@ export default function ReleaseCard(props) {
     e.stopPropagation();
   }
 
-  // const downloadInformation = e => {
-  //   console.log('download pdf');
-  //   e.stopPropagation();
-  // }
-
   const editReleaseCard = e => {
     window.location = 'https://roadmap-staging.cfapps.us10.hana.ondemand.com/update?id='+ state._id;
     e.stopPropagation();
@@ -114,8 +99,6 @@ export default function ReleaseCard(props) {
                 <div className="date-bar"></div>
                 <div className="date">{state.date}</div>
             </div>
-
-
             <div className="action-container">
               <Button className="actionButton" disableFocusRipple={true} disableRipple={true} onClick={handleBookmarkClick}><img src={star} alt="add to favorite" /></Button>
               <Snackbar
@@ -130,13 +113,11 @@ export default function ReleaseCard(props) {
                 message={<span className="toast-messages" id="message-id">My Favorites Feature Coming Soon</span>}
               />
             </div>
-
           </div>
           <div className="release-title">{state.title}</div>
           <div className="release-actionbar">
             <div className="release-description">{state.description}</div>
             <div className="release-trigger"><img onClick={handleArrowCollapseableSection} alt="collapse
-
             " src={state.icon} /></div>
           </div>
           <div className="release-tag-container">
@@ -161,7 +142,6 @@ export default function ReleaseCard(props) {
                   ? <DetailContainer fullwidth={(state.futureplans && state.futureplans.length > 0) ? false : true} title="feature details" details={state.featuredetails} />
                   : null
                   }
-
                 </div>
                 { (state.futureplans && state.futureplans.length > 0)
                 ?   <div className="details-right">
@@ -169,9 +149,7 @@ export default function ReleaseCard(props) {
                     </div>
                  : null
                 }
-
               </div>
-
            </Collapse>
       </CardContent>
     </Card>

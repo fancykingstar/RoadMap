@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
-
-//import custom components
+import ReactHtmlParser from 'react-html-parser';
 import Snackbar from '@material-ui/core/Snackbar';
 import Menu from '../components/Menu';
 import { SearchBar } from '../components/Search';
 import HeaderBarMobile from '../components/HeaderBarMobile';
-// import BulletList from '../components/BulletList'; // open to deprecation from app
 import { ProductIcons } from '../assets/prod-icons';
 
 import { ProductSearch } from '../components/Search';
@@ -15,28 +12,18 @@ import { suggestions, trends } from '../utils/searchutils';
 import { activeprocesses } from '../utils/processutils';
 import { baseURL } from '../utils/links';
 import { MultiRoadmap } from '../components/MultiRoadmap';
-import { RoadmapVertical } from '../components/RoadmapVertical';
 import Popover from '@material-ui/core/Popover';
-
-//import css
 import '../css/HeaderHome.css';
 import '../css/Menu.css';
 import '../css/ReleaseForm.css';
-
-//import assets
 import info from '../assets/images/info.svg';
-// import notificationBell from '../assets/images/notification-bell.svg';
 import logo from '../assets/images/sap-logo.svg';
-import accountIcon from '../assets/images/home-account.svg';
-import compactAccountIcon from '../assets/images/compact-account.svg';
 import favIcon from '../assets/images/home-favorites.svg';
 import compactFavIcon from '../assets/images/compact-favorites.svg';
 import clipMask from '../assets/images/clippingMask.svg';
 import Fuse from 'fuse.js';
-const staging = false;
 
 class Header extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -50,10 +37,8 @@ class Header extends Component {
       products: [],
       pageType: undefined,
       headerimage: '',
-      /* Info Popover Properties */
       isInfoOpen: false,
       anchorEl: null,
-      /*Info Popover End */
       resultspage: this.props.resultspage || false,
       resulthandler: this.props.resulthandler || false,
       searchhandler: null
@@ -109,7 +94,7 @@ class Header extends Component {
                 )
 
                 var uniqueTitles = new Set()
-                var uniqueResult = new Array()
+                var uniqueResult = [];
                 result.value.forEach(item =>{
                     if(!uniqueTitles.has(item.title)){
                         uniqueTitles.add(item.title)
@@ -122,7 +107,6 @@ class Header extends Component {
                     prodProc: cleanedProdProc
 
                 })
-              //this.cleanData(result.value)
               this.filterResultData(uniqueResult, cleanedProdProc);
               },
               (error) => {
@@ -130,9 +114,7 @@ class Header extends Component {
               }
           );
 
-    /* DEVELOPMENT ONLY */
     if (this.props.pageType && (this.props.pageType === "process" || this.props.pageType === "products")) {
-      console.log('pageType:', this.props.pageType);
       const pathString = this.props.pageType === "process" ? `processes/${this.props.process}` : `products/${this.props.product}`;
       fetch(`/data/${pathString}.json`)
         .then(res => res.json())
@@ -148,10 +130,9 @@ class Header extends Component {
               })
             }
           })
-        }, (error) => console.log("Failure fetching data", error, pathString))
+        }, (error) => console.log(error))
 
     }
-    /* DEVELOPMENT ONLY */
     this.setState({
       description: this.props.description,
       title: this.props.title || "",
@@ -166,7 +147,6 @@ class Header extends Component {
 
   filterResultData(results, prodProc) {
     let productresults = [], processresults = []
-    //Fuse should be abstarcted into a different function to prevent recreating it every time. Create Fuse object once and set in state
     var options = {
         shouldSort: true,
         keys : [{
@@ -200,7 +180,7 @@ class Header extends Component {
         ADD_KEYS(results, ["key"], "")
         ADD_KEYS(prodProc, prodProc_need)
         var searchParams = results.concat(prodProc)
-        var options = {
+        options = {
             shouldSort: true,
             keys : [{
                 name: "title",
@@ -215,87 +195,18 @@ class Header extends Component {
                 weight: 0.1
             }]
         }
-        console.log(searchParams)
     }
     else{
-        var searchParams = results
+        searchParams = results
     }
-
-
     const fuse = new Fuse(searchParams, options);
     this.setState({searchhandler: fuse});
     var searchresults = fuse.search(this.state.result);
-    // searchresults.forEach(result => {
-
-    //     if (result.date) {
-    //         let datevalue = new Date(result.date);
-    //         result.numericdate = datevalue.getTime() / 1000.0;
-    //         result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
-    //         //  let datearr = result.date.split(" ");
-    //         //result.numericdate = Number(months[0][datearr[0]] + datearr[1]);
-    //     } else {
-    //         result.numericdate = 0;
-    //     }
-
-    //     //check to see if result is a product card
-    //     if (result.type === "product") {
-    //         productresults.push(result);
-    //     }
-
-    //     //check to see if result is a  process card
-    //     if (result.type === "process") {
-    //         processresults.push(result);
-    //     }
-
-    //     // if (result.chips) {
-    //     //     result.chips.forEach(chip => {
-    //     //         if (chip.category === "process") {
-    //     //             processresults.push(result);
-    //     //         }
-    //     //         if (chip.category === "product") {
-    //     //             productresults.push(result);
-    //     //         }
-    //     //     })
-    //     // }
-
-    //     filterall += 1;
-    //     filteredresults.push(result);
-    // })
-    // const prodset = new Set();
-    // const procset = new Set();
-
-    // productresults = productresults.filter(el => {
-    //     const duplicate = prodset.has(el.title);
-    //     prodset.add(el.title);
-    //     return !duplicate;
-    // });
-    // processresults = processresults.filter(el => {
-    //     const duplicate = procset.has(el.title);
-    //     procset.add(el.title);
-    //     return !duplicate;
-    // });
-
-    // filterprocess = processresults.length;
-    // filterproducts = productresults.length;
-
-    // if (filteredresults.length > 10) {
-    //     pagination = true;
-    //     pages = Math.ceil(filteredresults.length / this.state.maxperpage);
-    // }
-
-    //console.log(filteredresults)
-
-
-     //   });
-    //console.log(filteredresults)
+ 
     this.setState({
         filteredresults: searchresults,
         productresults: productresults,
         processresults: processresults
-        // pages: 0,
-        // pagination: false,
-        // initialitem: 0,
-        // lastitem: 10
     });
 }
 
@@ -371,7 +282,6 @@ class Header extends Component {
             <div className="title">Innovation Topics</div>
           </div>
           {
-            // Map over contents
             topics.map(({ label }, i) => (
               <div key={title + " " + i} className="roadmap-item">
                 <img className="item-bullet" src={ProductIcons[0]["blueBullet"]} alt="" />
@@ -426,7 +336,6 @@ class Header extends Component {
   renderProductHeaderContainers = () => {
     const { title, description, compact, type, headerimage, searchhandler } = this.state;
     if (title) {
-      // console.log('title:', title, 'type:', type, 'desc:', description);
       return (
         <div className={"header-divided-container" + (title && title === "product roadmaps" ? " home-header" : " product-header"
         )}>
@@ -486,14 +395,8 @@ class Header extends Component {
         <div className={"header-container" + (compact ? " header-container-compact" : "")}>
           <div className={"header-content-container" + (this.props.smallWindow ? " header-content-container-small" : "")}>
             {this.props.smallWindow ?
-              //
-              // MOBILE
-              //
               <HeaderBarMobile products={products} processes={processes} compact={compact} />
               :
-              //
-              // DESKTOP
-              //
               <div className={"header-standard"}>
                 <div className="logo-wrapper">
                   <a href="http://www.sap.com/index.html" title="SAP">
@@ -514,9 +417,6 @@ class Header extends Component {
                   </ul>
                 </nav>
                 <SearchBar resultspage={resultspage} resulthandler={resulthandler} suggestions={suggestions} trends={trends} compact={compact} searchhandler={searchhandler}/>
-                {/*
-                  // TODO: Notification Bell
-                <img className="header-notification-bell" alt="bell" src={compact ? notificationBell : null } /> */}
                 <img className="header-user-account" alt="account" src={compact ? compactFavIcon : favIcon}
                   onMouseOver={e => (e.currentTarget.src = compact ? favIcon : compactFavIcon)}
                   onMouseOut={e => (e.currentTarget.src = compact ? compactFavIcon : favIcon)}
@@ -545,7 +445,6 @@ class Header extends Component {
             this.renderProductHeaderContainers() // Product Header
           }
         </div>
-        {/* Temporary className -- staged for fix process=multi product=single*/}
         <Popover
           style={{ pointerEvents: 'none', }}
           className={`roadmap-stepper-popover info-` + (this.state.productTitles && this.state.innovationTopics ? "multi" : "single")}
@@ -563,12 +462,7 @@ class Header extends Component {
           }}
           disableRestoreFocus
         >
-
-
-          {
-            // TODO:
-            title && pageType ? this.renderInfoModal() : null
-          }
+          {title && pageType ? this.renderInfoModal() : null}
         </Popover>
       </div>
     );
