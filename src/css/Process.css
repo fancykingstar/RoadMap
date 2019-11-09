@@ -121,7 +121,7 @@
   }
 
   .MuiTabs-flexContainerVertical {
-    /*flex-direction: column !important;*/
+    flex-direction: column !important;
   }
 
   .MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.MuiTab-labelIcon .MuiTab-wrapper {
