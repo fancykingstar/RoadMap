@@ -54,6 +54,7 @@
 @media screen and (max-width: 959px) {
   .pr-navigation {
     display: flex;
+    padding-bottom: 1px;
   }
 }
 
@@ -176,6 +177,7 @@
   border-width: 1px;
   border-style: solid;
   border-color: #ccc transparent #ccc #ccc;
+  border-right: 0;
 }
 
 .pr-search-icon .MuiSvgIcon-fontSizeLarge {
@@ -187,15 +189,23 @@
 }
 
 .pr-results .pr-search-container .search-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   width: 100%;
   height: 64px;
   border-top-right-radius: 32px;
   border-bottom-right-radius: 32px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
   border-width: 1px;
   border-style: solid;
   border-color: #ccc #ccc #ccc transparent;
+  border-left:0;
   color: #0a6ed1;
   font: 400 1.6666666666666667rem "72";
+
+
 }
 
 @media screen and (max-width: 959px) {

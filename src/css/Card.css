@@ -153,7 +153,7 @@
 
 
 .page-container-small .release-card .release-title {
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .release-card .release-tag-container {
@@ -249,7 +249,7 @@
 
 .page-container-small .static-card .content .body,
 .page-container-small .release-card .release-description {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .static-card .content .static__link {
@@ -261,7 +261,7 @@
 }
 
 .page-container-small .static-card .content .static__link {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .product-card {
