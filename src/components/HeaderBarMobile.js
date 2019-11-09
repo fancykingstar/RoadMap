@@ -1,29 +1,16 @@
 import React, { Component } from 'react';
-
-//material ui
 import MenuItem from '@material-ui/core/MenuItem'
 import UIMenu from '@material-ui/core/Menu';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
-
-// Icons
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CloseIcon from '@material-ui/icons/Close';
 import MenuIcon from '@material-ui/icons/Menu';
-
-
-
-//import custom components
 import { SearchBar } from '../components/Search';
-
 import { suggestions, trends } from '../utils/searchutils';
-
-//import css
 import '../css/HeaderHome.css';
 import '../css/Menu.css';
-
-//import assets
 import logo from '../assets/images/sap-logo.svg';
 
 class HeaderBarMobile extends Component {
