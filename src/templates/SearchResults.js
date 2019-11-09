@@ -870,8 +870,7 @@ class SearchResults extends Component {
 
   render() {
     const { result, forms, sorting, filteredresults, filterall, filterprocesses, filterproducts, filterfeatures, initialitem, lastitem, pagination, focus, searchhandler,tags, keyLabelMap, selectedDates, tagfilteredresults} = this.state;
-    //console.log(filteredresults)
-    //console.log(this.state.forms)
+
     console.log(this.state.smallWindow);
 
     const allSelectedTags = selectedDates.concat(tags);
