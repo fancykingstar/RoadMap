@@ -94,7 +94,7 @@
   }
 
   .roadmap-process-tabs .MuiTabs-flexContainer {
-    position: absolute;
+    position: inherit;
     width: none;
     border: 1px solid #0A6ED1;
     box-sizing: border-box;
@@ -127,7 +127,7 @@
 @media screen and (max-width: 500px) {
 
   .roadmap-process-tabs .MuiTabs-flexContainer {
-    left: calc((50vh - 465px) /2);
+    /* left: calc((50vh - 465px) /2); */
   }
 
   .MuiTabs-root.roadmap-process-tabs.roadmap-process-tab-titles.MuiTabs-vertical {

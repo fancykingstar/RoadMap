@@ -38,8 +38,11 @@
 
 @media screen and (max-width: 767px) {
     .roadmap-carousel-content-container {
-        top: 0;
+        top: 11px;
         left: 0;
+    }
+    .roadmap-carousel-button {
+        top: 46%;
     }
 }
 
