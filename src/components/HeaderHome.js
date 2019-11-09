@@ -6,7 +6,6 @@ import Menu from '../components/Menu';
 import { SearchBar } from '../components/Search';
 import HeaderBarMobile from '../components/HeaderBarMobile';
 import { ProductIcons } from '../assets/prod-icons';
-
 import { ProductSearch } from '../components/Search';
 import { suggestions, trends } from '../utils/searchutils';
 import { activeprocesses } from '../utils/processutils';
@@ -85,7 +84,6 @@ class Header extends Component {
                         for (var item of result.products.concat(result.process)){
                             item.description = item.body
                             cleanedProdProc.push(item)
-                            console.log("fetching")
                         }
                     },
                     (error) => {
