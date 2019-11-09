@@ -1,19 +1,20 @@
 .default-card {
   width: 415px;
-  /*min-width: 415px;*/
+  min-width: 415px;
   margin-right: 20px;
   margin-left: 20px;
   margin-top: 30px;
 }
 
 .default-card.process-card {
-  /*width: 324px;
-  min-width: 324px;*/
+  width: 324px;
+  min-width: 324px;
   height: 291px;
 }
 
 .page-container-small .default-card {
-  /*width: 100%;*/
+  width: 350px;
+  min-width: 350px;
   margin-right: 4px;
   margin-left: 4px;
   margin-top: 10px;
@@ -21,7 +22,8 @@
 
 @media screen and (max-width: 350px) {
   .page-container-small .default-card, .default-card.process-card, .default-card {
-      width: 100%;
+      width: 300px;
+      min-width: 300px;
       margin-right: 0;
   }
 }
@@ -32,24 +34,6 @@
 
 .default-card.MuiPaper-elevation1 {
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
-  margin: 25px auto;
-}
-
-@media screen and (max-width: 767px) {
-  .roadmap-carousel-content-container .default-card.MuiPaper-elevation1 {
-    margin: 0 auto;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .roadmap-carousel-content-container .default-card.MuiPaper-elevation1 {
-    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
-    margin: 0;
-  }
-
-  .carousel__slider-tray-wrapper.carousel__slider-tray-wrap--horizontal li {
-    width: 11%;
-  }
 }
 
 .release-card {
@@ -64,7 +48,8 @@
 }
 
 .release-card-small {
-  width: 100%;
+  width: 350px;
+  min-width: 350px;
 }
 
 .detail-card {

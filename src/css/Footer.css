@@ -1,6 +1,6 @@
 .page-footer {
   left: 0;
-  /*margin-top:-100px;*/
+  margin-top:-100px;
   width: 100%;
   background-image: url(../assets/images/footer-x2.png);
   background-repeat: no-repeat;
@@ -23,7 +23,6 @@
   margin-left: 100px;
   margin-right: 100px;
   display: flex;
-  justify-content: space-around;
 }
 
 @media screen and (max-width: 1097px) {
@@ -95,8 +94,7 @@
 .footer-content .subscribe-container .form-container .email-input {
   margin-right: 16px;
   margin-bottom: 16px;
-  /*width: 280px;*/
-  width: 100%;
+  width: 280px;
   height: 38px;
   border-radius: 39px;
   border-color: transparent;
