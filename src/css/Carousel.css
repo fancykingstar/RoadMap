@@ -35,17 +35,28 @@
     width: calc(100% - 30px);
     top: -20px;
 }
+.roadmap-carousel-content-container .default-card {
+  width: calc(100% - 20px);
+}
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
     .roadmap-carousel-content-container {
         top: 11px;
         left: 0;
     }
     .roadmap-carousel-button {
-        top: 46%;
+        top: 45%;
+    }
+    .roadmap-carousel-back-button:enabled ~ .roadmap-carousel-fade-back, .roadmap-carousel-next-button:enabled ~ .roadmap-carousel-fade-next {
+      display: none;
+
     }
 }
-
+@media (min-width: 737px) and (max-width: 996px) {
+  .roadmap-carousel-button {
+      top: 25%;
+  }
+}
 .roadmap-carousel-content-container .slideInner___2mfX9 {
     height: 300px;
 }
@@ -57,7 +68,7 @@
     /*min-width: 975px;*/
     width: 100%;
   }
-  
+
   .roadmap-slide-dimensions-small {
     height: 300px;
     width: 768px;

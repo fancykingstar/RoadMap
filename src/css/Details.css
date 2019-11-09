@@ -136,7 +136,12 @@
   padding: 4px 0 0px;
   margin-left: 12px;
 }
-
+.futureStepper .MuiStep-vertical:last-child:after {
+  content: url(../assets/images/step-arrow.svg);
+  position: relative;
+  top: -10px;
+  left: 5px;
+}
 .futureStepper .MuiStepConnector-lineVertical {
   border-left-style: dotted;
   border-left-width: 3px;

@@ -67,3 +67,11 @@
 .search-results-filtering {
     width: 250px;
 }
+@media screen and (max-width: 959px) {
+  .search-list-container .pr-sort-container {
+    display: none;
+  }
+  .pr-navigation {
+    margin-top: 20px;
+  }
+}

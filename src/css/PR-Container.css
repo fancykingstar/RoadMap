@@ -43,7 +43,7 @@
 
 .pr-section .pr-body-small {
   flex-direction: column;
-  margin-top: 0;
+  margin-top: 20px;
 }
 
 .pr-navigation {
