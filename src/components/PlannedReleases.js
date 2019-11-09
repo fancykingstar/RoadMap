@@ -529,20 +529,17 @@ class PlannedReleases extends Component {
 
   handleExportClick = () => {
     let params = []
-    this.state.releases.map(release => (
-      //params = params.concat('{\"id\":\"' + release.id + '\"}')
+    this.state.filterreleases.map(release => (
       params = params.concat({id: release.id})
     ));
 
-  //  console.log(JSON.stringify(params));
-  //  const id = '[' + params.join(',') +']';
     axios.post(`../srv_api/excel/exportList/`,JSON.stringify(params), {
       headers: {'Content-Type': 'application/json'},
       responseType: 'blob',
     })
       .then(response => {
         const content = response.headers['content-type'];
-      download(response.data, "Export.xlsx", content)
+      download(response.data, "SAP-roadmap-"+ Date.now() + ".xlsx", content)
       })
       .catch(function (error) {
         console.log(error);
