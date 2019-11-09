@@ -1,52 +1,31 @@
-
 import React, { Component } from 'react';
 import Fuse from 'fuse.js';
-
-//import material UI components
-// import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import MinIcon from '@material-ui/icons/Minimize';
 import Grid from '@material-ui/core/Grid';
 import Chip from '@material-ui/core/Chip';
-import Snackbar from '@material-ui/core/Snackbar';
-import { CustomButton } from '../components/Button';
 import DeleteTag from '../assets/images/close-x.svg'
-
 import { datamonths } from '../utils/searchutils';
 import { baseURL } from '../utils/links';
-//import css
 import '../css/PR-Container.css'
 import '../css/Card.css';
 import '../css/Content.css';
 import '../css/SearchResults.css';
-
-//import product svg
-import { ProductImages } from '../assets/product-images';
-
 import { SiteSearch } from '../components/Search';
-
-//import custom components
 import Header from '../components/HeaderHome';
 import Feedback from '../components/Feedback';
 import ReleaseCard from '../components/ReleaseCard';
 import ResultCard from '../components/ResultCard';
-import Pagination from '../components/Pagination';
 import Footer from '../components/Footer';
 import FooterMobile from '../components/FooterMobile';
 import ReleaseForm from '../components/ReleaseForm';
-
 import { suggestions, trends } from '../utils/searchutils';
-import { finished } from 'stream';
 
 function isString (value) {
   return typeof value === 'string' || value instanceof String;
 }
 
-
-// import sort from '../assets/images/sort-icon.svg';
-
 class SearchResults extends Component {
-
   constructor(props) {
     super(props)
     this.state = {
@@ -97,7 +76,6 @@ class SearchResults extends Component {
 
   componentDidMount() {
     document.title = 'Search Results';
-    let searchType = '';
     let queryURL = `${baseURL}?ProductSearch&$skip=0&$orderby=date asc&$expand=products,futureplans,toIntegration,toProcess,toSubProcess`;
 
     fetch(queryURL)
@@ -118,10 +96,7 @@ class SearchResults extends Component {
           result.futureplans = this.manageDates(result.futureplans);
 
 
-
-          // set tags
           if (result.process && result.process.length > 1 && !chips.includes(result.process)) {;
-            /* Exception Keys */
             if (result.process === "designtooperate") {
               result.process = "d2o";
             }
@@ -158,10 +133,8 @@ class SearchResults extends Component {
             })
           }
 
-          // industry parsing needs refactoring -- data shape for industry field is ambiguous
           if (result.industry && result.industry.length > 1 && !chips.includes(result.industry)) {
-            /* */
-            const industryKey = result.industry.toLowerCase().replace(/\s/g, ""),
+            var industryKey = result.industry.toLowerCase().replace(/\s/g, ""),
                   industryLabel = result.industry.trim();
             if (industryKey === "retail/hospitality") {
               industryKey = "retail";
@@ -181,7 +154,7 @@ class SearchResults extends Component {
 
           if (result.products.length) {
             result.products.forEach(({ product }) => {
-            const productKey = product.toLowerCase().replace(/\/|(sap)|\s/g, ""),
+            var productKey = product.toLowerCase().replace(/\/|(sap)|\s/g, ""),
               productLabel = product.trim();
               if (i === 0) productParentKey = productKey;
               if (!chips.includes(product) && product && product.length > 1) {
@@ -200,7 +173,7 @@ class SearchResults extends Component {
 
            if (result.subProducts && result.subProducts.length) {
             result.subProducts.forEach(({ subproduct }) => {
-              const subProductKey = subproduct.toLowerCase().replace(/\/|(sap)|\s/g, ""),
+              var subProductKey = subproduct.toLowerCase().replace(/\/|(sap)|\s/g, ""),
                 subProductLabel = subproduct.trim()
               if (!chips.includes(subproduct) && subproduct && subproduct.length > 1) {
                 if (!keyLabelMap[subProductKey]) {
@@ -208,7 +181,6 @@ class SearchResults extends Component {
                 }
                 tags.push(subProductKey);
 
-                // filter out dupes
                 chips = chips.filter( ({key, label}) => key !== subProductKey && label !== subProductLabel)
                 chips.push({
                   category: "subproduct",
@@ -239,7 +211,7 @@ class SearchResults extends Component {
         )
 
         var uniqueTitles = new Set()
-        let uniqueResult = new Array()
+        let uniqueResult = [];
         results.forEach(item =>{
           if(!uniqueTitles.has(item.title)){
             uniqueTitles.add(item.title)
@@ -247,8 +219,6 @@ class SearchResults extends Component {
           }
         })
 
-
-        //this.cleanData(result.value)
         await this.filterResultData(uniqueResult, cleanedProdProc);
 
         this.setState({
@@ -265,16 +235,13 @@ class SearchResults extends Component {
 
             releaseDatesTemplate.fields.forEach(date => keyLabelMap[date.label] = date.label);
             this.setState({
-              // Filters forms -- current ternary operator will not allow for both Processes and Subprocesses to show.
-              forms: result.forms // initial setstate of forms.  forms needs to be refactored
+              forms: result.forms
                 .filter(form => (this.props.type !== 'process' ?
                 form.title !== 'Subprocesses'
                 : (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent === this.props.cardfilter
                 ))
               ,keyLabelMap: keyLabelMap
             }, function () {
-              console.log('result.forms(pre-filter):', result.forms);
-              console.log('keyLabelMap:', this.state.keyLabelMap)
               this.filterFormResults();
             })
           }, (error) => { console.log(error); }
@@ -295,8 +262,6 @@ class SearchResults extends Component {
   }
 
   getReleaseDateFormFields = (results) => {
-
-    // Establish quarterDates
     let sortDates = [];
     if (results && Array.isArray(results)) {
       let tempDates = {};
@@ -309,7 +274,7 @@ class SearchResults extends Component {
           sortDates.push({ numericDate: release.date, displayDate: quarterDate, count: 1});
           tempDates[quarterDate] = quarterDate;
         } else {
-          const sortDateTagIndex = sortDates.findIndex(date => date.displayDate == quarterDate);
+          const sortDateTagIndex = sortDates.findIndex(date => date.displayDate === quarterDate);
           if (sortDateTagIndex !== -1) {
             sortDates[sortDateTagIndex].count ++;
           }
@@ -374,17 +339,12 @@ class SearchResults extends Component {
     let subfilter = this.state.subfilter;
     let releasetags = [];
 
-    //get tags from release data
     releases.forEach(release => {
-      //  if (release.tags.includes(cardfilter)) {
         releasetags = releasetags.concat(release.tags);
-      //  }
-
     })
-    console.log(releases.length);
+
     forms.forEach(form => {
       if (form.title === 'Release Dates') {
-        // This was handled in getReleaseDateFormFields
         return;
       }
       form.icon = null;
@@ -402,7 +362,6 @@ class SearchResults extends Component {
         let occurences = this.getOccurrence(releasetags, form.fields[i].key);
         form.fields[i].count = occurences;
         form.count += occurences;
-        //  form.fields[i].count = this.getOccurrence(releases, form.fields[i].key);
         form.fields[i].count = form.fields[i].count === null ? 0 : form.fields[i].count;
         for (let v = form.fields[i].children.length; v--;) {
           form.fields[i].children[v].count = 0;
@@ -437,7 +396,6 @@ class SearchResults extends Component {
 
   async filterResultData(results, prodProc) {
     let filterall = 0, filterprocess = 0, filterproducts = 0, filterfeatures = 0, filteredresults = [], productresults = [], processresults = [], pagination = false, pages = 0;
-    //Fuse should be abstarcted into a different function to prevent recreating it every time. Create Fuse object once and set in state
     var options = {
       shouldSort: true,
       keys : [{
@@ -472,7 +430,7 @@ class SearchResults extends Component {
       ADD_KEYS(results, ["key"], "")
       ADD_KEYS(prodProc, prodProc_need)
       var searchParams = results.concat(prodProc)
-      var options = {
+      options = {
         shouldSort: true,
         keys : [{
           name: "title",
@@ -489,10 +447,8 @@ class SearchResults extends Component {
       }
     }
     else{
-      var searchParams = results
+      searchParams = results;
     }
-
-    //console.log(options)
     const fuse = new Fuse(searchParams, options);
     this.setState({searchhandler: fuse});
     var searchresults = fuse.search(this.state.result);
@@ -502,32 +458,17 @@ class SearchResults extends Component {
         let datevalue = new Date(result.date);
         result.numericdate = datevalue.getTime() / 1000.0;
         result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
-        //  let datearr = result.date.split(" ");
-        //result.numericdate = Number(months[0][datearr[0]] + datearr[1]);
       } else {
         result.numericdate = 0;
       }
 
-      //check to see if result is a product card
       if (result.type === "product") {
         productresults.push(result);
       }
 
-      //check to see if result is a  process card
       if (result.type === "process") {
         processresults.push(result);
       }
-
-      // if (result.chips) {
-      //     result.chips.forEach(chip => {
-      //         if (chip.category === "process") {
-      //             processresults.push(result);
-      //         }
-      //         if (chip.category === "product") {
-      //             productresults.push(result);
-      //         }
-      //     })
-      // }
 
       filterall += 1;
       filteredresults.push(result);
@@ -555,20 +496,10 @@ class SearchResults extends Component {
       pages = Math.ceil(filteredresults.length / this.state.maxperpage);
     }
 
-    //console.log(filteredresults)
 
     filteredresults.map(
       form => {
-
-        // The current format of the backend service no longer matches the form in whihc the release cards were made in\
-        // To do so the items were delimeted be \r\n so we split on those field however that caused inconsistent arrays:
-        //      \r\n\r\n creates empty list items with dashes so we remove them for consistency
-        //      \* is a proxy for dashes so we remove them for consistency
-        //      \• is a worse proxy for dashes so we remove them for consistency
-        //      All empty list items are removed from the release card and all items get a dash as the whole array doesnt have dashes as default behavior
-
-        //console.log(form)
-        if(form.type == null || form.type === undefined || form.type.length == 0){
+        if(form.type === null || form.type === undefined || form.type.length == 0){
           if(isString(form.businessvalues)){
             form.businessvalues = form.businessvalues.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").replace(/\r\n/gi,"")
           }
@@ -580,8 +511,8 @@ class SearchResults extends Component {
               if(isString(detail.detail)){
                 detail.detail = detail.detail.replace(/\*/gi, "").replace(/\•/gi, "\r\n").replace(/\r\n\r\n/gi, "\r\n").replace(/\r\n/gi,"")
               }
-              if(detail.detail && detail.detail.length == 1){
-                if(detail.detail[0] == ""){
+              if(detail.detail && detail.detail.length === 1){
+                if(detail.detail[0] === ""){
                   detail.detail = []
                 }
               }
@@ -589,22 +520,21 @@ class SearchResults extends Component {
           }
 
 
-          if (form.businessvalues && form.businessvalues.length == 1) {
-            if (form.businessvalues[0] == ""){
+          if (form.businessvalues && form.businessvalues.length === 1) {
+            if (form.businessvalues[0] === ""){
               form.businessvalues = []
             }
           }
 
-          if (form.featuredetails && form.featuredetails.length == 1) {
-            if (form.featuredetails[0] == ""){
+          if (form.featuredetails && form.featuredetails.length === 1) {
+            if (form.featuredetails[0] === ""){
               form.featuredetails = []
             }
           }
       }
-
-
+      return form;
       });
-    //console.log(filteredresults)
+
     await this.setState({
       filteredresults: filteredresults,
       tagfilteredresults: filteredresults,
@@ -639,8 +569,6 @@ class SearchResults extends Component {
   }
 
   handleDeleteTagClick = (event) => {
-    // console.log("delete", event.currentTarget.alt, this.state.tags)
-
     let tag = event.currentTarget.alt;
     let forms = this.state.forms.map(form => {
     form.fields.map(field => {
@@ -660,15 +588,12 @@ class SearchResults extends Component {
     return releases.filter(release => {
       const date = this.getQuarter(new Date(release.date));
       return this.state.selectedDates.includes(date)
-      // return date === this.state.selectedDate;
     })
   }
 
   manageTagArray = (state, key) => {
-    let tags, pagination = false, pages = 0, { quarterDateTags, selectedDates, searchKey } = this.state;
+    let tags, pagination = false, pages = 0, { quarterDateTags, selectedDates } = this.state;
     tags = this.state.tags;
-
-    // console.log('tagkey:', key)
     if (quarterDateTags[key]) {
       let index = selectedDates.indexOf(key);
       if (index === -1) {
@@ -679,13 +604,11 @@ class SearchResults extends Component {
       this.setState({
         selectedDates: selectedDates !== this.state.selectedDates ? selectedDates : this.state.selectedDates
       }, () => {
-        console.log("selectedDates:", this.state.selectedDates)
         this.manageTagArray();
       })
       return;
     }
 
-    //console.log(tags)
     if (state) {
       tags.push(key);
     } else if (key) {
@@ -752,7 +675,6 @@ class SearchResults extends Component {
     return releases.filter(release => {
       return filterKeys.every(key => {
         if (!filters[key].length) return true;
-        // Loops again if release[key] is an array.
         if (Array.isArray(release[key])) {
           return release[key].some(keyEle => filters[key].includes(keyEle));
         }
@@ -784,7 +706,6 @@ class SearchResults extends Component {
     }),
       function () {
         window.history.pushState(null, null, "/search/" + value);
-        //console.log(this.state.prodProc)
         this.filterResultData(this.state.results,this.state.prodProc);
       }
     )
@@ -867,14 +788,11 @@ class SearchResults extends Component {
   }
 
   render() {
-    const { result, forms, sorting, filteredresults, filterall, filterprocesses, filterproducts, filterfeatures, initialitem, lastitem, pagination, focus, searchhandler,tags, keyLabelMap, selectedDates, tagfilteredresults} = this.state;
-    console.log(this.state.smallWindow);
+    const { result, forms, sorting, initialitem, lastitem, focus, searchhandler,tags, keyLabelMap, selectedDates, tagfilteredresults} = this.state;
     const allSelectedTags = selectedDates.concat(tags);
     let tabIndex = 1;
-    console.log(filteredresults);
     return (
       <div className={"page-container" + (this.state.smallWindow ? " page-container-small" : "")}>
-
         <Header compact={true} type="search" smallWindow={this.state.smallWindow} resultspage={true} resulthandler={this.handleUserResult} />
         <Feedback />
         <div className={"content-container" + (this.state.smallWindow ? " content-container-small" : "")}>
@@ -908,8 +826,6 @@ class SearchResults extends Component {
               }
             </div>
             {allSelectedTags.length > 0 ? <Chip className="clear-all-filters" variant="outlined" clickable="false" onClick={this.clearForms} label="Clear All Filters" /> : null}
-
-
             </div>
             <div className="search-content-container results">
               {
@@ -956,83 +872,9 @@ class SearchResults extends Component {
             <div className="disclaimer">
               The information above is
               for informational purposes and delivery timelines may change and projected functionality may not be released see SAP <a href="/">Legal Disclaimer</a>).
-
             </div>
             </Grid>
           </Grid>
-
-          {/* <div className="search-content-container util-container pr-sort-container">
-                <img src={sort} alt="sort" />
-                <span className="pr-sort-label">SORT BY: </span>
-                <Select native className="pr-sort-select" value={sorting} onChange={e => this.onSortingChange(e.target.value)}>
-                  <option value="date">DATE</option>
-                  <option value="title">TITLE</option>
-                </Select>
-              </div> */}
-
-          {/*
-          <div className="search-results-filter-container">
-            <div className="search-results-filtering">
-              {this.state.forms.map(form => (
-                <ReleaseForm key={form.id} title={form.title} expandable={form.expandable} status={form.state} data={form.fields} count={form.count} manageTagArray={this.manageTagArray} icon={form.icon} iconclass={form.iconclass} />
-              ))}
-              <Button className="clearButton" onClick={this.clearForms} disableFocusRipple={true} disableRipple={true}>CLEAR ALL FILTERS</Button>
-            </div>
-
-            <div className="search-results-container-right-side">
-
-              <div className="search-content-container results">
-                {
-                  filteredresults
-                    .sort((a, b) => {
-                      if (sorting === "relevance") {
-                        return a.relevance - b.relevance;
-                      }
-                      if (sorting === "title") {
-                        return a.title > b.title ? 1 : a.title < b.title ? -1 : 0;
-                      }
-
-                      return a.numericdate - b.numericdate;
-                    })
-                    .slice(initialitem, lastitem)
-                    .map(result => {
-                      if (!result.type) {
-                        return <ReleaseCard key={result.title + result._id}
-                          _id={result._id}
-                          title={result.title}
-                          relevance={result.relevance}
-                          date={result.displaydate}
-                          description={result.description}
-                          likes={result.likes}
-                          chips={result.chips}
-                          values={result.businessvalues}
-                          details={result.featuredetails}
-                          futureplans={result.futureplans}
-                          smallWindow={this.props.smallWindow} />
-
-                      }
-                      else if (result.type === "product" || result.type === "process") {
-                        return <ResultCard key={result.title}
-                          title={result.title}
-                          relevance={result.relevance}
-                          icon={result.icon}
-                          type={result.type}
-                          description={result.description} />
-                      }
-                      return null;
-                    })
-                }
-              </div>
-              {
-                pagination
-                  ? <Pagination pages={this.state.pages} paginate={this.paginate} scrollToTop={this.scrollToTop} />
-                  : null
-              }
-            </div>
-
-          </div>
-          */}
-
         </div>
         {this.state.smallWindow ? <FooterMobile /> : <Footer />}
       </div>

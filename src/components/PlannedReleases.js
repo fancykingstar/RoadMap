@@ -1,24 +1,12 @@
 import React, { Component } from 'react';
-
 import axios from 'axios';
 import download from 'downloadjs'
-//import material UI components
 import SearchIcon from '@material-ui/icons/SearchOutlined';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import MinIcon from '@material-ui/icons/Minimize';
 import Chip from '@material-ui/core/Chip';
-
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-
-
-//import css
-import '../css/PR-Container.css';
-import '../css/Chip.css';
-
-//import custom components
 import { CustomButton } from '../components/Button';
 import ReleaseForm from './ReleaseForm';
 import ReleaseCard from './ReleaseCard';
@@ -28,19 +16,10 @@ import { productlabels } from '../utils/processutils';
 import { datamonths } from '../utils/searchutils';
 import { baseURL } from '../utils/links';
 import DeleteTag from '../assets/images/close-x.svg'
-
+import '../css/PR-Container.css';
+import '../css/Chip.css';
 
 const staging = false;
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
-}));
 
 class PlannedReleases extends Component {
 
@@ -95,27 +74,17 @@ class PlannedReleases extends Component {
 
     let querySubstr = '';
     if (type && type === 'product') {
-      // if (cardfilter === 'c4hana') {
-      //   querySubstr = 'C/4HANA';
-      // } else if (cardfilter === 'successfactors') {
-      //   querySubstr = 'SuccessFactors';
-      // } else {
-      //   querySubstr = this.state.cardfilter.charAt(0).toUpperCase() + this.state.cardfilter.slice(1);
-      // }
       querySubstr = productlabels[0][this.state.cardfilter]
         .split(' ')[1] || ''
     } else {
       querySubstr = this.state.cardfilter || '';
     }
 
-    // TODO: differentiate product/subProduct for subProduct query
     let searchType = type === 'product' ?
       'productSearch'
       : (type === 'process' ? 'process' : type === 'integration' ? 'integration' : '');
     let queryURL = `${baseURL}?$filter=contains(${searchType},'${querySubstr}')&$skip=0&$orderby=date asc&$expand=products,futureplans,subProducts,toIntegration,toProcess,toSubProcess`;
 
-
-    console.log('query:', queryURL, 'pageType:', this.state.type, 'cardfilter:', this.state.cardfilter);
     fetch(queryURL)
       .then(res => {
         let response = res.json();
@@ -123,18 +92,16 @@ class PlannedReleases extends Component {
       })
       .then(({ value }) => {
         let results = value.filter((result) => result.date && result.date.length > 1), keyLabelMap = {}, productParentKey;
-        console.log('Results:', results);
         for (var i = 0; i < results.length; i++) {
           let result = results[i], chips = [], tags = [];
-          // parseData
           if (!result.businessvalues) { result.businessvalues = []; }
           if (!result.featuredetails) { result.featuredetails = []; }
           let datevalue = new Date(result.date);
-          result.date = datevalue.setDate(datevalue.getDate() + 1); // fallback for misformatted date-data
+          result.date = datevalue.setDate(datevalue.getDate() + 1);
           result.numericdate = datevalue.getTime() / 1000.0;
           result.displaydate = datamonths[0][datevalue.getMonth()] + " " + datevalue.getFullYear();
           result.futureplans = this.manageDates(result.futureplans);
-          // set tags
+
           if (result.process && result.toProcess && result.process.length > 1 && !chips.includes(result.process)) {
             if (!keyLabelMap[result.toProcess.lkey]) {
               keyLabelMap[result.toProcess.lkey] = result.toProcess.label
@@ -166,7 +133,6 @@ class PlannedReleases extends Component {
               keyLabelMap[result.toSubProcess.lkey] = result.toSubProcess.label
             }
             tags.push(result.subProcess);
-            // console.log('subProcess', result.subProcess, result.toSubProcess);
             chips.push({
               category: 'subprocess',
               key: result.toSubProcess.lkey,
@@ -175,10 +141,8 @@ class PlannedReleases extends Component {
             })
           }
 
-          // data shape for industry field is ambiguous -- most data for industry field is null
           if (result.industry && result.industry.length > 1 && !chips.includes(result.industry)) {
-            /* */
-            const industryKey = result.industry.toLowerCase().replace(/\s/g, ""),
+            var industryKey = result.industry.toLowerCase().replace(/\s/g, ""),
               industryLabel = result.industry.trim();
             if (industryKey === "retail/hospitality") {
               industryKey = "retail";
@@ -198,7 +162,7 @@ class PlannedReleases extends Component {
 
           if (result.products.length) {
             result.products.forEach(({ product }, i) => {
-              const productKey = product.toLowerCase().replace(/\/|(sap)|\s/g, ""),
+              var productKey = product.toLowerCase().replace(/\/|(sap)|\s/g, ""),
                 productLabel = product.trim();
                 if (i === 0) productParentKey = productKey;
               if (!chips.includes(product) && product && product.length > 1) {
@@ -217,8 +181,7 @@ class PlannedReleases extends Component {
 
           if (result.subProducts && result.subProducts.length) {
             result.subProducts.forEach(({ subproduct }) => {
-              // console.log('subProduct:', subproduct);
-              const subProductKey = subproduct.toLowerCase().replace(/\/|(sap)|\s/g, ""),
+              var subProductKey = subproduct.toLowerCase().replace(/\/|(sap)|\s/g, ""),
                 subProductLabel = subproduct.trim()
               if (!chips.includes(subproduct) && subproduct && subproduct.length > 1) {
                 if (!keyLabelMap[subProductKey]) {
@@ -226,7 +189,6 @@ class PlannedReleases extends Component {
                 }
                 tags.push(subProductKey);
 
-                // filter out dupes
                 chips = chips.filter( ({key, label}) => key !== subProductKey && label !== subProductLabel)
                 chips.push({
                   category: "subproduct",
@@ -241,7 +203,6 @@ class PlannedReleases extends Component {
           result.tags = tags;
         }
 
-        // console.log('keylabelmap(pre-setState):', keyLabelMap)
         this.setState({
           releases: results,
           filterreleases: results,
@@ -256,28 +217,15 @@ class PlannedReleases extends Component {
                 if (releaseDatesTemplate.count > 0)
                   result.forms.unshift(releaseDatesTemplate);
                 releaseDatesTemplate.fields.forEach(date => keyLabelMap[date.label] = date.label);
-                // result.forms.forEach(({ fields }) => {
-                //   if (fields) {
-                //     fields.forEach(({ key, label }) => {
-                //       if (!keyLabelMap[key]) {
-                //         keyLabelMap[key] = label;
-                //       }
-                //     })
-                //   }
-                // })
-
-
+              
                 this.setState({
-                  // Filters forms -- current ternary operator will not allow for both Processes and Subprocesses to show.
-                  forms: result.forms // initial setstate of forms.  forms needs to be refactored
+                  forms: result.forms
                     .filter(form => (this.props.type !== 'process' ?
                       form.title !== 'Subprocesses'
                       : (form.title !== 'Subprocesses' && form.title !== 'Processes') || form.parent === this.props.cardfilter
                     ))
                   ,keyLabelMap: keyLabelMap
                 }, function () {
-                  console.log('result.forms(pre-filter):', result.forms);
-                  console.log('keyLabelMap:', this.state.keyLabelMap)
                   this.filterFormResults();
                 })
               }, (error) => { console.log(error); }
@@ -289,8 +237,6 @@ class PlannedReleases extends Component {
   }
 
   getReleaseDateFormFields = (results) => {
-
-    // Establish quarterDates
     let sortDates = [];
     if (results && Array.isArray(results)) {
       let tempDates = {};
@@ -303,7 +249,7 @@ class PlannedReleases extends Component {
           sortDates.push({ numericDate: release.date, displayDate: quarterDate, count: 1});
           tempDates[quarterDate] = quarterDate;
         } else {
-          const sortDateTagIndex = sortDates.findIndex(date => date.displayDate == quarterDate);
+          const sortDateTagIndex = sortDates.findIndex(date => date.displayDate === quarterDate);
           if (sortDateTagIndex !== -1) {
             sortDates[sortDateTagIndex].count ++;
           }
@@ -369,17 +315,14 @@ class PlannedReleases extends Component {
     let subfilter = this.state.subfilter;
     let releasetags = [];
 
-    //get tags from release data
     releases.forEach(release => {
       if (release.tags.includes(cardfilter)) {
         releasetags = releasetags.concat(release.tags);
       }
     })
-    console.log(releasetags);
 
     forms.forEach(form => {
       if (form.title === 'Release Dates') {
-        // This was handled in getReleaseDateFormFields
         return;
       }
       form.icon = null;
@@ -395,8 +338,6 @@ class PlannedReleases extends Component {
         }
         form.fields[i].count = 0;
         let occurences = this.getOccurrence(releasetags, form.fields[i].key);
-        console.log('form title:', form.title, '| field key:', form.fields[i].key, '\n')
-        console.log('subfilter:', subfilter, '| cardfilter:', cardfilter, '\n', ' | equal: ', cardfilter === subfilter)
         form.fields[i].count = occurences;
         form.count += occurences;
         form.fields[i].count = form.fields[i].count === null ? 0 : form.fields[i].count;
@@ -420,7 +361,6 @@ class PlannedReleases extends Component {
       ...prevstate,
       forms: forms
     }),
-    ()=> console.log("result.forms(post-filter)",this.state.forms)
     )
   }
 
@@ -428,8 +368,6 @@ class PlannedReleases extends Component {
   manageTagArray = (state, key) => {
     let tags, pagination = false, pages = 0, { quarterDateTags, selectedDates, searchKey } = this.state;
     tags = this.state.tags;
-
-    // console.log('tagkey:', key)
     if (quarterDateTags[key]) {
       let index = selectedDates.indexOf(key);
       if (index === -1) {
@@ -440,22 +378,18 @@ class PlannedReleases extends Component {
       this.setState({
         selectedDates: selectedDates !== this.state.selectedDates ? selectedDates : this.state.selectedDates
       }, () => {
-        console.log("selectedDates:", this.state.selectedDates)
         this.manageTagArray();
       })
       return;
     }
 
-    // if state and key are passed in
     if (state && !tags.includes(key)) {
       tags.push(key);
     } else if (key) {
       let index = tags.indexOf(key);
       tags.splice(index, 1);
     }
-    this.setState({ tags: tags },
-      () => console.log(this.state.tags)
-      );
+    this.setState({ tags: tags },);
 
     let filterReleases = this.state.releases;
     this.state.forms.forEach(form => {
@@ -484,9 +418,9 @@ class PlannedReleases extends Component {
     if (searchKey) {
       filterReleases = filterReleases.filter(release => {
 
-        const includedInChips = release.chips.filter(chip => chip.label.toLowerCase().indexOf(searchKey.toLowerCase()) != -1).length > 0;
-        const includedInTitle = release.title.toLowerCase().indexOf(searchKey.toLowerCase()) != -1;
-        const includedInDesc = release.description.toLowerCase().indexOf(searchKey.toLowerCase()) != -1;
+        const includedInChips = release.chips.filter(chip => chip.label.toLowerCase().indexOf(searchKey.toLowerCase()) !== -1).length > 0;
+        const includedInTitle = release.title.toLowerCase().indexOf(searchKey.toLowerCase()) !== -1;
+        const includedInDesc = release.description.toLowerCase().indexOf(searchKey.toLowerCase()) !== -1;
 
         return includedInChips || includedInTitle || includedInDesc;
       })
@@ -504,7 +438,6 @@ class PlannedReleases extends Component {
       initialitem: 0,
       lastitem: 10
     }, () => {
-      // console.log("&filterreleases:", this.state.filterreleases)
       this.setState({
         filterreleases: filterReleases,
         pages: pages,
@@ -517,7 +450,6 @@ class PlannedReleases extends Component {
     return releases.filter(release => {
       const date = this.getQuarter(new Date(release.date));
       return this.state.selectedDates.includes(date)
-      // return date === this.state.selectedDate;
     })
   }
 
@@ -596,25 +528,12 @@ class PlannedReleases extends Component {
 
 
   handleExportClick = () => {
-    let releaseIds = [];
     let params = []
-
     this.state.releases.map(release => (
-      params = params.concat('{\"id\":\"' + release.id + '\"}')
-
-      //releaseIds = releaseIds.concat(release.id)
+      params = params.concat('{"id":"' + release.id + '"}')
 
     ));
-
-  //  params+=']';
-  //  console.log(params);
-  //  console.log(this.state.filterreleases);
-    /*
-    const showToast = !this.state.showToast;
-    this.setState({ showToast: showToast });
-    */
     const id = '[' + params.join(',') +']';
-    console.log(id);
     axios.post(`../srv_api/excel/exportList/`,id, {
       headers: {'Content-Type': 'application/json'},
       responseType: 'blob',
@@ -624,14 +543,11 @@ class PlannedReleases extends Component {
       download(response.data, "Export.xlsx", content)
       })
       .catch(function (error) {
-        // handle error
         console.log(error);
       })
   }
 
   handleDeleteTagClick = (event) => {
-    // console.log("delete", event.currentTarget.alt, this.state.tags)
-
     let tag = event.currentTarget.alt;
     let forms = this.state.forms.map(form => {
       form.fields.map(field => {

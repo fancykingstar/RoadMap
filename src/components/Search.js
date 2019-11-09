@@ -15,8 +15,6 @@ import { IconButton } from '../components/Button';
 
 //import utilities
 import { onChange, onKeyDown, selectSearch, trendSearch, suggestionSearch } from '../utils/searchutils';
-import { finished } from 'stream';
-import { yieldExpression } from '@babel/types';
 
 
 class SearchBar extends Component {
