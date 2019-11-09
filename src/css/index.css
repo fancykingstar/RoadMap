@@ -32,3 +32,9 @@ body {
 *:after {
   box-sizing: border-box;
 }
+
+@media (max-width: 736px){
+  .QSIFeedbackButton {
+    display: none !important;
+  }
+}
