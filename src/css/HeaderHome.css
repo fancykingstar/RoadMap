@@ -316,7 +316,7 @@
   color: #000000;
 }
 
-.description a {
+.description a, .description-compact a {
   color: #0a6ed1;
   font-weight: 400;
   text-decoration: none;
