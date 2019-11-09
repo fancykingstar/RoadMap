@@ -804,7 +804,7 @@ class SearchResults extends Component {
             <div className={"filterlink" + (focus === "all" ? " filterselection" : "")} onClick={(e) => this.handleSelectFilter(e, "all")}></div>
           </div>
           <Grid container spacing={1} className="pr-body">
-            <Grid item xs={3}>
+            <Grid item md={3} xs={12}>
             <div className="pr-navigation">
               {forms.map(form => {
               if (typeof form.count == "number") {
@@ -815,7 +815,7 @@ class SearchResults extends Component {
               <Button className="clearButton" onClick={this.clearForms} disableFocusRipple={true} disableRipple={true}>CLEAR ALL FILTERS</Button>
             </div>
             </Grid>
-            <Grid item xs={9} className="search-list-container">
+            <Grid item md={9} xs={12} className="search-list-container">
             <div className="pr-sort-container">
             <div className="pr-filter-tag-container">
               {allSelectedTags.length > 0 ?

@@ -45,7 +45,8 @@ class PlannedReleases extends Component {
       quarterDateTags: {},
       keyLabelMap: {},
       showToast: false,
-
+      width: 0,
+      height: 0,
       searchKey: ''
     };
     this.paginationRef = React.createRef();
@@ -55,11 +56,21 @@ class PlannedReleases extends Component {
     this.filterFormResults = this.filterFormResults.bind(this);
     this.handleExportClick = this.handleExportClick.bind(this);
     this.handleDeleteTagClick = this.handleDeleteTagClick.bind(this);
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
+  }
 
   componentDidMount() {
-    const { type } = this.state;
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+    const { type, cardfilter } = this.state;
 
     let querySubstr = '';
     if (type && type === 'product') {
@@ -561,13 +572,23 @@ class PlannedReleases extends Component {
     let tabIndex = 1;
 
     const allSelectedTags = selectedDates.concat(tags);
-
+    const windowWidth = this.state.width;
     return (
       <div className={"pr-section"+ (this.props.smallWindow ? " pr-section-small" : "")} ref={this.paginationRef}>
         <SectionHeaderTitle title={"Planned Releases"} smallWindow={this.props.smallWindow} leftAligned={false} />
         <Grid container spacing={1} className={"pr-body" + (this.props.smallWindow ? " pr-body-small" : "")}>
-          <Grid item xs={3}>
+          <Grid item md={3} xs={12}>
+            {
+              windowWidth < 960 ?
+                <div className="pr-results"><div className="pr-search-container">
+                  <div className="pr-search-icon">
+                    <SearchIcon fontSize="large" /> 
+                  </div>
+                  <input className="search-input" type="text" placeholder={placeholder} onChange={this.onSearchInputChanged} value={searchKey} />
+                </div></div> : ""
+            }
             <div className="pr-navigation">
+              { windowWidth < 960 ? <CustomButton handleClick={this.handleExportClick} label="Export" /> : "" }
               {forms.map(form => {
                 if (typeof form.count == "number") {
                   return <ReleaseForm key={form.id} title={form.title} expandable={form.expandable} status={form.state} data={form.fields} count={form.count} manageTagArray={this.manageTagArray} icon={form.icon} iconclass={form.iconclass} />
@@ -577,14 +598,17 @@ class PlannedReleases extends Component {
               <Button className="clearButton" onClick={this.clearForms} disableFocusRipple={true} disableRipple={true}>CLEAR ALL FILTERS</Button>
             </div>
           </Grid>
-          <Grid item xs={9} className={"pr-results-container" + (this.props.smallWindow ? " pr-results-container-small" : "")}>
+          <Grid item md={9} xs={12} className={"pr-results-container" + (this.props.smallWindow ? " pr-results-container-small" : "")}>
             <div className={"pr-results" + (this.props.smallWindow ? " pr-results-small" : "")}>
-              <div className={"pr-search-container" + (this.props.smallWindow ? " pr-search-container-small" : "")}>
-                <div className="pr-search-icon">
-                  <SearchIcon fontSize="large" />
-                </div>
-                <input className="search-input" type="text" placeholder={placeholder} onChange={this.onSearchInputChanged} value={searchKey} />
-              </div>
+              {
+                windowWidth >= 960 ?
+                <div className={"pr-search-container" + (this.props.smallWindow ? " pr-search-container-small" : "")}>
+                  <div className="pr-search-icon">
+                    <SearchIcon fontSize="large" />
+                  </div>
+                  <input className="search-input" type="text" placeholder={placeholder} onChange={this.onSearchInputChanged} value={searchKey} />
+                </div> : ""
+              }
               <div className={"pr-card-container" + (this.props.smallWindow ? " pr-card-container-small" : "")}>
                 <div className="pr-sort-container">
                   <div className="pr-filter-tag-container">
@@ -595,7 +619,7 @@ class PlannedReleases extends Component {
                       : null}
                   </div>
                   {allSelectedTags.length > 0 ? <Chip className="clear-all-filters" variant="outlined" clickable="false" onClick={this.clearForms} label="Clear All Filters" /> : null}
-                  <CustomButton handleClick={this.handleExportClick} label="Export" />
+                  { windowWidth >= 960 ? <CustomButton handleClick={this.handleExportClick} label="Export" /> : "" }
                   <Snackbar
                     anchorOrigin={{
                       vertical: 'bottom',

@@ -29,10 +29,18 @@
   padding-left: 120px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .header-divided-container.home-header {
     padding-left: 0;
     justify-content: center;
+  }
+
+  .header-divided-container {
+    justify-content: center;
+  }
+
+  .header-content .title-compact {
+    padding-left: 0 !important;
   }
 }
 
@@ -189,6 +197,16 @@
 
 .header-roadmap-container {
   width: 100%;
+  overflow: auto;
+}
+
+.header-roadmap-container::-webkit-scrollbar {
+  height: 30px;
+  position: absolute;
+}
+
+.header-roadmap-container::-webkit-scrollbar * {
+  background: transparent;
 }
 
 @media screen and (max-width: 996px) {
@@ -258,17 +276,17 @@
 
 .header-content .title-compact {
   color: #0a6ed1;
-
+  padding-left: 45px;
 }
 
-@media and screen (min-width: 997px) {
+@media and screen (min-width: 996px) {
   .header-content .title-compact {
     color: #0a6ed1;
     padding-left: 45px;
   }
 }
 
-@media and screen (max-width: 996px) {
+@media and screen (max-width: 995px) {
   .header-content .title-compact {
     padding-left: 0;
     text-align: center;
@@ -316,7 +334,7 @@
   color: #000000;
 }
 
-.description a, .description-compact a {
+.description a, .description-small a {
   color: #0a6ed1;
   font-weight: 400;
   text-decoration: none;
