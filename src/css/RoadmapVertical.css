@@ -40,6 +40,12 @@
   top: -10px;
   left: 5px;
 }
+@media screen and (max-width: 1024px) {
+  .MuiStep-vertical:last-child:after {
+    display: none;
+  }
+}
+
 .roadmap-stepper-vertical-label .MuiStepLabel-label {
     font-family: "72";
     font-size: 18px;

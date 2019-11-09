@@ -29,7 +29,7 @@
   padding-left: 120px;
 }
 
-@media screen and (max-width: 668px) {
+@media screen and (max-width: 768px) {
   .header-divided-container.home-header {
     padding-left: 0;
     justify-content: center;

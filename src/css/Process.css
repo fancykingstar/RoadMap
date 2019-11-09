@@ -36,6 +36,11 @@
     align-self: center;
   }
 }
+@media (min-width: 769px) and (max-width: 1024px) {
+  .MuiTabs-root.roadmap-process-tabs.roadmap-process-tab-titles.MuiTabs-vertical {
+    min-width: 220px;
+  }
+}
 
 .roadmap-process-tabs .MuiTabs-flexContainer {
   margin-top: 4.8px;

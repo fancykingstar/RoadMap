@@ -9,7 +9,12 @@
   margin-top: 0px;
 
 }
-
+@media (max-width : 1024px) {
+  .content-container {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
 .content-container-small {
   padding-left: 10px;
   padding-right: 10px;

@@ -219,14 +219,21 @@
         margin-left: 50px;
         margin-right: 50px;
     }
-}
-@media (max-width: 996px) {
-
     .MuiGrid-grid-xs-3 {
         display: none;
     }
-}
 
+}
+@media (max-width : 1024px) {
+  .pr-section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .pr-form-title {
+    font-size: 1.8em;
+    
+  }
+}
 @media (max-width: 767px) {
 
     .disclaimer {
