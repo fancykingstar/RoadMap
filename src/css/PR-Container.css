@@ -16,12 +16,16 @@
     padding-right: 0;
   }
 }
-/*.pr-section-small {
+
+
+.pr-section-small {
   padding-left: 0;
-.pr-section > .pr-header {
+}
+
+/* .pr-section > .pr-header {
   width: 100%;
   display: inline-block;
-}
+} */
 
 .pr-section > .pr-header > .pr-title {
   font-size: 3rem;

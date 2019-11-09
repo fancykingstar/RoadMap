@@ -37,8 +37,8 @@ class ReleaseForm extends Component {
       expandable: this.props.expandable,
       status: this.props.status,
       data: this.props.data
-    }, 
-    // ()=> console.log('releaseform data:', this.state.data)
+    },
+      // ()=> console.log('releaseform data:', this.state.data)
     )
   }
 
@@ -93,8 +93,8 @@ class ReleaseForm extends Component {
     const BtnIcon = this.state.icon;
 
     return (
-      <div className={"pr-form-container" 
-      + (((title !== "Release Dates" && count > 0 )|| title === "Release Dates") ? "" : ` pr-container-hidden`)
+      <div className={"pr-form-container"
+        + ((title !== "Release Dates" && count > 0 || title === "Release Dates") ? "" : ` pr-container-hidden`)
       }>
         <div className="pr-form-header">
           {expandable ? <div className="pr-form-title title-expandable" onClick={this.handleExpandClick}>{title}</div> : <div className="pr-form-title">{title}</div>}
@@ -107,9 +107,9 @@ class ReleaseForm extends Component {
                 return <SubForm key={item.key} label={item.label} data={item} manageTagArray={this.props.manageTagArray} icon={item.icon} iconclass={item.iconclass} />
               } else {
                 return <FormControlLabel
-                  className={"checkInput" 
-                  + (item.count === 0  && title !== "Release Dates" ? " checkInput-hidden" : "")
-                }
+                  className={"checkInput"
+                    + (item.count === 0 && title !== "Release Dates" ? " checkInput-hidden" : "")
+                  }
                   key={item.key}
                   control={<Checkbox onChange={() => this.handleCheck(item)} checked={item.checked} disableFocusRipple={true} disableRipple={true} value={item.key} />}
                   label={item.label + " (" + item.count + ")"} />
