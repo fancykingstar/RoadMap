@@ -8,7 +8,7 @@
   padding: 50px;
   border-top-width: 1px;
   border-top-style: solid;
-  border-top-color: #CCC;
+  border-top-color: #ccc;
 }
 @media screen and (max-width: 1240px) {
   .pr-section {
@@ -18,8 +18,6 @@
 }
 /*.pr-section-small {
   padding-left: 0;
-  padding-right: 0
-}*/
 .pr-section > .pr-header {
   width: 100%;
   display: inline-block;
@@ -62,7 +60,6 @@
   z-index: 2000;
 }
 
-
 .pr-results {
   /*width: 966px;*/
   margin-left: 20px;
@@ -74,8 +71,11 @@
 }
 
 .pr-body .pr-results-small {
- /* max-width: 100%;
-  margin-right:20px*/
+ max-width: 100%;
+  margin-right:20px
+/*   max-width: 100%;
+  margin-left: 0;
+  margin-right: 0; */
 }
 /*.pr-body .pr-results-container-small {
   width: 100%;
@@ -126,13 +126,13 @@
 .pr-sort-select.MuiInputBase-root {
   color: #000;
   font-size: 1.6666666666666667rem;
-  font-family: "72",Arial,Helvetica,sans-serif;
+  font-family: "72", Arial, Helvetica, sans-serif;
 }
 
 .MuiPaper-root option {
   color: rgba(0, 0, 0, 0.74);
   font-size: 1.6666666666666667rem;
-  font-family: "72",Arial,Helvetica,sans-serif;
+  font-family: "72", Arial, Helvetica, sans-serif;
   padding: 0px 5px 4px;
 }
 
@@ -154,7 +154,7 @@
 }
 
 .pr-sort-select.MuiInput-underline:before {
-  content: '';
+  content: "";
   transition: none;
   border-bottom: none;
 }
@@ -166,12 +166,12 @@
 }
 
 .pr-results .pr-search-container .pr-search-icon {
-    padding: 18px 15px 12px 15px;
-    border-top-left-radius: 32px;
-    border-bottom-left-radius: 32px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #ccc transparent #ccc #ccc;
+  padding: 18px 15px 12px 15px;
+  border-top-left-radius: 32px;
+  border-bottom-left-radius: 32px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ccc transparent #ccc #ccc;
 }
 
 .pr-search-icon .MuiSvgIcon-fontSizeLarge {
@@ -183,15 +183,15 @@
 }
 
 .pr-results .pr-search-container .search-input {
-    width: 100%;
-    height: 64px;
-    border-top-right-radius: 32px;
-    border-bottom-right-radius: 32px;
-    border-width: 1px;
-    border-style: solid;
-    border-color:  #ccc #ccc #ccc transparent;
-    color: #0A6ED1;
-    font: 400 1.6666666666666667rem '72';
+  width: 100%;
+  height: 64px;
+  border-top-right-radius: 32px;
+  border-bottom-right-radius: 32px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ccc #ccc #ccc transparent;
+  color: #0a6ed1;
+  font: 400 1.6666666666666667rem "72";
 }
 
 @media screen and (max-width: 959px) {
@@ -210,8 +210,8 @@
 }
 
 .clearButton.MuiButton-root {
-  color: #0A6ED1;
-  font-family: "72",Arial,Helvetica,sans-serif;
+  color: #0a6ed1;
+  font-family: "72", Arial, Helvetica, sans-serif;
   font-size: 1.3333333333333333rem;
   font-weight: 500;
   margin-top: 18px;
@@ -239,11 +239,10 @@
 
 .disclaimer a {
   text-decoration: none;
-  color: #0A6ED1;
+  color: #0a6ed1;
 }
 
 @media (max-width: 996px) {
-
     .disclaimer {
         margin-left: 50px;
         margin-right: 50px;
@@ -257,18 +256,25 @@
   .pr-section {
     padding-left: 0;
     padding-right: 0;
+  }  .pr-section .pr-body {
+    justify-content: center;
   }
   .pr-form-title {
     font-size: 1.8em;
-    
+
   }
 }
-@media (max-width: 767px) {
 
-    .disclaimer {
-        margin-left: 10px;
-        margin-right: 10px;
-    }
+@media (max-width: 767px) {
+  .pr-section {
+    border-top-style: none;
+    padding-top:0;
+  }
+
+  .disclaimer {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }
 
 .pr-section .roadmap-custom-button {
@@ -281,18 +287,13 @@
   outline: transparent auto 0px;
 }
 .pr-clear-all-selected-filters {
-  /* Clear All Filters */
-width: 113px;
-height: 19px;
+  width: 113px;
+  height: 19px;
+  font-family: 72;
+  font-size: 16px;
+  line-height: 18px;
+  text-align: center;
+  text-transform: capitalize;
 
-font-family: 72;
-font-size: 16px;
-line-height: 18px;
-/* identical to box height */
-
-text-align: center;
-text-transform: capitalize;
-
-color: #0A6ED1;
-
+  color: #0a6ed1;
 }

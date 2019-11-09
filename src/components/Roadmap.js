@@ -1,6 +1,4 @@
 import React from 'react';
-
-//import material ui components
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
@@ -8,13 +6,8 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import StepConnector from '@material-ui/core/StepConnector';
 import Popover from '@material-ui/core/Popover';
 import ReactSVG from 'react-svg'
-
-//import css
 import '../css/Roadmap.css';
-
-//import svg assets
 import { ProductIcons } from '../assets/prod-icons';
-// import { callbackify } from 'util';
 
 const defaultContent = {
   title: "", content: [{ header: "", body: "" }]
@@ -136,7 +129,6 @@ export function Roadmap(props) {
         id={id}
         open={open}
         anchorEl={anchorEl}
-        // onClose={handleClose}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'right',

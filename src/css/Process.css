@@ -12,6 +12,10 @@
   width: 200px;
   flex-direction: row;
 }
+.MuiTabs-root.roadmap-process-tabs.roadmap-process-tab-titles.MuiTabs-vertical {
+  min-width: 347px;
+}
+
 
 @media screen and (max-width: 500px) {
   .roadmap-process-tab-titles .MuiTab-wrapper {
@@ -37,8 +41,13 @@
 }
 
 @media screen and (max-width: 768px) {
+  .roadmap-process-tab-titles .MuiTab-wrapper{
+    font-size: 14px;
+    min-width: 120px;
+  }
   .MuiTabs-root.roadmap-process-tabs.roadmap-process-tab-titles.MuiTabs-vertical {
-    min-width: 405px;
+    min-width: 300px;
+    width: 340px;
     align-self: center;
   }
 }
@@ -84,11 +93,24 @@
   min-height: 351px;
 }
 
+.page-container-small .tab-icon {
+    display: none;
+
+}
+.page-container-small .tab-wrapper-highlights .MuiTab-wrapper {
+  border-right: 1px solid #0A6ED1;
+}
 @media screen and (max-width: 768px) {
+  .roadmap-process-tabs button {
+    max-width: 140px;
+  }
   .page-container .content-container .process-content {
     flex-direction: column;
   }
-
+  .MuiTabs-scroller.MuiTabs-fixed {
+    display: flex;
+    justify-content: center;
+  }
   .MuiTabs-flexContainerVertical {
     flex-direction: row !important;
   }

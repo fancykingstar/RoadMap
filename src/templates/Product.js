@@ -49,7 +49,7 @@ class Products extends Component {
   }
 
   componentDidMount() {
-    fetch("/data/products/" + ((this.state.subproduct && this.state.subproduct!='c4hanasuitecross')? this.state.subproduct : this.state.product )+ ".json")
+    fetch("/data/products/" + ((this.state.subproduct && this.state.subproduct!=='c4hanasuitecross')? this.state.subproduct : this.state.product )+ ".json")
       .then(res => res.json())
       .then(
         (result) => {
@@ -141,11 +141,6 @@ class Products extends Component {
         }
             <PlannedReleases releases={releases} type={template} cardfilter={product} subfilter={subproduct} placeholder="Travel Expenses" smallWindow={this.state.smallWindow} />
         </div>
-
-        {/* {timeline && timeline.length > 0 ? <SectionHeaderTitle title={timelineTitle} smallWindow={this.state.smallWindow} leftAligned={false} /> : null} */}
-
-
-
         {this.state.smallWindow ? <FooterMobile /> : <Footer />}
       </div>
     )

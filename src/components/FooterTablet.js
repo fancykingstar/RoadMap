@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
 //import custom components
-import { Button } from '../components/Button';
-
 //material ui
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
