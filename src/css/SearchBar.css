@@ -123,6 +123,7 @@
 
 .searchArea input {
   padding-left: 15px;
+  border-top-left-radius: 20px;
 }
 
 .searchArea img{
