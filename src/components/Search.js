@@ -240,22 +240,12 @@ class SiteSearch extends Component {
                        var parts = suggestion.split(new RegExp(`(${userInput})`, 'gi'));
                         flag = 1
                     }
-                    // Flag the active suggestion with a class
-                    // if (index === activeSuggestion) {
-                    //   className = "product-suggestion-active";
-                    // }
                     if(flag==0){
-                    return (
-                         <li className={className} key={suggestion} onClick={() => suggestionSearch(this, {suggestion})} >
-                         <img src={Result} alt="result"></img><span className='label'>{suggestion}</span>
-                         </li>
+                    return (<li className={className} key={suggestion} onClick={() => suggestionSearch(this, {suggestion})}><img src={Result} alt="result"></img><span className='label'>{suggestion}</span></li>
                           );
                       }
                     else{ // Highlight the word
-                     return (
-                         <li className={className} key={suggestion} onClick={() => suggestionSearch(this, {suggestion})} >
-                         <img src={Result} alt="result"></img><span className='label'>{parts.map(part => part.toLowerCase() === userInput.toLowerCase()?<span className="product-suggestion-active">{part}</span>:part)}</span>
-                        </li>
+                     return (<li className={className} key={suggestion} onClick={() => suggestionSearch(this, {suggestion})}><img src={Result} alt="result"></img><span className='label'>{parts.map(part => part.toLowerCase() === userInput.toLowerCase()?<span className="product-suggestion-active">{part}</span>:part)}</span></li>
                            );
                     }
                      })}
@@ -374,21 +364,10 @@ class ProductSearch extends Component {
                     var parts = suggestion.split(new RegExp(`(${userInput})`, 'gi'));
                     flag = 1
                    }
-                  //  if (index === activeSuggestion) {
-                  //    className = "product-suggestion-active";
-                  //  }
-                   if(flag==0){
-                   return (
-                     <li className={className} key={suggestion} onClick={() => suggestionSearch(this, {suggestion})} >
-                       <img src={Result} alt="result"></img><span className='label'>{suggestion}</span>
-                     </li>
-                   );
+                   if(flag==0){return(<li className={className} key={suggestion} onClick={() => suggestionSearch(this, {suggestion})}><img src={Result} alt="result"></img><span className='label'>{suggestion}</span></li>);
                  }
                   else{ // Highlight the word
-                    return(
-                    <li className={className} key={suggestion} onClick={() => suggestionSearch(this, {suggestion})} >
-                    <img src={Result} alt="result"></img><span className='label'>{parts.map(part => part.toLowerCase() === userInput.toLowerCase()?<span className="product-suggestion-active">{part}</span>:part)}</span>
-                     </li>
+                    return(<li className={className} key={suggestion} onClick={() => suggestionSearch(this, {suggestion})}><img src={Result} alt="result"></img><span className='label'>{parts.map(part => part.toLowerCase() === userInput.toLowerCase()?<span className="product-suggestion-active">{part}</span>:part)}</span></li>
                     );
                   }
                     })}
