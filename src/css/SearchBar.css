@@ -168,10 +168,6 @@
   margin-left: 15px;
 }
 
-.suggestions li .highlight {
-  margin-left: 15px;
-}
-
 .suggestion-active,
 .suggestions li:hover {
   color:#0A6ED1;
@@ -212,11 +208,6 @@
   font-size: 1.6666666666666667rem;
 }
 
-.trend .highlight {
-  margin-left: 14px;
-  color: #0A6ED1;
-  font-size: 1.6666666666666667rem;
-}
 .product-body {
   display: flex;
   padding: 0;
@@ -341,10 +332,6 @@ input:focus, textarea:focus {
 
 .product-suggestions li .label {
   padding-left: 15px;
-}
-
-.product-suggestions li .highlight {
-  margin-left: 15px;
 }
 
 .product-suggestions li:hover {

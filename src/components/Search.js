@@ -248,15 +248,16 @@ class SiteSearch extends Component {
                     return (
                          <li className={className} key={suggestion} onClick={() => suggestionSearch(this, {suggestion})} >
                          <img src={Result} alt="result"></img><span className='label'>{suggestion}</span>
-                          </li>
+                         </li>
                           );
                       }
                     else{ // Highlight the word
-                     return(
+                     return (
                          <li className={className} key={suggestion} onClick={() => suggestionSearch(this, {suggestion})} >
-                          <img src={Result} alt="result"></img><span className='highlight'>{parts.map(part => part.toLowerCase() === userInput.toLowerCase() ? <span className="product-suggestion-active">{part}</span> : part)}</span>
-                          </li>
-                           )};
+                         <img src={Result} alt="result"></img><span className='label'>{parts.map(part => part.toLowerCase() === userInput.toLowerCase()?<span className="product-suggestion-active">{part}</span>:part)}</span>
+                        </li>
+                           );
+                    }
                      })}
 
                 </ul>
@@ -386,10 +387,10 @@ class ProductSearch extends Component {
                   else{ // Highlight the word
                     return(
                     <li className={className} key={suggestion} onClick={() => suggestionSearch(this, {suggestion})} >
-                    <img src={Result} alt="result"></img><span className='highlight'>{parts.map(part => part.toLowerCase() === userInput.toLowerCase() ? <span className="product-suggestion-active">{part}</span> : part)}</span>
-                      {/* <img src={Result} alt="result"></img><span className='highlight'>{parts.map(part => part.toLowerCase() === userInput.toLowerCase() ? <b>{part}</b> : part)}</span> */}
+                    <img src={Result} alt="result"></img><span className='label'>{parts.map(part => part.toLowerCase() === userInput.toLowerCase()?<span className="product-suggestion-active">{part}</span>:part)}</span>
                      </li>
-                    )};
+                    );
+                  }
                     })}
                </ul>
                < div className = "product-trending trending-content" >
